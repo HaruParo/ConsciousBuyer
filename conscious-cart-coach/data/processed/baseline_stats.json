@@ -1,0 +1,601 @@
+{
+  "summary": {
+    "total_categories": 39,
+    "total_items": 182,
+    "total_purchases": 372,
+    "total_spend": 2996.5974999999808,
+    "avg_price": 6.062258064516114,
+    "date_range": {
+      "start": "2025-01-18T00:00:00",
+      "end": "2026-01-10T00:00:00"
+    },
+    "generated_at": "2026-01-15T15:00:42.010697"
+  },
+  "categories": {
+    "produce_greens": {
+      "median_price": 2.99,
+      "price_range": [
+        1.99,
+        8.0
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": "bunch, plastic twist tie",
+      "volatility": 1.198928277419653,
+      "purchase_count": 43,
+      "avg_quantity": 1.2093023255813953,
+      "total_spend": 203.15000000000006,
+      "first_purchase": "2025-01-18T00:00:00",
+      "last_purchase": "2025-11-16T00:00:00"
+    },
+    "produce_onions": {
+      "median_price": 5.09,
+      "price_range": [
+        0.97,
+        13.98
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": "bunch, plastic twist tie",
+      "volatility": 3.960242675806882,
+      "purchase_count": 40,
+      "avg_quantity": 1.55,
+      "total_spend": 426.64000000000004,
+      "first_purchase": "2025-01-24T00:00:00",
+      "last_purchase": "2026-01-10T00:00:00"
+    },
+    "produce_root_veg": {
+      "median_price": 3.99,
+      "price_range": [
+        0.45,
+        6.99
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": "bunch, plastic twist tie",
+      "volatility": 1.6421343620903546,
+      "purchase_count": 39,
+      "avg_quantity": 1.268974358974359,
+      "total_spend": 211.37750000000008,
+      "first_purchase": "2025-01-18T00:00:00",
+      "last_purchase": "2025-11-16T00:00:00"
+    },
+    "fruit_tropical": {
+      "median_price": 2.79,
+      "price_range": [
+        1.69,
+        8.97
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": "bunch",
+      "volatility": 2.1419134835964133,
+      "purchase_count": 33,
+      "avg_quantity": 1.7272727272727273,
+      "total_spend": 194.82000000000002,
+      "first_purchase": "2025-01-18T00:00:00",
+      "last_purchase": "2026-01-10T00:00:00"
+    },
+    "produce_tomatoes": {
+      "median_price": 9.98,
+      "price_range": [
+        2.99,
+        10.38
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": null,
+      "volatility": 2.707555876344828,
+      "purchase_count": 18,
+      "avg_quantity": 1.7222222222222223,
+      "total_spend": 264.87000000000006,
+      "first_purchase": "2025-01-24T00:00:00",
+      "last_purchase": "2026-01-10T00:00:00"
+    },
+    "milk": {
+      "median_price": 7.99,
+      "price_range": [
+        2.49,
+        10.18
+      ],
+      "usual_brand": "Ronnybrook Farm Dairy",
+      "common_packaging": "glass bottle",
+      "volatility": 1.862121304221072,
+      "purchase_count": 18,
+      "avg_quantity": 1.3888888888888888,
+      "total_spend": 186.03000000000006,
+      "first_purchase": "2025-01-18T00:00:00",
+      "last_purchase": "2025-11-16T00:00:00"
+    },
+    "fruit_berries": {
+      "median_price": 7.98,
+      "price_range": [
+        3.99,
+        9.99
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": "plastic clamshell",
+      "volatility": 1.7296750374836651,
+      "purchase_count": 17,
+      "avg_quantity": 1.1764705882352942,
+      "total_spend": 151.76,
+      "first_purchase": "2025-01-18T00:00:00",
+      "last_purchase": "2025-10-30T00:00:00"
+    },
+    "produce_peppers": {
+      "median_price": 3.98,
+      "price_range": [
+        1.99,
+        3.99
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": null,
+      "volatility": 0.9715118311658577,
+      "purchase_count": 15,
+      "avg_quantity": 1.6,
+      "total_spend": 85.57999999999998,
+      "first_purchase": "2025-01-18T00:00:00",
+      "last_purchase": "2026-01-10T00:00:00"
+    },
+    "produce_squash": {
+      "median_price": 3.99,
+      "price_range": [
+        1.17,
+        8.97
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": "plastic clamshell",
+      "volatility": 2.0354145476910546,
+      "purchase_count": 15,
+      "avg_quantity": 1.2,
+      "total_spend": 93.73999999999998,
+      "first_purchase": "2025-01-18T00:00:00",
+      "last_purchase": "2025-11-06T00:00:00"
+    },
+    "produce_beans": {
+      "median_price": 5.59,
+      "price_range": [
+        3.99,
+        9.98
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": "plastic clamshell",
+      "volatility": 1.6011076179931205,
+      "purchase_count": 14,
+      "avg_quantity": 1.0714285714285714,
+      "total_spend": 92.02999999999999,
+      "first_purchase": "2025-01-18T00:00:00",
+      "last_purchase": "2026-01-10T00:00:00"
+    },
+    "bread": {
+      "median_price": 7.99,
+      "price_range": [
+        5.99,
+        11.98
+      ],
+      "usual_brand": "Bread Alone",
+      "common_packaging": "plastic bag",
+      "volatility": 1.8514117967177486,
+      "purchase_count": 13,
+      "avg_quantity": 1.5384615384615385,
+      "total_spend": 184.80000000000004,
+      "first_purchase": "2025-04-09T00:00:00",
+      "last_purchase": "2025-11-16T00:00:00"
+    },
+    "produce_cucumbers": {
+      "median_price": 2.745,
+      "price_range": [
+        0.99,
+        4.99
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": null,
+      "volatility": 1.3177310619072284,
+      "purchase_count": 12,
+      "avg_quantity": 1.4166666666666667,
+      "total_spend": 60.77000000000001,
+      "first_purchase": "2025-01-18T00:00:00",
+      "last_purchase": "2026-01-10T00:00:00"
+    },
+    "fruit_citrus": {
+      "median_price": 3.99,
+      "price_range": [
+        1.18,
+        6.19
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": "bunch",
+      "volatility": 1.506404778651096,
+      "purchase_count": 8,
+      "avg_quantity": 1.375,
+      "total_spend": 38.470000000000006,
+      "first_purchase": "2025-01-18T00:00:00",
+      "last_purchase": "2025-11-16T00:00:00"
+    },
+    "ice_cream": {
+      "median_price": 8.59,
+      "price_range": [
+        7.99,
+        9.49
+      ],
+      "usual_brand": "New City Microcreamery",
+      "common_packaging": "paperboard box",
+      "volatility": 0.6928203230275515,
+      "purchase_count": 7,
+      "avg_quantity": 1.0,
+      "total_spend": 61.53000000000001,
+      "first_purchase": "2025-04-09T00:00:00",
+      "last_purchase": "2025-11-04T00:00:00"
+    },
+    "eggs": {
+      "median_price": 4.49,
+      "price_range": [
+        4.49,
+        7.49
+      ],
+      "usual_brand": "Vital Farms",
+      "common_packaging": "carton",
+      "volatility": 1.4288690166235207,
+      "purchase_count": 6,
+      "avg_quantity": 1.0,
+      "total_spend": 32.440000000000005,
+      "first_purchase": "2025-08-21T00:00:00",
+      "last_purchase": "2025-11-16T00:00:00"
+    },
+    "chicken": {
+      "median_price": 12.86,
+      "price_range": [
+        7.49,
+        16.82
+      ],
+      "usual_brand": "Farmer Focus",
+      "common_packaging": null,
+      "volatility": 3.709982479742998,
+      "purchase_count": 5,
+      "avg_quantity": 1.0,
+      "total_spend": 59.059999999999995,
+      "first_purchase": "2025-04-28T00:00:00",
+      "last_purchase": "2026-01-10T00:00:00"
+    },
+    "cheese": {
+      "median_price": 7.99,
+      "price_range": [
+        7.99,
+        10.99
+      ],
+      "usual_brand": null,
+      "common_packaging": null,
+      "volatility": 1.3416407864998738,
+      "purchase_count": 5,
+      "avg_quantity": 1.0,
+      "total_spend": 42.95,
+      "first_purchase": "2025-10-05T00:00:00",
+      "last_purchase": "2025-11-16T00:00:00"
+    },
+    "fruit_other": {
+      "median_price": 5.99,
+      "price_range": [
+        1.99,
+        12.99
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": "plastic bag",
+      "volatility": 4.08656334834051,
+      "purchase_count": 5,
+      "avg_quantity": 1.0,
+      "total_spend": 35.949999999999996,
+      "first_purchase": "2025-01-24T00:00:00",
+      "last_purchase": "2025-09-17T00:00:00"
+    },
+    "chocolate": {
+      "median_price": 4.19,
+      "price_range": [
+        3.33,
+        7.19
+      ],
+      "usual_brand": "Beyond Good",
+      "common_packaging": "paperboard box",
+      "volatility": 1.5930725030581627,
+      "purchase_count": 5,
+      "avg_quantity": 2.0,
+      "total_spend": 39.74,
+      "first_purchase": "2025-07-17T00:00:00",
+      "last_purchase": "2025-10-05T00:00:00"
+    },
+    "grains": {
+      "median_price": 9.19,
+      "price_range": [
+        8.99,
+        18.58
+      ],
+      "usual_brand": "Bob's Red Mill",
+      "common_packaging": "plastic bag, resealable bag",
+      "volatility": 4.234869537541858,
+      "purchase_count": 5,
+      "avg_quantity": 1.2,
+      "total_spend": 73.61999999999999,
+      "first_purchase": "2025-01-18T00:00:00",
+      "last_purchase": "2025-07-30T00:00:00"
+    },
+    "yogurt": {
+      "median_price": 7.99,
+      "price_range": [
+        6.99,
+        7.99
+      ],
+      "usual_brand": "Hawthorne Valley Farm",
+      "common_packaging": "glass jar",
+      "volatility": 0.547722557505166,
+      "purchase_count": 5,
+      "avg_quantity": 1.0,
+      "total_spend": 37.95,
+      "first_purchase": "2025-01-31T00:00:00",
+      "last_purchase": "2025-10-30T00:00:00"
+    },
+    "nuts_peanuts": {
+      "median_price": 5.99,
+      "price_range": [
+        5.99,
+        6.19
+      ],
+      "usual_brand": "Just FreshDirect",
+      "common_packaging": "plastic bag, resealable bag",
+      "volatility": 0.08944271909999225,
+      "purchase_count": 5,
+      "avg_quantity": 1.0,
+      "total_spend": 30.150000000000006,
+      "first_purchase": "2025-01-18T00:00:00",
+      "last_purchase": "2025-07-03T00:00:00"
+    },
+    "spices": {
+      "median_price": 7.39,
+      "price_range": [
+        3.49,
+        10.99
+      ],
+      "usual_brand": "Burlap & Barrel",
+      "common_packaging": "glass jar, metal lid/cap",
+      "volatility": 3.7009458250560763,
+      "purchase_count": 5,
+      "avg_quantity": 1.0,
+      "total_spend": 36.550000000000004,
+      "first_purchase": "2025-01-31T00:00:00",
+      "last_purchase": "2025-11-04T00:00:00"
+    },
+    "oils_olive": {
+      "median_price": 22.09,
+      "price_range": [
+        15.99,
+        25.39
+      ],
+      "usual_brand": "La Tourangelle",
+      "common_packaging": null,
+      "volatility": 4.667618950457147,
+      "purchase_count": 4,
+      "avg_quantity": 1.0,
+      "total_spend": 85.56,
+      "first_purchase": "2025-04-21T00:00:00",
+      "last_purchase": "2025-11-06T00:00:00"
+    },
+    "vinegar": {
+      "median_price": 10.24,
+      "price_range": [
+        6.29,
+        11.99
+      ],
+      "usual_brand": "Bragg",
+      "common_packaging": "glass bottle, metal lid/cap",
+      "volatility": 2.803569153775237,
+      "purchase_count": 4,
+      "avg_quantity": 1.0,
+      "total_spend": 38.76,
+      "first_purchase": "2025-04-21T00:00:00",
+      "last_purchase": "2025-09-25T00:00:00"
+    },
+    "nuts_almonds": {
+      "median_price": 10.99,
+      "price_range": [
+        9.99,
+        11.19
+      ],
+      "usual_brand": "Just FreshDirect",
+      "common_packaging": "plastic bag, resealable bag",
+      "volatility": 0.6429100507328639,
+      "purchase_count": 3,
+      "avg_quantity": 1.0,
+      "total_spend": 32.17,
+      "first_purchase": "2025-04-21T00:00:00",
+      "last_purchase": "2025-10-14T00:00:00"
+    },
+    "fermented": {
+      "median_price": 10.39,
+      "price_range": [
+        7.99,
+        10.39
+      ],
+      "usual_brand": "Mama O's",
+      "common_packaging": null,
+      "volatility": 1.3856406460551025,
+      "purchase_count": 3,
+      "avg_quantity": 1.0,
+      "total_spend": 28.770000000000003,
+      "first_purchase": "2025-10-23T00:00:00",
+      "last_purchase": "2026-01-10T00:00:00"
+    },
+    "personal_care": {
+      "median_price": 7.99,
+      "price_range": [
+        7.99,
+        7.99
+      ],
+      "usual_brand": "Sensodyne",
+      "common_packaging": "paperboard box",
+      "volatility": 0.0,
+      "purchase_count": 2,
+      "avg_quantity": 1.0,
+      "total_spend": 15.98,
+      "first_purchase": "2025-01-31T00:00:00",
+      "last_purchase": "2025-01-31T00:00:00"
+    },
+    "nuts_cashews": {
+      "median_price": 10.59,
+      "price_range": [
+        9.99,
+        11.19
+      ],
+      "usual_brand": "Just FreshDirect",
+      "common_packaging": "plastic bag, resealable bag",
+      "volatility": 0.8485281374238566,
+      "purchase_count": 2,
+      "avg_quantity": 1.0,
+      "total_spend": 21.18,
+      "first_purchase": "2025-04-21T00:00:00",
+      "last_purchase": "2025-10-14T00:00:00"
+    },
+    "oils_coconut": {
+      "median_price": 13.19,
+      "price_range": [
+        12.69,
+        13.69
+      ],
+      "usual_brand": "Nutiva",
+      "common_packaging": null,
+      "volatility": 0.7071067811865476,
+      "purchase_count": 2,
+      "avg_quantity": 1.0,
+      "total_spend": 26.38,
+      "first_purchase": "2025-05-21T00:00:00",
+      "last_purchase": "2025-07-17T00:00:00"
+    },
+    "produce_aromatics": {
+      "median_price": 6.49,
+      "price_range": [
+        6.49,
+        6.49
+      ],
+      "usual_brand": "Store Brand",
+      "common_packaging": "bunch",
+      "volatility": 0.0,
+      "purchase_count": 2,
+      "avg_quantity": 1.0,
+      "total_spend": 12.98,
+      "first_purchase": "2025-06-05T00:00:00",
+      "last_purchase": "2025-07-17T00:00:00"
+    },
+    "cookies_crackers": {
+      "median_price": 5.04,
+      "price_range": [
+        4.79,
+        5.29
+      ],
+      "usual_brand": "Mulino Bianco",
+      "common_packaging": "paperboard box",
+      "volatility": 0.3535533905932738,
+      "purchase_count": 2,
+      "avg_quantity": 1.0,
+      "total_spend": 10.08,
+      "first_purchase": "2025-04-21T00:00:00",
+      "last_purchase": "2025-04-28T00:00:00"
+    },
+    "produce_mushrooms": {
+      "median_price": 9.99,
+      "price_range": [
+        5.99,
+        13.99
+      ],
+      "usual_brand": "Mushroom King",
+      "common_packaging": null,
+      "volatility": 5.656854249492381,
+      "purchase_count": 2,
+      "avg_quantity": 1.0,
+      "total_spend": 19.98,
+      "first_purchase": "2025-10-14T00:00:00",
+      "last_purchase": "2025-11-16T00:00:00"
+    },
+    "chips": {
+      "median_price": 4.49,
+      "price_range": [
+        4.49,
+        4.49
+      ],
+      "usual_brand": null,
+      "common_packaging": null,
+      "volatility": 0.0,
+      "purchase_count": 2,
+      "avg_quantity": 1.0,
+      "total_spend": 8.98,
+      "first_purchase": "2025-08-21T00:00:00",
+      "last_purchase": "2025-09-25T00:00:00"
+    },
+    "canned_coconut": {
+      "median_price": 5.085,
+      "price_range": [
+        4.58,
+        5.59
+      ],
+      "usual_brand": "Native Forest",
+      "common_packaging": null,
+      "volatility": 0.7141778489984129,
+      "purchase_count": 2,
+      "avg_quantity": 2.0,
+      "total_spend": 20.34,
+      "first_purchase": "2025-06-05T00:00:00",
+      "last_purchase": "2025-09-25T00:00:00"
+    },
+    "butter_ghee": {
+      "median_price": 15.99,
+      "price_range": [
+        15.99,
+        15.99
+      ],
+      "usual_brand": null,
+      "common_packaging": null,
+      "volatility": 0.0,
+      "purchase_count": 1,
+      "avg_quantity": 1.0,
+      "total_spend": 15.99,
+      "first_purchase": "2025-08-21T00:00:00",
+      "last_purchase": "2025-08-21T00:00:00"
+    },
+    "frozen_veg": {
+      "median_price": 5.99,
+      "price_range": [
+        5.99,
+        5.99
+      ],
+      "usual_brand": "Headwater Food Hub",
+      "common_packaging": null,
+      "volatility": 0.0,
+      "purchase_count": 1,
+      "avg_quantity": 1.0,
+      "total_spend": 5.99,
+      "first_purchase": "2025-08-21T00:00:00",
+      "last_purchase": "2025-08-21T00:00:00"
+    },
+    "corn": {
+      "median_price": 2.49,
+      "price_range": [
+        2.49,
+        2.49
+      ],
+      "usual_brand": "Saunderskill Farms",
+      "common_packaging": null,
+      "volatility": 0.0,
+      "purchase_count": 1,
+      "avg_quantity": 1.0,
+      "total_spend": 2.49,
+      "first_purchase": "2025-08-21T00:00:00",
+      "last_purchase": "2025-08-21T00:00:00"
+    },
+    "hummus_dips": {
+      "median_price": 6.99,
+      "price_range": [
+        6.99,
+        6.99
+      ],
+      "usual_brand": "Zesty Za'atar",
+      "common_packaging": null,
+      "volatility": 0.0,
+      "purchase_count": 1,
+      "avg_quantity": 1.0,
+      "total_spend": 6.99,
+      "first_purchase": "2025-09-25T00:00:00",
+      "last_purchase": "2025-09-25T00:00:00"
+    }
+  }
+}

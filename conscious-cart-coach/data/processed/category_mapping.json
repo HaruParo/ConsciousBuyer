@@ -1,0 +1,2035 @@
+{
+  "categories": {
+    "ice_cream": {
+      "category_id": 1,
+      "items": [
+        {
+          "item_id": 134,
+          "name": "Adirondack Creamery Ice Cream, Kulfi Pistachio Cardamom",
+          "brand": "Adirondack Creamery"
+        },
+        {
+          "item_id": 158,
+          "name": "Bubbies Mochi Ice Cream, Pistachio",
+          "brand": "Bubbies"
+        },
+        {
+          "item_id": 108,
+          "name": "New City Microcreamery Ice Cream, Baklava",
+          "brand": "New City Microcreamery"
+        },
+        {
+          "item_id": 98,
+          "name": "New City Microcreamery Ice Cream, Tres Leches",
+          "brand": "New City Microcreamery"
+        },
+        {
+          "item_id": 132,
+          "name": "Van Leeuwen Ice Cream, Sicilian Pistachio",
+          "brand": "Van Leeuwen"
+        }
+      ]
+    },
+    "milk": {
+      "category_id": 2,
+      "items": [
+        {
+          "item_id": 107,
+          "name": "Alexandre A2/A2 Organic 4% Whole Milk, Carton",
+          "brand": "Alexandre"
+        },
+        {
+          "item_id": 180,
+          "name": "Family Farmstead 100% Grass-Fed A2 Organic Whole Milk, Plastic Bottle",
+          "brand": "Family Farmstead"
+        },
+        {
+          "item_id": 169,
+          "name": "Organic Valley Family First Whole Milk with DHA Omega-3, Carton",
+          "brand": "Organic Valley"
+        },
+        {
+          "item_id": 23,
+          "name": "Ronnybrook Farm Dairy Creamline Whole Milk",
+          "brand": "Ronnybrook Farm Dairy"
+        },
+        {
+          "item_id": 75,
+          "name": "Small Creamline Whole Milk",
+          "brand": null
+        }
+      ]
+    },
+    "produce_squash": {
+      "category_id": 3,
+      "items": [
+        {
+          "item_id": 184,
+          "name": "Altobelli Family Farm Local Delicata Squash",
+          "brand": "Altobelli Family Farm"
+        },
+        {
+          "item_id": 143,
+          "name": "Chayote Squash",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 161,
+          "name": "Chinese Eggplant",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 151,
+          "name": "Graffiti Eggplant",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 137,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Graffiti Eggplant",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 153,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Squash Blossoms",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 130,
+          "name": "Organic Delicata Squash",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 77,
+          "name": "Organic Green Zucchini",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 147,
+          "name": "Wells Homestead Acres Local Squash Blossoms",
+          "brand": "Wells Homestead Acres"
+        },
+        {
+          "item_id": 62,
+          "name": "Sun Sprout Farm Organic Fairytale Eggplant",
+          "brand": "Sun Sprout Farm"
+        },
+        {
+          "item_id": 60,
+          "name": "Organic Acorn Squash",
+          "brand": null
+        },
+        {
+          "item_id": 69,
+          "name": "Organic Honeynut Squash",
+          "brand": null
+        },
+        {
+          "item_id": 38,
+          "name": "Organic Kabocha Squash",
+          "brand": null
+        }
+      ]
+    },
+    "fruit_tropical": {
+      "category_id": 4,
+      "items": [
+        {
+          "item_id": 109,
+          "name": "Baby Bananas, Bunch",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 202,
+          "name": "Banana Bunch",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 190,
+          "name": "Breadfruit",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 148,
+          "name": "Equal Exchange Fair Trade Organic Bananas",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 194,
+          "name": "Fresh Coconut Chunks",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 173,
+          "name": "Golden Dragon Fruit",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 120,
+          "name": "Green Plantains",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 174,
+          "name": "Organic Golden Pineapple",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 122,
+          "name": "Organic Hass Avocados",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 170,
+          "name": "Organic Tommy Atkins Mango",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 183,
+          "name": "Yellow Plantains",
+          "brand": null
+        },
+        {
+          "item_id": 76,
+          "name": "Organic & Fair Trade Bananas (Ripe)",
+          "brand": "Organic from Mexico"
+        },
+        {
+          "item_id": 26,
+          "name": "Organic & Fair Trade Hass Avocados",
+          "brand": "Organic from Mexico"
+        }
+      ]
+    },
+    "produce_onions": {
+      "category_id": 5,
+      "items": [
+        {
+          "item_id": 185,
+          "name": "Black Dirt Region Red Cippolini Onions",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 101,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Garlic",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 103,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Red Onions",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 104,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Red Onions, Medium",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 105,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Shallots",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 34,
+          "name": "Organic Garlic",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 205,
+          "name": "Organic Leeks, Bunch",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 135,
+          "name": "Organic Red Onions",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 46,
+          "name": "Shallots",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 53,
+          "name": "Organic Scallions",
+          "brand": null
+        },
+        {
+          "item_id": 66,
+          "name": "Red Onions",
+          "brand": null
+        }
+      ]
+    },
+    "grains": {
+      "category_id": 6,
+      "items": [
+        {
+          "item_id": 136,
+          "name": "Bob's Red Mill Organic Quinoa",
+          "brand": "Bob's Red Mill"
+        }
+      ]
+    },
+    "vinegar": {
+      "category_id": 7,
+      "items": [
+        {
+          "item_id": 165,
+          "name": "Bragg Organic Raw Unfiltered Apple Cider Vinegar",
+          "brand": "Bragg"
+        },
+        {
+          "item_id": 162,
+          "name": "De Nigris Organic White Wine Vinegar",
+          "brand": "De Nigris"
+        },
+        {
+          "item_id": 71,
+          "name": "Organic Apple Cider Vinegar",
+          "brand": null
+        }
+      ]
+    },
+    "bread": {
+      "category_id": 8,
+      "items": [
+        {
+          "item_id": 168,
+          "name": "Bread Alone Organic San Francisco Sourdough",
+          "brand": "Bread Alone"
+        },
+        {
+          "item_id": 97,
+          "name": "Bread Alone Organic Whole Wheat Sourdough (Yeast Free)",
+          "brand": "Bread Alone"
+        },
+        {
+          "item_id": 93,
+          "name": "Black Seed Bagels Everything Bagels",
+          "brand": "Black Seed Bagels"
+        },
+        {
+          "item_id": 86,
+          "name": "Multigrain Sourdough English Muffins",
+          "brand": "Dam Good English Muffins"
+        },
+        {
+          "item_id": 33,
+          "name": "Organic Whole Wheat Sourdough Bread",
+          "brand": null
+        }
+      ]
+    },
+    "spices": {
+      "category_id": 9,
+      "items": [
+        {
+          "item_id": 179,
+          "name": "Burlap & Barrel New Harvest Turmeric",
+          "brand": "Burlap & Barrel"
+        },
+        {
+          "item_id": 99,
+          "name": "Burlap & Barrel Wild Mountain Cumin",
+          "brand": "Burlap & Barrel"
+        },
+        {
+          "item_id": 166,
+          "name": "Celestial Seasonings Chamomile Herbal Tea",
+          "brand": "Celestial Seasonings"
+        },
+        {
+          "item_id": 123,
+          "name": "Morton Iodized Salt",
+          "brand": "Morton"
+        },
+        {
+          "item_id": 163,
+          "name": "Simply Organic Crushed Red Pepper",
+          "brand": "Simply Organic"
+        }
+      ]
+    },
+    "produce_root_veg": {
+      "category_id": 10,
+      "items": [
+        {
+          "item_id": 142,
+          "name": "Cal-Organic Organic Rainbow Carrots",
+          "brand": "Cal-Organic"
+        },
+        {
+          "item_id": 197,
+          "name": "Cal-Organic Organic Red Carrots",
+          "brand": "Cal-Organic"
+        },
+        {
+          "item_id": 124,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic All Blue Potatoes",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 125,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Chioggia Beets",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 127,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Hakurei Turnips",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 102,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Purple Sweet Potato",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 198,
+          "name": "Lancaster Farm Fresh Cooperative Organic Watermelon Radishes",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 199,
+          "name": "Loose Organic Beets",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 115,
+          "name": "Organic Beets, Bunch",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 188,
+          "name": "Organic French Breakfast Radish",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 35,
+          "name": "Organic Ginger Root",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 156,
+          "name": "Organic Japanese Sweet Potatoes",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 79,
+          "name": "Organic Bunched Rainbow Carrots",
+          "brand": null
+        },
+        {
+          "item_id": 42,
+          "name": "Organic Bunched Red Beets",
+          "brand": null
+        },
+        {
+          "item_id": 29,
+          "name": "Organic Chioggia Beets",
+          "brand": null
+        },
+        {
+          "item_id": 90,
+          "name": "Organic Fenway Red Potatoes",
+          "brand": null
+        },
+        {
+          "item_id": 85,
+          "name": "Organic French Breakfast Radishes",
+          "brand": null
+        },
+        {
+          "item_id": 50,
+          "name": "Organic Peter Wilcox New Potatoes",
+          "brand": null
+        },
+        {
+          "item_id": 84,
+          "name": "Organic Peter Wilcox Potatoes",
+          "brand": null
+        },
+        {
+          "item_id": 58,
+          "name": "Organic Red Radishes",
+          "brand": null
+        },
+        {
+          "item_id": 49,
+          "name": "Organic Sweet Potatoes",
+          "brand": null
+        },
+        {
+          "item_id": 41,
+          "name": "Organic Young Fresh Ginger",
+          "brand": null
+        },
+        {
+          "item_id": 51,
+          "name": "Organically Grown Hakurei Turnips",
+          "brand": null
+        }
+      ]
+    },
+    "produce_beans": {
+      "category_id": 11,
+      "items": [
+        {
+          "item_id": 100,
+          "name": "Chinese Long Beans",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 126,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Green Beans",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 128,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Mixed Okra",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 154,
+          "name": "Okra, Packaged",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 116,
+          "name": "Organic French Beans",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 201,
+          "name": "Seapoint Farms Edamame Organic Shelled Soybeans",
+          "brand": "Seapoint Farms"
+        },
+        {
+          "item_id": 83,
+          "name": "Organic Green Beans",
+          "brand": null
+        },
+        {
+          "item_id": 87,
+          "name": "Organic Okra",
+          "brand": null
+        }
+      ]
+    },
+    "produce_greens": {
+      "category_id": 12,
+      "items": [
+        {
+          "item_id": 113,
+          "name": "Deer Run Farms Local Bunched Spinach",
+          "brand": "Deer Run Farms"
+        },
+        {
+          "item_id": 195,
+          "name": "Green Guavas",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 145,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Malabar Spinach",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 129,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Young Rainbow Chard",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 187,
+          "name": "Ocean Mist Farms Spinach",
+          "brand": "Ocean Mist Farms"
+        },
+        {
+          "item_id": 155,
+          "name": "Organic Basil",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 25,
+          "name": "Organic Cilantro",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 131,
+          "name": "Organic Mint",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 31,
+          "name": "Satur Farms Baby Spinach",
+          "brand": "Satur Farms"
+        },
+        {
+          "item_id": 57,
+          "name": "Dagele Brothers Produce Green Cabbage",
+          "brand": "Dagele Brothers Produce"
+        },
+        {
+          "item_id": 68,
+          "name": "Organic Baby Spinach",
+          "brand": null
+        },
+        {
+          "item_id": 78,
+          "name": "Organic Broccoli",
+          "brand": null
+        },
+        {
+          "item_id": 65,
+          "name": "Organic Broccoli Rabe",
+          "brand": null
+        },
+        {
+          "item_id": 47,
+          "name": "Organic Green Kale",
+          "brand": null
+        },
+        {
+          "item_id": 30,
+          "name": "Organic Lacinato Kale",
+          "brand": null
+        },
+        {
+          "item_id": 48,
+          "name": "Organic Purple Broccoli",
+          "brand": null
+        },
+        {
+          "item_id": 43,
+          "name": "Organic Spearmint",
+          "brand": null
+        },
+        {
+          "item_id": 61,
+          "name": "Organic Sweet Baby Broccoli",
+          "brand": null
+        },
+        {
+          "item_id": 67,
+          "name": "Organic Swiss Chard",
+          "brand": null
+        },
+        {
+          "item_id": 72,
+          "name": "Organic Tatsoi",
+          "brand": null
+        },
+        {
+          "item_id": 80,
+          "name": "Organically Grown Collard Greens",
+          "brand": null
+        }
+      ]
+    },
+    "fruit_berries": {
+      "category_id": 13,
+      "items": [
+        {
+          "item_id": 191,
+          "name": "Driscoll's Limited Edition Sweetest Batch Strawberries",
+          "brand": "Driscoll's"
+        },
+        {
+          "item_id": 119,
+          "name": "Driscoll's Organic Blackberries",
+          "brand": "Driscoll's"
+        },
+        {
+          "item_id": 160,
+          "name": "Driscoll's Organic Strawberries",
+          "brand": "Driscoll's"
+        },
+        {
+          "item_id": 192,
+          "name": "Family Tree Farms Blackberries",
+          "brand": "Family Tree Farms"
+        },
+        {
+          "item_id": 193,
+          "name": "Family Tree Farms Jumbo Ultra-Premium Blueberries",
+          "brand": "Family Tree Farms"
+        },
+        {
+          "item_id": 181,
+          "name": "Naturipe Berry Trio",
+          "brand": "Naturipe"
+        },
+        {
+          "item_id": 52,
+          "name": "Organic Blueberries",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 88,
+          "name": "Organic Local Blueberries",
+          "brand": null
+        }
+      ]
+    },
+    "chicken": {
+      "category_id": 14,
+      "items": [
+        {
+          "item_id": 110,
+          "name": "Farmer Focus Organic Boneless Chicken Tenders",
+          "brand": "Farmer Focus"
+        },
+        {
+          "item_id": 133,
+          "name": "Farmer Focus Organic Boneless Skinless Chicken Breast",
+          "brand": "Farmer Focus"
+        },
+        {
+          "item_id": 203,
+          "name": "Farmer Focus Organic Boneless Skinless Chicken Thighs",
+          "brand": "Farmer Focus"
+        },
+        {
+          "item_id": 204,
+          "name": "Farmer Focus Organic Chicken Wings",
+          "brand": "Farmer Focus"
+        }
+      ]
+    },
+    "produce_cucumbers": {
+      "category_id": 15,
+      "items": [
+        {
+          "item_id": 186,
+          "name": "Green Cucumber",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 152,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Kirby Cucumbers",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 117,
+          "name": "Organic Green Cucumber",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 56,
+          "name": "Organic Persian Cucumbers",
+          "brand": null
+        },
+        {
+          "item_id": 40,
+          "name": "Organic Slicing Cucumbers",
+          "brand": null
+        }
+      ]
+    },
+    "chocolate": {
+      "category_id": 16,
+      "items": [
+        {
+          "item_id": 141,
+          "name": "Hu Kitchen Simple Organic Dark Chocolate Bar",
+          "brand": "Hu Kitchen"
+        },
+        {
+          "item_id": 82,
+          "name": "Beyond Good 85% Sea Salt Dark Chocolate Bar",
+          "brand": "Beyond Good"
+        },
+        {
+          "item_id": 59,
+          "name": "Beyond Good Organic Pure Dark 92% Cocoa Heirloom Chocolate Bar",
+          "brand": "Beyond Good"
+        }
+      ]
+    },
+    "nuts_almonds": {
+      "category_id": 17,
+      "items": [
+        {
+          "item_id": 111,
+          "name": "Just FreshDirect Organic Raw Almonds",
+          "brand": "Just FreshDirect"
+        }
+      ]
+    },
+    "nuts_cashews": {
+      "category_id": 18,
+      "items": [
+        {
+          "item_id": 112,
+          "name": "Just FreshDirect Organic Raw Cashews",
+          "brand": "Just FreshDirect"
+        }
+      ]
+    },
+    "nuts_peanuts": {
+      "category_id": 19,
+      "items": [
+        {
+          "item_id": 150,
+          "name": "Just FreshDirect Roasted Unsalted Peanuts",
+          "brand": "Just FreshDirect"
+        }
+      ]
+    },
+    "oils_olive": {
+      "category_id": 20,
+      "items": [
+        {
+          "item_id": 139,
+          "name": "La Tourangelle Organic Extra Virgin Olive Oil",
+          "brand": "La Tourangelle"
+        },
+        {
+          "item_id": 96,
+          "name": "Aria Extra Virgin Olive Oil",
+          "brand": "Aria"
+        },
+        {
+          "item_id": 39,
+          "name": "Organic Extra Virgin Olive Oil",
+          "brand": null
+        }
+      ]
+    },
+    "produce_tomatoes": {
+      "category_id": 21,
+      "items": [
+        {
+          "item_id": 144,
+          "name": "Lancaster Farm Fresh Cooperative Local Organic Heirloom Tomatoes",
+          "brand": "Lancaster Farm Fresh Cooperative"
+        },
+        {
+          "item_id": 63,
+          "name": "Organic Roma Tomatoes",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 189,
+          "name": "Plum Tomatoes",
+          "brand": null
+        }
+      ]
+    },
+    "produce_aromatics": {
+      "category_id": 22,
+      "items": [
+        {
+          "item_id": 146,
+          "name": "Lemongrass",
+          "brand": "Store Brand"
+        }
+      ]
+    },
+    "fruit_citrus": {
+      "category_id": 23,
+      "items": [
+        {
+          "item_id": 196,
+          "name": "Limes",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 149,
+          "name": "Organic Limes",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 175,
+          "name": "Organic Navel Orange",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 176,
+          "name": "Organic Pink Grapefruit",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 32,
+          "name": "Organic Bunched Orange Carrots",
+          "brand": null
+        },
+        {
+          "item_id": 37,
+          "name": "Organic Lemons",
+          "brand": null
+        }
+      ]
+    },
+    "fermented": {
+      "category_id": 24,
+      "items": [
+        {
+          "item_id": 200,
+          "name": "Miso Master Organic Traditional Red Miso",
+          "brand": "Miso Master Organic"
+        },
+        {
+          "item_id": 54,
+          "name": "Mama O's OG Kimchi",
+          "brand": "Mama O's"
+        },
+        {
+          "item_id": 55,
+          "name": "Pickled Daikon Kimchi",
+          "brand": null
+        }
+      ]
+    },
+    "cookies_crackers": {
+      "category_id": 25,
+      "items": [
+        {
+          "item_id": 164,
+          "name": "Mulino Bianco Galletti, Shortbread with Sugar Crystals Cookies",
+          "brand": "Mulino Bianco"
+        },
+        {
+          "item_id": 167,
+          "name": "Rustic Bakery Shortbread Cookies, Vanilla",
+          "brand": "Rustic Bakery"
+        }
+      ]
+    },
+    "produce_mushrooms": {
+      "category_id": 26,
+      "items": [
+        {
+          "item_id": 114,
+          "name": "Mushroom King Organic Heirloom Mushroom Medley",
+          "brand": "Mushroom King"
+        },
+        {
+          "item_id": 27,
+          "name": "Organically Grown Lion's Mane Mushrooms",
+          "brand": null
+        }
+      ]
+    },
+    "canned_coconut": {
+      "category_id": 27,
+      "items": [
+        {
+          "item_id": 157,
+          "name": "Native Forest Unsweetened Organic Coconut Cream",
+          "brand": "Native Forest"
+        },
+        {
+          "item_id": 70,
+          "name": "Organic Coconut Milk",
+          "brand": null
+        }
+      ]
+    },
+    "oils_coconut": {
+      "category_id": 28,
+      "items": [
+        {
+          "item_id": 140,
+          "name": "Nutiva Organic Coconut Oil",
+          "brand": "Nutiva"
+        },
+        {
+          "item_id": 159,
+          "name": "Spectrum Organic Virgin Coconut Oil, Unrefined (for Medium Heat)",
+          "brand": "Spectrum"
+        }
+      ]
+    },
+    "fruit_other": {
+      "category_id": 29,
+      "items": [
+        {
+          "item_id": 121,
+          "name": "Organic Fuji Apples",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 182,
+          "name": "Organic Red Anjou Pear",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 138,
+          "name": "Organic Seedless Watermelon",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 92,
+          "name": "Grown in California Cotton Candy Grapes",
+          "brand": "Grown in California"
+        },
+        {
+          "item_id": 81,
+          "name": "Organic Cantaloupe",
+          "brand": null
+        }
+      ]
+    },
+    "personal_care": {
+      "category_id": 30,
+      "items": [
+        {
+          "item_id": 177,
+          "name": "Sensodyne Pronamel Gentle Whitening Toothpaste, Alpine Breeze",
+          "brand": "Sensodyne"
+        },
+        {
+          "item_id": 178,
+          "name": "Sensodyne Repair & Protect Whitening Toothpaste",
+          "brand": "Sensodyne"
+        }
+      ]
+    },
+    "produce_peppers": {
+      "category_id": 31,
+      "items": [
+        {
+          "item_id": 106,
+          "name": "Thai Peppers, Packaged",
+          "brand": "Store Brand"
+        },
+        {
+          "item_id": 64,
+          "name": "Organic Jalapeno Peppers",
+          "brand": null
+        }
+      ]
+    },
+    "eggs": {
+      "category_id": 32,
+      "items": [
+        {
+          "item_id": 118,
+          "name": "Vital Farms Pasture-Raised Organic Large Eggs",
+          "brand": "Vital Farms"
+        },
+        {
+          "item_id": 36,
+          "name": "Pasture Raised Eggs",
+          "brand": null
+        }
+      ]
+    },
+    "yogurt": {
+      "category_id": 33,
+      "items": [
+        {
+          "item_id": 171,
+          "name": "White Moustache Handmade Yogurt, Greek",
+          "brand": "White Moustache"
+        },
+        {
+          "item_id": 172,
+          "name": "White Moustache Handmade Yogurt, Persian",
+          "brand": "White Moustache"
+        },
+        {
+          "item_id": 44,
+          "name": "Hawthorne Valley Farm Organic Plain Biodynamic Yogurt",
+          "brand": "Hawthorne Valley Farm"
+        }
+      ]
+    },
+    "corn": {
+      "category_id": 34,
+      "items": [
+        {
+          "item_id": 94,
+          "name": "Saunderskill Farms Bi-color Sweet Corn",
+          "brand": "Saunderskill Farms"
+        }
+      ]
+    },
+    "frozen_veg": {
+      "category_id": 35,
+      "items": [
+        {
+          "item_id": 89,
+          "name": "Headwater Food Hub Frozen Peas",
+          "brand": "Headwater Food Hub"
+        }
+      ]
+    },
+    "butter_ghee": {
+      "category_id": 36,
+      "items": [
+        {
+          "item_id": 91,
+          "name": "Organic Original Ghee",
+          "brand": null
+        }
+      ]
+    },
+    "cheese": {
+      "category_id": 37,
+      "items": [
+        {
+          "item_id": 24,
+          "name": "Organic Paneer",
+          "brand": null
+        },
+        {
+          "item_id": 45,
+          "name": "Organic Sliced Mild Cheddar",
+          "brand": null
+        },
+        {
+          "item_id": 28,
+          "name": "Organic Sliced Swiss Cheese",
+          "brand": null
+        }
+      ]
+    },
+    "chips": {
+      "category_id": 38,
+      "items": [
+        {
+          "item_id": 74,
+          "name": "Sour Cream & Onion Chips",
+          "brand": null
+        },
+        {
+          "item_id": 95,
+          "name": "Sweet Potato Chips",
+          "brand": null
+        }
+      ]
+    },
+    "hummus_dips": {
+      "category_id": 39,
+      "items": [
+        {
+          "item_id": 73,
+          "name": "Zesty Za'atar Hummus",
+          "brand": "Zesty Za'atar"
+        }
+      ]
+    }
+  },
+  "items": {
+    "134": {
+      "name": "Adirondack Creamery Ice Cream, Kulfi Pistachio Cardamom",
+      "brand": "Adirondack Creamery",
+      "category": "ice_cream"
+    },
+    "107": {
+      "name": "Alexandre A2/A2 Organic 4% Whole Milk, Carton",
+      "brand": "Alexandre",
+      "category": "milk"
+    },
+    "184": {
+      "name": "Altobelli Family Farm Local Delicata Squash",
+      "brand": "Altobelli Family Farm",
+      "category": "produce_squash"
+    },
+    "109": {
+      "name": "Baby Bananas, Bunch",
+      "brand": "Store Brand",
+      "category": "fruit_tropical"
+    },
+    "202": {
+      "name": "Banana Bunch",
+      "brand": "Store Brand",
+      "category": "fruit_tropical"
+    },
+    "185": {
+      "name": "Black Dirt Region Red Cippolini Onions",
+      "brand": "Store Brand",
+      "category": "produce_onions"
+    },
+    "136": {
+      "name": "Bob's Red Mill Organic Quinoa",
+      "brand": "Bob's Red Mill",
+      "category": "grains"
+    },
+    "165": {
+      "name": "Bragg Organic Raw Unfiltered Apple Cider Vinegar",
+      "brand": "Bragg",
+      "category": "vinegar"
+    },
+    "168": {
+      "name": "Bread Alone Organic San Francisco Sourdough",
+      "brand": "Bread Alone",
+      "category": "bread"
+    },
+    "97": {
+      "name": "Bread Alone Organic Whole Wheat Sourdough (Yeast Free)",
+      "brand": "Bread Alone",
+      "category": "bread"
+    },
+    "190": {
+      "name": "Breadfruit",
+      "brand": "Store Brand",
+      "category": "fruit_tropical"
+    },
+    "158": {
+      "name": "Bubbies Mochi Ice Cream, Pistachio",
+      "brand": "Bubbies",
+      "category": "ice_cream"
+    },
+    "179": {
+      "name": "Burlap & Barrel New Harvest Turmeric",
+      "brand": "Burlap & Barrel",
+      "category": "spices"
+    },
+    "99": {
+      "name": "Burlap & Barrel Wild Mountain Cumin",
+      "brand": "Burlap & Barrel",
+      "category": "spices"
+    },
+    "142": {
+      "name": "Cal-Organic Organic Rainbow Carrots",
+      "brand": "Cal-Organic",
+      "category": "produce_root_veg"
+    },
+    "197": {
+      "name": "Cal-Organic Organic Red Carrots",
+      "brand": "Cal-Organic",
+      "category": "produce_root_veg"
+    },
+    "166": {
+      "name": "Celestial Seasonings Chamomile Herbal Tea",
+      "brand": "Celestial Seasonings",
+      "category": "spices"
+    },
+    "143": {
+      "name": "Chayote Squash",
+      "brand": "Store Brand",
+      "category": "produce_squash"
+    },
+    "161": {
+      "name": "Chinese Eggplant",
+      "brand": "Store Brand",
+      "category": "produce_squash"
+    },
+    "100": {
+      "name": "Chinese Long Beans",
+      "brand": "Store Brand",
+      "category": "produce_beans"
+    },
+    "162": {
+      "name": "De Nigris Organic White Wine Vinegar",
+      "brand": "De Nigris",
+      "category": "vinegar"
+    },
+    "113": {
+      "name": "Deer Run Farms Local Bunched Spinach",
+      "brand": "Deer Run Farms",
+      "category": "produce_greens"
+    },
+    "191": {
+      "name": "Driscoll's Limited Edition Sweetest Batch Strawberries",
+      "brand": "Driscoll's",
+      "category": "fruit_berries"
+    },
+    "119": {
+      "name": "Driscoll's Organic Blackberries",
+      "brand": "Driscoll's",
+      "category": "fruit_berries"
+    },
+    "160": {
+      "name": "Driscoll's Organic Strawberries",
+      "brand": "Driscoll's",
+      "category": "fruit_berries"
+    },
+    "148": {
+      "name": "Equal Exchange Fair Trade Organic Bananas",
+      "brand": "Store Brand",
+      "category": "fruit_tropical"
+    },
+    "180": {
+      "name": "Family Farmstead 100% Grass-Fed A2 Organic Whole Milk, Plastic Bottle",
+      "brand": "Family Farmstead",
+      "category": "milk"
+    },
+    "192": {
+      "name": "Family Tree Farms Blackberries",
+      "brand": "Family Tree Farms",
+      "category": "fruit_berries"
+    },
+    "193": {
+      "name": "Family Tree Farms Jumbo Ultra-Premium Blueberries",
+      "brand": "Family Tree Farms",
+      "category": "fruit_berries"
+    },
+    "110": {
+      "name": "Farmer Focus Organic Boneless Chicken Tenders",
+      "brand": "Farmer Focus",
+      "category": "chicken"
+    },
+    "133": {
+      "name": "Farmer Focus Organic Boneless Skinless Chicken Breast",
+      "brand": "Farmer Focus",
+      "category": "chicken"
+    },
+    "203": {
+      "name": "Farmer Focus Organic Boneless Skinless Chicken Thighs",
+      "brand": "Farmer Focus",
+      "category": "chicken"
+    },
+    "204": {
+      "name": "Farmer Focus Organic Chicken Wings",
+      "brand": "Farmer Focus",
+      "category": "chicken"
+    },
+    "194": {
+      "name": "Fresh Coconut Chunks",
+      "brand": "Store Brand",
+      "category": "fruit_tropical"
+    },
+    "173": {
+      "name": "Golden Dragon Fruit",
+      "brand": "Store Brand",
+      "category": "fruit_tropical"
+    },
+    "151": {
+      "name": "Graffiti Eggplant",
+      "brand": "Store Brand",
+      "category": "produce_squash"
+    },
+    "186": {
+      "name": "Green Cucumber",
+      "brand": "Store Brand",
+      "category": "produce_cucumbers"
+    },
+    "195": {
+      "name": "Green Guavas",
+      "brand": "Store Brand",
+      "category": "produce_greens"
+    },
+    "120": {
+      "name": "Green Plantains",
+      "brand": "Store Brand",
+      "category": "fruit_tropical"
+    },
+    "141": {
+      "name": "Hu Kitchen Simple Organic Dark Chocolate Bar",
+      "brand": "Hu Kitchen",
+      "category": "chocolate"
+    },
+    "111": {
+      "name": "Just FreshDirect Organic Raw Almonds",
+      "brand": "Just FreshDirect",
+      "category": "nuts_almonds"
+    },
+    "112": {
+      "name": "Just FreshDirect Organic Raw Cashews",
+      "brand": "Just FreshDirect",
+      "category": "nuts_cashews"
+    },
+    "150": {
+      "name": "Just FreshDirect Roasted Unsalted Peanuts",
+      "brand": "Just FreshDirect",
+      "category": "nuts_peanuts"
+    },
+    "139": {
+      "name": "La Tourangelle Organic Extra Virgin Olive Oil",
+      "brand": "La Tourangelle",
+      "category": "oils_olive"
+    },
+    "124": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic All Blue Potatoes",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_root_veg"
+    },
+    "125": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Chioggia Beets",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_root_veg"
+    },
+    "101": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Garlic",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_onions"
+    },
+    "137": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Graffiti Eggplant",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_squash"
+    },
+    "126": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Green Beans",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_beans"
+    },
+    "127": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Hakurei Turnips",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_root_veg"
+    },
+    "144": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Heirloom Tomatoes",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_tomatoes"
+    },
+    "152": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Kirby Cucumbers",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_cucumbers"
+    },
+    "145": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Malabar Spinach",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_greens"
+    },
+    "128": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Mixed Okra",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_beans"
+    },
+    "102": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Purple Sweet Potato",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_root_veg"
+    },
+    "103": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Red Onions",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_onions"
+    },
+    "104": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Red Onions, Medium",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_onions"
+    },
+    "105": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Shallots",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_onions"
+    },
+    "153": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Squash Blossoms",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_squash"
+    },
+    "129": {
+      "name": "Lancaster Farm Fresh Cooperative Local Organic Young Rainbow Chard",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_greens"
+    },
+    "198": {
+      "name": "Lancaster Farm Fresh Cooperative Organic Watermelon Radishes",
+      "brand": "Lancaster Farm Fresh Cooperative",
+      "category": "produce_root_veg"
+    },
+    "146": {
+      "name": "Lemongrass",
+      "brand": "Store Brand",
+      "category": "produce_aromatics"
+    },
+    "196": {
+      "name": "Limes",
+      "brand": "Store Brand",
+      "category": "fruit_citrus"
+    },
+    "199": {
+      "name": "Loose Organic Beets",
+      "brand": "Store Brand",
+      "category": "produce_root_veg"
+    },
+    "200": {
+      "name": "Miso Master Organic Traditional Red Miso",
+      "brand": "Miso Master Organic",
+      "category": "fermented"
+    },
+    "123": {
+      "name": "Morton Iodized Salt",
+      "brand": "Morton",
+      "category": "spices"
+    },
+    "164": {
+      "name": "Mulino Bianco Galletti, Shortbread with Sugar Crystals Cookies",
+      "brand": "Mulino Bianco",
+      "category": "cookies_crackers"
+    },
+    "114": {
+      "name": "Mushroom King Organic Heirloom Mushroom Medley",
+      "brand": "Mushroom King",
+      "category": "produce_mushrooms"
+    },
+    "157": {
+      "name": "Native Forest Unsweetened Organic Coconut Cream",
+      "brand": "Native Forest",
+      "category": "canned_coconut"
+    },
+    "181": {
+      "name": "Naturipe Berry Trio",
+      "brand": "Naturipe",
+      "category": "fruit_berries"
+    },
+    "108": {
+      "name": "New City Microcreamery Ice Cream, Baklava",
+      "brand": "New City Microcreamery",
+      "category": "ice_cream"
+    },
+    "98": {
+      "name": "New City Microcreamery Ice Cream, Tres Leches",
+      "brand": "New City Microcreamery",
+      "category": "ice_cream"
+    },
+    "140": {
+      "name": "Nutiva Organic Coconut Oil",
+      "brand": "Nutiva",
+      "category": "oils_coconut"
+    },
+    "187": {
+      "name": "Ocean Mist Farms Spinach",
+      "brand": "Ocean Mist Farms",
+      "category": "produce_greens"
+    },
+    "154": {
+      "name": "Okra, Packaged",
+      "brand": "Store Brand",
+      "category": "produce_beans"
+    },
+    "155": {
+      "name": "Organic Basil",
+      "brand": "Store Brand",
+      "category": "produce_greens"
+    },
+    "115": {
+      "name": "Organic Beets, Bunch",
+      "brand": "Store Brand",
+      "category": "produce_root_veg"
+    },
+    "52": {
+      "name": "Organic Blueberries",
+      "brand": "Store Brand",
+      "category": "fruit_berries"
+    },
+    "25": {
+      "name": "Organic Cilantro",
+      "brand": "Store Brand",
+      "category": "produce_greens"
+    },
+    "130": {
+      "name": "Organic Delicata Squash",
+      "brand": "Store Brand",
+      "category": "produce_squash"
+    },
+    "116": {
+      "name": "Organic French Beans",
+      "brand": "Store Brand",
+      "category": "produce_beans"
+    },
+    "188": {
+      "name": "Organic French Breakfast Radish",
+      "brand": "Store Brand",
+      "category": "produce_root_veg"
+    },
+    "121": {
+      "name": "Organic Fuji Apples",
+      "brand": "Store Brand",
+      "category": "fruit_other"
+    },
+    "34": {
+      "name": "Organic Garlic",
+      "brand": "Store Brand",
+      "category": "produce_onions"
+    },
+    "35": {
+      "name": "Organic Ginger Root",
+      "brand": "Store Brand",
+      "category": "produce_root_veg"
+    },
+    "174": {
+      "name": "Organic Golden Pineapple",
+      "brand": "Store Brand",
+      "category": "fruit_tropical"
+    },
+    "117": {
+      "name": "Organic Green Cucumber",
+      "brand": "Store Brand",
+      "category": "produce_cucumbers"
+    },
+    "77": {
+      "name": "Organic Green Zucchini",
+      "brand": "Store Brand",
+      "category": "produce_squash"
+    },
+    "122": {
+      "name": "Organic Hass Avocados",
+      "brand": "Store Brand",
+      "category": "fruit_tropical"
+    },
+    "156": {
+      "name": "Organic Japanese Sweet Potatoes",
+      "brand": "Store Brand",
+      "category": "produce_root_veg"
+    },
+    "205": {
+      "name": "Organic Leeks, Bunch",
+      "brand": "Store Brand",
+      "category": "produce_onions"
+    },
+    "149": {
+      "name": "Organic Limes",
+      "brand": "Store Brand",
+      "category": "fruit_citrus"
+    },
+    "131": {
+      "name": "Organic Mint",
+      "brand": "Store Brand",
+      "category": "produce_greens"
+    },
+    "175": {
+      "name": "Organic Navel Orange",
+      "brand": "Store Brand",
+      "category": "fruit_citrus"
+    },
+    "176": {
+      "name": "Organic Pink Grapefruit",
+      "brand": "Store Brand",
+      "category": "fruit_citrus"
+    },
+    "182": {
+      "name": "Organic Red Anjou Pear",
+      "brand": "Store Brand",
+      "category": "fruit_other"
+    },
+    "135": {
+      "name": "Organic Red Onions",
+      "brand": "Store Brand",
+      "category": "produce_onions"
+    },
+    "63": {
+      "name": "Organic Roma Tomatoes",
+      "brand": "Store Brand",
+      "category": "produce_tomatoes"
+    },
+    "138": {
+      "name": "Organic Seedless Watermelon",
+      "brand": "Store Brand",
+      "category": "fruit_other"
+    },
+    "170": {
+      "name": "Organic Tommy Atkins Mango",
+      "brand": "Store Brand",
+      "category": "fruit_tropical"
+    },
+    "169": {
+      "name": "Organic Valley Family First Whole Milk with DHA Omega-3, Carton",
+      "brand": "Organic Valley",
+      "category": "milk"
+    },
+    "189": {
+      "name": "Plum Tomatoes",
+      "brand": null,
+      "category": "produce_tomatoes"
+    },
+    "167": {
+      "name": "Rustic Bakery Shortbread Cookies, Vanilla",
+      "brand": "Rustic Bakery",
+      "category": "cookies_crackers"
+    },
+    "201": {
+      "name": "Seapoint Farms Edamame Organic Shelled Soybeans",
+      "brand": "Seapoint Farms",
+      "category": "produce_beans"
+    },
+    "177": {
+      "name": "Sensodyne Pronamel Gentle Whitening Toothpaste, Alpine Breeze",
+      "brand": "Sensodyne",
+      "category": "personal_care"
+    },
+    "178": {
+      "name": "Sensodyne Repair & Protect Whitening Toothpaste",
+      "brand": "Sensodyne",
+      "category": "personal_care"
+    },
+    "46": {
+      "name": "Shallots",
+      "brand": "Store Brand",
+      "category": "produce_onions"
+    },
+    "163": {
+      "name": "Simply Organic Crushed Red Pepper",
+      "brand": "Simply Organic",
+      "category": "spices"
+    },
+    "159": {
+      "name": "Spectrum Organic Virgin Coconut Oil, Unrefined (for Medium Heat)",
+      "brand": "Spectrum",
+      "category": "oils_coconut"
+    },
+    "106": {
+      "name": "Thai Peppers, Packaged",
+      "brand": "Store Brand",
+      "category": "produce_peppers"
+    },
+    "132": {
+      "name": "Van Leeuwen Ice Cream, Sicilian Pistachio",
+      "brand": "Van Leeuwen",
+      "category": "ice_cream"
+    },
+    "118": {
+      "name": "Vital Farms Pasture-Raised Organic Large Eggs",
+      "brand": "Vital Farms",
+      "category": "eggs"
+    },
+    "147": {
+      "name": "Wells Homestead Acres Local Squash Blossoms",
+      "brand": "Wells Homestead Acres",
+      "category": "produce_squash"
+    },
+    "171": {
+      "name": "White Moustache Handmade Yogurt, Greek",
+      "brand": "White Moustache",
+      "category": "yogurt"
+    },
+    "172": {
+      "name": "White Moustache Handmade Yogurt, Persian",
+      "brand": "White Moustache",
+      "category": "yogurt"
+    },
+    "183": {
+      "name": "Yellow Plantains",
+      "brand": null,
+      "category": "fruit_tropical"
+    },
+    "82": {
+      "name": "Beyond Good 85% Sea Salt Dark Chocolate Bar",
+      "brand": "Beyond Good",
+      "category": "chocolate"
+    },
+    "96": {
+      "name": "Aria Extra Virgin Olive Oil",
+      "brand": "Aria",
+      "category": "oils_olive"
+    },
+    "31": {
+      "name": "Satur Farms Baby Spinach",
+      "brand": "Satur Farms",
+      "category": "produce_greens"
+    },
+    "94": {
+      "name": "Saunderskill Farms Bi-color Sweet Corn",
+      "brand": "Saunderskill Farms",
+      "category": "corn"
+    },
+    "92": {
+      "name": "Grown in California Cotton Candy Grapes",
+      "brand": "Grown in California",
+      "category": "fruit_other"
+    },
+    "23": {
+      "name": "Ronnybrook Farm Dairy Creamline Whole Milk",
+      "brand": "Ronnybrook Farm Dairy",
+      "category": "milk"
+    },
+    "93": {
+      "name": "Black Seed Bagels Everything Bagels",
+      "brand": "Black Seed Bagels",
+      "category": "bread"
+    },
+    "62": {
+      "name": "Sun Sprout Farm Organic Fairytale Eggplant",
+      "brand": "Sun Sprout Farm",
+      "category": "produce_squash"
+    },
+    "89": {
+      "name": "Headwater Food Hub Frozen Peas",
+      "brand": "Headwater Food Hub",
+      "category": "frozen_veg"
+    },
+    "57": {
+      "name": "Dagele Brothers Produce Green Cabbage",
+      "brand": "Dagele Brothers Produce",
+      "category": "produce_greens"
+    },
+    "86": {
+      "name": "Multigrain Sourdough English Muffins",
+      "brand": "Dam Good English Muffins",
+      "category": "bread"
+    },
+    "54": {
+      "name": "Mama O's OG Kimchi",
+      "brand": "Mama O's",
+      "category": "fermented"
+    },
+    "76": {
+      "name": "Organic & Fair Trade Bananas (Ripe)",
+      "brand": "Organic from Mexico",
+      "category": "fruit_tropical"
+    },
+    "26": {
+      "name": "Organic & Fair Trade Hass Avocados",
+      "brand": "Organic from Mexico",
+      "category": "fruit_tropical"
+    },
+    "60": {
+      "name": "Organic Acorn Squash",
+      "brand": null,
+      "category": "produce_squash"
+    },
+    "71": {
+      "name": "Organic Apple Cider Vinegar",
+      "brand": null,
+      "category": "vinegar"
+    },
+    "68": {
+      "name": "Organic Baby Spinach",
+      "brand": null,
+      "category": "produce_greens"
+    },
+    "78": {
+      "name": "Organic Broccoli",
+      "brand": null,
+      "category": "produce_greens"
+    },
+    "65": {
+      "name": "Organic Broccoli Rabe",
+      "brand": null,
+      "category": "produce_greens"
+    },
+    "32": {
+      "name": "Organic Bunched Orange Carrots",
+      "brand": null,
+      "category": "fruit_citrus"
+    },
+    "79": {
+      "name": "Organic Bunched Rainbow Carrots",
+      "brand": null,
+      "category": "produce_root_veg"
+    },
+    "42": {
+      "name": "Organic Bunched Red Beets",
+      "brand": null,
+      "category": "produce_root_veg"
+    },
+    "81": {
+      "name": "Organic Cantaloupe",
+      "brand": null,
+      "category": "fruit_other"
+    },
+    "29": {
+      "name": "Organic Chioggia Beets",
+      "brand": null,
+      "category": "produce_root_veg"
+    },
+    "70": {
+      "name": "Organic Coconut Milk",
+      "brand": null,
+      "category": "canned_coconut"
+    },
+    "39": {
+      "name": "Organic Extra Virgin Olive Oil",
+      "brand": null,
+      "category": "oils_olive"
+    },
+    "90": {
+      "name": "Organic Fenway Red Potatoes",
+      "brand": null,
+      "category": "produce_root_veg"
+    },
+    "85": {
+      "name": "Organic French Breakfast Radishes",
+      "brand": null,
+      "category": "produce_root_veg"
+    },
+    "83": {
+      "name": "Organic Green Beans",
+      "brand": null,
+      "category": "produce_beans"
+    },
+    "47": {
+      "name": "Organic Green Kale",
+      "brand": null,
+      "category": "produce_greens"
+    },
+    "69": {
+      "name": "Organic Honeynut Squash",
+      "brand": null,
+      "category": "produce_squash"
+    },
+    "64": {
+      "name": "Organic Jalapeno Peppers",
+      "brand": null,
+      "category": "produce_peppers"
+    },
+    "38": {
+      "name": "Organic Kabocha Squash",
+      "brand": null,
+      "category": "produce_squash"
+    },
+    "30": {
+      "name": "Organic Lacinato Kale",
+      "brand": null,
+      "category": "produce_greens"
+    },
+    "37": {
+      "name": "Organic Lemons",
+      "brand": null,
+      "category": "fruit_citrus"
+    },
+    "88": {
+      "name": "Organic Local Blueberries",
+      "brand": null,
+      "category": "fruit_berries"
+    },
+    "87": {
+      "name": "Organic Okra",
+      "brand": null,
+      "category": "produce_beans"
+    },
+    "91": {
+      "name": "Organic Original Ghee",
+      "brand": null,
+      "category": "butter_ghee"
+    },
+    "24": {
+      "name": "Organic Paneer",
+      "brand": null,
+      "category": "cheese"
+    },
+    "56": {
+      "name": "Organic Persian Cucumbers",
+      "brand": null,
+      "category": "produce_cucumbers"
+    },
+    "50": {
+      "name": "Organic Peter Wilcox New Potatoes",
+      "brand": null,
+      "category": "produce_root_veg"
+    },
+    "84": {
+      "name": "Organic Peter Wilcox Potatoes",
+      "brand": null,
+      "category": "produce_root_veg"
+    },
+    "44": {
+      "name": "Hawthorne Valley Farm Organic Plain Biodynamic Yogurt",
+      "brand": "Hawthorne Valley Farm",
+      "category": "yogurt"
+    },
+    "59": {
+      "name": "Beyond Good Organic Pure Dark 92% Cocoa Heirloom Chocolate Bar",
+      "brand": "Beyond Good",
+      "category": "chocolate"
+    },
+    "48": {
+      "name": "Organic Purple Broccoli",
+      "brand": null,
+      "category": "produce_greens"
+    },
+    "58": {
+      "name": "Organic Red Radishes",
+      "brand": null,
+      "category": "produce_root_veg"
+    },
+    "53": {
+      "name": "Organic Scallions",
+      "brand": null,
+      "category": "produce_onions"
+    },
+    "45": {
+      "name": "Organic Sliced Mild Cheddar",
+      "brand": null,
+      "category": "cheese"
+    },
+    "28": {
+      "name": "Organic Sliced Swiss Cheese",
+      "brand": null,
+      "category": "cheese"
+    },
+    "40": {
+      "name": "Organic Slicing Cucumbers",
+      "brand": null,
+      "category": "produce_cucumbers"
+    },
+    "43": {
+      "name": "Organic Spearmint",
+      "brand": null,
+      "category": "produce_greens"
+    },
+    "61": {
+      "name": "Organic Sweet Baby Broccoli",
+      "brand": null,
+      "category": "produce_greens"
+    },
+    "49": {
+      "name": "Organic Sweet Potatoes",
+      "brand": null,
+      "category": "produce_root_veg"
+    },
+    "67": {
+      "name": "Organic Swiss Chard",
+      "brand": null,
+      "category": "produce_greens"
+    },
+    "72": {
+      "name": "Organic Tatsoi",
+      "brand": null,
+      "category": "produce_greens"
+    },
+    "33": {
+      "name": "Organic Whole Wheat Sourdough Bread",
+      "brand": null,
+      "category": "bread"
+    },
+    "41": {
+      "name": "Organic Young Fresh Ginger",
+      "brand": null,
+      "category": "produce_root_veg"
+    },
+    "80": {
+      "name": "Organically Grown Collard Greens",
+      "brand": null,
+      "category": "produce_greens"
+    },
+    "51": {
+      "name": "Organically Grown Hakurei Turnips",
+      "brand": null,
+      "category": "produce_root_veg"
+    },
+    "27": {
+      "name": "Organically Grown Lion's Mane Mushrooms",
+      "brand": null,
+      "category": "produce_mushrooms"
+    },
+    "36": {
+      "name": "Pasture Raised Eggs",
+      "brand": null,
+      "category": "eggs"
+    },
+    "55": {
+      "name": "Pickled Daikon Kimchi",
+      "brand": null,
+      "category": "fermented"
+    },
+    "66": {
+      "name": "Red Onions",
+      "brand": null,
+      "category": "produce_onions"
+    },
+    "75": {
+      "name": "Small Creamline Whole Milk",
+      "brand": null,
+      "category": "milk"
+    },
+    "74": {
+      "name": "Sour Cream & Onion Chips",
+      "brand": null,
+      "category": "chips"
+    },
+    "95": {
+      "name": "Sweet Potato Chips",
+      "brand": null,
+      "category": "chips"
+    },
+    "73": {
+      "name": "Zesty Za'atar Hummus",
+      "brand": "Zesty Za'atar",
+      "category": "hummus_dips"
+    }
+  },
+  "summary": {
+    "total_items": 183,
+    "total_categories": 39
+  }
+}
