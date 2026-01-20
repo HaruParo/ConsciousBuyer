@@ -52,3 +52,10 @@ OPIK_API_KEY=your_key_here
 DATABASE_URL=postgresql://localhost/conscious_cart
 
 Create run.sh that sets PYTHONPATH and runs streamlit
+
+
+
+----------------Response----------------
+
+
+
