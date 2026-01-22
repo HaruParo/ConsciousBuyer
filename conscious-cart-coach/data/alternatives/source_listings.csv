@@ -1,0 +1,264 @@
+# NOTE: Recommendations are based on availability. Items marked "Sold out" may affect tier selections if they become available.
+# SOLD OUT items documented with "IF AVAILABLE" notes indicate potential tier changes when restocked.
+category,product_name,brand,price,unit,size,certifications,notes,item_type,seasonality,selected_tier,selection_reason
+produce_greens,Baby Spinach Pack 5oz,Satur Farms,$3.99,ea,5oz,None (conventional),User history showed spinach preference,staple,,Conventional not suitable for Dirty Dozen #2
+produce_greens,Organic Baby Spinach,Earthbound Farm,$6.99,ea,10oz,USDA Organic,,staple,,
+produce_greens,Organic Lacinato Kale,Generic,$2.99,ea,0.5lb,USDA Organic,,staple,,
+produce_greens,Organic Green Kale,Generic,$2.99,ea,1lb,USDA Organic,,staple,,
+produce_greens,Baby Spinach Pack,Satur Farms,$5.99,ea,10oz,None (conventional),,staple,,Conventional not suitable for Dirty Dozen #2
+produce_greens,Powerhouse Spinach Blend,organicgirl,$4.99,ea,5oz,USDA Organic,,staple,,
+produce_greens,Organic Rainbow Swiss Chard,Generic,$3.49,ea,1lb,USDA Organic,,staple,,
+produce_greens,Supergreens,organicgirl,$4.99,ea,5oz,USDA Organic,Blend,convenience,,Pre-mixed blend
+produce_greens,Spinach,Ocean Mist Farms,$2.99,ea,10oz,None (conventional),Cheapest spinach but conventional - not suitable for #2 Dirty Dozen,staple,,EXCLUDED - conventional Dirty Dozen
+produce_greens,Chopped Green Curly Kale,Generic,$4.99,ea,8oz,None,Save 20% - Any 2 for $8.00,convenience,,Pre-chopped
+produce_greens,Organic Collard Greens,Generic,$2.99,ea,0.75lb,USDA Organic,Collards #3 Dirty Dozen with kale,staple,,
+produce_greens,Local Organic Young Arugula,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Save 27% - Any 2 for $8.00,staple,,
+produce_greens,Organic Red Kale,Generic,$1.99,ea,1lb,USDA Organic,CHEAPEST ORGANIC - $0.12/oz,staple,cheaper,Lowest cost organic that satisfies Dirty Dozen #3 rule
+produce_greens,Organic Power Greens,Earthbound Farm,$6.99,ea,10oz,USDA Organic,Blend,convenience,,Pre-mixed blend
+produce_greens,Watercress,Generic,$4.99,ea,4oz,None,Earliest delivery Saturday Jan 24,specialty,,Only if recipe/user specifies
+produce_greens,Romaine,organicgirl,$4.99,ea,6oz,USDA Organic,,staple,,Lettuce category - different from cooking greens
+produce_greens,Protein Greens,organicgirl,$4.99,ea,4.2oz,USDA Organic,Blend,convenience,,Pre-mixed blend
+produce_greens,Organic Dandelion Greens,Generic,$2.99,ea,8oz,USDA Organic,,specialty,,Only if recipe/user specifies - bitter green
+produce_greens,Local Organic Young Spinach,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Save 27% - Any 2 for $8.00,staple,,
+produce_greens,Organic Green Swiss Chard,Generic,$3.49,ea,1lb,USDA Organic,,staple,balanced,Moderate cost organic variety - different flavor than kale
+produce_greens,Arugula,Generic,$1.99,ea,10oz,None (conventional),Cheapest but conventional,staple,,
+produce_greens,Butter Baby!,organicgirl,$4.99,ea,4oz,USDA Organic,Butter lettuce,staple,,Lettuce category
+produce_greens,Organic Spinach,Generic,$2.99,ea,6oz,USDA Organic,~$8/lb - more expensive than kale per lb,staple,,
+produce_greens,Shredded Kale and Brussel Sprouts Blend,Generic,$5.99,ea,5oz,None,Save 16% - Any 2 for $10.00,convenience,,Pre-mixed blend
+produce_greens,Organic Mustard Greens,Generic,$2.99,ea,0.5lb,USDA Organic,Mustard greens #3 Dirty Dozen with kale,staple,,
+produce_greens,Baby Spring Mix,organicgirl,$4.99,ea,5oz,USDA Organic,Earliest delivery Sunday Jan 25,convenience,,Pre-mixed blend
+produce_greens,Baby Spinach,organicgirl,$4.99,ea,5oz,USDA Organic,,staple,,
+produce_greens,Local Organic Young Rainbow Chard,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Save 27% - Any 2 for $8.00,staple,,
+produce_greens,Sweet Crunchy Mix,organicgirl,$4.99,ea,4oz,USDA Organic,Blend,convenience,,Pre-mixed blend
+produce_greens,Local Organic Young Kale,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Save 27% - Any 2 for $8.00 - EXCELLENT noted,staple,conscious,Local cooperative + organic + premium young kale
+produce_greens,Chopped Collard Greens,Generic,$5.49,ea,5oz,None,Save 27% - Any 2 for $8.00,convenience,,Pre-chopped
+produce_greens,Snow Pea Tips,Generic,$13.49,lb,,None,Premium specialty green,specialty,,Only if recipe/user specifies - Asian cuisine
+produce_greens,Baby Spinach & Arugula,organicgirl,$4.99,ea,5oz,USDA Organic,Blend,convenience,,Pre-mixed blend
+produce_greens,Wild Arugula Pack 5oz,Satur Farms,Sold out,ea,5oz,None,SOLD OUT,staple,,IF AVAILABLE - peppery arugula variety option
+produce_greens,Baby Arugula,organicgirl,Sold out,ea,,USDA Organic,SOLD OUT,staple,,IF AVAILABLE - organic arugula option for variety
+produce_onions,Scallions,Generic,$1.99,ea,6oz,None (conventional),,staple,,Green onions - common cooking ingredient
+produce_onions,Garlic,Generic,$3.49,ea,3ct 3.2oz,None (conventional),,staple,,Essential aromatic
+produce_onions,Jumbo Yellow Onion,Generic,$0.99,lb,,None (conventional),Earliest delivery Sat Jan 24 - Clean Fifteen #4,staple,cheaper,Lowest cost - Clean Fifteen so conventional OK
+produce_onions,Yellow Onions (bag),Generic,$2.49,ea,6ct 2lb bag,None (conventional),Earliest delivery Sat Jan 24,staple,,Bulk option
+produce_onions,Red Onion Large,Generic,$1.99,lb,,None (conventional),USER HISTORY: showed red onions,staple,,User preference noted
+produce_onions,Shallots,Generic,$4.99,ea,1lb bag,None (conventional),,specialty,,Only if recipe specifies
+produce_onions,Organic Garlic,Generic,$3.99,ea,3ct 2.4oz,USDA Organic,,staple,,
+produce_onions,Local Organic Sweet Onion,Lancaster Farm Fresh Cooperative,$1.99,lb,,USDA Organic + Local,Same price as conventional!,staple,,
+produce_onions,Peeled Garlic,Generic,$4.99,ea,8oz,None,Save 20% - Any 2 for $8.00,convenience,,Pre-peeled
+produce_onions,Local Organic Yellow Onion Medium,Lancaster Farm Fresh Cooperative,$1.99,lb,,USDA Organic + Local,Same price as conventional!,staple,conscious,Local cooperative + organic at conventional price
+produce_onions,Red Onions (bag),Generic,$3.99,ea,6ct 2lb bag,None (conventional),,staple,,Bulk option
+produce_onions,Organic Diced Onion,Generic,$5.99,ea,10oz,USDA Organic,Save 16% - Any 2 for $10.00,convenience,,Pre-diced
+produce_onions,Sweet Onion,Generic,$1.49,lb,,None (conventional),Milder sweeter than yellow,staple,balanced,Moderate cost - sweeter flavor variety
+produce_onions,Local Organic Yellow Onions (bag),Lancaster Farm Fresh Cooperative,$4.49,ea,4ct 2lb bag,USDA Organic + Local,,staple,,Bulk option
+produce_onions,Organic Leeks Bunch,Generic,$5.99,ea,2-3ct 3lb,USDA Organic,Different allium variety,specialty,,Only if recipe specifies
+produce_onions,White Onion Large,Generic,$0.99,lb (min 2),,None (conventional),Same price as yellow,staple,,
+produce_onions,Local Organic Sweet Onions (bag),Lancaster Farm Fresh Cooperative,$5.49,ea,6ct 3lb bag,USDA Organic + Local,,staple,,Bulk option
+produce_onions,Organic Diced Red Onion,Generic,$5.99,ea,10oz,USDA Organic,Save 16% - Any 2 for $10.00,convenience,,Pre-diced
+produce_onions,Leeks Bunch,Generic,$5.99,ea,2-3ct 1lb,None (conventional),,specialty,,Only if recipe specifies
+produce_onions,Organic Shallots,Christopher Ranch,$3.99,ea,3ct 6oz,USDA Organic,,specialty,,Only if recipe specifies
+produce_onions,Local Organic Red Onions (bag),Lancaster Farm Fresh Cooperative,$4.99,ea,4ct 2lb bag,USDA Organic + Local,,staple,,Bulk option
+produce_onions,Fresh Peeled White Pearl Onions,Generic,$7.49,ea,8oz,None,Save 20% - Any 2 for $12.00 - Earliest delivery Sun Jan 25,specialty,,Only if recipe specifies - garnish/stew
+produce_onions,Organic Peeled Garlic,Christopher Ranch,$4.99,ea,6oz,USDA Organic,,convenience,,Pre-peeled
+produce_onions,Peeled Garlic,Christopher Ranch,$6.99,ea,1lb,None,Branded conventional,convenience,,Pre-peeled bulk
+produce_onions,Cipollini Onions,Black Dirt Region,$2.99,ea,1lb bag,None,Regional specialty - gourmet,specialty,,Only if recipe specifies - Italian
+produce_onions,Organic Black Garlic,Pete's Greens,$9.99,ea,3oz,USDA Organic,EXCELLENT noted - fermented probiotic,specialty_promotable,,Promote if: user history OR recipe OR health-conscious user (fermented + organic)
+produce_onions,Garlic Braid,Christopher Ranch,$15.99,ea,20oz,None,Decorative/bulk,specialty,,Decorative or bulk storage
+produce_onions,Local Organic Red Onions Medium,Lancaster Farm Fresh Cooperative,Sold out,lb,,USDA Organic + Local,SOLD OUT,staple,,IF AVAILABLE - would be conscious tier (local + organic + user history red onion preference)
+produce_onions,Local Organic Shallots,Lancaster Farm Fresh Cooperative,Sold out,ea,,USDA Organic + Local,SOLD OUT,specialty,,IF AVAILABLE - premium local organic shallot option
+produce_roots,Organic Ginger Root,Generic,$2.99,ea,6oz,USDA Organic,Aromatic root - not main veggie,specialty,year-round (imported),,Only if recipe/user specifies
+produce_roots,Parsnips,Generic,$2.99,lb (min 2),,None (conventional),Earliest delivery Sat Jan 24,specialty,fall-winter (Oct-Mar) - PEAK NOW,,Promote in season - sweeter after frost
+produce_roots,Radishes,Jersey Fresh,$1.99,ea,bunch,Jersey Fresh (regional),Regional NJ program,staple,spring-fall (Mar-Nov),balanced,Brand traceability + regional - recall safe vs generic
+produce_roots,Organic Cooked Beets,Love Beets,$4.99,ea,8.8oz,USDA Organic,Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Precooked convenience product
+produce_roots,Loose Organic Beets,Generic,$2.99,lb,,USDA Organic,,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
+produce_roots,Organic Red Radish,Generic,$2.99,ea,1lb,USDA Organic,Save 16% - buy 2 for $5 - EXCELLENT noted,staple,spring-fall (Mar-Nov),,
+produce_roots,Organic Watermelon Radishes,Lancaster Farm Fresh Cooperative,$2.49,ea,0.5lb,USDA Organic + Local,EXCELLENT noted - high criteria score,specialty_promotable,fall-winter (Oct-Feb) - PEAK NOW,,Promote NOW: in season + user history OR recipe OR variety (organic + local + heirloom)
+produce_roots,Turmeric Root,Generic,$2.99,ea,2oz,None,Aromatic/medicinal root,specialty,year-round (imported),,Only if recipe/user specifies
+produce_roots,Turnip,Generic,$1.49,lb,,None (conventional),Cheapest root - middle category,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
+produce_roots,Cooked Beets,Love Beets,$3.49,ea,8.8oz,None,Precooked,convenience,year-round (processed),,Precooked convenience product
+produce_roots,Organic Beets Bunch,Generic,$3.99,ea,4ct 1lb,USDA Organic,,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
+produce_roots,Diced Red Beets,Generic,$5.49,ea,12oz,None,Save 27% - Any 2 for $8.00,convenience,year-round (processed),,Pre-diced convenience product
+produce_roots,Organic Daikon Bunch,Generic,$2.99,lb,,USDA Organic,Asian radish variety - high criteria score,specialty_promotable,fall-winter (Oct-Mar) - PEAK NOW,,Promote NOW: in season + user history 3x+ OR recipe OR variety (organic + good price)
+produce_roots,Perfectly Pickled Beets Slightly Sweet,Love Beets,$4.99,ea,6.5oz,None,Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/pickled product
+produce_roots,Organic Marinated Baby Beets Classic Vinegar,Love Beets,$4.99,ea,8oz,USDA Organic,Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/marinated product
+produce_roots,Celery Root,Generic,$3.99,lb,,None (conventional),Celeriac,specialty,fall-winter (Oct-Mar) - PEAK NOW,,Promote in season if recipe/user specifies
+produce_roots,Local Organic Jerusalem Artichokes,Lancaster Farm Fresh Cooperative,$5.99,lb,,USDA Organic + Local,Sunchokes,specialty,fall-winter (Nov-Mar) - PEAK NOW,,Promote in season if recipe/user specifies - specialty tuber
+produce_roots,Marinated Baby Beets White Wine Balsamic,Love Beets,$4.99,ea,6.5oz,None,Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/marinated product
+produce_roots,Organic Gold Beets,Generic,$2.99,lb,,USDA Organic,Yellow/golden variety,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,Color variety of staple beet
+produce_roots,Organic Badger Flame Beets,Lancaster Farm Fresh Cooperative,$3.49,lb,,USDA Organic + Local,Heirloom variety - cooperative,staple,fall-winter (Oct-Mar) - PEAK NOW,conscious,Local cooperative + organic + heirloom variety - IN SEASON
+produce_roots,Perfectly Pickled Beets Honey Ginger,Love Beets,$4.99,ea,6.5oz,None,Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/pickled product
+produce_roots,Local Organic Chioggia Beets,Lancaster Farm Fresh Cooperative,$2.49,ea,0.5oz,USDA Organic + Local,Candy-stripe heirloom,specialty,fall-winter (Oct-Mar) - PEAK NOW,,Promote in season - heirloom variety
+produce_roots,Organic Turnip,Generic,$2.99,lb (min 2),,USDA Organic,,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
+produce_roots,Rutabaga,Generic,$2.49,lb,,None (conventional),GREAT CHOICE noted - versatile root,specialty,fall-winter storage (Oct-Mar) - PEAK NOW,,Promote in season if recipe/user specifies
+produce_roots,Perfectly Pickled Beets Sweet Chili,Love Beets,$4.99,ea,6.5oz,None,Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/pickled product
+produce_roots,Yuca,Generic,$3.49,lb (min 2),,None,EXCELLENT noted - tropical root starch,specialty,year-round (imported tropical),,Only if recipe/user specifies - Latin cuisine
+produce_roots,Organic Gold Beets Bunch,Generic,$2.99,ea,4ct,USDA Organic,,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
+produce_roots,Turnip,Generic,$1.99,lb (min 2),,None (conventional),Middle category - peelable skin,staple,fall-winter storage (Oct-Mar) - PEAK NOW,cheaper,Lowest cost versatile root - IN SEASON
+fruit_tropical,Fresh Pineapple Chunks,Generic,$3.99,ea,8oz,None,Pre-cut convenience,convenience,year-round (imported),,
+fruit_tropical,Tommy Atkins Mango,Generic,$2.49,ea (min 2),1lb ea,None (conventional),,staple,year-round (imported) - peak spring/summer,,
+fruit_tropical,Pomegranate Arils,Generic,$6.99,ea,4.4oz,None,Pre-seeded convenience,convenience,fall-winter (Oct-Feb) - PEAK NOW,,Seasonal fruit - promote in season
+fruit_tropical,Fresh Cubed Mango,Generic,$7.99,ea,8oz,None,Pre-cut convenience,convenience,year-round (imported),,
+fruit_tropical,Golden Pineapple,Generic,$6.99,ea,5.25lb,None (conventional),Clean Fifteen #3 - thick skin protection,staple,year-round (imported),cheaper,Lowest $/lb ($1.33/lb) - Clean Fifteen so conventional OK
+fruit_tropical,Fresh Mango Spears,Generic,$6.49,ea,8oz,None,Pre-cut convenience,convenience,year-round (imported),,
+fruit_tropical,Kiwifruit,Generic,$0.99,ea (min 2),0.25lb,None (conventional),Clean Fifteen #9,staple,year-round (imported - NZ/Chile),,
+fruit_tropical,Organic Kiwifruit,Generic,$0.79,ea (min 2),0.30lb,USDA Organic,CHEAPER than conventional! Unusual pricing,staple,year-round (imported),balanced,Organic CHEAPER than conventional - great value
+fruit_tropical,Fresh Cored Pineapple,Generic,$7.99,ea,23.2oz,None,Pre-cored convenience,convenience,year-round (imported),,
+fruit_tropical,Organic Tommy Atkins Mango,Generic,$3.99,ea,1lb,USDA Organic,,staple,year-round (imported) - peak spring/summer,,
+fruit_tropical,Fresh Black Mission Figs,Generic,$6.99,ea,8oz,None,,specialty,summer-fall (Jun-Oct) - OFF SEASON,,Only if recipe/user specifies - limited season
+fruit_tropical,Mini Honeyglow Pineapple,Generic,$6.99,ea,3lb,None,Smaller portion option,staple,year-round (imported),,
+fruit_tropical,Yellow Plantains,Generic,$1.49,ea (min 2),0.5lb,None,Ripe - sweet for frying/baking,specialty,year-round (imported tropical),,Only if recipe/user specifies - Latin cuisine
+fruit_tropical,Maradol Papaya,Generic,$7.99,ea,3lb,None (conventional),Clean Fifteen #5,staple,year-round (imported - Mexico),,
+fruit_tropical,Organic Golden Pineapple,Generic,$7.99,ea,4lb,USDA Organic,Clean Fifteen #3 - organic optional,staple,year-round (imported),conscious,Organic + economy of scale - CHEAPER per lb than balanced
+fruit_tropical,Fresh Pineapple Chunks 2lb,Generic,$11.99,ea,2lb,None,Bulk pre-cut convenience,convenience,year-round (imported),,
+fruit_tropical,Fresh Pineapple & Jumbo Blueberry Medley,Generic,$5.99,ea,8oz,None,Mixed fruit convenience,convenience,year-round,,
+fruit_tropical,Golden Dragon Fruit,Generic,$8.99,ea,1lb,None,Exotic specialty,specialty,year-round (imported),,Only if recipe/user specifies - exotic
+fruit_tropical,Green Plantains,Generic,$1.49,ea (min 2),0.5lb,None,Unripe - starchy for tostones/mofongo,specialty,year-round (imported tropical),,Only if recipe/user specifies - Latin cuisine
+fruit_tropical,White Dragon Fruit,Generic,$7.99,ea,1lb,None,Exotic specialty,specialty,year-round (imported),,Only if recipe/user specifies - exotic
+fruit_tropical,Kaki Persimmons,Generic,$3.99,ea,8oz,None,It's Back - seasonal,specialty_promotable,fall-winter (Oct-Jan) - PEAK NOW,,Promote NOW: in season + user history OR recipe
+fruit_tropical,Organic Coconut Chunks Original,Genuine Coconut,$4.99,ea,4oz,USDA Organic,Pre-cut coconut,convenience,year-round,,
+fruit_tropical,Tommy Atkins Mangoes Case,Generic,$14.99,ea,8-12ct ~1lb ea,None,Bulk case option,staple,year-round (imported),,Bulk discount
+fruit_tropical,Sharon Fruit,Generic,$3.99,ea,0.35lb,None,GREAT CHOICE noted - non-astringent persimmon,specialty_promotable,fall-winter (Oct-Jan) - PEAK NOW,,Promote NOW: in season + GREAT CHOICE + user history OR recipe
+fruit_tropical,Aloe Vera Leaf,Generic,$2.99,lb,,None,Specialty - not typical fruit,specialty,year-round,,Only if recipe/user specifies
+fruit_tropical,Mexican Guava,Generic,$3.99,ea,1lb,None,,specialty,fall-winter (Oct-Mar),,Only if recipe/user specifies - tropical
+fruit_tropical,Sweet Tamarind,Generic,$8.49,ea,1lb,None,,specialty,year-round (imported),,Only if recipe/user specifies - Asian/Latin cuisine
+fruit_tropical,Soursop Fruit Pulp,Generic,$9.99,ea,16oz,None,Processed pulp,specialty,year-round (processed),,Only if recipe/user specifies - Caribbean/Latin
+fruit_tropical,Breadfruit,Generic,$4.99,ea,2lb,None,Starchy tropical - like potato,specialty,year-round (imported),,Only if recipe/user specifies - Caribbean/Pacific
+fruit_tropical,Cacao Fruit,Generic,$12.99,ea,3lb,None,Whole cacao pod,specialty,year-round (imported),,Only if recipe/user specifies - specialty
+fruit_tropical,Buddha's Hand Citron,Flavors by Bhumi,$14.99,lb,,None,Aromatic citrus - zest/fragrance,specialty,fall-winter (Nov-Feb),,Only if recipe/user specifies - specialty citrus
+fruit_tropical,Passion Fruit,Generic,$4.99,ea,0.1lb,None,EXCELLENT noted,specialty_promotable,summer-fall (Jun-Oct) - off season now,,Promote if: user history OR recipe (limited availability now)
+fruit_tropical,Kent Mango,Generic,$0.99,ea,,None (conventional),SALE 23% off - sweetest mango variety,staple,year-round (peak spring/summer),,Sale price - promote
+fruit_tropical,Plantain Yellow Case,Generic,$79.99,ea,50ct,None,Bulk foodservice,specialty,year-round,,Foodservice only
+fruit_tropical,Plantain Green Case,Generic,$79.99,ea,50ct,None,Bulk foodservice,specialty,year-round,,Foodservice only
+fruit_tropical,Sweet Tamarind Case,Generic,$129.05,cs,16ct ~1lb ea,None,Bulk case - SALE 5% off,specialty,year-round,,Foodservice/bulk only
+fruit_tropical,Pomegranates,Generic,Sold out,ea,,None,SOLD OUT,staple,fall-winter (Oct-Feb) - PEAK NOW,,IF AVAILABLE - seasonal staple IN PEAK SEASON - high demand causes stockouts
+fruit_tropical,SunGold Kiwifruit,Zespri,Sold out,ea,,None,SOLD OUT - premium yellow kiwi,staple,year-round,,IF AVAILABLE - would be balanced/conscious tier (premium brand + sweeter variety)
+fruit_tropical,Green Guavas,Generic,Sold out,ea,,None,SOLD OUT,specialty,fall-winter,,
+fruit_tropical,Rambutan,Generic,Sold out,ea,,None,SOLD OUT - exotic,specialty,summer,,Exotic - sold out
+fruit_berries,Jumbo Ultra-Premium Blueberries,Family Tree Farms,$9.99,ea,9.8oz,None,Earliest delivery Sat Jan 24 - premium,staple,year-round (imported winter) - blueberries #11 Dirty Dozen,,Premium but conventional - Dirty Dozen concern
+fruit_berries,Organic Strawberries,Driscoll's,$9.99,ea,16oz,USDA Organic,Strawberries #1 Dirty Dozen - organic REQUIRED,staple,year-round (imported winter),conscious,Organic REQUIRED (#1 Dirty Dozen) + Driscoll's traceability
+fruit_berries,Strawberries,Driscoll's,$5.99,ea,16oz,None (conventional),Strawberries #1 Dirty Dozen - AVOID conventional,staple,year-round (imported winter),,EXCLUDED - #1 Dirty Dozen must be organic
+fruit_berries,Organic Raspberries,Driscoll's,$6.99,ea,6oz,USDA Organic,High-risk berry - organic chosen,staple,year-round (imported winter),balanced,Organic + Driscoll's brand safety + delicate berry
+fruit_berries,Organic Blueberries,Generic,$12.99,ea,18oz,USDA Organic,Earliest delivery Sat Jan 24 - blueberries #11 Dirty Dozen,staple,year-round (imported winter),,Organic for #11 Dirty Dozen
+fruit_berries,Raspberries,Generic,$3.99,ea,6oz,None (conventional),SALE 37% - buy 2 for $5,staple,year-round (imported winter),,Sale price but conventional
+fruit_berries,Raspberries,Driscoll's,$3.99,ea,6oz,None (conventional),,staple,year-round (imported winter),,Conventional raspberry
+fruit_berries,Blackberries,Driscoll's,$4.99,ea,6oz,None (conventional),,staple,year-round (imported winter),,Conventional blackberry
+fruit_berries,Strawberries,Generic,$4.99,ea,16oz,None (conventional),SALE 28% off - was $6.99 - #1 Dirty Dozen AVOID,staple,year-round (imported winter),,EXCLUDED - #1 Dirty Dozen must be organic even on sale
+fruit_berries,Local Strawberries,The Strawberry Farm,$9.99,ea,8oz,None,LOCAL but not organic - #1 Dirty Dozen,specialty,summer (Jun-Sep) - OFF SEASON,,Local but still needs organic for #1 Dirty Dozen
+fruit_berries,Fresh Berry Medley,Generic,$5.99,ea,8oz,None,Mixed berries convenience,convenience,year-round,,Pre-mixed
+fruit_berries,Organic Strawberries,Generic,$6.99,ea,16oz,USDA Organic,Strawberries #1 Dirty Dozen - organic REQUIRED,staple,year-round (imported winter),cheaper,Organic REQUIRED (#1 Dirty Dozen) - cheapest organic option
+fruit_berries,Fresh Halved Strawberries,Generic,$6.99,ea,8oz,None,Pre-cut convenience - but conventional #1 Dirty Dozen,convenience,year-round,,EXCLUDED - #1 Dirty Dozen needs organic
+fruit_berries,Blueberries,Generic,$9.99,ea,18oz,None (conventional),Blueberries #11 Dirty Dozen,staple,year-round (imported winter),,Conventional - Dirty Dozen #11 concern
+fruit_berries,Sweet Selections Blackberries,Naturipe,$7.99,ea,10oz,None,Larger pack,staple,year-round (imported winter),,Bulk option
+fruit_berries,Mini Koyo Berries,Oishii,$9.99,ea,4.2oz,None,Premium indoor-grown Japanese variety,specialty,year-round (vertical farm),,Premium specialty - only if user specifies
+fruit_berries,The Koyo Berry,Oishii,$9.99,ea,4.2oz (8-11ct),None,Premium indoor-grown - Earliest delivery Sat Jan 24,specialty,year-round (vertical farm),,Premium specialty - only if user specifies
+fruit_berries,Fresh Pineapple & Jumbo Blueberry Medley,Generic,$5.99,ea,8oz,None,Mixed fruit - Earliest delivery Sat Jan 24,convenience,year-round,,Pre-mixed
+fruit_berries,Cape Gooseberries,Generic,$5.99,ea,6oz,None,Earliest delivery Sat Jan 24 - specialty,specialty,year-round (imported),,Only if recipe/user specifies
+fruit_berries,The Omakase Berry,Oishii,$14.99,ea,4.2oz (6-8ct),None,ULTRA-PREMIUM indoor-grown - Earliest delivery Sat Jan 24,specialty,year-round (vertical farm),,Ultra-premium specialty - only if user specifies
+fruit_berries,Jumbo Ultra-Premium Blueberries Case,Family Tree Farms,$113.89,cs,12ct 9.8oz ea,None,SALE 5% off - bulk,specialty,year-round,,Foodservice/bulk only
+fruit_berries,Strawberries Case,Generic,$37.92,cs,8ct 16oz ea,None,SALE 5% off - bulk conventional - #1 Dirty Dozen AVOID,specialty,year-round,,EXCLUDED bulk - #1 Dirty Dozen
+fruit_berries,Blackberries Case,Generic,$56.89,cs,12ct 6oz ea,None,SALE 5% off - bulk,specialty,year-round,,Foodservice/bulk only
+fruit_berries,Limited Edition Sweetest Batch Blueberries,Driscoll's,Sold out,ea,,None,SOLD OUT - premium,staple,year-round,,Premium variety - sold out
+fruit_berries,Organic Blackberries,Driscoll's,Sold out,ea,,USDA Organic,SOLD OUT - organic blackberry,staple,year-round,,IF AVAILABLE - would be balanced tier (organic + Driscoll's brand safety) - CRITICAL AVAILABILITY GAP
+fruit_berries,Strawberries,Driscoll's,Sold out,ea,16oz,None,SOLD OUT - conventional,staple,year-round,,Sold out
+fruit_berries,The Nikko Berry,Oishii,Sold out,ea,,None,SOLD OUT - ultra-premium,specialty,year-round,,Ultra-premium - sold out
+fruit_berries,Raspberries Case,Generic,Sold out,cs,,None,SOLD OUT - bulk,specialty,year-round,,Bulk - sold out
+fruit_berries,Berry Bundle with Blackberries,Generic,Sold out,ea,,None,SOLD OUT - bundle,convenience,year-round,,Bundle - sold out
+fruit_berries,Blueberries Case,Generic,Sold out,cs,,None,SOLD OUT - bulk,specialty,year-round,,Bulk - sold out
+produce_tomatoes,Tomatoes on the Vine,Generic,$2.99,lb (min 3),,None (conventional),Tomatoes NOT on Dirty Dozen or Clean Fifteen (middle category),staple,year-round (greenhouse/imported),cheaper,Lowest cost - conventional OK (middle category)
+produce_tomatoes,Organic Tomatoes on the Vine,Generic,$4.49,lb (min 3),,USDA Organic,,staple,year-round (greenhouse/imported),balanced,Organic option at moderate price - 50% premium over conventional
+produce_tomatoes,Organic Grape Tomatoes,Generic,$4.99,ea,12oz,USDA Organic,,staple,year-round (greenhouse/imported),,Organic snacking tomato
+produce_tomatoes,Beefsteak Tomatoes Large,Generic,$2.49,lb (min 2),,None (conventional),Large slicing tomato,staple,year-round (greenhouse/imported),,Budget slicing tomato
+produce_tomatoes,Organic Mixed Cherry Tomatoes,Long Wind Farms,$6.99,ea,12oz,USDA Organic,SALE 12% off (was $7.99) - farm brand,staple,year-round,conscious,Farm-branded organic + heirloom variety mix + on sale
+produce_tomatoes,Grape Tomatoes,Generic,$3.49,ea,10oz,None (conventional),,staple,year-round (greenhouse/imported),,Conventional snacking tomato
+produce_tomatoes,Plum Tomatoes,Generic,$3.99,ea,1lb bag,None (conventional),Roma-style for sauce/cooking,staple,year-round,,Cooking tomato
+produce_tomatoes,Honey Bombs Golden Sweet Tomatoes,Sunset Grown,$5.99,ea,12oz,None,EXCELLENT noted - premium greenhouse brand,specialty_promotable,year-round (greenhouse),,Promote if: user history OR recipe OR premium taste preference (EXCELLENT rating)
+produce_tomatoes,Angel Sweet Grape Tomatoes 32oz,Sunset Grown,$9.99,ea,32oz,None,Bulk premium grape tomatoes,staple,year-round (greenhouse),,Bulk option - premium brand
+produce_tomatoes,Organic Beefsteak Tomatoes,Long Wind Farms,$6.99,lb,,USDA Organic,Farm-branded organic,staple,year-round,,Premium organic slicing tomato
+produce_tomatoes,Campari Tomatoes,Sunset Grown,$4.99,ea,16oz,None,Earliest delivery Sun Jan 25 - cocktail tomato,staple,year-round (greenhouse),,Popular cocktail/snacking size
+produce_tomatoes,Lolli Bombs Tomatoes,Sunset Grown,$5.99,ea,12oz,None,Premium variety,specialty,year-round (greenhouse),,Only if recipe/user specifies - premium
+produce_tomatoes,Kumato Tomatoes,Sunset Grown,$3.99,ea,9oz (3ct),None,Brown/green variety - unique flavor,specialty,year-round (greenhouse),,Only if recipe/user specifies - unique variety
+produce_tomatoes,Organic Roma Tomatoes,Generic,$4.99,ea,1lb,USDA Organic,Sauce/cooking tomato - organic,staple,year-round,,Organic cooking tomato
+produce_tomatoes,Angel Sweet Grape Tomatoes 12oz,Sunset Grown,$3.99,ea,12oz,None,Premium grape - smaller pack,staple,year-round (greenhouse),,Premium snacking size
+produce_tomatoes,Organic Red Beefsteak Tomato,Generic,$4.49,lb (min 2),,USDA Organic,It's Back - seasonal return,staple,year-round,,Organic slicing - returned to stock
+produce_tomatoes,Plum Tomato Large,Generic,$1.99,lb (min 2),,None (conventional),CHEAPEST tomato option,staple,year-round,,Budget cooking tomato
+produce_tomatoes,Tomatillos Pack,Generic,$3.49,ea,8oz,None,Mexican cuisine - salsa verde,specialty,year-round (imported Mexico),,Only if recipe specifies - Latin cuisine
+produce_tomatoes,Bahama Bombs,Sunset Grown,$5.99,ea,12oz,None,Earliest delivery Sun Jan 25 - premium,specialty,year-round (greenhouse),,Only if recipe/user specifies - premium
+produce_tomatoes,Fair Trade Organic Mixed Heirloom Tomatoes,Generic,$6.99,lb,,USDA Organic + Fair Trade,Dual certification - heirloom varieties,specialty_promotable,summer-fall (peak) year-round (greenhouse),,Promote if: user history OR recipe OR conscious tier (Fair Trade + Organic + heirloom)
+produce_tomatoes,Bombs Squad,Sunset Grown,$5.99,ea,12oz,None,Mixed premium variety pack,specialty,year-round (greenhouse),,Only if recipe/user specifies - premium mix
+produce_tomatoes,Organic Mixed Cherry Tomatoes,Lady Moon Farms,$5.99,ea,16oz,USDA Organic,Earliest delivery Tue Jan 27 - farm brand,staple,year-round,,Farm-branded organic - good value per oz
+produce_tomatoes,Wild Wonders Tomatoes,Sunset Grown,Sold out,ea,,None,SOLD OUT - premium variety mix,specialty,year-round (greenhouse),,Premium mix - IF AVAILABLE would be specialty_promotable
+produce_peppers,Red Greenhouse Bell Pepper,Generic,$3.49,lb,,None (conventional),Bell peppers #9 Dirty Dozen - organic recommended,staple,year-round (greenhouse),,Conventional - Dirty Dozen #9 concern
+produce_peppers,Rainbow Pepper Pack,Generic,$4.99,ea,1.3lb (3ct),None (conventional),SALE 16% off (was $5.99) - mixed colors,staple,year-round (greenhouse),,Sale but conventional - Dirty Dozen #9
+produce_peppers,Green Bell Pepper,Generic,$2.99,lb,,None (conventional),Cheapest bell pepper - Dirty Dozen #9,staple,year-round (greenhouse),cheaper,Lowest cost - but Dirty Dozen #9 (organic preferred)
+produce_peppers,Organic Red Greenhouse Bell Pepper,Generic,$5.49,lb,,USDA Organic,Bell peppers #9 Dirty Dozen - organic REQUIRED,staple,year-round (greenhouse),balanced,Organic satisfies Dirty Dozen #9 rule - most popular color
+produce_peppers,Organic Rainbow Pepper Pack,Generic,$8.19,ea,1.3lb (3ct),USDA Organic,Organic mixed colors - Dirty Dozen compliant,staple,year-round (greenhouse),conscious,Organic + variety pack (red/yellow/orange) - full color range
+produce_peppers,Jalapeño Pepper,Generic,$0.49,ea (min 4),1oz,None (conventional),Hot peppers also #9 Dirty Dozen,staple,year-round,,Common hot pepper - small size less pesticide concern
+produce_peppers,Mini Sweet Mixed Peppers,Generic,$3.99,ea,1lb,None (conventional),Snacking peppers - conventional,staple,year-round (greenhouse),,Convenient snacking size
+produce_peppers,Organic Sweet Mini Bell Peppers,Generic,$5.49,ea,8oz,USDA Organic,Organic snacking peppers - Dirty Dozen compliant,staple,year-round (greenhouse),,Organic snacking option
+produce_peppers,Organic Orange Greenhouse Bell Pepper,Generic,$5.49,lb,,USDA Organic,Bell peppers #9 Dirty Dozen - organic,staple,year-round (greenhouse),,Organic single color option
+produce_peppers,Orange Greenhouse Bell Pepper,Generic,$3.49,lb,,None (conventional),Bell peppers #9 Dirty Dozen,staple,year-round (greenhouse),,Conventional - Dirty Dozen concern
+produce_peppers,Organic Yellow Greenhouse Bell Pepper,Generic,$5.49,lb,,USDA Organic,Bell peppers #9 Dirty Dozen - organic,staple,year-round (greenhouse),,Organic single color option
+produce_peppers,Yellow Greenhouse Bell Pepper,Generic,$3.49,lb,,None (conventional),Bell peppers #9 Dirty Dozen,staple,year-round (greenhouse),,Conventional - Dirty Dozen concern
+produce_peppers,Serrano Peppers,Generic,$0.99,ea,0.25lb (3-4ct),None (conventional),Hot pepper - Mexican cuisine,specialty,year-round,,Only if recipe specifies - hotter than jalapeño
+produce_peppers,Green Shishito Peppers,Ark Foods,$4.99,ea,8oz,None,Save 20% - buy 2 for $8 - Japanese mild pepper,specialty_promotable,summer-fall (peak) year-round (greenhouse),,Promote if: user history OR recipe OR Asian cuisine preference (branded + mild roasting pepper)
+produce_peppers,Poblano Pepper,Generic,$4.99,lb (min 2),,None (conventional),Mild Mexican pepper - stuffing/roasting,specialty,year-round,,Only if recipe specifies - chiles rellenos
+produce_peppers,Organic Green Bell Pepper,Generic,$2.99,lb,,USDA Organic,SAME PRICE as conventional! Unusual,staple,year-round (greenhouse),,Organic at conventional price - EXCELLENT VALUE
+produce_peppers,Thai Peppers Packaged,Generic,$1.99,ea,2oz,None,Very hot - Asian cuisine,specialty,year-round,,Only if recipe specifies - Southeast Asian
+produce_peppers,Habanero Peppers,Generic,$4.99,ea,0.25lb (12ct),None,Very hot peppers,specialty,year-round,,Only if recipe specifies - extreme heat
+produce_peppers,Organic Green Bell Peppers,Generic,Sold out,lb,,USDA Organic,SOLD OUT - organic green bell,staple,year-round (greenhouse),,IF AVAILABLE - organic green at $2.99 is best value (same as conventional)
+produce_squash,Organic Green Zucchini,Generic,$2.99,lb (min 2),,USDA Organic,Squash/zucchini NOT on Dirty Dozen or Clean Fifteen (middle),staple,year-round (greenhouse),balanced,Organic at moderate price - middle category so organic optional but preferred
+produce_squash,Green Zucchini,Generic,$1.99,lb (min 2),,None (conventional),Summer squash - middle category,staple,year-round (greenhouse),cheaper,Lowest cost zucchini - conventional OK for middle category
+produce_squash,Organic Butternut Squash Chunks,Generic,$4.99,ea,16oz,USDA Organic,SALE 16% off (was $5.99) - Earliest delivery Sat Jan 24,convenience,fall-winter (Sep-Mar) - PEAK NOW,,Pre-cut convenience - on sale
+produce_squash,Peeled Butternut Squash,Generic,$2.99,ea,16oz,None (conventional),SALE 25% off (was $3.99) - pre-peeled,convenience,fall-winter (Sep-Mar) - PEAK NOW,,Pre-peeled convenience - good sale
+produce_squash,Yellow Zucchini,Generic,$2.29,lb (min 2),,None (conventional),Yellow summer squash,staple,year-round (greenhouse),,Color variety
+produce_squash,Organic Delicata Squash,Generic,$2.49,lb,,USDA Organic,Sweet potato flavor - edible skin,staple,fall-winter (Sep-Dec) - PEAK NOW,,Winter squash variety
+produce_squash,Butternut Squash,Generic,$1.49,lb,,None (conventional),EXCELLENT noted - versatile winter squash,staple,fall-winter (Sep-Mar) - PEAK NOW,,Budget winter squash - EXCELLENT rating
+produce_squash,Local Organic Butternut Squash,Lancaster Farm Fresh Cooperative,$2.49,lb,,USDA Organic + Local,Local cooperative organic,staple,fall-winter (Sep-Mar) - PEAK NOW,conscious,Local cooperative + organic + IN SEASON - best conscious choice
+produce_squash,Organic Kabocha Squash,Generic,$2.49,lb,,USDA Organic,Japanese pumpkin - sweet dense flesh,specialty,fall-winter (Sep-Jan) - PEAK NOW,,Promote in season if: user history OR recipe OR Asian cuisine
+produce_squash,Organic Green Zucchini Noodles,Generic,$9.99,ea,16oz,USDA Organic,Spiralized convenience product,convenience,year-round,,Pre-spiralized - premium convenience
+produce_squash,Spaghetti Squash,Generic,$1.99,lb,,None (conventional),Natural noodle substitute,staple,fall-winter (Sep-Mar) - PEAK NOW,,Low-carb alternative - in season
+produce_squash,Long Island Delicata Squash,Generic,$2.49,lb,,None,Regional Long Island variety,staple,fall-winter (Sep-Dec) - PEAK NOW,,Regional variety - same price as organic
+produce_squash,Primavera Zucchini Noodles,Generic,$7.49,ea,1lb,None,Save 20% - Any 2 for $12 - Earliest delivery Sat Jan 24,convenience,year-round,,Pre-spiralized mixed convenience
+produce_squash,Baby Zucchini,Urban Roots,$3.99,ea,8oz,None,Earliest delivery Sun Jan 25 - tender baby size,specialty,year-round (greenhouse),,Only if recipe specifies - gourmet presentation
+produce_squash,Organic Butternut Squash,Generic,$2.49,lb,,USDA Organic,EXCELLENT noted - whole organic butternut,staple,fall-winter (Sep-Mar) - PEAK NOW,,EXCELLENT rating + organic + in season
+produce_squash,Fresh Green and Yellow Zoodles,Generic,$7.49,ea,16oz,None,Save 20% - Any 2 for $12 - Earliest delivery Sat Jan 24,convenience,year-round,,Pre-spiralized mixed convenience
+produce_squash,Butternut Squash Noodles,Generic,$7.49,ea,16oz,None,Save 20% - Any 2 for $12,convenience,fall-winter (Sep-Mar),,Pre-spiralized butternut convenience
+produce_squash,Acorn Squash,Generic,$0.99,lb,,None (conventional),CHEAPEST squash - classic winter variety,staple,fall-winter (Sep-Mar) - PEAK NOW,,Budget winter squash option
+produce_squash,Organic Stripetti Squash,Lancaster Farm Fresh Cooperative,$2.49,lb,,USDA Organic + Local,Hybrid spaghetti/delicata - local cooperative,specialty_promotable,fall-winter (Sep-Jan) - PEAK NOW,,Promote NOW: in season + local + organic + unique variety (natural noodle squash)
+produce_squash,Organic Carnival Squash,Generic,$1.99,lb,,USDA Organic,Colorful decorative/eating squash,specialty,fall-winter (Sep-Dec) - PEAK NOW,,Decorative variety - promote in season
+produce_squash,Butternut Squash Halves,Generic,$1.49,lb,ea,None (conventional),SALE 25% off (was $1.99) - pre-halved,convenience,fall-winter (Sep-Mar) - PEAK NOW,,Pre-cut convenience - same price as whole
+produce_squash,Organic Spaghetti Squash,Generic,Sold out,lb,,USDA Organic,SOLD OUT - organic spaghetti squash,staple,fall-winter (Sep-Mar) - PEAK NOW,,IF AVAILABLE - would be balanced tier (organic low-carb alternative)
+produce_squash,Local Organic Acorn Squash,Lancaster Farm Fresh Cooperative,Sold out,lb,,USDA Organic + Local,SOLD OUT - local organic acorn,staple,fall-winter (Sep-Mar) - PEAK NOW,,IF AVAILABLE - would be conscious tier (local + organic + budget at $0.99 conventional baseline)
+produce_squash,Organic Yellow Squash,Generic,Sold out,lb,,USDA Organic,SOLD OUT - organic yellow zucchini,staple,year-round (greenhouse),,IF AVAILABLE - organic yellow summer squash option
+milk_whole,Whole Milk Plastic Bottle 1/2gal,Just FreshDirect,$2.99,ea,1/2 gallon,None,USER HISTORY: whole milk bought consistently - $0.05/fl oz,staple,year-round,cheaper,Lowest cost whole milk - matches user history preference
+milk_whole,Local Organic Whole Milk Carton,Just FreshDirect,$4.89,ea,1/2 gallon,USDA Organic + Local,$0.08/fl oz - local organic,staple,year-round,balanced,Local organic whole milk - matches user history + organic upgrade
+milk_whole,Whole Milk Plastic Bottle 1gal,Just FreshDirect,$4.99,ea,1 gallon,None,$0.04/fl oz - best value per oz,staple,year-round,,Best $/oz for conventional whole milk
+milk_whole,Ultra-Pasteurized Whole Milk Carton,Organic Valley,$5.99,ea,1/2 gallon,USDA Organic,$0.09/fl oz - national organic brand,staple,year-round,,National organic brand option
+milk_whole,Grassmilk Whole Milk Ultra-Pasteurized Carton,Organic Valley,$7.39,ea,59fl oz,USDA Organic + Grass-fed,$0.13/fl oz - grass-fed premium,staple,year-round,conscious,Grass-fed organic - highest welfare + nutrition standards
+milk_whole,Growing Years Whole Milk Carton,Horizon Organic,$8.99,ea,59fl oz,USDA Organic,$0.15/fl oz - fortified for children,specialty,year-round,,Only if children in household
+milk_whole,Grassfed Whole Milk Carton,Horizon Organic,$8.99,ea,59fl oz,USDA Organic + Grass-fed,$0.15/fl oz - grass-fed organic,staple,year-round,,Premium grass-fed option
+milk_whole,A2/A2 Organic 4% Whole Milk Carton,Alexandre,$8.49,ea,59fl oz,USDA Organic + A2,$0.14/fl oz - A2 protein + organic,specialty_promotable,year-round,,Promote if: digestive sensitivity OR health-conscious (A2 protein easier to digest)
+milk_whole,Whole Milk Carton,a2 Milk,$6.49,ea,59fl oz,A2 protein,$0.11/fl oz - A2 protein (not organic),specialty,year-round,,A2 protein for digestive sensitivity - not organic
+milk_whole,100% Grass-Fed A2 Organic Whole Milk Plastic Bottle,Family Farmstead,$5.49,ea,32fl oz,USDA Organic + Grass-fed + A2,$0.17/fl oz - triple premium (small size),specialty,year-round,,Premium small-format option
+milk_whole,All Natural Creamline Milk Plastic Bottle,Ronnybrook,$5.49,ea,1/2 gallon,None (natural),$0.09/fl oz - non-homogenized cream-top,specialty_promotable,year-round,,Promote if: user history OR artisan preference (Hudson Valley farm + cream-top)
+milk_whole,Family First Whole Milk with DHA Omega-3 Carton,Organic Valley,$6.79,ea,1/2 gallon,USDA Organic + DHA,$0.11/fl oz - fortified organic,specialty,year-round,,Only if DHA supplementation needed
+milk_whole,Organic Whole Milk Carton,Farmland,$7.99,ea,1/2 gallon,USDA Organic,$0.12/fl oz,staple,year-round,,Alternative organic brand
+milk_whole,100% Lactose-Free Whole Milk Carton,Lactaid,$5.99,ea,1/2 gallon,Lactose-free,$0.09/fl oz - lactose-free,specialty,year-round,,Only if lactose intolerant
+milk_whole,Lactose Free Whole Milk Carton,Organic Valley,$6.29,ea,1/2 gallon,USDA Organic + Lactose-free,$0.10/fl oz - organic lactose-free,specialty,year-round,,Lactose intolerant + organic preference
+milk_whole,Grade A Whole Goat Milk Ultra-Pasteurized Carton,Meyenberg,$9.99,ea,1 quart,None,$0.31/fl oz - goat milk alternative,specialty,year-round,,Only if goat milk preference/need
+milk_whole,100% Goat Milk Plastic Bottle,Oak Knoll Dairy,$8.49,ea,1 quart,None,$0.27/fl oz - local goat milk,specialty,year-round,,Local goat milk option
+milk_whole,Whole Milk Plastic Bottle 96oz,Lactaid,$6.49,ea,96fl oz,Lactose-free,$0.07/fl oz - bulk lactose-free,specialty,year-round,,Bulk lactose-free option
+milk_whole,Organic Whole Milk Cartons Case,Just FreshDirect,$27.87,cs,6ct 1/2gal ea,USDA Organic,SALE 5% off - $0.07/fl oz bulk,staple,year-round,,Bulk organic - good value
+milk_whole,Grassmilk Whole Milk Cartons Case,Organic Valley,$42.12,cs,6ct 59oz ea,USDA Organic + Grass-fed,SALE 5% off - $0.12/fl oz bulk,staple,year-round,,Bulk grass-fed organic
+milk_whole,Whole Milk Plastic Bottles Case,Just FreshDirect,$18.96,cs,4ct 1gal ea,None,SALE 5% off - $0.04/fl oz BEST bulk value,staple,year-round,,BEST bulk value - conventional
+milk_whole,All Natural Creamline Milk Plastic Bottles Case,Ronnybrook,$31.29,cs,6ct 1/2gal ea,None (natural),SALE 5% off - $0.08/fl oz bulk artisan,specialty,year-round,,Bulk artisan creamline
+milk_whole,Whole Milk Cartons Case,Just FreshDirect,$25.56,cs,9ct 1/2gal ea,None,SALE 5% off - $0.04/fl oz bulk,staple,year-round,,Bulk conventional - good value
+milk_whole,Grassfed Whole Milk Cartons Case,Horizon Organic,$51.24,cs,6ct 64oz ea,USDA Organic + Grass-fed,SALE 5% off - $0.13/fl oz bulk,staple,year-round,,Bulk grass-fed organic
+milk_whole,Family First Whole Milk with DHA Cartons Case,Organic Valley,$38.70,cs,6ct 64oz ea,USDA Organic + DHA,SALE 5% off - $0.10/fl oz bulk,specialty,year-round,,Bulk DHA-fortified organic
+milk_whole,Whole Milk Plastic Bottle,Tuscan Dairy Farms,Sold out,ea,,None,SOLD OUT - regional conventional,staple,year-round,,IF AVAILABLE - regional conventional option
+milk_whole,Ultra-Pasteurized Whole Milk Carton,Organic Valley,Sold out,ea,1/2 gallon,USDA Organic,SOLD OUT - single unit,staple,year-round,,IF AVAILABLE - preferred single-unit organic
+milk_whole,Whole Milk Carton,Horizon Organic,Sold out,ea,,USDA Organic,SOLD OUT - national organic,staple,year-round,,IF AVAILABLE - would compete for balanced tier
+milk_whole,100% Grass-Fed A2 Organic Whole Milk Plastic Bottle 1/2gal,Family Farmstead,Sold out,ea,1/2 gallon,USDA Organic + Grass-fed + A2,SOLD OUT - larger A2 size,specialty,year-round,,IF AVAILABLE - better value A2 option
+milk_whole,Lactose Free Ultra-Filtered Whole Milk Plastic Bottle,Fairlife,Sold out,ea,,Lactose-free + Ultra-filtered,SOLD OUT - ultra-filtered,specialty,year-round,,IF AVAILABLE - premium lactose-free
+milk_whole,Whole Milk with DHA Omega-3 and Vitamin D Carton,Horizon Organic,Sold out,ea,,USDA Organic + DHA,SOLD OUT - fortified organic,specialty,year-round,,IF AVAILABLE - DHA-fortified option
+milk_whole,Whole Milk Cartons Case,Horizon Organic,Sold out,cs,,USDA Organic,SOLD OUT - bulk organic,staple,year-round,,IF AVAILABLE - bulk national organic
+milk_whole,Ultra-Pasteurized Whole Milk Cartons Case,Organic Valley,Sold out,cs,,USDA Organic,SOLD OUT - bulk organic,staple,year-round,,IF AVAILABLE - bulk organic option

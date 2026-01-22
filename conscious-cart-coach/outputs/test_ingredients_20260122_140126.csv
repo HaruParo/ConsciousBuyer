@@ -1,0 +1,14 @@
+index,name,quantity,category,optional
+1,chicken,,,False
+2,basmati rice,,,False
+3,onions,,,False
+4,tomatoes,,,False
+5,yogurt,,,False
+6,ginger,,,False
+7,garlic,,,False
+8,green chilies,,,True
+9,mint leaves,,,False
+10,cilantro,,,False
+11,ghee,,,False
+12,biryani masala,,,False
+13,saffron,,,True

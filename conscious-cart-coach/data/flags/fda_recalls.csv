@@ -1,0 +1,24 @@
+# FDA Food Recalls Database
+# Source: FDA Food Recall API (https://api.fda.gov/food/enforcement.json)
+# Trust Level: OFFICIAL (Federal Government)
+# Refresh Schedule: Daily
+# Last Updated: 2024-01-22
+#
+# Classification Guide:
+#   Class I   - Dangerous/defective, serious health consequences or death
+#   Class II  - May cause temporary/reversible health consequences, remote probability of serious harm
+#   Class III - Not likely to cause adverse health consequences
+#
+recall_id,status,classification,product_description,reason_for_recall,contaminant,recalling_firm,city,state,distribution_pattern,recall_initiation_date,termination_date,affected_categories,affected_brands,affected_upcs,voluntary,source_url
+FDA-2024-5821,Ongoing,Class I,Fresh Express Organic Baby Spinach 5oz,Potential contamination with E. coli O157:H7,E. coli O157:H7,Fresh Express Incorporated,Salinas,CA,Nationwide,2024-01-15,,produce_greens,Fresh Express,0071279275017,Yes,https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts
+FDA-2024-5734,Ongoing,Class I,Dole Organic Romaine Hearts 3-pack,Possible Listeria monocytogenes contamination,Listeria monocytogenes,Dole Fresh Vegetables Inc,Monterey,CA,"AZ, CA, CO, ID, MT, NV, NM, OR, TX, UT, WA, WY",2024-01-12,,produce_greens,Dole,0071430010747,Yes,https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts
+FDA-2024-5698,Ongoing,Class II,Horizon Organic Whole Milk Half Gallon,Undeclared soy allergen,Undeclared Allergen (Soy),Horizon Organic Dairy LLC,Broomfield,CO,"CT, DE, MA, MD, ME, NH, NJ, NY, PA, RI, VT",2024-01-10,,milk_whole,Horizon Organic,0742365003127,Yes,https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts
+FDA-2024-5612,Ongoing,Class II,Kirkland Signature Organic Eggs 24ct,Potential Salmonella contamination,Salmonella,Cal-Maine Foods Inc,Jackson,MS,"Costco stores in Northeast US",2024-01-08,,eggs_large,Kirkland Signature,0096619265433,Yes,https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts
+FDA-2024-5589,Ongoing,Class I,Driscoll's Organic Strawberries 1lb,Potential Hepatitis A contamination,Hepatitis A,Driscoll's Inc,Watsonville,CA,"CA, OR, WA",2024-01-05,,produce_berries,Driscoll's,0521379010019,Yes,https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts
+FDA-2024-5501,Ongoing,Class II,Nature's Promise Organic Baby Carrots 1lb,Possible Shigella contamination,Shigella,Grimmway Farms,Bakersfield,CA,"Giant Food, Stop & Shop stores in Mid-Atlantic",2024-01-03,,produce_root,Nature's Promise,0688267156489,Yes,https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts
+FDA-2023-5423,Terminated,Class II,Trader Joe's Frozen Organic Blueberries 2lb,Potential Hepatitis A contamination,Hepatitis A,Scenic Fruit Company,Gresham,OR,Nationwide,2023-12-20,2024-01-15,produce_berries_frozen,Trader Joe's,0000000000000,Yes,https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts
+FDA-2023-5401,Terminated,Class I,Satur Farms Organic Mixed Greens 5oz,E. coli O157:H7 contamination confirmed,E. coli O157:H7,Satur Farms,Cutchogue,NY,"FreshDirect, Whole Foods Northeast",2023-12-15,2024-01-10,produce_greens,Satur Farms,0854262001234,Yes,https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts
+FDA-2023-5378,Terminated,Class III,Applegate Organic Turkey Slices 6oz,Misbranding - incorrect weight statement,Misbranding,Applegate Farms LLC,Bridgewater,NJ,Nationwide,2023-12-10,2023-12-28,deli_turkey,Applegate,0025317692007,Yes,https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts
+FDA-2023-5312,Terminated,Class II,Taylor Farms Organic Caesar Salad Kit,Undeclared milk and wheat allergens,Undeclared Allergen (Milk/Wheat),Taylor Farms Pacific Inc,Tracy,CA,"West Coast retail stores",2023-12-01,2023-12-20,produce_salad_kit,Taylor Farms,0030223010456,Yes,https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts
+FDA-2023-5289,Ongoing,Class II,Stonyfield Organic Whole Milk Yogurt 32oz,Foreign material (plastic) contamination,Foreign Material (Plastic),Stonyfield Farm Inc,Londonderry,NH,"Northeast US",2023-11-28,,dairy_yogurt,Stonyfield,0052159700320,Yes,https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts
+FDA-2023-5201,Terminated,Class I,Marketside Organic Spinach 10oz,Listeria monocytogenes contamination,Listeria monocytogenes,Fresh Farms Produce LLC,McAllen,TX,"Walmart stores Nationwide",2023-11-15,2023-12-10,produce_greens,Marketside,0078742123456,Yes,https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts

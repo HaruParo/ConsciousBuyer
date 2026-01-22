@@ -6,6 +6,8 @@ Validates decision outputs from LLM against facts_pack data to detect hallucinat
 import re
 from typing import Optional
 
+from src.data_processing.seasonal_regional import filter_recalls_by_region
+
 
 VALID_TIERS = {"cheaper", "balanced", "conscious"}
 
@@ -75,7 +77,7 @@ def extract_brands_from_facts_pack(facts_pack: dict) -> set[str]:
 
     for item in facts_pack.get("items", []):
         # Get brands from alternatives
-        alternatives = item.get("alternatives", {})
+        alternatives = item.get("alternatives") or {}
         for tier_data in alternatives.values():
             if isinstance(tier_data, dict):
                 brand = tier_data.get("brand", "")
@@ -83,7 +85,7 @@ def extract_brands_from_facts_pack(facts_pack: dict) -> set[str]:
                     brands.add(brand.lower())
 
         # Get brand from baseline if present
-        baseline = item.get("baseline", {})
+        baseline = item.get("baseline") or {}
         if baseline:
             brand = baseline.get("brand", "")
             if brand:
@@ -106,7 +108,7 @@ def extract_prices_from_facts_pack(facts_pack: dict) -> list[float]:
 
     for item in facts_pack.get("items", []):
         # Get prices from alternatives
-        alternatives = item.get("alternatives", {})
+        alternatives = item.get("alternatives") or {}
         for tier_data in alternatives.values():
             if isinstance(tier_data, dict):
                 price = tier_data.get("est_price")
@@ -114,7 +116,7 @@ def extract_prices_from_facts_pack(facts_pack: dict) -> list[float]:
                     prices.append(float(price))
 
         # Get price from baseline if present
-        baseline = item.get("baseline", {})
+        baseline = item.get("baseline") or {}
         if baseline:
             price = baseline.get("price")
             if price is not None:
@@ -136,14 +138,14 @@ def extract_packaging_from_facts_pack(facts_pack: dict) -> set[str]:
     packaging_types = set()
 
     for item in facts_pack.get("items", []):
-        alternatives = item.get("alternatives", {})
+        alternatives = item.get("alternatives") or {}
         for tier_data in alternatives.values():
             if isinstance(tier_data, dict):
                 packaging = tier_data.get("packaging", "")
                 if packaging:
                     packaging_types.add(packaging.lower())
 
-        baseline = item.get("baseline", {})
+        baseline = item.get("baseline") or {}
         if baseline:
             packaging = baseline.get("packaging", "")
             if packaging:
@@ -165,7 +167,7 @@ def extract_certifications_from_facts_pack(facts_pack: dict) -> set[str]:
     certifications = set()
 
     for item in facts_pack.get("items", []):
-        alternatives = item.get("alternatives", {})
+        alternatives = item.get("alternatives") or {}
         for tier_data in alternatives.values():
             if isinstance(tier_data, dict):
                 certs = tier_data.get("certifications", [])
@@ -280,8 +282,8 @@ def check_dirty_dozen_tier_compliance(
         if not is_dirty_dozen_item(category):
             continue
 
-        alternatives = item.get("alternatives", {})
-        cheaper_tier = alternatives.get("cheaper", {})
+        alternatives = item.get("alternatives") or {}
+        cheaper_tier = alternatives.get("cheaper") or {}
 
         if not cheaper_tier:
             continue
@@ -300,38 +302,47 @@ def check_recall_compliance(
     facts_pack: dict
 ) -> list[str]:
     """
-    Check if recommended tier has active recalls.
+    Check if recommended tier has active recalls in user's region.
 
     Args:
         recommended_tier: The recommended tier
-        facts_pack: Facts pack with items, alternatives, and flags
+        facts_pack: Facts pack with items, alternatives, flags, and user_context
 
     Returns:
         List of error messages for recalled products
     """
     errors = []
 
+    # Get user location for regional filtering
+    user_context = facts_pack.get("user_context", {})
+    location = user_context.get("location", "")
+
     for item in facts_pack.get("items", []):
         category = item.get("category", "")
         flags = item.get("flags", [])
 
-        # Check if any flag indicates a recall
-        for flag in flags:
-            flag_type = flag.get("type", "").lower()
-            if "recall" not in flag_type:
-                continue
+        # Filter to only recall flags
+        recall_flags = [f for f in flags if "recall" in f.get("type", "").lower()]
 
-            # Check if the recall affects the recommended tier
+        # Filter recalls by user's region if location is provided
+        if location and recall_flags:
+            recall_flags = filter_recalls_by_region(recall_flags, location)
+
+        # Check if any remaining recall affects the recommended tier
+        for flag in recall_flags:
             affected_tiers = flag.get("affected_tiers", [])
+            affected_regions = flag.get("affected_regions", [])
+            region_note = f" ({', '.join(affected_regions)})" if affected_regions else ""
+
             if affected_tiers and recommended_tier in affected_tiers:
                 errors.append(
                     f"RECALL WARNING: '{category}' at '{recommended_tier}' tier "
-                    f"has active recall - {flag.get('description', 'see flags for details')}"
+                    f"has active recall{region_note} - {flag.get('description', 'see flags for details')}"
                 )
             elif not affected_tiers:
                 # If no specific tiers listed, it's a general category recall
                 errors.append(
-                    f"RECALL WARNING: '{category}' category has active recall - "
+                    f"RECALL WARNING: '{category}' category has active recall{region_note} - "
                     f"{flag.get('description', 'verify product safety')}"
                 )
 

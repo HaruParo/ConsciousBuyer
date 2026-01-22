@@ -1,0 +1,12 @@
+ingredient,recommended_tier,score,product_id,product_name,brand,price,organic
+chicken,conscious,75,ch001,Organic Free-Range Chicken Thighs,Bell & Evans,9.99,True
+basmati rice,conscious,75,ri001,Organic Basmati Rice,Lundberg,8.99,True
+onions,conscious,75,on001,Organic Yellow Onions,Local Farm,3.99,True
+tomatoes,conscious,75,to001,Organic Heirloom Tomatoes,Local Farm,6.99,True
+yogurt,conscious,75,yo001,Organic Greek Yogurt,Stonyfield,6.99,True
+ginger,conscious,75,gi001,Organic Ginger Root,Store Brand,6.99,True
+garlic,conscious,75,ga001,Organic Garlic,Local Farm,1.99,True
+green chilies,balanced,65,hp001,Serrano Peppers,Store Brand,1.99,False
+mint leaves,conscious,75,mt001,Organic Fresh Mint,Local Farm,3.49,True
+cilantro,conscious,75,ci001,Organic Cilantro,Local Farm,2.99,True
+ghee,conscious,75,gh001,Organic Grass-Fed Ghee,4th & Heart,12.99,True

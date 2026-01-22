@@ -4,6 +4,10 @@ Assembles decision context by combining baseline data, alternatives, and flags.
 
 Uses Open Food Facts (https://openfoodfacts.org/) as a fallback data source
 when local alternatives data is unavailable.
+
+Supports two modes:
+1. Static mode: Load from CSV/JSON files (original behavior)
+2. Agent mode: Use multi-agent orchestrator for learning and personalization
 """
 
 import csv
@@ -15,6 +19,9 @@ from typing import Optional
 
 from .open_food_facts import get_off_alternatives_for_category
 
+# Lazy import for agent system to avoid circular imports
+_orchestrator = None
+
 logger = logging.getLogger(__name__)
 
 # Default data paths
@@ -24,21 +31,91 @@ ALTERNATIVES_CSV_PATH = DATA_DIR / "alternatives" / "alternatives_template.csv"
 FLAGS_PATH = DATA_DIR / "flags" / "product_flags.json"
 
 # Predefined recipe mappings for common requests
+# Each recipe maps to a list of ingredient categories
 RECIPE_MAPPINGS = {
-    "miso soup": ["fermented", "produce_greens", "produce_onions"],
-    "miso": ["fermented", "produce_greens", "produce_onions"],
-    "salad": ["produce_greens", "produce_tomatoes", "produce_cucumbers", "oils_olive", "vinegar"],
-    "smoothie": ["fruit_berries", "fruit_tropical", "yogurt", "milk"],
+    # Asian
+    # Miso soup: miso paste, tofu, seaweed (wakame), green onions/scallions, dashi (optional)
+    "miso soup": ["miso_paste", "tofu", "seaweed", "produce_onions", "dashi"],
     "stir fry": ["produce_peppers", "produce_onions", "produce_greens", "oils_other", "grains"],
-    "pasta": ["grains", "produce_tomatoes", "produce_aromatics", "oils_olive", "cheese"],
+    "fried rice": ["grains", "eggs", "produce_onions", "produce_peppers", "oils_other"],
+    "ramen": ["grains", "eggs", "produce_greens", "produce_onions", "fermented"],
+    "sushi": ["grains", "produce_cucumbers", "fruit_tropical", "vinegar"],
+    "pad thai": ["grains", "eggs", "produce_onions", "nuts_peanuts", "produce_beans"],
+    "pho": ["grains", "produce_onions", "produce_aromatics", "spices", "produce_greens"],
+
+    # Indian
+    "sambar": ["produce_onions", "produce_tomatoes", "spices", "grains", "produce_root_veg"],
+    "dal": ["grains", "produce_onions", "produce_tomatoes", "spices", "produce_aromatics"],
+    "biryani": ["grains", "produce_onions", "yogurt", "spices", "produce_aromatics"],
     "curry": ["produce_onions", "produce_tomatoes", "spices", "canned_coconut", "grains"],
+    "paneer": ["cheese", "produce_onions", "produce_tomatoes", "spices", "produce_peppers"],
+    "chana masala": ["canned_beans", "produce_onions", "produce_tomatoes", "spices"],
+    "aloo gobi": ["produce_root_veg", "produce_onions", "spices", "produce_aromatics"],
+    "palak paneer": ["produce_greens", "cheese", "produce_onions", "spices"],
+    "tikka masala": ["yogurt", "produce_onions", "produce_tomatoes", "spices", "chicken"],
+    "butter chicken": ["chicken", "butter_ghee", "produce_tomatoes", "yogurt", "spices"],
+    "dosa": ["grains", "produce_onions", "produce_root_veg", "canned_coconut", "spices"],
+    "idli": ["grains", "produce_onions", "canned_coconut", "spices"],
+    "upma": ["grains", "produce_onions", "produce_peppers", "nuts_cashews", "spices"],
+    "poha": ["grains", "produce_onions", "produce_peppers", "nuts_peanuts", "spices"],
+
+    # Mexican/Latin
     "tacos": ["produce_peppers", "produce_onions", "produce_tomatoes", "cheese", "spices"],
-    "omelette": ["eggs", "cheese", "produce_peppers", "produce_onions", "butter_ghee"],
-    "breakfast": ["eggs", "bread", "butter_ghee", "fruit_berries", "yogurt"],
+    "burrito": ["grains", "canned_beans", "cheese", "produce_tomatoes", "produce_onions"],
+    "guacamole": ["fruit_tropical", "produce_onions", "produce_tomatoes", "produce_peppers", "spices"],
+    "enchiladas": ["bread", "cheese", "produce_onions", "produce_tomatoes", "spices"],
+    "quesadilla": ["bread", "cheese", "produce_peppers", "produce_onions"],
+    "nachos": ["chips", "cheese", "canned_beans", "produce_tomatoes", "produce_peppers"],
+    "salsa": ["produce_tomatoes", "produce_onions", "produce_peppers", "produce_aromatics", "spices"],
+
+    # Italian/Mediterranean
+    "pasta": ["grains", "produce_tomatoes", "produce_aromatics", "oils_olive", "cheese"],
+    "pizza": ["bread", "cheese", "produce_tomatoes", "produce_peppers", "oils_olive"],
+    "risotto": ["grains", "cheese", "produce_onions", "butter_ghee", "produce_mushrooms"],
+    "lasagna": ["grains", "cheese", "produce_tomatoes", "produce_aromatics", "eggs"],
+    "bruschetta": ["bread", "produce_tomatoes", "produce_aromatics", "oils_olive"],
+    "caprese": ["produce_tomatoes", "cheese", "oils_olive", "produce_aromatics"],
+    "hummus": ["hummus_dips", "produce_aromatics", "oils_olive", "spices"],
+    "falafel": ["hummus_dips", "produce_onions", "produce_aromatics", "spices"],
+
+    # American/Western
+    "salad": ["produce_greens", "produce_tomatoes", "produce_cucumbers", "oils_olive", "vinegar"],
     "sandwich": ["bread", "produce_greens", "produce_tomatoes", "cheese", "hummus_dips"],
+    "burger": ["bread", "produce_tomatoes", "produce_onions", "cheese", "produce_greens"],
     "soup": ["produce_onions", "produce_root_veg", "produce_aromatics", "spices"],
     "roasted vegetables": ["produce_root_veg", "produce_squash", "produce_peppers", "oils_olive", "spices"],
-    "guacamole": ["fruit_tropical", "produce_onions", "produce_tomatoes", "produce_peppers", "spices"],
+    "grilled cheese": ["bread", "cheese", "butter_ghee"],
+    "mac and cheese": ["grains", "cheese", "milk", "butter_ghee"],
+    "chili": ["canned_beans", "produce_tomatoes", "produce_onions", "produce_peppers", "spices"],
+
+    # Breakfast
+    "breakfast": ["eggs", "bread", "butter_ghee", "fruit_berries", "yogurt"],
+    "omelette": ["eggs", "cheese", "produce_peppers", "produce_onions", "butter_ghee"],
+    "pancakes": ["grains", "eggs", "milk", "butter_ghee", "fruit_berries"],
+    "waffles": ["grains", "eggs", "milk", "butter_ghee", "fruit_berries"],
+    "french toast": ["bread", "eggs", "milk", "butter_ghee", "fruit_berries"],
+    "granola": ["grains", "nuts_almonds", "fruit_berries", "yogurt", "milk"],
+    "acai bowl": ["fruit_berries", "fruit_tropical", "yogurt", "nuts_almonds", "grains"],
+    "avocado toast": ["bread", "fruit_tropical", "eggs", "produce_tomatoes", "spices"],
+    "oatmeal": ["grains", "milk", "fruit_berries", "nuts_almonds"],
+    "cereal": ["grains", "milk", "fruit_berries"],
+
+    # Smoothies/Drinks
+    "smoothie": ["fruit_berries", "fruit_tropical", "yogurt", "milk"],
+    "protein shake": ["milk", "fruit_tropical", "yogurt", "nuts_almonds"],
+    "juice": ["fruit_citrus", "fruit_tropical", "produce_root_veg", "produce_greens"],
+
+    # Snacks
+    "trail mix": ["nuts_almonds", "nuts_cashews", "fruit_berries", "chocolate"],
+    "chips and dip": ["chips", "hummus_dips", "produce_tomatoes"],
+    "cheese plate": ["cheese", "nuts_almonds", "fruit_other", "crackers"],
+
+    # Weekly/Bulk
+    "groceries": ["produce_greens", "produce_tomatoes", "produce_onions", "eggs", "milk", "bread", "grains", "cheese"],
+    "weekly groceries": ["produce_greens", "produce_tomatoes", "produce_onions", "eggs", "milk", "bread", "grains", "cheese", "fruit_berries", "yogurt"],
+    "essentials": ["eggs", "milk", "bread", "butter_ghee", "produce_onions", "produce_aromatics"],
+    "basics": ["eggs", "milk", "bread", "grains", "oils_olive", "produce_onions"],
+    "pantry": ["grains", "oils_olive", "spices", "canned_beans", "canned_coconut", "vinegar"],
 }
 
 # Keyword to category mappings for ingredient extraction
@@ -74,7 +151,7 @@ KEYWORD_CATEGORY_MAP = {
 
     # Proteins
     "chicken": "chicken", "beef": "meat_other", "pork": "meat_other", "lamb": "meat_other",
-    "tofu": "fermented", "tempeh": "fermented", "miso": "fermented", "miso paste": "fermented",
+    "tofu": "tofu", "tempeh": "fermented", "miso": "miso_paste", "miso paste": "miso_paste",
 
     # Pantry
     "rice": "grains", "pasta": "grains", "quinoa": "grains", "oats": "grains",
@@ -88,7 +165,23 @@ KEYWORD_CATEGORY_MAP = {
     "hummus": "hummus_dips", "dip": "hummus_dips",
     "chocolate": "chocolate", "cookies": "cookies_crackers", "crackers": "cookies_crackers",
     "chips": "chips", "tea": "tea",
-    "seaweed": "produce_greens", "nori": "produce_greens", "scallions": "produce_onions",
+    # Japanese/Asian ingredients
+    "seaweed": "seaweed", "nori": "seaweed", "wakame": "seaweed", "kombu": "seaweed",
+    "dashi": "dashi", "bonito": "dashi", "hon dashi": "dashi",
+    "scallions": "produce_onions", "green onion": "produce_onions", "green onions": "produce_onions",
+    # Indian ingredients
+    "dal": "grains", "lentils": "grains", "chickpeas": "canned_beans", "paneer": "cheese",
+    "ghee": "butter_ghee", "tamarind": "spices", "curry powder": "spices", "garam masala": "spices",
+    "coriander": "spices", "cilantro": "produce_aromatics", "chutney": "hummus_dips",
+    # More produce
+    "broccoli": "produce_greens", "cauliflower": "produce_greens", "cabbage": "produce_greens",
+    "celery": "produce_greens", "asparagus": "produce_beans", "corn": "produce_beans",
+    "eggplant": "produce_squash", "okra": "produce_beans",
+    # Canned goods
+    "canned beans": "canned_beans", "black beans": "canned_beans", "kidney beans": "canned_beans",
+    "coconut milk": "canned_coconut", "tomato sauce": "produce_tomatoes", "tomato paste": "produce_tomatoes",
+    # Crackers
+    "crackers": "cookies_crackers",
 }
 
 # Default user context
@@ -96,6 +189,7 @@ DEFAULT_USER_CONTEXT = {
     "budget_priority": "medium",
     "health_priority": "medium",
     "packaging_priority": "medium",
+    "location": "",  # User's location (state, region, or city) for seasonal/recall filtering
 }
 
 
@@ -485,6 +579,207 @@ def main():
         print(f"Facts pack written to {args.output}")
     else:
         print(output)
+
+
+def get_orchestrator(data_dir: str = None, user_id: str = "default"):
+    """
+    Get or create the agent orchestrator singleton.
+
+    Args:
+        data_dir: Base directory for agent data stores (defaults to DATA_DIR)
+        user_id: User identifier for personalization
+
+    Returns:
+        AgentOrchestrator instance
+    """
+    global _orchestrator
+
+    if _orchestrator is None:
+        # Import here to avoid circular imports
+        # Use absolute import that works both as module and standalone
+        import sys
+        agents_path = Path(__file__).parent.parent / "agents"
+        if str(agents_path.parent) not in sys.path:
+            sys.path.insert(0, str(agents_path.parent))
+
+        from agents.orchestrator import AgentOrchestrator
+
+        data_path = Path(data_dir) if data_dir else DATA_DIR
+        _orchestrator = AgentOrchestrator(data_path, user_id)
+        logger.info(f"Initialized AgentOrchestrator for user '{user_id}'")
+
+    return _orchestrator
+
+
+def generate_facts_pack_with_agents(
+    user_input: str,
+    user_id: str = "default",
+    store: str = "freshdirect",
+    data_dir: str = None,
+) -> dict:
+    """
+    Generate facts pack using the multi-agent system.
+
+    This provides enhanced functionality over the static generate_facts_pack():
+    - Learns from user purchases to identify personal staples
+    - Tracks price and availability changes
+    - Provides personalized tier recommendations
+    - Enforces EWG Dirty Dozen/Clean Fifteen rules
+    - Checks active recalls
+
+    Args:
+        user_input: User's request string (e.g., "miso soup ingredients")
+        user_id: User identifier for personalization
+        store: Store identifier (default: "freshdirect")
+        data_dir: Optional override for data directory
+
+    Returns:
+        Enhanced facts pack with agent metadata and personalization
+    """
+    logger.info(f"Generating agent-enhanced facts pack for: {user_input}")
+
+    # Parse user input to get categories
+    categories = parse_user_input(user_input)
+
+    if not categories:
+        logger.warning(f"No categories extracted from: {user_input}")
+        return {
+            "request": user_input,
+            "items": [],
+            "user_context": DEFAULT_USER_CONTEXT.copy(),
+            "agent_mode": True,
+            "error": "No categories could be extracted from the request",
+        }
+
+    # Get orchestrator
+    orchestrator = get_orchestrator(data_dir, user_id)
+
+    # Build facts pack using agents
+    agent_facts_pack = orchestrator.build_facts_pack(categories, store)
+
+    # Transform to expected format while preserving agent enhancements
+    items = []
+    for agent_item in agent_facts_pack.get("items", []):
+        # Get baseline from static data for backward compatibility
+        baseline_data = load_baseline()
+        baseline = get_baseline_for_category(agent_item["category"], baseline_data)
+
+        item = {
+            "category": agent_item["category"],
+            "baseline": baseline,
+            "alternatives": agent_item.get("alternatives", {}),
+            "flags": agent_item.get("flags", []),
+            # Agent-enhanced fields
+            "ewg_classification": agent_item.get("ewg_classification"),
+            "organic_required": agent_item.get("organic_required", False),
+            "has_active_recall": agent_item.get("has_active_recall", False),
+            "availability_issues": agent_item.get("availability_issues", []),
+            "specialty_promotions": agent_item.get("specialty_promotions", []),
+            "user_category_data": agent_item.get("user_category_data", {}),
+        }
+        items.append(item)
+
+    # Merge user context
+    agent_user_context = agent_facts_pack.get("user_context", {})
+    merged_context = DEFAULT_USER_CONTEXT.copy()
+    merged_context.update({
+        "user_id": agent_user_context.get("user_id", user_id),
+        "tier_preference": agent_user_context.get("tier_preference"),
+        "personal_staples": agent_user_context.get("personal_staples", []),
+        "frequent_categories": agent_user_context.get("frequent_categories", []),
+        "dietary": agent_user_context.get("dietary", []),
+        "organic_preference": agent_user_context.get("organic_preference", "flexible"),
+        "local_preference": agent_user_context.get("local_preference", False),
+        "cuisine_preferences": agent_user_context.get("cuisine_preferences", []),
+        "avoid_categories": agent_user_context.get("avoid_categories", []),
+    })
+
+    facts_pack = {
+        "request": user_input,
+        "store": store,
+        "timestamp": agent_facts_pack.get("timestamp"),
+        "items": items,
+        "user_context": merged_context,
+        "agent_mode": True,
+        "agent_metadata": agent_facts_pack.get("agent_metadata", {}),
+    }
+
+    # Validate
+    is_valid, errors = validate_facts_pack(facts_pack)
+    if not is_valid:
+        logger.warning(f"Facts pack validation warnings: {errors}")
+        facts_pack["validation_warnings"] = errors
+
+    logger.info(f"Generated agent-enhanced facts pack with {len(items)} items")
+    return facts_pack
+
+
+def record_decision_feedback(
+    decision: dict,
+    feedback: dict = None,
+    user_id: str = "default",
+) -> None:
+    """
+    Record decision feedback for agent learning.
+
+    Call this after a user interacts with a recommendation to help
+    the agents learn and improve future recommendations.
+
+    Args:
+        decision: The decision output that was shown to user
+        feedback: Optional feedback dict with:
+            - purchased: bool - whether user purchased
+            - product_name: str - what they bought
+            - brand: str - brand purchased
+            - price: float - actual price paid
+            - rejected: bool - whether user rejected recommendation
+            - reason: str - reason for rejection
+        user_id: User identifier
+    """
+    orchestrator = get_orchestrator(user_id=user_id)
+    orchestrator.learn_from_decision(decision, feedback)
+    logger.info(f"Recorded decision feedback for user '{user_id}'")
+
+
+def get_quick_recommendation(
+    category: str,
+    user_id: str = "default",
+    tier_preference: str = None,
+) -> dict:
+    """
+    Get a quick recommendation without full facts pack generation.
+
+    Useful for simple single-category queries where the full LLM
+    decision engine isn't needed.
+
+    Args:
+        category: Product category
+        user_id: User identifier
+        tier_preference: Override user's default tier preference
+
+    Returns:
+        Recommendation dict with product and reasoning
+    """
+    orchestrator = get_orchestrator(user_id=user_id)
+    return orchestrator.get_recommendation(category, tier_preference)
+
+
+def get_shopping_list_recommendations(
+    categories: list[str],
+    user_id: str = "default",
+) -> list[dict]:
+    """
+    Get recommendations for a complete shopping list.
+
+    Args:
+        categories: List of categories to shop for
+        user_id: User identifier
+
+    Returns:
+        List of recommendations, one per category
+    """
+    orchestrator = get_orchestrator(user_id=user_id)
+    return orchestrator.get_shopping_list(categories)
 
 
 if __name__ == "__main__":

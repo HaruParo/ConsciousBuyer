@@ -1,0 +1,79 @@
+# EWG Shopper's Guide to Pesticides in Produce (2025)
+# Source: Environmental Working Group (https://www.ewg.org/foodnews/full-list.php)
+# Summary: https://www.ewg.org/foodnews/summary.php
+# Version: 2025
+# Refresh Schedule: Annual (March/April)
+# Trust Level: Research Non-profit - Peer-reviewed methodology
+#
+# THREE categories (47 items total):
+#   - Clean Fifteen (ranks 1-15) - LOWEST residue, conventional OK (~60% no detectable pesticides)
+#   - Middle (ranks 16-35) - MODERATE residue, organic beneficial but not critical
+#   - Dirty Dozen (ranks 36-47) - HIGHEST residue, organic STRONGLY recommended (96% had pesticides)
+#
+# Rank: 1 = cleanest, 47 = most contaminated
+#
+# 2025 Methodology (updated to include toxicity):
+#   - Data: 53,692 samples of 47 fruits and vegetables (USDA PDP)
+#   - Testing: Produce washed and peeled (as consumers would) before testing
+#   - 265 total pesticides and breakdown products identified
+#   - Rankings now factor in:
+#     1. Number of pesticides detected
+#     2. Presence of pesticide residues
+#     3. Amount of residue
+#     4. Toxicity levels of detected substances
+#
+# Key findings:
+#   - 75%+ of non-organic produce had detectable pesticide residues
+#   - 203 pesticides found on Dirty Dozen produce
+#   - New 2025 entries: potatoes and blackberries (Dirty Dozen), cauliflower and bananas (Clean Fifteen)
+#
+# Pesticide Residue Score: 1-100 scale (estimated from rank position)
+#
+rank,item,list,pesticide_residue_score,organic_recommendation,notes,source_url
+1,pineapples,clean_fifteen,1,optional,Thick rind removed before eating,https://www.ewg.org/foodnews/pineapples.php
+2,sweet corn,clean_fifteen,3,optional,Husk protects kernels from pesticides,https://www.ewg.org/foodnews/corn.php
+3,avocados,clean_fifteen,4,optional,Thick skin protects fruit - lowest residue,https://www.ewg.org/foodnews/avocados.php
+4,papaya,clean_fifteen,6,optional,Note: most Hawaiian papaya is GMO,https://www.ewg.org/foodnews/papaya.php
+5,onions,clean_fifteen,8,optional,Multiple protective layers shield from contamination,https://www.ewg.org/foodnews/onions.php
+6,sweet peas (frozen),clean_fifteen,10,optional,Pod protects peas during growing,https://www.ewg.org/foodnews/sweet-peas.php
+7,asparagus,clean_fifteen,12,optional,Grows quickly - less pesticide exposure time,https://www.ewg.org/foodnews/asparagus.php
+8,cabbage,clean_fifteen,14,optional,Outer leaves discarded before consumption,https://www.ewg.org/foodnews/cabbage.php
+9,watermelon,clean_fifteen,16,optional,Thick rind protects edible flesh,https://www.ewg.org/foodnews/watermelon.php
+10,cauliflower,clean_fifteen,18,optional,Florets protected by thick outer leaves,https://www.ewg.org/foodnews/cauliflower.php
+11,bananas,clean_fifteen,20,optional,Thick peel removed before eating,https://www.ewg.org/foodnews/bananas.php
+12,mangoes,clean_fifteen,22,optional,Skin typically peeled before eating,https://www.ewg.org/foodnews/mangoes.php
+13,carrots,clean_fifteen,24,optional,Often peeled before eating,https://www.ewg.org/foodnews/carrots.php
+14,mushrooms,clean_fifteen,25,optional,Often grown indoors without pesticides,https://www.ewg.org/foodnews/mushrooms.php
+15,kiwi,clean_fifteen,27,optional,Fuzzy skin typically peeled before eating,https://www.ewg.org/foodnews/kiwi.php
+16,broccoli,middle,30,beneficial,Moderate residue levels - organic beneficial,https://www.ewg.org/foodnews/full-list.php
+17,cantaloupe,middle,32,beneficial,Rind not eaten but moderate residue on flesh,https://www.ewg.org/foodnews/full-list.php
+18,sweet potatoes,middle,34,beneficial,Root vegetable with moderate residue,https://www.ewg.org/foodnews/sweet-potatoes.php
+19,snap peas,middle,36,beneficial,Edible pod exposes to moderate residue,https://www.ewg.org/foodnews/full-list.php
+20,eggplant,middle,38,beneficial,Thin skin with moderate absorption,https://www.ewg.org/foodnews/full-list.php
+21,grapefruit,middle,40,beneficial,Peel removed but some residue on flesh,https://www.ewg.org/foodnews/full-list.php
+22,oranges,middle,42,beneficial,Peel removed but residue can transfer,https://www.ewg.org/foodnews/full-list.php
+23,raspberries,middle,44,beneficial,Delicate fruit with moderate residue,https://www.ewg.org/foodnews/full-list.php
+24,summer squash,middle,46,beneficial,Edible skin with moderate absorption,https://www.ewg.org/foodnews/full-list.php
+25,tomatillos,middle,48,beneficial,Husk offers some protection but moderate residue,https://www.ewg.org/foodnews/full-list.php
+26,cherry tomatoes,middle,50,beneficial,Thin skin with moderate pesticide absorption,https://www.ewg.org/foodnews/full-list.php
+27,tomatoes,middle,52,beneficial,Thin skin absorbs moderate levels,https://www.ewg.org/foodnews/full-list.php
+28,plums,middle,54,beneficial,Thin edible skin with moderate residue,https://www.ewg.org/foodnews/full-list.php
+29,winter squash,middle,56,beneficial,Thick skin offers some protection,https://www.ewg.org/foodnews/full-list.php
+30,lettuce,middle,58,beneficial,Outer leaves removed but inner still exposed,https://www.ewg.org/foodnews/full-list.php
+31,celery,middle,60,beneficial,No protective skin - absorbs residues,https://www.ewg.org/foodnews/full-list.php
+32,cucumbers,middle,62,beneficial,Often eaten with skin - moderate residue,https://www.ewg.org/foodnews/full-list.php
+33,tangerines,middle,64,beneficial,Peel removed but residue can transfer,https://www.ewg.org/foodnews/full-list.php
+34,green beans,middle,66,beneficial,Edible pod with moderate-high residue,https://www.ewg.org/foodnews/green-beans.php
+35,bell and hot peppers,middle,68,beneficial,Thin skin absorbs moderate-high residue,https://www.ewg.org/foodnews/bell-and-hot-peppers.php
+36,potatoes,dirty_dozen,72,required,Root vegetable absorbs soil pesticides,https://www.ewg.org/foodnews/full-list.php
+37,blueberries,dirty_dozen,75,required,Thin skin with high residue,https://www.ewg.org/foodnews/blueberries.php
+38,blackberries,dirty_dozen,78,required,Delicate fruit with high pesticide levels,https://www.ewg.org/foodnews/full-list.php
+39,apples,dirty_dozen,80,required,Diphenylamine commonly detected,https://www.ewg.org/foodnews/apples.php
+40,pears,dirty_dozen,82,required,Multiple pesticide residues common,https://www.ewg.org/foodnews/pears.php
+41,nectarines,dirty_dozen,85,required,Thin permeable skin absorbs pesticides,https://www.ewg.org/foodnews/nectarines.php
+42,cherries,dirty_dozen,87,required,High fungicide residues,https://www.ewg.org/foodnews/cherries.php
+43,peaches,dirty_dozen,89,required,Thin skin absorbs pesticides easily,https://www.ewg.org/foodnews/peaches.php
+44,grapes,dirty_dozen,92,required,Imported grapes often have higher residues,https://www.ewg.org/foodnews/grapes.php
+45,kale collard and mustard greens,dirty_dozen,95,required,High levels of DCPA and other pesticides,https://www.ewg.org/foodnews/kale-collard-mustard-greens.php
+46,strawberries,dirty_dozen,97,required,Over 90% of samples had detectable pesticides,https://www.ewg.org/foodnews/strawberries.php
+47,spinach,dirty_dozen,99,required,High levels of permethrin (neurotoxic insecticide),https://www.ewg.org/foodnews/spinach.php

@@ -429,6 +429,7 @@ CATEGORY_TO_OFF_TAG = {
     "chocolate": "en:chocolates",
     "tea": "en:teas",
     "fermented": "en:fermented-foods",
+    "miso_paste": "en:misos",
     "hummus_dips": "en:hummus",
     "chips": "en:crisps",
     "cookies_crackers": "en:biscuits-and-cakes",
@@ -437,6 +438,17 @@ CATEGORY_TO_OFF_TAG = {
     "nuts_peanuts": "en:peanuts",
     "nuts_other": "en:nuts",
     "canned_coconut": "en:coconut-milks",
+    # Japanese/Asian ingredients for miso soup
+    "tofu": "en:tofu",
+    "seaweed": "en:seaweeds",
+    "dashi": "en:dashi",
+    # Produce categories
+    "produce_onions": "en:onions",
+    "produce_greens": "en:leaf-vegetables",
+    "produce_tomatoes": "en:tomatoes",
+    "produce_peppers": "en:peppers",
+    "produce_mushrooms": "en:mushrooms",
+    "produce_aromatics": "en:herbs",
 }
 
 

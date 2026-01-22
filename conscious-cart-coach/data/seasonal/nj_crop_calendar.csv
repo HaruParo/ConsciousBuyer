@@ -1,0 +1,56 @@
+# NJ/Mid-Atlantic Crop Calendar
+# Primary Source: Jersey Fresh Program (https://jerseyfresh.nj.gov/) - NJ Dept of Agriculture
+# Secondary Source: Rutgers Cooperative Extension FS1218 (https://njaes.rutgers.edu/fs1218/)
+# Cross-reference: USDA NASS NJ Crop Production Reports
+# Last Updated: 2024-01
+# Refresh Schedule: Annual
+crop,category,jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec,nj_rank,notes,source
+spinach,produce_greens,,,peak,peak,peak,,,,,peak,peak,,Spring and fall crop - bolts in heat,Jersey Fresh
+kale,produce_greens,,,peak,peak,peak,,,,,peak,peak,peak,,Sweetens after frost - hardy,Jersey Fresh
+lettuce,produce_greens,,,,peak,peak,peak,,,,peak,peak,,,Cool weather crop,Jersey Fresh
+arugula,produce_greens,,,,peak,peak,peak,,,,peak,peak,,,Fast growing cool weather green,Rutgers FS1218
+chard,produce_greens,,,,,peak,peak,peak,peak,peak,peak,,,,Heat tolerant green,Jersey Fresh
+collards,produce_greens,,,,,,,,,peak,peak,peak,peak,,Best after frost,Jersey Fresh
+onion,alliums,storage,storage,storage,,,,peak,peak,peak,peak,storage,storage,,Summer harvest stores well,Jersey Fresh
+scallion,alliums,,,,peak,peak,peak,peak,peak,peak,peak,,,,Green onion - quick crop,Rutgers FS1218
+garlic,alliums,storage,storage,storage,storage,storage,storage,peak,peak,storage,storage,storage,storage,,July harvest stores year-round,Jersey Fresh
+leek,alliums,,,,,,,,,peak,peak,peak,,,Fall harvest,Rutgers FS1218
+carrot,root_veg,storage,storage,storage,,,,peak,peak,peak,peak,peak,storage,,Stores well in cold,Jersey Fresh
+beet,root_veg,storage,storage,,,,,peak,peak,peak,peak,storage,storage,,Good keeper,Jersey Fresh
+radish,root_veg,,,,peak,peak,peak,,,,peak,peak,,,Fast spring/fall crop,Rutgers FS1218
+turnip,root_veg,,,,,peak,peak,,,,peak,peak,peak,,Spring and fall,Jersey Fresh
+parsnip,root_veg,peak,peak,peak,,,,,,,peak,peak,peak,,Sweetens after frost,Rutgers FS1218
+potato,root_veg,storage,storage,storage,storage,storage,,peak,peak,peak,peak,storage,storage,,NJ grows many varieties,Jersey Fresh
+sweet_potato,root_veg,storage,storage,storage,,,,,,,peak,peak,storage,,Harvest before frost,Jersey Fresh
+zucchini,squash,,,,,,peak,peak,peak,peak,,,,,Summer squash,Jersey Fresh
+summer_squash,squash,,,,,,peak,peak,peak,peak,,,,,Yellow squash patty pan,Jersey Fresh
+butternut_squash,squash,storage,storage,storage,,,,,,,peak,peak,storage,,Stores 3-6 months,Jersey Fresh
+acorn_squash,squash,storage,storage,,,,,,,,peak,peak,storage,,Winter squash,Jersey Fresh
+delicata_squash,squash,storage,,,,,,,,,peak,peak,storage,,Edible skin,Rutgers FS1218
+spaghetti_squash,squash,storage,storage,,,,,,,,peak,peak,storage,,Winter squash,Jersey Fresh
+pumpkin,squash,,,,,,,,,peak,peak,peak,,,Fall harvest,Jersey Fresh
+tomato,nightshade,,,,,,,peak,peak,peak,,,,,"Jersey Tomato - protected term",Jersey Fresh
+pepper,nightshade,,,,,,,peak,peak,peak,peak,,,,Bell and hot varieties,Jersey Fresh
+bell_pepper,nightshade,,,,,,,peak,peak,peak,peak,,,,Sweet peppers,Jersey Fresh
+hot_pepper,nightshade,,,,,,,peak,peak,peak,peak,,,,Includes jalapeno serrano,Jersey Fresh
+eggplant,nightshade,,,,,,,peak,peak,peak,,,,,"Various varieties",Jersey Fresh
+strawberry,berries,,,,,peak,peak,,,,,,,,"Short but intense season",Jersey Fresh
+blueberry,berries,,,,,,peak,peak,peak,,,,,"#3 nationally","NJ is major producer",USDA NASS
+raspberry,berries,,,,,,peak,peak,,,peak,peak,,,"Summer and fall bearing",Jersey Fresh
+blackberry,berries,,,,,,,peak,peak,,,,,,"Peak summer",Jersey Fresh
+cranberry,berries,,,,,,,,,peak,peak,peak,,"#4 nationally","NJ Pine Barrens",USDA NASS
+apple,tree_fruit,storage,storage,storage,,,,,peak,peak,peak,storage,storage,,"Many NJ orchards",Jersey Fresh
+peach,tree_fruit,,,,,,,peak,peak,peak,,,,"#4 nationally","NJ peaches excellent",USDA NASS
+pear,tree_fruit,storage,,,,,,,peak,peak,peak,storage,storage,,"Bartlett Bosc Anjou",Jersey Fresh
+plum,tree_fruit,,,,,,,peak,peak,peak,,,,,"Various varieties",Jersey Fresh
+cherry,tree_fruit,,,,,,peak,peak,,,,,,,"Short season",Jersey Fresh
+nectarine,tree_fruit,,,,,,,peak,peak,peak,,,,,"Similar to peach",Jersey Fresh
+corn,grain,,,,,,,peak,peak,peak,,,,,"Jersey sweet corn famous",Jersey Fresh
+cucumber,vine,,,,,,peak,peak,peak,peak,,,,,Pickling and slicing,Jersey Fresh
+asparagus,vegetable,,,,peak,peak,peak,,,,,,,,"Short spring season",Jersey Fresh
+pea,legume,,,,,peak,peak,,,,,,,,"Cool weather crop",Rutgers FS1218
+green_bean,legume,,,,,,peak,peak,peak,peak,,,,,Bush and pole varieties,Jersey Fresh
+broccoli,brassica,,,,,peak,peak,,,,peak,peak,,,"Spring and fall",Jersey Fresh
+cauliflower,brassica,,,,,peak,peak,,,,peak,peak,,,"Cool weather",Jersey Fresh
+cabbage,brassica,,,,,,peak,peak,,,peak,peak,peak,,"Good keeper",Jersey Fresh
+brussels_sprout,brassica,,,,,,,,,,peak,peak,peak,,"Best after frost",Jersey Fresh
