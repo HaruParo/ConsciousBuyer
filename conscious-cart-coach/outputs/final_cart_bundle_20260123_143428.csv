@@ -1,0 +1,13 @@
+ingredient,selected_product_id,tier,reason_short,score,attributes,safety_notes,cheaper_neighbor_id,conscious_neighbor_id
+chicken,ch001,conscious,Balanced pick,58,Organic,,ch003,
+basmati rice,ri001,conscious,Balanced pick,58,Organic,,ri003,
+onions,on001,balanced,Balanced pick,63,Organic; Local,,on002,
+tomatoes,to001,conscious,Balanced pick,58,Organic,,to002,
+yogurt,yo001,conscious,Balanced pick,58,Organic,,yo003,
+ginger,gi001,balanced,Balanced pick,58,Organic,,gi002,
+garlic,ga001,balanced,Balanced pick,63,Organic; Local,,ga002,
+green chilies,hp002,cheaper,Balanced pick,50,,,,
+mint leaves,mt001,balanced,Balanced pick,58,Organic,,mt002,
+cilantro,ci001,balanced,Balanced pick,58,Organic,,ci002,
+ghee,gh001,balanced,Balanced pick,58,Organic,,gh002,
+---TOTALS---,,,,,recommended=$63.39,cheaper=$35.69; conscious=$63.39,delta=-27.70,delta=0.00

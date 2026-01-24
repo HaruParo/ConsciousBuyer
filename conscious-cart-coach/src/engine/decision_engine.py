@@ -60,9 +60,16 @@ WEIGHTS = {
     "recall_category_recent": -5,
     "recall_data_gap": -3,
 
-    # Quality signals
-    "organic": 8,
-    "local_brand": 6,
+    # Quality signals (reduced organic dominance)
+    "organic": 4,
+    "local_brand": 5,
+
+    # Value efficiency: best $/oz ratio gets a meaningful bonus
+    "value_efficiency_best": 12,
+    "value_efficiency_good": 6,
+
+    # Balanced position: mid-range products get a bonus for BALANCED users
+    "balanced_position": 8,
 
     # User preference alignment
     "matches_preferred_brand": 10,
@@ -74,14 +81,16 @@ WEIGHTS = {
 REASON_PRIORITY = [
     ("recall_block", "Recall confirmed"),
     ("dietary_block", "Dietary restriction"),
-    ("dirty_dozen_organic", "Organic required (EWG)"),
+    ("dirty_dozen_organic", "Organic recommended (EWG)"),
     ("dirty_dozen_no_organic", "No organic (EWG risk)"),
     ("peak_season", "Peak season local"),
     ("available_local", "Locally available"),
-    ("organic_conscious", "Organic + conscious"),
-    ("preferred_brand", "Preferred brand"),
-    ("best_value", "Best value"),
-    ("balanced_pick", "Balanced pick"),
+    ("matches_preferred_brand", "Preferred brand"),
+    ("value_efficiency_best", "Best value per oz"),
+    ("balanced_position", "Best match"),
+    ("value_efficiency_good", "Good value"),
+    ("organic", "Organic option"),
+    ("local_brand", "Local brand"),
 ]
 
 
@@ -301,6 +310,18 @@ class DecisionEngine:
         user_prefs: UserPrefs,
     ):
         """Apply soft scoring adjustments to all candidates."""
+        # Pre-compute price stats for value efficiency scoring
+        viable_prices = [
+            s.candidate.unit_price for s in scored if not s.disqualified
+        ]
+        if viable_prices:
+            min_price = min(viable_prices)
+            max_price = max(viable_prices)
+            price_range = max_price - min_price if max_price > min_price else 1.0
+            mid_price = (min_price + max_price) / 2.0
+        else:
+            min_price = max_price = mid_price = price_range = 0.0
+
         for sc in scored:
             if sc.disqualified:
                 sc.score = 0
@@ -317,7 +338,7 @@ class DecisionEngine:
             # Recall category advisories (soft)
             self._apply_recall_advisory(sc, safety)
 
-            # Organic bonus
+            # Organic bonus (reduced from old +8)
             if c.organic:
                 sc.adjustments.append(("organic", self.weights["organic"]))
 
@@ -325,9 +346,19 @@ class DecisionEngine:
             if c.brand.lower() in [b.lower() for b in user_prefs.preferred_brands]:
                 sc.adjustments.append(("matches_preferred_brand", self.weights["matches_preferred_brand"]))
 
-            # Tier preference alignment (unit_price based)
-            # Lower unit_price -> cheaper tier alignment, higher -> conscious
-            # This is applied during neighbor selection, not here
+            # Value efficiency: reward best price/oz ratio
+            if price_range > 0:
+                price_position = (c.unit_price - min_price) / price_range  # 0=cheapest, 1=most expensive
+                if price_position <= 0.15:
+                    sc.adjustments.append(("value_efficiency_best", self.weights["value_efficiency_best"]))
+                elif price_position <= 0.40:
+                    sc.adjustments.append(("value_efficiency_good", self.weights["value_efficiency_good"]))
+
+            # Balanced position: reward mid-range when user prefers BALANCED
+            if user_prefs.default_tier == TierSymbol.BALANCED and price_range > 0:
+                distance_from_mid = abs(c.unit_price - mid_price) / price_range
+                if distance_from_mid <= 0.25:  # Within 25% of midpoint
+                    sc.adjustments.append(("balanced_position", self.weights["balanced_position"]))
 
             # Compute final score
             total_adj = sum(a[1] for a in sc.adjustments)
@@ -335,8 +366,12 @@ class DecisionEngine:
 
             # Determine top driver
             if not sc.top_driver and sc.adjustments:
-                # Find the adjustment with the largest absolute impact
-                best = max(sc.adjustments, key=lambda a: abs(a[1]))
+                # Find the positive adjustment with the largest impact
+                positive_adj = [a for a in sc.adjustments if a[1] > 0]
+                if positive_adj:
+                    best = max(positive_adj, key=lambda a: a[1])
+                else:
+                    best = max(sc.adjustments, key=lambda a: abs(a[1]))
                 sc.top_driver = best[0]
 
     def _apply_ewg_score(self, sc: _ScoredCandidate, safety: SafetySignals):
@@ -392,34 +427,55 @@ class DecisionEngine:
         recommended: _ScoredCandidate,
         viable: list[_ScoredCandidate],
     ) -> _ScoredCandidate | None:
-        """Find the next-cheaper viable option (lower unit_price, still decent score)."""
+        """Find the next-cheaper viable option (lower unit_price, nearest neighbor)."""
         cheaper_options = [
             s for s in viable
             if s.candidate.unit_price < recommended.candidate.unit_price
             and s.candidate.product_id != recommended.candidate.product_id
-            and s.score >= 30  # Must have a minimum viable score
+            and s.score >= 25  # Minimum viable score (relaxed)
         ]
         if not cheaper_options:
             return None
-        # Pick the one with best score among cheaper options
-        return max(cheaper_options, key=lambda s: s.score)
+        # Pick the nearest cheaper neighbor (highest unit_price below recommended)
+        return max(cheaper_options, key=lambda s: s.candidate.unit_price)
 
     def _find_conscious_neighbor(
         self,
         recommended: _ScoredCandidate,
         viable: list[_ScoredCandidate],
     ) -> _ScoredCandidate | None:
-        """Find the next-more-conscious option (organic, local, or higher score)."""
-        conscious_options = [
+        """Find the next-more-conscious option (organic, ethical, or premium quality)."""
+        # Primary: organic options that cost more than the recommended
+        primary = [
             s for s in viable
             if s.candidate.product_id != recommended.candidate.product_id
-            and (s.candidate.organic or s.score > recommended.score)
-            and s.candidate.unit_price >= recommended.candidate.unit_price
+            and s.candidate.organic
+            and s.candidate.unit_price > recommended.candidate.unit_price
         ]
-        if not conscious_options:
-            return None
-        # Pick the one with highest score
-        return max(conscious_options, key=lambda s: s.score)
+        if primary:
+            # Pick cheapest among the organic upgrades (nearest neighbor)
+            return min(primary, key=lambda s: s.candidate.unit_price)
+
+        # Secondary: any organic option not already recommended
+        secondary = [
+            s for s in viable
+            if s.candidate.product_id != recommended.candidate.product_id
+            and s.candidate.organic
+        ]
+        if secondary:
+            # Pick highest-scored organic option
+            return max(secondary, key=lambda s: s.score)
+
+        # Tertiary: any option more expensive than recommended (premium quality)
+        tertiary = [
+            s for s in viable
+            if s.candidate.product_id != recommended.candidate.product_id
+            and s.candidate.unit_price > recommended.candidate.unit_price
+        ]
+        if tertiary:
+            return min(tertiary, key=lambda s: s.candidate.unit_price)
+
+        return None
 
     # =========================================================================
     # Tier Assignment
@@ -431,30 +487,30 @@ class DecisionEngine:
         viable: list[_ScoredCandidate],
         user_prefs: UserPrefs,
     ) -> TierSymbol:
-        """Assign a tier symbol based on where the recommendation falls."""
+        """
+        Assign a tier symbol based on price position and user preference.
+
+        Logic: the tier reflects WHERE the recommended product sits on the
+        price spectrum relative to its neighbors, not a judgment about quality.
+        """
         if not viable or len(viable) < 2:
             return user_prefs.default_tier
 
         prices = sorted(s.candidate.unit_price for s in viable)
         rec_price = recommended.candidate.unit_price
+        min_price = prices[0]
+        max_price = prices[-1]
+        price_range = max_price - min_price
 
-        if len(prices) < 3:
-            # With few options, use relative position
-            median = prices[len(prices) // 2]
-            if rec_price < median:
-                return TierSymbol.CHEAPER
-            elif rec_price > median:
-                return TierSymbol.CONSCIOUS
+        if price_range == 0:
             return TierSymbol.BALANCED
 
-        # Divide into thirds
-        third = len(prices) // 3
-        lower_bound = prices[third]
-        upper_bound = prices[-(third + 1)]
+        # Normalized position: 0.0 = cheapest, 1.0 = most expensive
+        position = (rec_price - min_price) / price_range
 
-        if rec_price <= lower_bound:
+        if position <= 0.30:
             return TierSymbol.CHEAPER
-        elif rec_price >= upper_bound:
+        elif position >= 0.70:
             return TierSymbol.CONSCIOUS
         return TierSymbol.BALANCED
 
@@ -475,11 +531,15 @@ class DecisionEngine:
             if key == driver:
                 return reason
 
-        # Fallback based on score
-        if recommended.score >= 70:
-            return "Strong overall score"
-        elif recommended.score >= 50:
-            return "Balanced pick"
+        # Fallback: check if organic is a factor
+        if recommended.candidate.organic and safety.ewg_bucket in ("dirty_dozen", "middle"):
+            return "Organic recommended"
+
+        # Fallback based on score position
+        if recommended.score >= 65:
+            return "Top rated option"
+        elif recommended.score >= 55:
+            return "Best match"
         return "Best available"
 
     def _build_attributes(

@@ -1,0 +1,14 @@
+index,name,quantity,unit,category,optional
+1,chicken,,lb,,False
+2,basmati rice,,cups,,False
+3,onions,,large,,False
+4,tomatoes,,medium,,False
+5,yogurt,,cup,,False
+6,ginger,,inch,,False
+7,garlic,,cloves,,False
+8,green chilies,,pieces,,True
+9,mint leaves,,cup,,False
+10,cilantro,,cup,,False
+11,ghee,,tbsp,,False
+12,biryani masala,,tbsp,,False
+13,saffron,,pinch,,True

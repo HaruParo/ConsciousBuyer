@@ -1,0 +1,27 @@
+ingredient,product_id,title,brand,size,price,unit_price,unit_price_unit,organic,in_stock
+chicken,ch003,Chicken Thighs Value Pack,Store Brand,32oz,7.49,0.2341,oz,False,True
+chicken,ch002,Chicken Thighs,Perdue,16oz,5.99,0.3744,oz,False,True
+chicken,ch001,Organic Free-Range Chicken Thighs,Bell & Evans,16oz,9.99,0.6244,oz,True,True
+basmati rice,ri003,Long Grain Rice,Store Brand,32oz,2.99,0.0934,oz,False,True
+basmati rice,ri002,Basmati Rice,Tilda,32oz,5.99,0.1872,oz,False,True
+basmati rice,ri001,Organic Basmati Rice,Lundberg,32oz,8.99,0.2809,oz,True,True
+onions,on002,Yellow Onions,Store Brand,48oz,1.99,0.0415,oz,False,True
+onions,on001,Organic Yellow Onions,Local Farm,32oz,3.99,0.1247,oz,True,True
+tomatoes,to002,Roma Tomatoes,Store Brand,16oz,2.99,0.1869,oz,False,True
+tomatoes,to003,Tomatoes on Vine,Store Brand,16oz,3.49,0.2181,oz,False,True
+tomatoes,to001,Organic Heirloom Tomatoes,Local Farm,16oz,6.99,0.4369,oz,True,True
+yogurt,yo003,Greek Yogurt,Store Brand,32oz,3.99,0.1247,oz,False,True
+yogurt,yo002,Greek Yogurt,Fage,32oz,5.49,0.1716,oz,False,True
+yogurt,yo001,Organic Greek Yogurt,Stonyfield,32oz,6.99,0.2184,oz,True,True
+ginger,gi002,Ginger Root,Store Brand,4oz,2.49,0.6225,oz,False,True
+ginger,gi001,Organic Ginger Root,Store Brand,4oz,3.49,0.8725,oz,True,True
+garlic,ga002,Garlic,Store Brand,2oz,0.79,0.395,oz,False,True
+garlic,ga001,Organic Garlic,Local Farm,2oz,1.99,0.995,oz,True,True
+green chilies,hp002,Jalapeno Peppers,Store Brand,4oz,1.49,0.3725,oz,False,True
+green chilies,hp001,Serrano Peppers,Store Brand,4oz,1.99,0.4975,oz,False,True
+mint leaves,mt002,Fresh Mint,Store Brand,0.75oz,1.99,2.6533,oz,False,True
+mint leaves,mt001,Organic Fresh Mint,Local Farm,1oz,3.49,3.49,oz,True,True
+cilantro,ci002,Cilantro,Store Brand,1oz,1.49,1.49,oz,False,True
+cilantro,ci001,Organic Cilantro,Local Farm,1oz,2.99,2.99,oz,True,True
+ghee,gh002,Ghee,Deep,8oz,7.99,0.9988,oz,False,True
+ghee,gh001,Organic Grass-Fed Ghee,4th & Heart,9oz,12.99,1.4433,oz,True,True
