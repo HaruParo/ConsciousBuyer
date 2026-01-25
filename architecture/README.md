@@ -1,8 +1,21 @@
 # Architecture Documentation
 
-This directory contains comprehensive documentation for the Conscious Cart Coach project.
+**Last Updated**: 2026-01-24
 
-## Documents
+This directory contains comprehensive documentation for the Conscious Cart Coach project. All project documentation is organized here.
+
+## Quick Links
+
+- 🚀 **[0-step.md](0-step.md)** - Start here! Main architecture guide
+- 🤖 **[6-llm-integration-deep-dive.md](6-llm-integration-deep-dive.md)** - Why hybrid AI approach
+- 📊 **[9-opik-llm-evaluation.md](9-opik-llm-evaluation.md)** - Monitoring & evaluation
+- 🚢 **[10-deployment-guide.md](10-deployment-guide.md)** - Deploy to production
+- ✅ **[11-implementation-changelog.md](11-implementation-changelog.md)** - What's been built
+- 🔧 **[12-troubleshooting-guide.md](12-troubleshooting-guide.md)** - Fix common issues
+
+---
+
+## Core Documentation
 
 ### [0-step.md](0-step.md) - Main Architecture Guide
 **Start here!** Comprehensive walkthrough from high-level to technical implementation.
@@ -107,6 +120,46 @@ Visual guide showing exactly what changes in the UI when LLM is enabled.
 - Architecture diagrams showing Opik integration
 - Cost monitoring and optimization
 - Troubleshooting guide
+- Pytest integration for automated test tracking
+
+### [10-deployment-guide.md](10-deployment-guide.md) - Deployment Guide
+**Taking it live.** Complete deployment guide for production environments.
+
+- Platform comparison (Streamlit Cloud, Render, Railway, Docker)
+- Why NOT Vercel (Streamlit incompatibility)
+- Step-by-step deployment (recommended: Streamlit Cloud, 5 minutes)
+- Environment variables and secrets management
+- Pre-deployment checklist
+- Post-deployment monitoring setup
+- Cost estimates ($0-25/month)
+- Troubleshooting deployment issues
+- Security checklist
+
+### [11-implementation-changelog.md](11-implementation-changelog.md) - Implementation Changelog
+**What's been built.** Complete changelog of all features and components implemented.
+
+- Core system overview (multi-agent architecture, 3-tier cart system)
+- LLM integration details (client, extractors, explainers)
+- Opik monitoring integration (automatic tracing)
+- Testing suite (30+ tests, pytest + Opik)
+- UI features (toggles, indicators, explanations)
+- Files changed and added
+- Cost & performance metrics
+- Environment setup guide
+- Design principles achieved
+- Next steps and future enhancements
+
+### [12-troubleshooting-guide.md](12-troubleshooting-guide.md) - Troubleshooting Guide
+**Fix common issues.** Comprehensive troubleshooting for all components.
+
+- Environment setup issues (API keys, .env loading)
+- LLM integration issues (failures, timeouts, hallucinations)
+- Testing issues (skipped tests, timeouts, costs)
+- Opik tracking issues (no traces, threads, local vs cloud)
+- UI issues (duplicate keys, missing features)
+- Deployment issues (build failures, database locks)
+- Performance issues (slow responses, high costs)
+- Debug mode and logging
 
 ---
 
