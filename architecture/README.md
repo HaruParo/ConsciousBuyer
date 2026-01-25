@@ -94,6 +94,20 @@ Visual guide showing exactly what changes in the UI when LLM is enabled.
 - Bottlenecks and optimizations
 - Complete end-to-end timing breakdown
 
+### [9-opik-llm-evaluation.md](9-opik-llm-evaluation.md) - Opik LLM Evaluation
+**Watching the watcher.** How we trace, evaluate, and debug all LLM calls with Opik.
+
+- The black box problem (why we need tracing)
+- What Opik is and why we integrated it
+- Single integration point strategy (wrap once, trace everything)
+- Data flow from user prompt to Opik dashboard
+- What gets captured in traces (prompts, responses, costs, latency)
+- How to read and search traces
+- Common debugging workflows
+- Architecture diagrams showing Opik integration
+- Cost monitoring and optimization
+- Troubleshooting guide
+
 ---
 
 ## Quick Reference

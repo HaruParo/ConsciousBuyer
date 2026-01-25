@@ -301,7 +301,7 @@ class DecisionBundle:
 - `streamlit` (web UI)
 
 **Observability:**
-- `opik` (experiment tracking, optional)
+- `opik` (LLM tracing, evaluation, and cost monitoring - see [9-opik-llm-evaluation.md](9-opik-llm-evaluation.md))
 
 **Testing:**
 - `pytest` + `pytest-cov`

@@ -85,6 +85,38 @@ Created comprehensive documentation with engaging, story-driven approach:
 **Index**:
 - **[architecture/README.md](architecture/README.md)**: Documentation index and quick reference
 
+**Opik LLM Evaluation (2026-01-24) - NEW!**:
+- **[architecture/9-opik-llm-evaluation.md](architecture/9-opik-llm-evaluation.md)**: Complete guide to LLM tracing and evaluation with Opik. Covers what Opik is, why we integrated it, how to read traces, debugging workflows, and cost monitoring.
+
+### 5. Opik LLM Evaluation Integration (2026-01-24)
+
+**LLM Client** ([conscious-cart-coach/src/llm/client.py](conscious-cart-coach/src/llm/client.py))
+- Integrated Opik tracing via `track_anthropic()` wrapper
+- Single point of integration: all LLM calls automatically tracked
+- Captures: prompts, responses, timing, token usage, costs, retries
+- Graceful degradation: works without Opik installed
+- Configuration via `opik_configure()` on client initialization
+
+**What Gets Traced**:
+- ✅ Ingredient extraction calls (full prompts and responses)
+- ✅ Decision explanation calls (all parameters and outputs)
+- ✅ Token usage and estimated costs per call
+- ✅ Latency and retry attempts
+- ✅ Success/failure status
+
+**Benefits**:
+- Full visibility into LLM behavior (no more black box debugging)
+- Cost monitoring (see where API budget goes)
+- Performance tracking (identify slow calls and timeouts)
+- Prompt engineering (A/B test prompts, compare outputs)
+- Error diagnosis (see exact prompts that failed)
+
+**Requirements**:
+- Added `opik>=0.1.0` to [requirements.txt](conscious-cart-coach/requirements.txt)
+- Uncommented `anthropic>=0.18.0` (now required for LLM features)
+- Optional: Set `OPIK_API_KEY` and `OPIK_WORKSPACE` for cloud dashboard
+- Alternative: Run local Opik instance with Docker
+
 ## Design Principles Achieved
 
 ✅ **Scoring Stays Deterministic**
@@ -188,20 +220,28 @@ Modified:
 - conscious-cart-coach/src/engine/decision_engine.py
 - conscious-cart-coach/src/orchestrator/orchestrator.py
 - conscious-cart-coach/src/contracts/models.py
-- conscious-cart-coach/requirements.txt (anthropic made optional)
+- conscious-cart-coach/requirements.txt (anthropic uncommented, opik added - 2026-01-24)
 - conscious-cart-coach/src/ui/app.py (UI integration - 2026-01-24)
 - conscious-cart-coach/src/ui/components.py (LLM explanation display - 2026-01-24)
+- conscious-cart-coach/src/llm/client.py (Opik integration - 2026-01-24)
+- architecture/0-step.md (updated with UI section and Opik reference)
+- architecture/README.md (added Opik doc reference)
 
 Added:
 - conscious-cart-coach/src/llm/__init__.py
 - conscious-cart-coach/src/llm/client.py
 - conscious-cart-coach/src/llm/ingredient_extractor.py
 - conscious-cart-coach/src/llm/decision_explainer.py
-- architecture/0-step.md (updated with UI section)
 - architecture/2-llm-integration-summary.md
 - architecture/3-usage-guide.md
 - architecture/4-ui-expectations.md
-- architecture/README.md
+- architecture/5-technical-architecture.md (story-driven deep dive)
+- architecture/6-llm-integration-deep-dive.md (story-driven deep dive)
+- architecture/7-ui-flows.md (story-driven deep dive)
+- architecture/8-data-flows.md (story-driven deep dive)
+- architecture/9-opik-llm-evaluation.md (Opik integration guide - 2026-01-24)
+- UI_LLM_FEATURES_GUIDE.md (troubleshooting guide)
+- STREAMLIT_FIX_2026-01-24.md (duplicate key fix documentation)
 - IMPLEMENTATION_COMPLETE.md (this file)
 
 Deleted:
@@ -212,14 +252,22 @@ Deleted:
 
 ### Immediate (Required for Testing)
 
-1. **Install anthropic package**:
+1. **Install packages**:
    ```bash
    pip install anthropic>=0.18.0
+   pip install opik>=0.1.0
    ```
 
 2. **Add API key to `.env`**:
    ```
    ANTHROPIC_API_KEY=sk-ant-api03-...
+
+   # Optional: For Opik cloud dashboard
+   OPIK_API_KEY=your_opik_key
+   OPIK_WORKSPACE=your_workspace_name
+
+   # Alternative: For local Opik instance
+   # OPIK_URL_OVERRIDE=http://localhost:5000
    ```
 
 3. **Test basic functionality**:
@@ -244,18 +292,20 @@ Deleted:
            print(f"{item.ingredient_name}: {item.reason_llm}")
    ```
 
-### Near-Term (UI Integration)
+### Near-Term (Monitoring & Testing)
 
-4. **Update Streamlit UI** to:
-   - Add LLM toggle in settings
-   - Display `reason_llm` when available
-   - Show extraction method indicator
-   - Add cost/latency warnings
+4. **Use Opik dashboard** to:
+   - View all LLM traces (prompts, responses, costs)
+   - Monitor API spending and token usage
+   - Debug failed calls with full context
+   - Track latency and identify slow calls
+   - A/B test prompt improvements
+   - See [architecture/9-opik-llm-evaluation.md](architecture/9-opik-llm-evaluation.md) for full guide
 
-5. **Add monitoring**:
-   - Track API costs
-   - Monitor latency
-   - Log LLM vs deterministic usage
+5. **Additional monitoring**:
+   - Set up cost alerts for daily/monthly limits
+   - Track user preferences (LLM vs deterministic usage)
+   - Monitor error rates and fallback frequency
 
 ### Future Enhancements
 

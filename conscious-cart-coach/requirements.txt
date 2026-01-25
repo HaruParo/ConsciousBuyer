@@ -4,7 +4,7 @@ sqlalchemy>=2.0.0
 psycopg2-binary>=2.9.0
 
 # LLM Integration (Optional - only needed for use_llm_extraction or use_llm_explanations)
-# anthropic>=0.18.0  # Uncomment to enable LLM features
+anthropic>=0.18.0  # LLM features with Opik tracing
 # Requires ANTHROPIC_API_KEY environment variable
 
 # Observability & Evaluation
