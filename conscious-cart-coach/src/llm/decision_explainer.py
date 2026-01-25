@@ -102,12 +102,19 @@ def explain_decision_with_llm(
         strict_safety=user_prefs.get("strict_safety", False),
     )
 
-    # Call Claude
+    # Call Claude with Opik tracing
     explanation = call_claude_with_retry(
         client=client,
         prompt=formatted_prompt,
         max_tokens=256,
         temperature=0.3,  # Slightly creative but consistent
+        trace_name="decision_explanation",
+        metadata={
+            "ingredient": ingredient_name,
+            "product_brand": recommended_product.get("brand", "Unknown"),
+            "product_price": recommended_product.get("price", 0.0),
+            "operation": "explain_decision"
+        }
     )
 
     if not explanation:

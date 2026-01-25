@@ -133,12 +133,18 @@ def extract_ingredients_with_llm(
         servings=servings,
     )
 
-    # Call Claude
+    # Call Claude with Opik tracing
     response_text = call_claude_with_retry(
         client=client,
         prompt=formatted_prompt,
         max_tokens=2048,
         temperature=0.0,  # Deterministic
+        trace_name="ingredient_extraction",
+        metadata={
+            "user_prompt": prompt,
+            "servings": servings,
+            "operation": "extract_ingredients"
+        }
     )
 
     if not response_text:

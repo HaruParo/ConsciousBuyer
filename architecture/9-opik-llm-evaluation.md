@@ -709,26 +709,58 @@ All of these are automatically traced by Opik with zero manual instrumentation.
 
 ## Configuration Options
 
-Opik can be configured via environment variables:
+Opik can be configured via environment variables in your `.env` file:
 
 ```bash
-# Option 1: Use Opik Cloud (recommended for teams)
-export OPIK_API_KEY="opik_key_abc123"
-export OPIK_WORKSPACE="conscious-cart-coach"
+# Anthropic Claude API
+ANTHROPIC_API_KEY=sk-ant-api03-your_key_here
 
-# Option 2: Use local Opik instance (self-hosted)
-export OPIK_URL_OVERRIDE="http://localhost:5000"
+# Opik Configuration
+OPIK_API_KEY=your_opik_api_key
+OPIK_WORKSPACE=your_workspace_name
+OPIK_PROJECT_NAME=consciousbuyer  # Project name for grouping traces
 
-# Option 3: Disable Opik (for testing)
-# Just don't install opik package, or:
-export OPIK_ENABLED="false"
+# Alternative: Use local Opik instance (self-hosted)
+# OPIK_URL_OVERRIDE=http://localhost:5000
+```
+
+### Environment Variables Explained
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `ANTHROPIC_API_KEY` | Yes | - | Your Anthropic API key for Claude |
+| `OPIK_API_KEY` | No* | - | Your Opik cloud API key |
+| `OPIK_WORKSPACE` | No* | - | Your Opik workspace name |
+| `OPIK_PROJECT_NAME` | No | `consciousbuyer` | Project name for organizing traces |
+| `OPIK_URL_OVERRIDE` | No | Opik cloud | URL for self-hosted Opik instance |
+
+*Required only if using Opik cloud. Not needed for local instance.
+
+### Thread-Based Conversation Tracking
+
+All LLM calls are automatically tracked with:
+- **Trace names**: `ingredient_extraction`, `decision_explanation`
+- **Metadata**: User prompts, ingredient names, product details, retry attempts
+- **Tags**: Project name, model, operation type
+- **Thread grouping**: Related calls grouped in conversation threads
+
+Example metadata captured:
+```json
+{
+  "user_prompt": "healthy dinner for 2",
+  "servings": 2,
+  "operation": "extract_ingredients",
+  "status": "success",
+  "total_attempts": 1
+}
 ```
 
 **Note**: If Opik is not installed or configured, the system gracefully falls back:
 ```python
 try:
-    from opik import configure as opik_configure
+    from opik import configure as opik_configure, track
     from opik.integrations.anthropic import track_anthropic
+    import opik
     OPIK_AVAILABLE = True
 except ImportError:
     OPIK_AVAILABLE = False
@@ -741,31 +773,60 @@ The app works fine without Opik. You just won't get tracing.
 
 ## Opik Best Practices
 
-### 1. Tag Your Traces
+### 1. Automatic Trace Tagging ✅ Already Implemented
 
-Add custom tags for easier filtering:
+All LLM calls automatically include:
+- **Trace names**: Descriptive names like `ingredient_extraction`, `decision_explanation`
+- **Tags**: Project name (`consciousbuyer`), model (`anthropic`, `claude`)
+- **Operation metadata**: What the call is doing
 
 ```python
-# In client.py (future enhancement)
-@track_with_opik(tags=["ingredient_extraction", "production"])
-def extract_ingredients_with_llm(...):
-    ...
+# Example from ingredient_extractor.py
+response_text = call_claude_with_retry(
+    client=client,
+    prompt=formatted_prompt,
+    max_tokens=2048,
+    temperature=0.0,
+    trace_name="ingredient_extraction",  # ✅ Automatic tagging
+    metadata={
+        "user_prompt": prompt,
+        "servings": servings,
+        "operation": "extract_ingredients"
+    }
+)
 ```
+
+Filter in dashboard: `Tags = "ingredient_extraction"` or `Project = "consciousbuyer"`
 
 ---
 
-### 2. Add User Context
+### 2. Rich Metadata ✅ Already Implemented
 
-Include user session IDs in traces:
+Every trace includes contextual metadata:
 
-```python
-# Pass metadata to Opik
-trace_metadata = {
-    "user_session_id": session_id,
-    "household_size": household_size,
-    "feature_flags": {"use_llm": True}
+**For ingredient extraction**:
+```json
+{
+  "user_prompt": "healthy dinner for 2",
+  "servings": 2,
+  "operation": "extract_ingredients",
+  "status": "success",
+  "total_attempts": 1
 }
 ```
+
+**For decision explanations**:
+```json
+{
+  "ingredient": "spinach",
+  "product_brand": "Earthbound Farm",
+  "product_price": 3.99,
+  "operation": "explain_decision",
+  "status": "success"
+}
+```
+
+**Future enhancement**: Add user session IDs and household preferences
 
 ---
 
@@ -960,6 +1021,114 @@ Capture user feedback on LLM outputs:
 - **[6-llm-integration-deep-dive.md](6-llm-integration-deep-dive.md)**: Why we use LLM (and why we don't)
 - **[3-usage-guide.md](3-usage-guide.md)**: How to use LLM features
 - **[8-data-flows.md](8-data-flows.md)**: Where LLM fits in the data pipeline
+
+---
+
+## Pytest Integration: Automated Test Tracking
+
+Opik automatically tracks all LLM tests via pytest integration.
+
+### How It Works
+
+1. **Install Opik pytest plugin**:
+   ```bash
+   pip install opik>=0.1.0
+   ```
+
+2. **Opik auto-registers** when pytest runs (via `conftest.py`)
+
+3. **All LLM tests tracked**:
+   - Test pass/fail status
+   - API calls made during tests
+   - Prompts and responses
+   - Token usage and costs
+   - Test duration and latency
+   - Test metadata and parameters
+
+### Running Tests with Opik Tracking
+
+```bash
+# Run all LLM tests (tracked in Opik)
+pytest -m llm
+
+# Run specific test class
+pytest tests/test_llm.py::TestIngredientExtraction -v
+
+# View results in Opik dashboard
+# Project: consciousbuyer → Tests
+```
+
+### What Gets Tracked in Tests
+
+**Test metadata**:
+```json
+{
+  "test_name": "test_extract_simple_recipe",
+  "test_class": "TestIngredientExtraction",
+  "test_file": "tests/test_llm.py",
+  "status": "passed",
+  "duration": 1.23
+}
+```
+
+**API calls within test**:
+```json
+{
+  "trace_name": "ingredient_extraction",
+  "metadata": {
+    "user_prompt": "chicken biryani for 4",
+    "servings": 4,
+    "operation": "extract_ingredients"
+  },
+  "cost": 0.012,
+  "duration": 1.15
+}
+```
+
+### Test Suite Overview
+
+**19 LLM tests** organized in 5 classes:
+- `TestAnthropicClient`: Client initialization (3 tests)
+- `TestIngredientExtraction`: Natural language parsing (6 tests)
+- `TestDecisionExplanation`: Explanation generation (6 tests)
+- `TestLLMIntegration`: Full workflows (2 tests)
+- `TestLLMPerformance`: Latency benchmarks (2 tests)
+
+**Cost per test run**: ~$0.14 (all 19 tests)
+
+### Example: Viewing Test Results in Opik
+
+1. Run tests:
+   ```bash
+   pytest -m llm
+   ```
+
+2. Open Opik dashboard
+
+3. Filter by:
+   - **Project**: `consciousbuyer`
+   - **Tags**: `pytest`, `llm`
+   - **Date**: Today
+
+4. See:
+   - Which tests passed/failed
+   - API calls per test
+   - Total cost per test run
+   - Slowest tests
+   - Failed API calls
+
+### Benefits for Development
+
+✅ **Continuous validation**: Run tests frequently, track costs
+✅ **Regression detection**: Catch prompt changes that break tests
+✅ **Performance monitoring**: Track if tests get slower over time
+✅ **Cost optimization**: See which tests are most expensive
+✅ **Debugging**: View exact prompts/responses for failed tests
+
+### Related Documentation
+
+- [tests/README.md](../conscious-cart-coach/tests/README.md): Complete testing guide
+- [Opik Pytest Docs](https://www.comet.com/docs/opik/testing/pytest_integration)
 
 ---
 

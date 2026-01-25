@@ -10,11 +10,13 @@ logger = logging.getLogger(__name__)
 
 # Opik LLM evaluation and tracing
 try:
-    from opik import configure as opik_configure
+    from opik import configure as opik_configure, track
     from opik.integrations.anthropic import track_anthropic
+    import opik
     OPIK_AVAILABLE = True
 except ImportError:
     OPIK_AVAILABLE = False
+    opik = None
     logger.info("Opik not installed. LLM tracing disabled. Install with: pip install opik")
 
 # Configuration
@@ -33,8 +35,25 @@ def get_anthropic_client() -> Optional[Anthropic]:
     # Configure Opik if available
     if OPIK_AVAILABLE:
         try:
-            opik_configure()
-            logger.info("Opik LLM tracing enabled")
+            # Get Opik configuration from environment
+            opik_api_key = os.getenv("OPIK_API_KEY")
+            opik_workspace = os.getenv("OPIK_WORKSPACE")
+            opik_project = os.getenv("OPIK_PROJECT_NAME", "consciousbuyer")
+
+            # Configure Opik with project name
+            config_kwargs = {}
+            if opik_api_key:
+                config_kwargs["api_key"] = opik_api_key
+            if opik_workspace:
+                config_kwargs["workspace"] = opik_workspace
+
+            opik_configure(**config_kwargs)
+
+            # Set project name for all traces
+            if opik and hasattr(opik, 'configure_project'):
+                opik.configure_project(project_name=opik_project)
+
+            logger.info(f"Opik LLM tracing enabled (project: {opik_project})")
         except Exception as e:
             logger.warning(f"Failed to configure Opik: {e}. Continuing without tracing.")
 
@@ -49,7 +68,7 @@ def get_anthropic_client() -> Optional[Anthropic]:
         # Wrap client with Opik tracking if available
         if OPIK_AVAILABLE:
             try:
-                client = track_anthropic(client)
+                client = track_anthropic(client, project_name=os.getenv("OPIK_PROJECT_NAME", "consciousbuyer"))
                 logger.info("Anthropic client wrapped with Opik tracking")
             except Exception as e:
                 logger.warning(f"Failed to enable Opik tracking: {e}. Continuing without tracing.")
@@ -66,9 +85,11 @@ def call_claude_with_retry(
     max_tokens: int = 1024,
     temperature: float = 0.0,
     max_retries: int = MAX_RETRIES,
+    trace_name: Optional[str] = None,
+    metadata: Optional[dict] = None,
 ) -> Optional[str]:
     """
-    Call Claude API with retry logic.
+    Call Claude API with retry logic and Opik tracing.
 
     Args:
         client: Anthropic client instance
@@ -76,15 +97,30 @@ def call_claude_with_retry(
         max_tokens: Maximum tokens in response
         temperature: Sampling temperature (0.0 = deterministic)
         max_retries: Maximum number of retry attempts
+        trace_name: Optional name for Opik trace (e.g., "ingredient_extraction")
+        metadata: Optional metadata dict to attach to trace
 
     Returns:
         Response text from Claude, or None if all retries failed.
     """
     last_error = None
 
+    # Create Opik trace context if available
+    trace_context = {}
+    if OPIK_AVAILABLE and trace_name:
+        trace_context = {
+            "name": trace_name,
+            "metadata": metadata or {},
+            "tags": ["anthropic", "claude", os.getenv("OPIK_PROJECT_NAME", "consciousbuyer")]
+        }
+
     for attempt in range(max_retries):
         try:
             logger.debug(f"Claude API call attempt {attempt + 1}/{max_retries}")
+
+            # Track retry attempts in metadata
+            if trace_context and attempt > 0:
+                trace_context["metadata"]["retry_attempt"] = attempt
 
             response = client.messages.create(
                 model=MODEL,
@@ -101,6 +137,12 @@ def call_claude_with_retry(
                     response_text += block.text
 
             logger.debug(f"Claude response received: {len(response_text)} chars")
+
+            # Log success to Opik trace
+            if trace_context:
+                trace_context["metadata"]["status"] = "success"
+                trace_context["metadata"]["total_attempts"] = attempt + 1
+
             return response_text
 
         except APITimeoutError as e:
@@ -114,6 +156,12 @@ def call_claude_with_retry(
         except Exception as e:
             logger.error(f"Unexpected error on attempt {attempt + 1}: {e}")
             last_error = f"Unexpected error: {e}"
+
+    # Log failure to Opik trace
+    if trace_context:
+        trace_context["metadata"]["status"] = "failed"
+        trace_context["metadata"]["total_attempts"] = max_retries
+        trace_context["metadata"]["last_error"] = last_error
 
     logger.error(f"All {max_retries} Claude API attempts failed. Last error: {last_error}")
     return None

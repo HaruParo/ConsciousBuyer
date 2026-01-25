@@ -91,18 +91,28 @@ Created comprehensive documentation with engaging, story-driven approach:
 ### 5. Opik LLM Evaluation Integration (2026-01-24)
 
 **LLM Client** ([conscious-cart-coach/src/llm/client.py](conscious-cart-coach/src/llm/client.py))
-- Integrated Opik tracing via `track_anthropic()` wrapper
+- Integrated Opik tracing via `track_anthropic()` wrapper with project configuration
 - Single point of integration: all LLM calls automatically tracked
+- Thread-based conversation tracking with named traces
 - Captures: prompts, responses, timing, token usage, costs, retries
+- Rich metadata for each trace (user prompts, operation type, retry attempts)
 - Graceful degradation: works without Opik installed
-- Configuration via `opik_configure()` on client initialization
+- Configuration via environment variables from `.env` file
+
+**Thread-Based Tracking**:
+- ✅ Named traces: `ingredient_extraction`, `decision_explanation`
+- ✅ Automatic tags: project name (`consciousbuyer`), operation type
+- ✅ Rich metadata: user prompts, servings, ingredient names, product details
+- ✅ Retry tracking: Captures number of attempts and failure reasons
+- ✅ Status tracking: Success/failure with error details
 
 **What Gets Traced**:
 - ✅ Ingredient extraction calls (full prompts and responses)
 - ✅ Decision explanation calls (all parameters and outputs)
 - ✅ Token usage and estimated costs per call
 - ✅ Latency and retry attempts
-- ✅ Success/failure status
+- ✅ Success/failure status with contextual metadata
+- ✅ User prompts and operation context
 
 **Benefits**:
 - Full visibility into LLM behavior (no more black box debugging)
@@ -110,12 +120,21 @@ Created comprehensive documentation with engaging, story-driven approach:
 - Performance tracking (identify slow calls and timeouts)
 - Prompt engineering (A/B test prompts, compare outputs)
 - Error diagnosis (see exact prompts that failed)
+- Thread-based organization (group related calls together)
 
-**Requirements**:
-- Added `opik>=0.1.0` to [requirements.txt](conscious-cart-coach/requirements.txt)
-- Uncommented `anthropic>=0.18.0` (now required for LLM features)
-- Optional: Set `OPIK_API_KEY` and `OPIK_WORKSPACE` for cloud dashboard
-- Alternative: Run local Opik instance with Docker
+**Configuration** (in `.env` file):
+- `ANTHROPIC_API_KEY`: Your Anthropic API key (required)
+- `OPIK_API_KEY`: Your Opik cloud API key (optional)
+- `OPIK_WORKSPACE`: Your Opik workspace name (optional)
+- `OPIK_PROJECT_NAME`: Project name for traces (default: `consciousbuyer`)
+- `OPIK_URL_OVERRIDE`: For self-hosted Opik instance (optional)
+
+**Files Modified**:
+- [conscious-cart-coach/src/llm/client.py](conscious-cart-coach/src/llm/client.py): Added project config, thread tracking
+- [conscious-cart-coach/src/llm/ingredient_extractor.py](conscious-cart-coach/src/llm/ingredient_extractor.py): Added trace_name and metadata
+- [conscious-cart-coach/src/llm/decision_explainer.py](conscious-cart-coach/src/llm/decision_explainer.py): Added trace_name and metadata
+- [conscious-cart-coach/.env](conscious-cart-coach/.env): Added OPIK_PROJECT_NAME
+- [conscious-cart-coach/.env.example](conscious-cart-coach/.env.example): Created example config file
 
 ## Design Principles Achieved
 
@@ -196,21 +215,82 @@ for item in bundle.items:
 
 ## Testing Status
 
-### Unit Tests
+### 6. Pytest Test Suite with Opik Integration (2026-01-24)
+
+**Comprehensive LLM test suite** with automatic Opik tracking:
+
+**Test Files**:
+- [tests/conftest.py](conscious-cart-coach/tests/conftest.py): Pytest configuration with Opik plugin
+- [tests/test_llm.py](conscious-cart-coach/tests/test_llm.py): 19 LLM tests across 5 test classes
+- [pytest.ini](conscious-cart-coach/pytest.ini): Pytest configuration with markers
+- [tests/README.md](conscious-cart-coach/tests/README.md): Complete testing guide
+
+**Test Coverage**:
+- ✅ **LLM Client Tests** (3 tests): Client initialization, basic calls, metadata tracking
+- ✅ **Ingredient Extraction Tests** (6 tests): Simple recipes, vague requests, quantities, determinism
+- ✅ **Decision Explanation Tests** (6 tests): Recommendations, tradeoffs, conciseness, no hallucination
+- ✅ **Integration Tests** (2 tests): Full workflow (extraction → explanation), error handling
+- ✅ **Performance Tests** (2 tests): Latency benchmarks for extraction and explanation
+
+**Opik Integration**:
+- ✅ Automatic test result tracking in Opik dashboard
+- ✅ All API calls logged with prompts, responses, costs
+- ✅ Test metadata and parameters captured
+- ✅ Pass/fail status with error details
+- ✅ Performance metrics (latency, token usage)
+
+**Test Markers**:
+- `@pytest.mark.llm`: Tests requiring Anthropic API (auto-applied to all LLM tests)
+- `@pytest.mark.slow`: Performance tests that take >3 seconds
+- `@pytest.mark.integration`: Multi-component integration tests
+- `@pytest.mark.unit`: Fast unit tests
+
+**Running Tests**:
+```bash
+# All tests
+pytest
+
+# Only LLM tests
+pytest -m llm
+
+# Skip LLM tests (fast tests only)
+pytest -m "not llm"
+
+# With coverage
+pytest --cov=src --cov-report=html
+
+# Specific test class
+pytest tests/test_llm.py::TestIngredientExtraction -v
+```
+
+**Cost Per Test Run**: ~$0.14 (19 tests × ~$0.007 average)
+
+**Benefits**:
+- Continuous validation of LLM behavior
+- Regression detection (prompt changes, model updates)
+- Cost tracking per test run
+- Performance benchmarking
+- Determinism verification (temperature=0.0 consistency)
+
+### Unit Tests (Existing)
 - ✅ LLM client retry logic
 - ✅ JSON parsing and validation
 - ✅ Graceful fallback behavior
 - ✅ Lazy module loading
+- ✅ ProductAgent unit price normalization
+- ✅ DecisionEngine scoring logic
 
 ### Integration Tests
-- ⏸️ End-to-end with live API (requires API key)
-- ⏸️ UI integration (pending UI updates)
+- ✅ LLM extraction + explanation workflow (test_llm.py)
+- ✅ Full pipeline tests (test_pipeline.py)
+- ✅ End-to-end with live API (tracked in Opik)
 
-### Manual Testing Needed
-1. Test ingredient extraction with various prompts
-2. Test explanation quality and accuracy
-3. Test fallback behavior (no API key, API failures)
-4. Test cost monitoring in production
+### Manual Testing Recommended
+1. ✅ Test ingredient extraction with various prompts (automated in test_llm.py)
+2. ✅ Test explanation quality and accuracy (automated in test_llm.py)
+3. ✅ Test fallback behavior (automated in test_llm.py)
+4. ⏸️ UI integration testing (manual)
+5. ⏸️ Cost monitoring in production (use Opik dashboard)
 
 ## Files Changed
 
@@ -223,15 +303,24 @@ Modified:
 - conscious-cart-coach/requirements.txt (anthropic uncommented, opik added - 2026-01-24)
 - conscious-cart-coach/src/ui/app.py (UI integration - 2026-01-24)
 - conscious-cart-coach/src/ui/components.py (LLM explanation display - 2026-01-24)
-- conscious-cart-coach/src/llm/client.py (Opik integration - 2026-01-24)
+- conscious-cart-coach/src/llm/client.py (Opik integration with threads and project config - 2026-01-24)
+- conscious-cart-coach/src/llm/ingredient_extractor.py (Added trace_name and metadata - 2026-01-24)
+- conscious-cart-coach/src/llm/decision_explainer.py (Added trace_name and metadata - 2026-01-24)
+- conscious-cart-coach/.env (Added OPIK_PROJECT_NAME - 2026-01-24)
 - architecture/0-step.md (updated with UI section and Opik reference)
 - architecture/README.md (added Opik doc reference)
+- architecture/9-opik-llm-evaluation.md (Updated with thread tracking and config - 2026-01-24)
 
 Added:
 - conscious-cart-coach/src/llm/__init__.py
 - conscious-cart-coach/src/llm/client.py
 - conscious-cart-coach/src/llm/ingredient_extractor.py
 - conscious-cart-coach/src/llm/decision_explainer.py
+- conscious-cart-coach/.env.example (Example configuration file - 2026-01-24)
+- conscious-cart-coach/tests/conftest.py (Pytest config with Opik - 2026-01-24)
+- conscious-cart-coach/tests/test_llm.py (19 LLM tests - 2026-01-24)
+- conscious-cart-coach/tests/README.md (Testing guide - 2026-01-24)
+- conscious-cart-coach/pytest.ini (Pytest configuration - 2026-01-24)
 - architecture/2-llm-integration-summary.md
 - architecture/3-usage-guide.md
 - architecture/4-ui-expectations.md
@@ -258,13 +347,15 @@ Deleted:
    pip install opik>=0.1.0
    ```
 
-2. **Add API key to `.env`**:
-   ```
-   ANTHROPIC_API_KEY=sk-ant-api03-...
+2. **Configure `.env` file** (see `.env.example` for template):
+   ```bash
+   # Required
+   ANTHROPIC_API_KEY=sk-ant-api03-your_key_here
 
-   # Optional: For Opik cloud dashboard
+   # Optional: Opik cloud configuration
    OPIK_API_KEY=your_opik_key
    OPIK_WORKSPACE=your_workspace_name
+   OPIK_PROJECT_NAME=consciousbuyer
 
    # Alternative: For local Opik instance
    # OPIK_URL_OVERRIDE=http://localhost:5000
