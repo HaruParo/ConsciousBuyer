@@ -1,0 +1,273 @@
+{
+  "_metadata": {
+    "description": "Alternative product recommendations by category",
+    "tiers": {
+      "cheaper": "Budget-friendly option with acceptable trade-offs",
+      "balanced": "Good value with reasonable sustainability",
+      "conscious": "Premium sustainable/ethical choice"
+    },
+    "instructions": "Fill in brand, price, and details for each tier. See RESEARCH_GUIDE.md for guidance.",
+    "top_categories_by_purchases": [
+      "produce_greens (43 purchases)",
+      "produce_onions (40 purchases)",
+      "produce_root_veg (39 purchases)",
+      "fruit_tropical (33 purchases)",
+      "produce_tomatoes (18 purchases)",
+      "milk (18 purchases)",
+      "fruit_berries (17 purchases)",
+      "produce_peppers (15 purchases)",
+      "produce_squash (15 purchases)",
+      "produce_beans (14 purchases)"
+    ]
+  },
+  "produce_greens": {
+    "cheaper": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_cheaper": "",
+      "trade_offs": "",
+      "source_url": ""
+    },
+    "balanced": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "notes": "",
+      "source_url": ""
+    },
+    "conscious": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_conscious": "",
+      "certifications": [],
+      "source_url": ""
+    }
+  },
+  "produce_onions": {
+    "cheaper": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_cheaper": "",
+      "trade_offs": "",
+      "source_url": ""
+    },
+    "balanced": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "notes": "",
+      "source_url": ""
+    },
+    "conscious": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_conscious": "",
+      "certifications": [],
+      "source_url": ""
+    }
+  },
+  "produce_root_veg": {
+    "cheaper": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_cheaper": "",
+      "trade_offs": "",
+      "source_url": ""
+    },
+    "balanced": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "notes": "",
+      "source_url": ""
+    },
+    "conscious": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_conscious": "",
+      "certifications": [],
+      "source_url": ""
+    }
+  },
+  "fruit_tropical": {
+    "cheaper": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_cheaper": "",
+      "trade_offs": "",
+      "source_url": ""
+    },
+    "balanced": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "notes": "",
+      "source_url": ""
+    },
+    "conscious": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_conscious": "",
+      "certifications": [],
+      "source_url": ""
+    }
+  },
+  "produce_tomatoes": {
+    "cheaper": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_cheaper": "",
+      "trade_offs": "",
+      "source_url": ""
+    },
+    "balanced": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "notes": "",
+      "source_url": ""
+    },
+    "conscious": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_conscious": "",
+      "certifications": [],
+      "source_url": ""
+    }
+  },
+  "milk": {
+    "cheaper": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_cheaper": "",
+      "trade_offs": "",
+      "source_url": ""
+    },
+    "balanced": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "notes": "",
+      "source_url": ""
+    },
+    "conscious": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_conscious": "",
+      "certifications": [],
+      "source_url": ""
+    }
+  },
+  "fruit_berries": {
+    "cheaper": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_cheaper": "",
+      "trade_offs": "",
+      "source_url": ""
+    },
+    "balanced": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "notes": "",
+      "source_url": ""
+    },
+    "conscious": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_conscious": "",
+      "certifications": [],
+      "source_url": ""
+    }
+  },
+  "produce_peppers": {
+    "cheaper": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_cheaper": "",
+      "trade_offs": "",
+      "source_url": ""
+    },
+    "balanced": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "notes": "",
+      "source_url": ""
+    },
+    "conscious": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_conscious": "",
+      "certifications": [],
+      "source_url": ""
+    }
+  },
+  "produce_squash": {
+    "cheaper": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_cheaper": "",
+      "trade_offs": "",
+      "source_url": ""
+    },
+    "balanced": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "notes": "",
+      "source_url": ""
+    },
+    "conscious": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_conscious": "",
+      "certifications": [],
+      "source_url": ""
+    }
+  },
+  "produce_beans": {
+    "cheaper": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_cheaper": "",
+      "trade_offs": "",
+      "source_url": ""
+    },
+    "balanced": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "notes": "",
+      "source_url": ""
+    },
+    "conscious": {
+      "brand": "",
+      "est_price": null,
+      "packaging": "",
+      "why_conscious": "",
+      "certifications": [],
+      "source_url": ""
+    }
+  }
+}

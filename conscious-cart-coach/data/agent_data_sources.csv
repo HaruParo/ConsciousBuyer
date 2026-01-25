@@ -1,0 +1,17 @@
+Agent,Data Store,Refresh Schedule,Source Name,Source URL,Trust Level,Verification
+ProductAgent,data/alternatives/*.csv,Hourly,FreshDirect,https://www.freshdirect.com/,Commercial,Store product listings
+SafetyAgent,data/flags/product_flags.json,Daily,FDA Food Recall API,https://api.fda.gov/food/enforcement.json,OFFICIAL (Federal),US Government API
+SafetyAgent,data/flags/product_flags.json,Annual,EWG Dirty Dozen/Clean 15,https://www.ewg.org/foodnews/,Research Non-profit,Published annually March/April
+UserAgent,data/users/{user_id}/,Real-time,User Interactions,-,User-generated,Direct user input
+Seasonal,seasonal_regional.py,Annual,Jersey Fresh Program,https://jerseyfresh.nj.gov/,OFFICIAL (State),NJ Dept of Agriculture certified label since 1984
+Seasonal,seasonal_regional.py,Annual,Rutgers Cooperative Extension,https://njaes.rutgers.edu/,ACADEMIC,Land-grant university research - FS1218 publication
+Seasonal,seasonal_regional.py,Annual,USDA NASS,https://www.nass.usda.gov/,OFFICIAL (Federal),Federal crop production statistics
+Seasonal,seasonal_regional.py,Annual,NJ Dept of Agriculture,https://www.nj.gov/agriculture/,OFFICIAL (State),State agricultural authority
+Regional,TRUSTED_REGIONAL_SOURCES,N/A,Jersey Fresh,https://jerseyfresh.nj.gov/,OFFICIAL,State-certified label since 1984
+Regional,TRUSTED_REGIONAL_SOURCES,N/A,Lancaster Farm Fresh,https://lancasterfarmfresh.com/,VERIFIED,Cooperative of 100+ PA farms since 1998
+Regional,TRUSTED_REGIONAL_SOURCES,N/A,Black Dirt Region,-,VERIFIED,Orange County NY muckland - 26000 acres organic soil
+Regional,TRUSTED_REGIONAL_SOURCES,N/A,Satur Farms,-,VERIFIED,Long Island farm supplies FreshDirect since 1997
+Regional,TRUSTED_REGIONAL_SOURCES,N/A,Ronnybrook,-,VERIFIED,Hudson Valley dairy family-owned since 1941
+Regional,TRUSTED_REGIONAL_SOURCES,N/A,Long Island,-,GENERIC,Cornell Cooperative Extension tracked
+Regional,TRUSTED_REGIONAL_SOURCES,N/A,Hudson Valley,-,GENERIC,Diverse farming region
+Regional,TRUSTED_REGIONAL_SOURCES,N/A,Local (self-declared),-,GENERIC,Self-declared - verify with store/brand

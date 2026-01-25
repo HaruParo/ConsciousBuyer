@@ -1,0 +1,76 @@
+{
+  "tofu": [
+    {
+      "type": "recall",
+      "severity": "Class II",
+      "title": "House Foods Tofu Recall",
+      "description": "House Foods America Corporation recalls certain tofu products due to potential contamination with Listeria monocytogenes.",
+      "date": "2024-11-15",
+      "source": "FDA",
+      "affected_brands": ["House Foods"],
+      "affected_tiers": ["cheaper"],
+      "regions": ["CA", "NV", "AZ", "OR", "WA", "HI"],
+      "recommendation": "Check UPC codes. Do not consume if UPC matches recalled products."
+    }
+  ],
+  "seaweed": [
+    {
+      "type": "info",
+      "severity": "advisory",
+      "title": "Heavy Metals in Seaweed",
+      "description": "Some seaweed products may contain elevated levels of arsenic or iodine. Choose products tested for heavy metals.",
+      "date": "2024-01-01",
+      "source": "ConsumerLab",
+      "recommendation": "Look for brands that test for heavy metals. Limit intake to recommended serving sizes."
+    }
+  ],
+  "produce_greens": [
+    {
+      "type": "recall",
+      "severity": "Class I",
+      "title": "Dole Salad Recall - E. coli",
+      "description": "Dole Fresh Vegetables recalls bagged salads due to possible E. coli O157:H7 contamination.",
+      "date": "2024-12-20",
+      "source": "FDA",
+      "affected_brands": ["Dole", "Marketside"],
+      "affected_tiers": ["cheaper", "balanced"],
+      "regions": ["nationwide"],
+      "recommendation": "Check use-by dates Dec 22-Jan 9. Discard if matching."
+    }
+  ],
+  "eggs": [
+    {
+      "type": "recall",
+      "severity": "Class I",
+      "title": "Milo's Poultry Farms Egg Recall - Salmonella",
+      "description": "Milo's Poultry Farms recalls shell eggs due to potential Salmonella Enteritidis contamination.",
+      "date": "2024-11-22",
+      "source": "FDA",
+      "affected_brands": ["Milo's Poultry Farms", "Tony's Fresh Market"],
+      "affected_tiers": ["cheaper"],
+      "regions": ["IL", "WI"],
+      "recommendation": "Check carton for Milo's Poultry Farms. Return for refund if matching."
+    }
+  ],
+  "fruit_berries": [
+    {
+      "type": "seasonal",
+      "severity": "info",
+      "title": "Winter Berry Season",
+      "description": "Fresh berries in winter are imported from Mexico, Chile, or greenhouse-grown. May have longer transport time.",
+      "date": "2025-01-01",
+      "recommendation": "Consider frozen berries for better nutrition retention and lower cost in winter."
+    }
+  ],
+  "miso_paste": [
+    {
+      "type": "info",
+      "severity": "advisory",
+      "title": "Sodium Content Notice",
+      "description": "Miso paste is high in sodium (600-900mg per tablespoon). Use sparingly if on sodium-restricted diet.",
+      "date": "2025-01-01",
+      "source": "USDA",
+      "recommendation": "Start with 1 tbsp per serving. Low-sodium miso varieties are available."
+    }
+  ]
+}

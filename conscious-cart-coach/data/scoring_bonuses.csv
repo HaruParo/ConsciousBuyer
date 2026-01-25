@@ -1,0 +1,28 @@
+Category,Condition,Dimension,Bonus,Notes
+Seasonal,Peak Season,Environmental,+40,Best quality/price from NJ farms
+Seasonal,Available (in season),Environmental,+35,Local harvest available
+Seasonal,Storage Crop,Environmental,+25,From regional cold storage
+Seasonal,Off Season (imported),Environmental,-10,Penalty for out-of-season imports
+Regional,Priority 1 (NJ),Environmental,+35,In-state source
+Regional,Priority 1 (NJ),Social,+20,Supports local economy
+Regional,Priority 2 (PA/NY),Environmental,+25,Nearby state source
+Regional,Priority 2 (PA/NY),Social,+15,Supports regional economy
+Regional,Priority 3 (Further),Environmental,+15,Regional but farther
+Regional,Priority 3 (Further),Social,+10,Regional economy support
+Certification,USDA Organic,Health,+30,Reduced pesticide exposure
+Certification,USDA Organic,Environmental,+20,Sustainable farming practices
+Certification,Local,Environmental,+40,Reduced transport emissions
+Certification,Local,Social,+10,Supports local economy
+Certification,Fair Trade,Social,+50,Ethical labor practices
+Certification,Fair Trade,Environmental,+10,Sustainable sourcing
+Certification,Grass-fed,Animal Welfare,+40,Better animal treatment
+Certification,Grass-fed,Health,+15,Improved nutrition profile
+Certification,Pasture-raised,Animal Welfare,+50,Best animal welfare
+Certification,Certified Humane,Animal Welfare,+60,Third-party verified humane
+Certification,Plastic-free,Packaging,+50,No plastic packaging
+Certification,Compostable,Packaging,+40,Biodegradable packaging
+Certification,Bulk,Packaging,+30,Less packaging per unit
+EWG,Dirty Dozen (no organic),Health,-30,High pesticide residue risk
+EWG,Dirty Dozen (organic),Health,+20,Pesticide protection bonus
+EWG,Clean Fifteen,Health,0,No penalty for conventional
+Safety,Active Recall,Health,-40,Safety concern

@@ -1,0 +1,19 @@
+# Trusted Regional Sources for NJ/Mid-Atlantic Local Sourcing
+# Default Location: Middlesex County, NJ (40.4862, -74.4518)
+# Local Radius: 100 miles
+# Last Updated: 2024-01
+source_name,source_keywords,state,distance_miles,priority,trust_level,certification_type,verification,year_established,url,notes
+Jersey Fresh,jersey fresh,NJ,0,1,official,government,"NJ Dept of Agriculture certified label - farms must be NJ-based",1984,https://jerseyfresh.nj.gov/,State certification program
+NJ Farms Direct,new jersey;nj grown,NJ,0,1,generic,self-declared,"State origin claim - verify with specific farm",,https://www.nj.gov/agriculture/,Generic NJ origin
+Satur Farms,satur farms,NY,100,2,verified,business,"Long Island farm - major FreshDirect supplier - certified organic",1997,,Premium greens supplier
+Lancaster Farm Fresh,lancaster farm fresh,PA,80,2,verified,cooperative,"Cooperative of 100+ PA farms - certified organic members",1998,https://lancasterfarmfresh.com/,Amish/Mennonite farming tradition
+Lancaster County,lancaster,PA,80,2,generic,regional,"Lancaster County PA origin - verify specific farm",,,Historic farming region
+Black Dirt Region,black dirt,NY,60,2,verified,geographic,"Orange County NY muckland - 26000 acres of organic soil",,,"14000+ years of organic deposits"
+Hudson Valley,hudson valley,NY,70,2,generic,regional,"Hudson Valley NY farming region",,,Diverse farming area
+Long Island,long island,NY,50,2,generic,regional,"Long Island farms - tracked via Cornell Cooperative Extension",,,Wine country and farms
+Ronnybrook Farm,ronnybrook,NY,90,2,verified,business,"Hudson Valley dairy - family-owned - creamline milk",1941,,Premium dairy products
+Cherry Grove Farm,cherry grove,NJ,40,2,verified,business,"Lawrenceville NJ - organic dairy and produce",,https://cherrygrovefarm.com/,Local NJ farm
+Griggstown Farm,griggstown,NJ,25,1,verified,business,"Princeton area - grass-fed meats and poultry",,https://griggstownfarm.com/,Local sustainable farm
+Local Generic,local,ANY,50,1,generic,self-declared,"Self-declared local - verify with store/brand",,,Requires verification
+Regional Generic,regional,ANY,100,2,generic,self-declared,"Self-declared regional - verify with store/brand",,,Requires verification
+Northeast,northeast;mid-atlantic,REGION,150,3,generic,regional,"Northeast US region - broader than local",,,May include imports from region

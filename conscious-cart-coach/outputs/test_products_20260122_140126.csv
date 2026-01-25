@@ -1,0 +1,26 @@
+ingredient,tier,product_id,product_name,brand,price,unit,organic
+chicken,conscious,ch001,Organic Free-Range Chicken Thighs,Bell & Evans,9.99,per lb,True
+chicken,balanced,ch002,Chicken Thighs,Perdue,5.99,per lb,False
+chicken,cheaper,ch003,Chicken Thighs Value Pack,Store Brand,3.99,per lb,False
+basmati rice,conscious,ri001,Organic Basmati Rice,Lundberg,8.99,2 lb,True
+basmati rice,balanced,ri002,Basmati Rice,Tilda,5.99,2 lb,False
+basmati rice,cheaper,ri003,Long Grain Rice,Store Brand,2.99,2 lb,False
+onions,conscious,on001,Organic Yellow Onions,Local Farm,3.99,2 lb bag,True
+onions,cheaper,on002,Yellow Onions,Store Brand,1.99,3 lb bag,False
+tomatoes,conscious,to001,Organic Heirloom Tomatoes,Local Farm,6.99,1 lb,True
+tomatoes,balanced,to003,Tomatoes on Vine,Store Brand,3.49,1 lb,False
+yogurt,conscious,yo001,Organic Greek Yogurt,Stonyfield,6.99,32oz,True
+yogurt,balanced,yo002,Greek Yogurt,Fage,5.49,32oz,False
+yogurt,cheaper,yo003,Greek Yogurt,Store Brand,3.99,32oz,False
+ginger,conscious,gi001,Organic Ginger Root,Store Brand,6.99,per lb,True
+ginger,cheaper,gi002,Ginger Root,Store Brand,4.99,per lb,False
+garlic,conscious,ga001,Organic Garlic,Local Farm,1.99,1 head,True
+garlic,cheaper,ga002,Garlic,Store Brand,0.79,1 head,False
+green chilies,balanced,hp001,Serrano Peppers,Store Brand,1.99,4oz,False
+green chilies,cheaper,hp002,Jalapeno Peppers,Store Brand,1.49,4oz,False
+mint leaves,conscious,mt001,Organic Fresh Mint,Local Farm,3.49,1 bunch,True
+mint leaves,cheaper,mt002,Fresh Mint,Store Brand,1.99,clamshell,False
+cilantro,conscious,ci001,Organic Cilantro,Local Farm,2.99,1 bunch,True
+cilantro,cheaper,ci002,Cilantro,Store Brand,1.49,1 bunch,False
+ghee,conscious,gh001,Organic Grass-Fed Ghee,4th & Heart,12.99,9oz,True
+ghee,balanced,gh002,Ghee,Deep,7.99,8oz,False

@@ -1,0 +1,26 @@
+# Grocery Stores Serving Middlesex County, NJ
+# Used for filtering FDA recalls by relevant retailers
+# Last Updated: 2024-01
+#
+store_name,store_keywords,store_type,serves_middlesex,delivery_available,notes
+FreshDirect,freshdirect;fresh direct,online_delivery,Yes,Yes,Primary delivery service for this app
+Whole Foods,whole foods;wholefoods;amazon fresh,grocery_chain,Yes,Yes,Multiple locations in Middlesex County
+Stop & Shop,stop & shop;stop and shop;stopandshop,grocery_chain,Yes,Yes,Major NJ chain with delivery
+ShopRite,shoprite;shop rite,grocery_chain,Yes,Yes,NJ-based cooperative
+Wegmans,wegmans,grocery_chain,Yes,Yes,Locations in Edison and Bridgewater
+Costco,costco,warehouse,Yes,No,Edison and East Brunswick locations
+Trader Joe's,trader joe's;trader joes;traderjoes,grocery_chain,Yes,No,Multiple NJ locations
+ALDI,aldi,discount,Yes,No,Multiple Middlesex locations
+Target,target,general,Yes,Yes,Grocery sections in most stores
+Walmart,walmart;wal-mart,general,Yes,Yes,Limited presence in Middlesex
+Sam's Club,sam's club;sams club,warehouse,Yes,No,Edison location
+BJ's,bj's;bjs,warehouse,Yes,No,Multiple Middlesex locations
+Amazon Fresh,amazon fresh;amazonfresh;amazon,online_delivery,Yes,Yes,Delivery service
+Instacart,instacart,delivery_service,Yes,Yes,Multi-store delivery platform
+Lidl,lidl,discount,Yes,No,Limited NJ presence
+H Mart,h mart;hmart,asian_grocery,Yes,No,Edison location - Asian specialty
+Mitsuwa,mitsuwa,asian_grocery,Yes,No,Edgewater (nearby) - Japanese specialty
+99 Ranch,99 ranch;ranch 99,asian_grocery,No,No,Not in Middlesex area
+Giant Food,giant food;giant,grocery_chain,Yes,Yes,Some Middlesex locations
+Food Bazaar,food bazaar,grocery_chain,Yes,No,Ethnic grocery options
+Kings Food Markets,kings;kings food,grocery_chain,Yes,No,Premium grocery

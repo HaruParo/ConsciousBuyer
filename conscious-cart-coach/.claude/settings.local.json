@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/snair/Documents/projects/ConsciousBuyer/conscious-cart-coach log --all --grep=\"receipt\\\\|upload\\\\|camera\\\\|scan\" --oneline)",
+      "Bash(git -C /Users/snair/Documents/projects/ConsciousBuyer/conscious-cart-coach branch:*)",
+      "Bash(git -C /Users/snair/Documents/projects/ConsciousBuyer/conscious-cart-coach log --all --oneline -20)",
+      "Bash(git -C /Users/snair/Documents/projects/ConsciousBuyer/conscious-cart-coach show DecisionUI-1:src/ui/app.py)",
+      "Bash(find:*)",
+      "Bash(git -C /Users/snair/Documents/projects/ConsciousBuyer/conscious-cart-coach diff HEAD~1 HEAD -- src/ui/)",
+      "Bash(git -C /Users/snair/Documents/projects/ConsciousBuyer/conscious-cart-coach show:*)",
+      "Bash(git -C /Users/snair/Documents/projects/ConsciousBuyer/conscious-cart-coach log DecisionUI-1 --oneline)"
+    ]
+  }
+}
