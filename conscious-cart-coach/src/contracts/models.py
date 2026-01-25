@@ -163,6 +163,7 @@ class DecisionItem:
     conscious_neighbor_id: str | None = None # Product ID of next-more-conscious option
     score: int = 50                      # 0-100 score
     evidence_refs: list[str] = field(default_factory=list)  # Source identifiers
+    reason_llm: str | None = None        # Optional LLM-generated explanation (1-2 sentences)
 
 
 @dataclass

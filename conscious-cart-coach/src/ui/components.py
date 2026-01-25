@@ -223,6 +223,11 @@ def render_ingredient_card(
             unsafe_allow_html=True,
         )
 
+        # 2b) LLM EXPLANATION (if available and it's the recommended product)
+        if item.reason_llm and current_product_id == item.selected_product_id:
+            with st.expander("🤖 Show AI explanation"):
+                st.markdown(item.reason_llm)
+
         # 3) PRODUCT LINE (always show brand — title)
         title = product["title"]
         brand = product["brand"]

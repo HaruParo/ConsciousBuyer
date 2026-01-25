@@ -4,20 +4,31 @@ Ingredient Agent - Extracts ingredients from user prompts.
 This is the FIRST agent in the gated flow. It parses user requests
 (recipes, meal plans, shopping lists) into structured ingredients.
 
+Supports both LLM-powered extraction (Claude) and template-based fallback.
+
 Returns AgentResult contract for all outputs.
 
 Usage:
     from src.agents.ingredient_agent import IngredientAgent
 
-    agent = IngredientAgent()
+    # With LLM (if available)
+    agent = IngredientAgent(use_llm=True)
     result = agent.extract("I want to make chicken biryani for 4 people")
-    # Returns AgentResult with ingredients list
+
+    # Template-only (no API calls)
+    agent = IngredientAgent(use_llm=False)
+    result = agent.extract("biryani for 4")
 """
 
+import logging
 from datetime import datetime
-from typing import Any
+from typing import Any, Optional
+
+from anthropic import Anthropic
 
 from ..core.types import AgentResult, Evidence, make_result, make_error
+
+logger = logging.getLogger(__name__)
 
 
 # Common recipe templates for quick extraction
@@ -99,7 +110,8 @@ class IngredientAgent:
     Agent that extracts ingredients from user prompts.
 
     Supports:
-    - Recipe names (biryani, salad, stir fry)
+    - LLM-powered extraction (Claude) for natural language prompts
+    - Template-based fallback for known recipes
     - Direct ingredient lists
     - Meal descriptions
 
@@ -108,13 +120,38 @@ class IngredientAgent:
 
     AGENT_NAME = "ingredient"
 
-    def __init__(self):
+    def __init__(self, use_llm: bool = False, anthropic_client: Optional[Anthropic] = None):
+        """
+        Initialize IngredientAgent.
+
+        Args:
+            use_llm: Whether to use LLM for extraction (requires API key)
+            anthropic_client: Optional pre-initialized Anthropic client
+        """
         self.recipe_templates = RECIPE_TEMPLATES
         self.common_produce = COMMON_PRODUCE
+        self.use_llm = use_llm
+        self.anthropic_client = anthropic_client
+
+        # Lazy import LLM module (only if needed)
+        self._llm_extractor = None
+        if self.use_llm:
+            try:
+                from ..llm.client import get_anthropic_client
+                from ..llm.ingredient_extractor import extract_ingredients_with_llm
+                self._llm_extractor = extract_ingredients_with_llm
+                if not self.anthropic_client:
+                    self.anthropic_client = get_anthropic_client()
+                logger.info("IngredientAgent initialized with LLM support")
+            except ImportError as e:
+                logger.warning(f"LLM module not available: {e}. Falling back to templates.")
+                self.use_llm = False
 
     def extract(self, user_prompt: str, servings: int | None = None) -> AgentResult:
         """
         Extract ingredients from a user prompt.
+
+        Uses LLM if available, falls back to template matching.
 
         Args:
             user_prompt: User's request (recipe name, ingredients, etc.)
@@ -123,6 +160,85 @@ class IngredientAgent:
         Returns:
             AgentResult with ingredients list
         """
+        try:
+            # Try LLM extraction first (if enabled)
+            if self.use_llm and self.anthropic_client and self._llm_extractor:
+                logger.info(f"Attempting LLM extraction for: '{user_prompt}'")
+                llm_result = self._extract_with_llm(user_prompt, servings)
+                if llm_result:
+                    logger.info("LLM extraction successful")
+                    return llm_result
+                else:
+                    logger.warning("LLM extraction failed, falling back to templates")
+
+            # Fall back to template-based extraction
+            logger.info(f"Using template-based extraction for: '{user_prompt}'")
+            return self._extract_with_templates(user_prompt, servings)
+
+        except Exception as e:
+            logger.error(f"Ingredient extraction failed: {e}")
+            return make_error(self.AGENT_NAME, str(e))
+
+    def _extract_with_llm(self, user_prompt: str, servings: int | None = None) -> Optional[AgentResult]:
+        """Extract ingredients using LLM (Claude)."""
+        if not self._llm_extractor or not self.anthropic_client:
+            return None
+
+        try:
+            target_servings = servings or self._extract_servings(user_prompt.lower()) or 4
+
+            llm_ingredients = self._llm_extractor(
+                client=self.anthropic_client,
+                prompt=user_prompt,
+                servings=target_servings,
+            )
+
+            if not llm_ingredients:
+                return None
+
+            # Convert LLM format to our IngredientSpec format
+            ingredients = []
+            for ing in llm_ingredients:
+                ingredients.append({
+                    "name": ing.get("name", ""),
+                    "canonical": ing.get("category", ing.get("name", "").replace(" ", "_")),
+                    "qty": ing.get("quantity"),
+                    "unit": ing.get("unit"),
+                    "optional": ing.get("optional", False),
+                    "confidence": 0.95,  # High confidence from LLM
+                })
+
+            explain = [
+                f"LLM extracted {len(ingredients)} ingredient(s)",
+                f"Servings: {target_servings}",
+            ]
+
+            evidence = [Evidence(
+                source="Claude LLM",
+                key="ingredient_extraction",
+                value=f"{len(ingredients)} ingredients",
+            )]
+
+            return make_result(
+                agent_name=self.AGENT_NAME,
+                facts={
+                    "ingredients": ingredients,
+                    "assumptions": ["Used LLM for natural language extraction"],
+                    "confidence": 0.95,
+                    "matched_recipe": None,
+                    "servings": target_servings,
+                    "extraction_method": "llm",
+                },
+                explain=explain,
+                evidence=evidence,
+            )
+
+        except Exception as e:
+            logger.error(f"LLM extraction error: {e}")
+            return None
+
+    def _extract_with_templates(self, user_prompt: str, servings: int | None = None) -> AgentResult:
+        """Extract ingredients using template matching (original logic)."""
         try:
             prompt_lower = user_prompt.lower()
             ingredients = []
@@ -235,12 +351,14 @@ class IngredientAgent:
                     "confidence": confidence,
                     "matched_recipe": matched_recipe,
                     "servings": servings or self._extract_servings(prompt_lower) or 4,
+                    "extraction_method": "template",
                 },
                 explain=explain,
                 evidence=evidence,
             )
 
         except Exception as e:
+            logger.error(f"Template extraction error: {e}")
             return make_error(self.AGENT_NAME, str(e))
 
     def _extract_servings(self, text: str) -> int | None:

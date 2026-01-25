@@ -9,15 +9,23 @@ Flow:
 5. step_decide → DecisionEngine: constraints → scoring → neighbors → bundle
 6. Export → Optional CSV export
 
+Optional LLM Features:
+- use_llm_extraction: Natural language ingredient parsing (Claude)
+- use_llm_explanations: Enhanced decision explanations (Claude)
+- Both default to False (deterministic only)
+
 Usage:
     from src.orchestrator import Orchestrator
 
+    # Deterministic only (default, no API calls)
     orch = Orchestrator()
-
-    # Full auto flow
     bundle = orch.process_prompt("chicken biryani for 4")
 
-    # Or step-by-step with gates
+    # With LLM features enabled
+    orch = Orchestrator(use_llm_extraction=True, use_llm_explanations=True)
+    bundle = orch.process_prompt("I want something healthy and seasonal")
+
+    # Step-by-step with gates
     orch.step_ingredients("chicken biryani", servings=4)
     orch.confirm_ingredients()  # accepts as-is
     orch.step_candidates()
@@ -25,9 +33,14 @@ Usage:
     bundle = orch.step_decide()
 """
 
+import logging
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Any, Literal
+from typing import Any, Literal, Optional
+
+from anthropic import Anthropic
+
+logger = logging.getLogger(__name__)
 
 from ..contracts.models import (
     DecisionBundle,
@@ -80,20 +93,63 @@ class Orchestrator:
 
     Each step advances the state machine. Gates require confirmation
     before proceeding (or auto_confirm=True to skip).
+
+    Optional LLM features can be enabled for ingredient extraction
+    and decision explanations.
     """
 
-    def __init__(self, user_id: str = "default"):
+    def __init__(
+        self,
+        user_id: str = "default",
+        use_llm_extraction: bool = False,
+        use_llm_explanations: bool = False,
+        anthropic_client: Optional[Anthropic] = None,
+    ):
+        """
+        Initialize Orchestrator.
+
+        Args:
+            user_id: User identifier for history tracking
+            use_llm_extraction: Enable Claude for ingredient parsing
+            use_llm_explanations: Enable Claude for decision explanations
+            anthropic_client: Optional shared Anthropic client (created if needed)
+        """
         self.user_id = user_id
+        self.use_llm_extraction = use_llm_extraction
+        self.use_llm_explanations = use_llm_explanations
         self.state = FlowState()
         self.tracker = OpikTracker()
 
+        # Initialize shared Anthropic client if LLM features enabled
+        self.anthropic_client = anthropic_client
+        if (use_llm_extraction or use_llm_explanations) and not self.anthropic_client:
+            try:
+                from ..llm.client import get_anthropic_client
+                self.anthropic_client = get_anthropic_client()
+                if self.anthropic_client:
+                    logger.info("Orchestrator initialized with LLM features enabled")
+                else:
+                    logger.warning("LLM features requested but no API key available")
+                    self.use_llm_extraction = False
+                    self.use_llm_explanations = False
+            except ImportError:
+                logger.warning("LLM module not available")
+                self.use_llm_extraction = False
+                self.use_llm_explanations = False
+
         # Initialize agents
-        self.ingredient_agent = IngredientAgent()
+        self.ingredient_agent = IngredientAgent(
+            use_llm=use_llm_extraction,
+            anthropic_client=self.anthropic_client,
+        )
         self.product_agent = ProductAgent()
         self.safety_agent = SafetyAgent()
         self.seasonal_agent = SeasonalAgent()
         self.user_history_agent = UserHistoryAgent(user_id)
-        self.decision_engine = DecisionEngine()
+        self.decision_engine = DecisionEngine(
+            use_llm_explanations=use_llm_explanations,
+            anthropic_client=self.anthropic_client,
+        )
 
     def process_prompt(
         self,

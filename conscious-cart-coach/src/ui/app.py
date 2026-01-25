@@ -68,6 +68,9 @@ def init_state():
         "ingredient_safety": {},
         "qty_overrides": {},
         "show_preferences": False,
+        "use_llm_extraction": False,
+        "use_llm_explanations": False,
+        "prompt_text": "",
     }
     for k, v in defaults.items():
         if k not in st.session_state:
@@ -106,7 +109,10 @@ def on_create_cart():
     if not prompt.strip():
         return
 
-    orch = Orchestrator()
+    orch = Orchestrator(
+        use_llm_extraction=st.session_state.use_llm_extraction,
+        use_llm_explanations=st.session_state.use_llm_explanations,
+    )
     result = orch.step_ingredients(prompt)
 
     if result.status == "ok":
@@ -138,7 +144,10 @@ def on_create_cart():
 
 def on_confirm_ingredients(confirmed_names: list[str]):
     """Confirm ingredients and run full pipeline."""
-    orch = Orchestrator()
+    orch = Orchestrator(
+        use_llm_extraction=st.session_state.use_llm_extraction,
+        use_llm_explanations=st.session_state.use_llm_explanations,
+    )
 
     # Rebuild ingredients list from confirmed names
     confirmed = [{"name": n, "quantity": "", "category": ""} for n in confirmed_names]
@@ -208,11 +217,17 @@ def show_ingredient_dialog():
     availability = st.session_state.ingredient_availability
     safety = st.session_state.ingredient_safety
 
-    # Header
-    st.markdown(
-        '<p class="modal-subtext">Edit this list before we build your cart.</p>',
-        unsafe_allow_html=True,
-    )
+    # Header with AI indicator
+    if st.session_state.use_llm_extraction:
+        st.markdown(
+            '<p class="modal-subtext">🤖 AI extracted from your request. Edit before building cart.</p>',
+            unsafe_allow_html=True,
+        )
+    else:
+        st.markdown(
+            '<p class="modal-subtext">Edit this list before we build your cart.</p>',
+            unsafe_allow_html=True,
+        )
 
     # Store context
     st.markdown(
@@ -338,12 +353,25 @@ with left_col:
 
     # --- Prompt Input (text_area) ---
     st.markdown("### What are you making?")
+
+    # Show AI features hint if not enabled
+    if not st.session_state.use_llm_extraction and not st.session_state.use_llm_explanations:
+        st.info("💡 Tip: Enable **AI Features** in ⚙️ Preferences to use natural language (\"I want something healthy\") and get detailed explanations.")
+
+    # Dynamic placeholder based on LLM mode
+    placeholder_text = (
+        "e.g., I want something healthy and seasonal, quick dinner for 2, budget-friendly vegetarian..."
+        if st.session_state.use_llm_extraction
+        else "e.g., chicken biryani for 4, spinach salad, stir fry, tikka masala..."
+    )
+
+    # Text area with unique key
     st.text_area(
         "Meal or recipe",
-        placeholder="e.g., chicken biryani for 4, spinach salad, stir fry...",
-        key="prompt_text",
+        placeholder=placeholder_text,
         label_visibility="collapsed",
         height=100,
+        key="prompt_text",  # Use session state key directly
     )
 
     # --- Primary CTA ---
@@ -372,26 +400,46 @@ with left_col:
             st.button("\U0001f9fe Ingredients", disabled=True, key="pop_ing_disabled", width="stretch")
 
     with pop_cols[1]:
-        if has_prompt:
-            with st.popover("\u2699\ufe0f Preferences"):
-                st.text_input("Location", value="NJ / Mid-Atlantic", disabled=True, key="_location")
-                col_a, col_b = st.columns(2)
-                with col_a:
-                    st.number_input("Household size", min_value=1, max_value=10, value=2, key="_household")
-                with col_b:
-                    st.selectbox("Store", ["ShopRite", "Whole Foods", "Trader Joe's"], key="_store")
-                dietary = st.text_input("Dietary restrictions", placeholder="e.g., vegetarian, gluten-free", key="_dietary")
-                preferred = st.text_input("Preferred brands", placeholder="e.g., Organic Valley", key="_preferred_brands")
-                avoided = st.text_input("Avoided brands", placeholder="e.g., Nestle", key="_avoided_brands")
-                strict = st.checkbox("Strict safety (require organic for EWG items)", key="_strict_safety")
-                st.session_state.user_prefs = {
-                    "dietary": dietary,
-                    "preferred_brands": preferred,
-                    "avoided_brands": avoided,
-                    "strict_safety": strict,
-                }
-        else:
-            st.button("\u2699\ufe0f Preferences", disabled=True, key="pop_pref_disabled", width="stretch")
+        # Always show Preferences (users need to enable LLM features before first cart)
+        with st.popover("\u2699\ufe0f Preferences"):
+            st.text_input("Location", value="NJ / Mid-Atlantic", disabled=True, key="_location")
+            col_a, col_b = st.columns(2)
+            with col_a:
+                st.number_input("Household size", min_value=1, max_value=10, value=2, key="_household")
+            with col_b:
+                st.selectbox("Store", ["ShopRite", "Whole Foods", "Trader Joe's"], key="_store")
+            dietary = st.text_input("Dietary restrictions", placeholder="e.g., vegetarian, gluten-free", key="_dietary")
+            preferred = st.text_input("Preferred brands", placeholder="e.g., Organic Valley", key="_preferred_brands")
+            avoided = st.text_input("Avoided brands", placeholder="e.g., Nestle", key="_avoided_brands")
+            strict = st.checkbox("Strict safety (require organic for EWG items)", key="_strict_safety")
+
+            # AI Features Section
+            st.markdown("---")
+            st.markdown("**🤖 AI Features**")
+            use_llm_extraction = st.checkbox(
+                "Enable AI ingredient extraction",
+                value=st.session_state.use_llm_extraction,
+                help="Parse natural language prompts using Claude AI (~$0.01 per request)",
+                key="_use_llm_extraction",
+            )
+            use_llm_explanations = st.checkbox(
+                "Enable detailed explanations",
+                value=st.session_state.use_llm_explanations,
+                help="Get AI-powered product explanations (~$0.03 per cart)",
+                key="_use_llm_explanations",
+            )
+
+            if use_llm_extraction or use_llm_explanations:
+                st.caption("💰 Cost: ~$0.045 per cart with both features")
+
+            st.session_state.use_llm_extraction = use_llm_extraction
+            st.session_state.use_llm_explanations = use_llm_explanations
+            st.session_state.user_prefs = {
+                "dietary": dietary,
+                "preferred_brands": preferred,
+                "avoided_brands": avoided,
+                "strict_safety": strict,
+            }
 
     # --- Debug Toggle ---
     st.markdown("---")

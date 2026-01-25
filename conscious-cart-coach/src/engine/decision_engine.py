@@ -10,10 +10,13 @@ organic status, brand trust, and user preferences.
 The engine then picks a recommended product per ingredient, identifies
 cheaper_neighbor and conscious_neighbor, and computes cart-level bundles.
 
+Optional: LLM-powered explanations (scoring remains 100% deterministic).
+
 Usage:
     from src.engine.decision_engine import DecisionEngine
     from src.contracts.models import ProductCandidate, SafetySignals, UserPrefs
 
+    # Deterministic only (default)
     engine = DecisionEngine()
     bundle = engine.decide(
         candidates_by_ingredient={"spinach": [candidate1, candidate2, ...]},
@@ -21,10 +24,17 @@ Usage:
         seasonality={"spinach": seasonality_signal},
         user_prefs=user_prefs,
     )
+
+    # With LLM explanations (scoring still deterministic)
+    engine = DecisionEngine(use_llm_explanations=True)
+    bundle = engine.decide(...)  # Now has reason_llm populated
 """
 
+import logging
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, Optional
+
+from anthropic import Anthropic
 
 from ..contracts.models import (
     DecisionBundle,
@@ -36,6 +46,8 @@ from ..contracts.models import (
     TierSymbol,
     UserPrefs,
 )
+
+logger = logging.getLogger(__name__)
 
 
 # =============================================================================
@@ -107,14 +119,50 @@ class _ScoredCandidate:
 
 class DecisionEngine:
     """
-    Deterministic decision engine.
+    Deterministic decision engine with optional LLM explanations.
+
+    Scoring is ALWAYS deterministic (same input = same output).
+    LLM is only used for natural language explanations (optional).
 
     Two-stage: hard constraints filter, then soft scoring.
     No data fetching - all data must be passed in.
     """
 
-    def __init__(self, weights: dict | None = None):
+    def __init__(
+        self,
+        weights: dict | None = None,
+        use_llm_explanations: bool = False,
+        anthropic_client: Optional[Anthropic] = None,
+    ):
+        """
+        Initialize DecisionEngine.
+
+        Args:
+            weights: Custom scoring weights (optional)
+            use_llm_explanations: Generate LLM explanations (requires API key)
+            anthropic_client: Optional pre-initialized Anthropic client
+        """
         self.weights = weights or WEIGHTS
+        self.use_llm_explanations = use_llm_explanations
+        self.anthropic_client = anthropic_client
+
+        # Lazy load LLM module
+        self._llm_explainer = None
+        if self.use_llm_explanations:
+            try:
+                from ..llm.client import get_anthropic_client
+                from ..llm.decision_explainer import explain_decision_with_llm
+                self._llm_explainer = explain_decision_with_llm
+                if not self.anthropic_client:
+                    self.anthropic_client = get_anthropic_client()
+                if self.anthropic_client:
+                    logger.info("DecisionEngine initialized with LLM explanations")
+                else:
+                    logger.warning("LLM explanations requested but no API key found")
+                    self.use_llm_explanations = False
+            except ImportError as e:
+                logger.warning(f"LLM module not available: {e}")
+                self.use_llm_explanations = False
 
     def decide(
         self,
@@ -200,11 +248,47 @@ class DecisionEngine:
             if safety.recall.data_gap:
                 data_gaps.append(f"{ingredient}: recall data may be stale")
 
+            # Optional: Generate LLM explanation
+            reason_llm = None
+            if self.use_llm_explanations and self._llm_explainer and self.anthropic_client:
+                try:
+                    scoring_factors = [f"{adj[0]}: {adj[1]:+d}" for adj in recommended.adjustments]
+                    cheaper_desc = None
+                    if cheaper_neighbor:
+                        cheaper_desc = f"{cheaper_neighbor.candidate.brand} at ${cheaper_neighbor.candidate.price:.2f}"
+                    conscious_desc = None
+                    if conscious_neighbor:
+                        conscious_desc = f"{conscious_neighbor.candidate.brand} at ${conscious_neighbor.candidate.price:.2f}"
+
+                    reason_llm = self._llm_explainer(
+                        client=self.anthropic_client,
+                        ingredient_name=ingredient,
+                        recommended_product={
+                            "brand": recommended.candidate.brand,
+                            "price": recommended.candidate.price,
+                            "size": recommended.candidate.size,
+                            "unit_price": recommended.candidate.unit_price,
+                            "organic": recommended.candidate.organic,
+                        },
+                        scoring_factors=scoring_factors,
+                        cheaper_option=cheaper_desc,
+                        conscious_option=conscious_desc,
+                        user_prefs={
+                            "preferred_brands": user_prefs.preferred_brands,
+                            "avoided_brands": user_prefs.avoided_brands,
+                            "strict_safety": user_prefs.strict_safety,
+                        },
+                    )
+                except Exception as e:
+                    logger.warning(f"Failed to generate LLM explanation for {ingredient}: {e}")
+                    reason_llm = None
+
             item = DecisionItem(
                 ingredient_name=ingredient,
                 selected_product_id=recommended.candidate.product_id,
                 tier_symbol=tier,
                 reason_short=reason_short,
+                reason_llm=reason_llm,
                 attributes=attributes,
                 safety_notes=safety_notes,
                 cheaper_neighbor_id=(

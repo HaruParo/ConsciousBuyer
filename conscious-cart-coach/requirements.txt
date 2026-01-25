@@ -3,9 +3,9 @@ pandas>=2.0.0
 sqlalchemy>=2.0.0
 psycopg2-binary>=2.9.0
 
-# LLM Integration
-anthropic>=0.18.0
-# openai>=1.0.0  # Alternative to anthropic
+# LLM Integration (Optional - only needed for use_llm_extraction or use_llm_explanations)
+# anthropic>=0.18.0  # Uncomment to enable LLM features
+# Requires ANTHROPIC_API_KEY environment variable
 
 # Observability & Evaluation
 opik>=0.1.0
