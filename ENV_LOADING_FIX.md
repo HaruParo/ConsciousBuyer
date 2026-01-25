@@ -54,7 +54,7 @@ pytest tests/test_env_loading.py -v -s
 **Expected output**:
 ```
 ✅ .env file exists at: /path/to/.env
-✅ ANTHROPIC_API_KEY loaded: sk-ant-api03-...
+✅ ANTHROPIC_API_KEY loaded: ...
 ✅ OPIK_API_KEY loaded: SsQ3gVmM8r...
 ✅ OPIK_WORKSPACE loaded: chat
 ✅ OPIK_PROJECT_NAME loaded: consciousbuyer
@@ -107,10 +107,10 @@ cat conscious-cart-coach/.env
 
 Should contain:
 ```
-ANTHROPIC_API_KEY=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
-OPIK_API_KEY=SsQ3gVmM8rmMMuVEsk7bxUnu2
-OPIK_WORKSPACE=chat
-OPIK_PROJECT_NAME=consciousbuyer
+ANTHROPIC_API_KEY=
+OPIK_API_KEY=
+OPIK_WORKSPACE=
+OPIK_PROJECT_NAME=
 ```
 
 ### Check 4: Manual Load (Temporary Workaround)
