@@ -1,12 +1,13 @@
 # Architecture Documentation
 
-**Last Updated**: 2026-01-24
+**Last Updated**: 2026-01-25
 
 This directory contains comprehensive documentation for the Conscious Cart Coach project. All project documentation is organized here.
 
 ## Quick Links
 
 - 🚀 **[0-step.md](0-step.md)** - Start here! Main architecture guide
+- 🎬 **[13-ideal-ui-workflow.md](13-ideal-ui-workflow.md)** - Demo guide & perfect user journey
 - 🤖 **[6-llm-integration-deep-dive.md](6-llm-integration-deep-dive.md)** - Why hybrid AI approach
 - 📊 **[9-opik-llm-evaluation.md](9-opik-llm-evaluation.md)** - Monitoring & evaluation
 - 🚢 **[10-deployment-guide.md](10-deployment-guide.md)** - Deploy to production
@@ -161,6 +162,19 @@ Visual guide showing exactly what changes in the UI when LLM is enabled.
 - Performance issues (slow responses, high costs)
 - Debug mode and logging
 
+### [13-ideal-ui-workflow.md](13-ideal-ui-workflow.md) - Ideal UI Workflow & Demo Guide
+**The perfect demo.** Step-by-step user journey from landing to shopping list.
+
+- 5-minute user journey walkthrough
+- Act-by-act storytelling (landing, request, extraction, reveal, export)
+- What happens behind the scenes (AI touchpoints, deterministic scoring)
+- Perfect 2-minute demo pitch for stakeholders
+- UI design principles that make it work
+- Common demo pitfalls and how to avoid them
+- Technical setup and demo checklist
+- Variations for different audiences (PMs, engineers, business, users)
+- Success metrics (immediate and post-demo)
+
 ---
 
 ## Quick Reference
@@ -217,4 +231,4 @@ conscious-cart-coach/
 
 For questions or contributions, see project README or open an issue.
 
-Last updated: 2026-01-24
+Last updated: 2026-01-25

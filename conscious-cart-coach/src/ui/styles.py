@@ -25,6 +25,47 @@ def get_global_css() -> str:
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   Text and heading colors (ensure visibility on cream background)
+   Target left column specifically to avoid interfering with card styles
+   ═══════════════════════════════════════════════════════════════ */
+/* Headers in left column */
+[data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:first-child h1,
+[data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:first-child h2,
+[data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:first-child h3 {
+    color: #5B5120 !important;
+}
+
+/* General markdown text in left column */
+[data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:first-child .stMarkdown p {
+    color: #333333;
+}
+
+/* Caption text */
+.stCaptionContainer, [data-testid="stCaptionContainer"] {
+    color: #777777 !important;
+}
+
+/* Info/warning/success boxes - ensure visibility */
+[data-testid="stAlert"] {
+    background-color: #FFFFFF !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-testid="stAlert"] p {
+    color: #333333 !important;
+}
+
+/* Expander headers - AI explanation visibility */
+[data-testid="stExpander"] summary {
+    color: #5B5120 !important;
+    font-weight: 600 !important;
+}
+
+[data-testid="stExpander"] [data-testid="StyledFullScreenButton"] {
+    display: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
    All buttons: force single-line text (no wrapping)
    ═══════════════════════════════════════════════════════════════ */
 .stApp button {
