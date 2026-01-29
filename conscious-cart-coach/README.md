@@ -1,5 +1,7 @@
 # Conscious Cart Coach
 
+> **Current Version**: React + FastAPI Full-Stack Application
+
 Make more conscious purchasing decisions with AI-powered grocery recommendations. Get personalized suggestions across three tiers (cheaper, balanced, conscious) based on safety data, seasonality, and your preferences.
 
 ## Features
@@ -44,6 +46,13 @@ Make more conscious purchasing decisions with AI-powered grocery recommendations
 
 ```
 conscious-cart-coach/
+├── Figma_files/                # React Frontend (CURRENT VERSION)
+│   ├── src/                    # React components & logic
+│   ├── public/                 # Static assets
+│   ├── index.html              # Entry point
+│   └── package.json            # Node dependencies
+├── api/                        # FastAPI Backend
+│   └── main.py                 # REST API endpoints
 ├── data/
 │   ├── raw/                    # Original receipts CSV
 │   ├── processed/              # Normalized data
@@ -66,8 +75,7 @@ conscious-cart-coach/
 │   ├── engine/                 # DecisionEngine (pure scoring)
 │   ├── orchestrator/           # Gated flow coordinator
 │   ├── exporters/              # CSV export for debugging
-│   ├── cli/                    # CLI tools
-│   └── ui/                     # Streamlit web interface
+│   └── cli/                    # CLI tools
 └── tests/
 ```
 
@@ -77,17 +85,29 @@ conscious-cart-coach/
 # Clone and setup
 git clone <repo-url>
 cd conscious-cart-coach
+
+# Backend setup
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+
+# Frontend setup
+cd Figma_files
+npm install
+cd ..
 
 # Configure
 cp .env.example .env
 # Edit .env with your API keys
 
-# Run
+# Run (starts both backend and frontend)
 ./run.sh
 ```
+
+**Access the app**:
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:8000
+- API Docs: http://localhost:8000/docs
 
 ## Usage
 

@@ -5,6 +5,12 @@ venv/
 env/
 ENV/
 
+# Node
+node_modules/
+Figma_files/node_modules/
+*.log
+package-lock.json
+
 # Python
 __pycache__/
 *.py[cod]
