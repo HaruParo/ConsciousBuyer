@@ -1,66 +1,111 @@
 # Documentation
 
-All project documentation is organized here.
+> **Last Updated**: 2026-01-29
+> **Current Version**: v2.0 (React + FastAPI)
 
-## 📁 Documentation Structure
-
-### [architecture/](architecture/) - System Architecture ⭐ START HERE
-Comprehensive technical documentation about how the system works.
-
-- **Main Guide**: [0-step.md](architecture/0-step.md) - Complete walkthrough
-- **Technical Docs**: Architecture, UI flows, data flows
-- **LLM Integration**: Summary, deep dive, evaluation
-- **Features**: Buying philosophy, multi-store system, data sources
-
-See [architecture/README.md](architecture/README.md) for full index.
+Quick navigation for all project documentation.
 
 ---
 
-### Project Documentation
+## 📁 Active Documentation
 
-#### [CLAUDE.md](CLAUDE.md)
-Project instructions for Claude Code assistant.
+### architecture/ - System Architecture & Guides
 
-#### [IMPLEMENTATION_COMPLETE.md](IMPLEMENTATION_COMPLETE.md)
-Implementation completion notes and status.
+**Core Documentation** (12 files):
+- **[architecture-overview.md](architecture/architecture-overview.md)** - Complete system overview (START HERE)
+- **[STORE_CLASSIFICATION_SYSTEM.md](architecture/STORE_CLASSIFICATION_SYSTEM.md)** - v2.0 store classification (NEW)
+- **[MULTI_STORE_CART_SYSTEM.md](architecture/MULTI_STORE_CART_SYSTEM.md)** - Multi-store cart design
+- **[implementation-status.md](architecture/implementation-status.md)** - What's been built
+- **[DATA_SOURCE_STRATEGY.md](architecture/DATA_SOURCE_STRATEGY.md)** - Data sources and refresh schedule
 
-#### [UI_LLM_FEATURES_GUIDE.md](UI_LLM_FEATURES_GUIDE.md)
-Guide for LLM feature integration in the UI.
+**Technical Deep Dives**:
+- [technical-stack.md](architecture/technical-stack.md) - System architecture
+- [llm-integration.md](architecture/llm-integration.md) - LLM integration details
+- [ui-user-flows.md](architecture/ui-user-flows.md) - UI user flows
+- [data-pipeline.md](architecture/data-pipeline.md) - Data flow diagrams
+- [llm-monitoring-opik.md](architecture/llm-monitoring-opik.md) - LLM monitoring
 
-#### [STREAMLIT_FIX_2026-01-24.md](STREAMLIT_FIX_2026-01-24.md)
-Historical: Streamlit issues (v1.0 - deprecated).
+**Demo & Quick Start**:
+Run `python demo_api.py` then visit http://localhost:8000 for interactive demo
 
----
+### Root Docs - Quick Reference
 
-### [project-history/](project-history/) - Development History (Archived)
-Historical development prompts and responses. Archived for reference.
-
-1. App Structure
-2. Data Ingest
-3. Category Mapping
-4. Baseline Implementation
-5. Alternative Templates
-6. Fact Packs
-7. Business Rules
-8. LLM Reasoning
-9. Validation
-10. Decision UI
+**Development**:
+- **[DEVELOPMENT_PRINCIPLES.md](DEVELOPMENT_PRINCIPLES.md)** - Coding standards & principles
+- **[TESTING_CHEAT_SHEET.md](TESTING_CHEAT_SHEET.md)** - Testing quick reference
+- **[CLAUDE.md](CLAUDE.md)** - Instructions for documentation
 
 ---
 
-## 🚀 Quick Start
+## 📦 Archived Documentation
 
-To understand the project:
-1. Read the main [README.md](../README.md) in project root
-2. Review [architecture/0-step.md](architecture/0-step.md) for technical overview
-3. Check [architecture/3-usage-guide.md](architecture/3-usage-guide.md) for code examples
+**All archives moved to single location**: `/archive/`
 
-To run the project:
-```bash
-cd /path/to/conscious-cart-coach
-./run.sh
+See [../archive/README.md](../archive/README.md) for all historical documentation (32 docs):
+- v1.0 design docs (8 files)
+- v1.0 implementation guides (14 files)
+- Early project history (10 files)
+
+---
+
+## 🎯 Quick Start
+
+### New to the Project?
+1. Read [architecture/architecture-overview.md](architecture/architecture-overview.md) - Complete overview
+2. Check [../PROJECT_STRUCTURE.md](../PROJECT_STRUCTURE.md) - File navigation
+3. See [architecture/implementation-status.md](architecture/implementation-status.md) - What's built
+
+### Want to Understand Store Classification?
+1. [architecture/STORE_CLASSIFICATION_SYSTEM.md](architecture/STORE_CLASSIFICATION_SYSTEM.md) - How it works
+2. [architecture/STORE_CLASSIFICATION_VERSION_HISTORY.md](architecture/STORE_CLASSIFICATION_VERSION_HISTORY.md) - Why we built it this way
+3. Run the demo: `python demo_api.py` then visit http://localhost:8000
+
+### Looking for Specific Topics?
+
+| Topic | Document |
+|-------|----------|
+| System Architecture | [architecture/technical-stack.md](architecture/technical-stack.md) |
+| LLM Integration | [architecture/llm-integration.md](architecture/llm-integration.md) |
+| UI Flows | [architecture/ui-user-flows.md](architecture/ui-user-flows.md) |
+| Data Pipeline | [architecture/data-pipeline.md](architecture/data-pipeline.md) |
+| LLM Monitoring | [architecture/llm-monitoring-opik.md](architecture/llm-monitoring-opik.md) |
+| Data Sources | [architecture/DATA_SOURCE_STRATEGY.md](architecture/DATA_SOURCE_STRATEGY.md) |
+| Testing | [TESTING_CHEAT_SHEET.md](TESTING_CHEAT_SHEET.md) |
+| Demo | Run `python demo_api.py` then visit http://localhost:8000 |
+
+---
+
+## 📊 Documentation Summary
+
+| Category | Files | Status |
+|----------|-------|--------|
+| Active Architecture Docs | 12 | ✅ Current |
+| Root Quick References | 3 | ✅ Current |
+| Archived Historical Docs | 32 | 📦 Reference |
+
+**Total**: 47 documentation files
+
+---
+
+## 🔄 Documentation Structure
+
+```
+docs/
+├── README.md                    ✨ This file
+├── DEVELOPMENT_PRINCIPLES.md   📚 Active
+├── TESTING_CHEAT_SHEET.md     📚 Active
+├── CLAUDE.md                   📚 Active
+│
+└── architecture/               ✅ Active (12 files)
+    ├── architecture-overview.md   🎯 START HERE
+    ├── STORE_CLASSIFICATION_*.md  🆕 v2.0
+    ├── technical-stack.md         📚 Technical guides
+    ├── llm-*.md                   🤖 LLM docs
+    └── README.md                  📖 Architecture index
+
+All archives → /archive/ (see ../archive/README.md)
 ```
 
 ---
 
-Last updated: 2026-01-29
+**Navigation**: [↑ Project Root](../) | [Architecture →](architecture/) | [Archive →](archive/)

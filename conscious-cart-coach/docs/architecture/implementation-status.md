@@ -1,9 +1,131 @@
 # Implementation Changelog & Testing Guide
 
-**Last Updated**: 2026-01-24
+**Last Updated**: 2026-01-29
 **Status**: ✅ Production Ready
 
 This document consolidates all implementation details, features added, and testing procedures for Conscious Cart Coach.
+
+---
+
+## Latest Changes (2026-01-29)
+
+### 📝 File Renaming for Better Scanability - COMPLETED
+
+**What Was Done**:
+- ✅ Renamed 7 architecture files to remove confusing numbers
+- ✅ Renamed 3 root project files for clarity
+- ✅ Consolidated 3 cleanup logs into single file
+- ✅ Updated all documentation references
+- ✅ Created `RENAME_LOG.md` - Complete renaming audit
+
+**Architecture Files Renamed**:
+- `0-step.md` → `architecture-overview.md` (clearer entry point)
+- `5-technical-architecture.md` → `technical-stack.md` (shorter, clearer)
+- `6-llm-integration-deep-dive.md` → `llm-integration.md` (removed redundancy)
+- `7-ui-flows.md` → `ui-user-flows.md` (more descriptive)
+- `8-data-flows.md` → `data-pipeline.md` (better describes content)
+- `9-opik-llm-evaluation.md` → `llm-monitoring-opik.md` (groups with LLM docs)
+- `11-implementation-changelog.md` → `implementation-status.md` (clearer purpose)
+
+**Root Files Renamed**:
+- `START.md` → `QUICKSTART.md` (standard naming convention)
+- `DEV_NOTE.md` → `DEV_SETUP.md` (more descriptive)
+- `UI_NOTE.md` → `UI_DEVELOPMENT.md` (more descriptive)
+
+**Cleanup Logs Consolidated**:
+- Combined `CLEANUP_SUMMARY.md`, `ARCHITECTURE_CLEANUP_LOG.md`, `FINAL_CLEANUP_LOG.md`
+- Into single `CLEANUP_HISTORY.md` file
+
+**Benefits**:
+- Files now sort logically alphabetically
+- Names indicate content at a glance
+- LLM docs grouped together (`llm-*.md`)
+- No more mystery numbers
+- Easier scanning and retrieval
+
+**Documentation Updated**:
+- [docs/README.md](../README.md) - All links updated
+- [docs/architecture/README.md](README.md) - All references updated
+- Created [RENAME_LOG.md](../../RENAME_LOG.md) - Complete audit trail
+
+---
+
+## Latest Changes (2026-01-29)
+
+### 🎯 Store Classification System (v2.0) - COMPLETED
+
+**What Was Built**:
+- ✅ Dynamic ingredient classification system (`src/orchestrator/ingredient_classifier.py`)
+- ✅ Multi-store cart splitting logic (`src/orchestrator/store_split.py`)
+- ✅ 1-item efficiency rule implementation
+- ✅ Urgency-aware store selection (Planning vs Urgent)
+- ✅ Complete test suite (`tests/test_store_split_demo.py`) - All tests passing
+- ✅ Interactive FastAPI demo (`demo_api.py`) at localhost:8000
+
+**Key Features**:
+- Handles NEW ingredients without manual intervention (pattern-based classification)
+- Implements 1-item rule: Merges to primary store if only 1 specialty item
+- Urgency factor: Pure Indian Foods (planning) vs Kesar Grocery (urgent)
+- Design system colors integrated (orange/purple/beige)
+- Clean product data (no `store_type` pollution)
+
+**Store Selection Logic**:
+- Planning mode (1-2 weeks): Pure Indian Foods (high transparency, slow shipping)
+- Urgent mode (1-2 days): Kesar Grocery (fast delivery)
+- Primary store: FreshDirect (for fresh items and common groceries)
+
+**Files Created**:
+1. `src/orchestrator/ingredient_classifier.py` (248 lines) - Classification logic
+2. `src/orchestrator/store_split.py` (270 lines) - Store splitting with 1-item rule
+3. `tests/test_store_split_demo.py` (170 lines) - 4 comprehensive tests
+4. `demo_api.py` (220 lines) - Interactive demo with web UI
+5. `docs/architecture/STORE_CLASSIFICATION_SYSTEM.md` - Complete documentation
+6. `docs/architecture/STORE_CLASSIFICATION_VERSION_HISTORY.md` - Evolution tracking
+
+### 🧹 Project Organization - COMPLETED
+
+**Phase 1: Initial Cleanup (Morning)**:
+- ✅ Archived v1.0 Streamlit UI → `archive/v1.0-streamlit/`
+- ✅ Archived unused scripts → `archive/unused-scripts/`
+- ✅ Renamed `Figma_files/` → `frontend/` for clarity
+- ✅ Consolidated duplicate `architecture/` folders
+- ✅ Removed all `__pycache__/` and `.pyc` files
+- ✅ Created `PROJECT_STRUCTURE.md` - Navigation guide
+- ✅ Created `CLEANUP_SUMMARY.md` - Cleanup documentation
+
+**Phase 2: Architecture Folder Review (Afternoon)**:
+- ✅ Reviewed all 21 architecture docs for v1.0 (Streamlit) references
+- ✅ Archived Streamlit-specific UI guides → `archive/v1.0-implementation/`
+  - `4-ui-expectations.md` - Streamlit LLM UI guide (532 lines)
+  - `13-ideal-ui-workflow.md` - Streamlit demo workflow (598 lines)
+- ✅ Kept [7-ui-flows.md](7-ui-flows.md) (contains v2.0 React flows with clear v1.0/v2.0 labels)
+- ✅ Created `ARCHITECTURE_CLEANUP_LOG.md` - Detailed cleanup audit
+- ✅ Updated all README files with new counts
+
+**Phase 3: Final Architecture Cleanup (Evening)**:
+- ✅ Reviewed remaining 18 docs for relevance to v2.0
+- ✅ Archived 6 more outdated/aspirational docs:
+  - **Streamlit-specific** (3 files) → `archive/v1.0-implementation/`:
+    - `3-usage-guide.md` - Streamlit usage examples
+    - `10-deployment-guide.md` - Streamlit Cloud deployment
+    - `12-troubleshooting-guide.md` - Streamlit troubleshooting
+  - **Aspirational/never implemented** (3 files) → `archive/v1.0-design-docs/`:
+    - `CONSCIOUS_BUYING_PHILOSOPHY.md` - References non-existent code
+    - `CONSCIOUS_BUYING_SYSTEM.md` - Documents unbuilt scoring module
+    - `2-llm-integration-summary.md` - Outdated, superseded by deep-dive doc
+- ✅ Created `FINAL_CLEANUP_LOG.md` - Complete cleanup summary
+- ✅ Updated all documentation with final counts
+
+**Final Structure**:
+- Active documentation: `docs/architecture/` (12 files, 100% v2.0 compatible)
+- Archived v1.0 design docs: `archive/v1.0-design-docs/` (8 files)
+- Archived v1.0 implementation: `archive/v1.0-implementation/` (14 files)
+- Total archived: 32 docs
+- Clear naming: `frontend/` instead of confusing `Figma_files/`
+- Organized archive: Old versions preserved for reference
+- No duplicates: Everything consolidated
+- No broken references: All documentation links updated
+- No aspirational content: Only what's actually built
 
 ---
 

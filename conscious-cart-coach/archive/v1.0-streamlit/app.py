@@ -30,6 +30,22 @@ from src.ui.components import (
     ETHICAL_TOOLTIP,
 )
 
+# Import store classification
+import importlib.util
+def load_module(module_name, file_path):
+    spec = importlib.util.spec_from_file_location(module_name, file_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+# Load store split modules
+orchestrator_path = PROJECT_ROOT / "src" / "orchestrator"
+sys.path.insert(0, str(orchestrator_path))
+store_split_module = load_module('store_split', str(orchestrator_path / 'store_split.py'))
+split_ingredients_by_store = store_split_module.split_ingredients_by_store
+format_store_split_for_ui = store_split_module.format_store_split_for_ui
+UserPreferences = store_split_module.UserPreferences
+
 
 # =============================================================================
 # Page Config
@@ -229,32 +245,58 @@ def show_ingredient_dialog():
             unsafe_allow_html=True,
         )
 
-    # Store context
-    st.markdown(
-        '<div class="modal-store-info">Store: ShopRite (chosen for availability)</div>',
-        unsafe_allow_html=True,
-    )
+    # Store Split Display
+    ingredient_names = [ing.get("name", "") for ing in ingredients]
+    candidates = st.session_state.get("candidates", {})
 
-    # Availability summary
+    # Calculate store split
+    try:
+        user_prefs = UserPreferences(urgency="planning")  # Default to planning mode
+        store_split = split_ingredients_by_store(ingredient_names, candidates, user_prefs)
+        split_ui = format_store_split_for_ui(store_split)
+
+        # Store split tabs with design system colors
+        st.markdown(
+            f'''<div style="display: flex; gap: 12px; margin: 16px 0;">
+                <div style="flex: 1; padding: 12px; border-radius: 8px; background: #fef9f5; border: 2px solid #d4976c;">
+                    <div style="color: #d4976c; font-weight: 600; font-size: 12px; margin-bottom: 4px;">PRIMARY STORE</div>
+                    <div style="font-size: 20px; font-weight: 700; color: #333;">{split_ui['primary_store']['count']}</div>
+                    <div style="font-size: 11px; color: #666; margin-top: 4px;">{split_ui['primary_store']['store']}</div>
+                </div>
+                <div style="flex: 1; padding: 12px; border-radius: 8px; background: #fef9f5; border: 2px solid #8b7ba8;">
+                    <div style="color: #8b7ba8; font-weight: 600; font-size: 12px; margin-bottom: 4px;">SPECIALTY STORE</div>
+                    <div style="font-size: 20px; font-weight: 700; color: #333;">{split_ui['specialty_store']['count']}</div>
+                    <div style="font-size: 11px; color: #666; margin-top: 4px;">{split_ui['specialty_store']['store']}</div>
+                </div>
+                <div style="flex: 1; padding: 12px; border-radius: 8px; background: #fef9f5; border: 2px solid #e5d5b8;">
+                    <div style="color: #a89968; font-weight: 600; font-size: 12px; margin-bottom: 4px;">UNAVAILABLE</div>
+                    <div style="font-size: 20px; font-weight: 700; color: #333;">{len(split_ui['unavailable'])}</div>
+                    <div style="font-size: 11px; color: #666; margin-top: 4px;">Not in stock</div>
+                </div>
+            </div>''',
+            unsafe_allow_html=True,
+        )
+
+        # Show 1-item rule message if applied
+        if store_split.applied_1_item_rule:
+            st.markdown(
+                f'<div class="modal-store-info" style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 8px 12px; margin: 8px 0;">'
+                f'💡 1-item efficiency rule: Merged specialty items to primary store for efficiency</div>',
+                unsafe_allow_html=True,
+            )
+    except Exception as e:
+        # Fallback to simple display if store split fails
+        available_count = sum(1 for v in availability.values() if v)
+        unavailable_count = sum(1 for v in availability.values() if not v)
+        st.markdown(
+            '<div class="modal-store-info">Store: ShopRite (chosen for availability)</div>',
+            unsafe_allow_html=True,
+        )
+
+    # Availability summary (keep for backwards compatibility)
     available_count = sum(1 for v in availability.values() if v)
     unavailable_count = sum(1 for v in availability.values() if not v)
     unavailable_names = [k for k, v in availability.items() if not v]
-
-    avail_html = (
-        f'<div class="modal-availability">'
-        f'<span class="avail-ok">{available_count} available</span>'
-    )
-    if unavailable_count > 0:
-        avail_html += f' · <span class="avail-warn">{unavailable_count} unavailable</span>'
-    avail_html += '</div>'
-    st.markdown(avail_html, unsafe_allow_html=True)
-
-    if unavailable_names:
-        st.markdown(
-            f'<div class="modal-availability">'
-            f'Unavailable: {", ".join(unavailable_names)}</div>',
-            unsafe_allow_html=True,
-        )
 
     # Safety callouts
     safety_items = [(k, v) for k, v in safety.items() if v]

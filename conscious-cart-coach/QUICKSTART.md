@@ -1,11 +1,32 @@
-# Conscious Cart Coach - Full Stack Setup
+# Conscious Cart Coach - Quick Start
 
 > **⚡ CURRENT VERSION: React + FastAPI (v2.0)**
-> This is the production-ready full-stack application.
+> Two ways to test: Simple demo or full-stack app
 
-## Quick Start
+---
 
-### Option 1: Use the Run Script (Recommended)
+## 🚀 Option 1: Simple Demo (Fastest)
+
+**Test store classification system with interactive web UI:**
+
+```bash
+python demo_api.py
+```
+
+**Then open in browser:**
+- 🌐 **Demo UI**: http://localhost:8000
+- 📖 **API Docs**: http://localhost:8000/docs
+
+**Try these ingredients:**
+- `turmeric, ghee, basmati rice, chicken` (specialty items)
+- `tomatoes, lettuce, chicken` (primary store only)
+- Toggle between Planning/Urgent modes
+
+---
+
+## 🎨 Option 2: Full React UI (Production)
+
+### Using the Run Script (Recommended):
 
 ```bash
 ./run.sh
@@ -13,22 +34,27 @@
 
 This starts both backend and frontend automatically.
 
-### Option 2: Manual Start
+### Manual Start:
 
-The FastAPI backend is already running on http://localhost:8000
-
-### Start the React Frontend:
-
+**1. Start Backend:**
 ```bash
-# Install Node.js dependencies (first time only)
-cd Figma_files
+# Backend runs on port 8000
+python -m uvicorn api.main:app --reload
+```
+
+**2. Start Frontend:**
+```bash
+# Install dependencies (first time only)
+cd frontend
 npm install
 
-# Start the Vite dev server
+# Start dev server
 npm run dev
 ```
 
-The frontend will be available at http://localhost:5173
+**Then open:**
+- 🎨 **React UI**: http://localhost:5173
+- 🔌 **Backend API**: http://localhost:8000/docs
 
 ## API Endpoints
 
@@ -95,11 +121,33 @@ orch = Orchestrator(
 
 3. Restart the FastAPI server
 
-## Deployment
+---
+
+## 🧪 Testing
+
+### Quick Test (Demo API)
+```bash
+# Start demo
+python demo_api.py
+
+# Test API directly
+curl -X POST http://localhost:8000/api/split \
+  -H "Content-Type: application/json" \
+  -d '{"ingredients": ["turmeric", "tomatoes"], "urgency": "planning"}'
+```
+
+### Test Full App
+1. Start backend: `./run.sh` or manual start
+2. Open React UI: http://localhost:5173
+3. Try creating a cart with different meal plans
+
+---
+
+## 📦 Deployment
 
 ### Frontend (Vercel)
 ```bash
-cd Figma_files
+cd frontend
 vercel
 ```
 
@@ -110,12 +158,23 @@ railway init
 railway up
 ```
 
-Update VITE_API_URL in .env.local to point to your Railway URL.
+Update `VITE_API_URL` in `.env.local` to point to your Railway URL.
 
-## Current Status
+---
 
-✅ FastAPI backend running on port 8000
-✅ React app configured with API integration
-✅ Loading states and error handling
-✅ Design system implemented
-⏳ Waiting for Node.js to start frontend
+## 🔗 Quick Links
+
+| What | URL |
+|------|-----|
+| **Demo UI** | http://localhost:8000 |
+| **React UI** | http://localhost:5173 |
+| **API Docs** | http://localhost:8000/docs |
+| **Test Store Split** | http://localhost:8000 (interactive form) |
+
+---
+
+## 📚 Documentation
+
+- [Architecture Overview](docs/architecture/architecture-overview.md) - Start here
+- [Implementation Status](docs/architecture/implementation-status.md) - What's built
+- [Store Classification](docs/architecture/STORE_CLASSIFICATION_SYSTEM.md) - How it works

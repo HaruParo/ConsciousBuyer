@@ -30,21 +30,26 @@ from ..facts import get_facts, FactsGateway
 #   5. Premium organic/ethical (highest price, organic/local/fair-trade)
 #   6. (optional) Specialty/artisan option
 # No tier labels - DecisionEngine assigns tiers.
+#
+# Store types:
+#   - "primary": FreshDirect, Whole Foods, ShopRite (fresh items, common groceries)
+#   - "specialty": Pure Indian Foods, Patel Brothers (ethnic spices, specialty items)
+#   - "both": Available at both store types
 SIMULATED_INVENTORY: dict[str, list[dict]] = {
     "spinach": [
-        {"id": "sp001", "title": "Spinach Bunch Value", "brand": "ShopRite", "size": "10oz", "price": 1.99, "organic": False},
-        {"id": "sp002", "title": "Baby Spinach", "brand": "ShopRite", "size": "5oz", "price": 2.99, "organic": False},
-        {"id": "sp003", "title": "Baby Spinach", "brand": "Fresh Express", "size": "5oz", "price": 3.99, "organic": False},
-        {"id": "sp004", "title": "Organic Baby Spinach", "brand": "Fresh Express", "size": "5oz", "price": 4.99, "organic": True},
-        {"id": "sp005", "title": "Organic Baby Spinach", "brand": "Earthbound Farm", "size": "5oz", "price": 5.99, "organic": True},
-        {"id": "sp006", "title": "Local Organic Spinach", "brand": "Lancaster Farm", "size": "6oz", "price": 6.49, "organic": True},
+        {"id": "sp001", "title": "Spinach Bunch Value", "brand": "ShopRite", "size": "10oz", "price": 1.99, "organic": False, "store_type": "primary"},
+        {"id": "sp002", "title": "Baby Spinach", "brand": "ShopRite", "size": "5oz", "price": 2.99, "organic": False, "store_type": "primary"},
+        {"id": "sp003", "title": "Baby Spinach", "brand": "Fresh Express", "size": "5oz", "price": 3.99, "organic": False, "store_type": "primary"},
+        {"id": "sp004", "title": "Organic Baby Spinach", "brand": "Fresh Express", "size": "5oz", "price": 4.99, "organic": True, "store_type": "primary"},
+        {"id": "sp005", "title": "Organic Baby Spinach", "brand": "Earthbound Farm", "size": "5oz", "price": 5.99, "organic": True, "store_type": "primary"},
+        {"id": "sp006", "title": "Local Organic Spinach", "brand": "Lancaster Farm", "size": "6oz", "price": 6.49, "organic": True, "store_type": "primary"},
     ],
     "kale": [
-        {"id": "ka001", "title": "Curly Kale Bunch", "brand": "ShopRite", "size": "8oz", "price": 1.99, "organic": False},
-        {"id": "ka002", "title": "Curly Kale", "brand": "ShopRite", "size": "6oz", "price": 2.49, "organic": False},
-        {"id": "ka003", "title": "Lacinato Kale", "brand": "Fresh Express", "size": "6oz", "price": 3.49, "organic": False},
-        {"id": "ka004", "title": "Organic Curly Kale", "brand": "Earthbound Farm", "size": "6oz", "price": 4.49, "organic": True},
-        {"id": "ka005", "title": "Organic Lacinato Kale", "brand": "Lancaster Farm", "size": "6oz", "price": 4.99, "organic": True},
+        {"id": "ka001", "title": "Curly Kale Bunch", "brand": "ShopRite", "size": "8oz", "price": 1.99, "organic": False, "store_type": "primary"},
+        {"id": "ka002", "title": "Curly Kale", "brand": "ShopRite", "size": "6oz", "price": 2.49, "organic": False, "store_type": "primary"},
+        {"id": "ka003", "title": "Lacinato Kale", "brand": "Fresh Express", "size": "6oz", "price": 3.49, "organic": False, "store_type": "primary"},
+        {"id": "ka004", "title": "Organic Curly Kale", "brand": "Earthbound Farm", "size": "6oz", "price": 4.49, "organic": True, "store_type": "primary"},
+        {"id": "ka005", "title": "Organic Lacinato Kale", "brand": "Lancaster Farm", "size": "6oz", "price": 4.99, "organic": True, "store_type": "primary"},
     ],
     "lettuce": [
         {"id": "le001", "title": "Iceberg Lettuce Head", "brand": "ShopRite", "size": "24oz", "price": 1.79, "organic": False},

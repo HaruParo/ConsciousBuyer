@@ -9,7 +9,7 @@ This directory contains comprehensive documentation for the Conscious Cart Coach
 
 ## 🚀 Getting Started
 
-### [0-step.md](0-step.md) - Complete Architecture Guide ⭐ START HERE
+### [architecture-overview.md](architecture-overview.md) - Complete Architecture Guide ⭐ START HERE
 **Your comprehensive walkthrough** from high-level concepts to technical implementation.
 
 - Problem statement and solution overview
@@ -22,7 +22,7 @@ This directory contains comprehensive documentation for the Conscious Cart Coach
 
 ## 📚 Core Technical Docs
 
-### [5-technical-architecture.md](5-technical-architecture.md) - Technical Architecture
+### [technical-stack.md](technical-stack.md) - Technical Architecture
 **The restaurant kitchen analogy.** Deep dive into how the system is built.
 
 - Full-stack architecture (React + FastAPI)
@@ -32,7 +32,7 @@ This directory contains comprehensive documentation for the Conscious Cart Coach
 - Data layer design (FactsStore + FactsGateway)
 - Error handling and performance
 
-### [7-ui-flows.md](7-ui-flows.md) - UI Flows & User Journeys
+### [ui-user-flows.md](ui-user-flows.md) - UI Flows & User Journeys
 **Walk through actual user experiences** with different interaction patterns.
 
 - Deterministic flow (fast, no LLM)
@@ -42,7 +42,7 @@ This directory contains comprehensive documentation for the Conscious Cart Coach
 - Edge cases and error states
 - UI design principles
 
-### [8-data-flows.md](8-data-flows.md) - Data Flows
+### [data-pipeline.md](data-pipeline.md) - Data Pipeline
 **Following the journey of data** from user input to shopping cart.
 
 - The river metaphor (6-stage pipeline)
@@ -55,15 +55,7 @@ This directory contains comprehensive documentation for the Conscious Cart Coach
 
 ## 🤖 LLM Integration
 
-### [2-llm-integration-summary.md](2-llm-integration-summary.md) - LLM Integration Summary
-Quick reference for optional LLM features.
-
-- Implementation plan and status
-- Design principles (deterministic-first)
-- Cost analysis (~$0.045 per cart)
-- Performance implications (1-4s latency)
-
-### [6-llm-integration-deep-dive.md](6-llm-integration-deep-dive.md) - LLM Deep Dive
+### [llm-integration.md](llm-integration.md) - LLM Deep Dive
 **Why we chose a hybrid approach** and how AI is strategically integrated.
 
 - The great LLM debate (not full AI)
@@ -73,7 +65,7 @@ Quick reference for optional LLM features.
 - API implementation details
 - Future improvements
 
-### [9-opik-llm-evaluation.md](9-opik-llm-evaluation.md) - Opik LLM Evaluation
+### [llm-monitoring-opik.md](llm-monitoring-opik.md) - Opik LLM Evaluation
 **Tracing and debugging LLM calls** with Opik observability.
 
 - The black box problem
@@ -85,22 +77,6 @@ Quick reference for optional LLM features.
 ---
 
 ## 🛒 Feature Specifications
-
-### [CONSCIOUS_BUYING_PHILOSOPHY.md](CONSCIOUS_BUYING_PHILOSOPHY.md) - Buying Philosophy
-**Core principles** behind the conscious buying system.
-
-- What makes a purchase "conscious"
-- Ethical sourcing principles
-- Safety and seasonality priorities
-- Three-tier recommendation logic
-
-### [CONSCIOUS_BUYING_SYSTEM.md](CONSCIOUS_BUYING_SYSTEM.md) - Buying System
-**How the recommendation engine works** under the hood.
-
-- Scoring algorithm details
-- Safety data integration (EWG, FDA recalls)
-- Seasonal preference logic
-- Tier assignment rules
 
 ### [DATA_SOURCE_STRATEGY.md](DATA_SOURCE_STRATEGY.md) - Data Source Strategy
 **Where our data comes from** and how we maintain it.
@@ -119,27 +95,13 @@ Quick reference for optional LLM features.
 - Price comparison across stores
 - User preferences per store
 
----
+### [STORE_CLASSIFICATION_SYSTEM.md](STORE_CLASSIFICATION_SYSTEM.md) - Store Classification (v2.0)
+**Dynamic ingredient classification** for multi-store routing.
 
-## 📖 Usage & Setup
-
-### [3-usage-guide.md](3-usage-guide.md) - Usage Guide
-**Practical guide** with code examples and workflows.
-
-- Quick start and installation
-- Three usage modes (deterministic, LLM extraction, full LLM)
-- Step-by-step API workflows
-- Cost/performance comparison
-- Troubleshooting
-
-### [4-ui-expectations.md](4-ui-expectations.md) - UI Expectations
-**Visual guide** showing UI changes with LLM features.
-
-- Before/after comparisons
-- Ingredient extraction differences
-- Explanation style examples
-- Loading states and error handling
-- Frontend implementation checklist
+- Pattern-based classification (no static fields)
+- 1-item efficiency rule
+- Urgency-aware store selection
+- Clean product data approach
 
 ---
 
@@ -188,12 +150,12 @@ ConsciousBuyer/
 
 ---
 
-## 🔗 Quick Links
+## 🚀 Quick Start
 
-- **Start developing**: See [project README.md](../../README.md)
-- **Run the app**: `./run.sh` from project root (starts React + FastAPI)
-- **Access frontend**: http://localhost:5173
-- **Access API**: http://localhost:8000/docs
+- **Run demo**: `python demo_api.py` from project root
+- **Access demo**: http://localhost:8000
+- **Run tests**: `python tests/test_store_split_demo.py`
+- **Read overview**: Start with [architecture-overview.md](architecture-overview.md)
 
 ---
 
