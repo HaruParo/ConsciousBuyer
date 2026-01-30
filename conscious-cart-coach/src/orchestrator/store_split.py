@@ -276,3 +276,80 @@ def format_store_split_for_ui(store_split: StoreSplit) -> dict:
         result["specialty_store"] = {"store": None, "count": 0, "ingredients": []}
 
     return result
+
+
+# =============================================================================
+# COMPATIBILITY WRAPPER for old API
+# =============================================================================
+
+def decide_optimal_store_split(ingredients, inventory, user_location="Edison, NJ", anthropic_client=None):
+    """
+    Compatibility wrapper for old API that used LLM-based store split.
+    Now uses deterministic classification instead.
+
+    Args:
+        ingredients: List of ingredient dicts with 'name', 'quantity', etc.
+        inventory: Can be either:
+            - Dict[str, List[dict]]: candidates_by_ingredient from orchestrator
+            - List[dict]: SIMULATED_INVENTORY (legacy, not used)
+        user_location: User location
+        anthropic_client: Claude client (not used in new system)
+
+    Returns:
+        Dict with 'available_stores', 'unavailable_items', and 'summary' keys
+    """
+    # Extract ingredient names from dict format
+    ingredient_names = []
+    for ing in ingredients:
+        if isinstance(ing, dict):
+            ingredient_names.append(ing.get('name', ''))
+        else:
+            ingredient_names.append(str(ing))
+
+    # Use inventory as candidates_by_ingredient if it's a dict
+    # Otherwise create empty dict (will mark all as unavailable)
+    if isinstance(inventory, dict):
+        candidates_by_ingredient = inventory
+    else:
+        candidates_by_ingredient = {name: [] for name in ingredient_names}
+
+    # Use default user preferences
+    user_prefs = UserPreferences(
+        urgency="planning",
+        location=user_location
+    )
+
+    # Run new classification system
+    store_split = split_ingredients_by_store(
+        ingredients=ingredient_names,
+        candidates_by_ingredient=candidates_by_ingredient,
+        user_prefs=user_prefs
+    )
+
+    # Convert to API format with available_stores array
+    available_stores = []
+    for store_group in store_split.stores:
+        available_stores.append({
+            "store": store_group.store,
+            "ingredients": store_group.ingredients,
+            "count": store_group.count,
+            "is_primary": store_group.is_primary
+        })
+
+    unavailable_items = [
+        {
+            "ingredient": item,
+            "quantity": "",
+            "reason": "Not available in any store",
+            "external_sources": []
+        }
+        for item in store_split.unavailable
+    ]
+
+    return {
+        "available_stores": available_stores,
+        "unavailable_items": unavailable_items,
+        "summary": {
+            "total_stores_needed": store_split.total_stores_needed
+        }
+    }
