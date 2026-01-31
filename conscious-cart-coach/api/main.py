@@ -176,12 +176,74 @@ app.add_middleware(
 # Helper Functions
 # =============================================================================
 
+def get_product_image(ingredient_name: str, product_title: str = "") -> str:
+    """Get a product-specific image URL based on ingredient name or product title."""
+    # Normalize the search text
+    search_text = (ingredient_name + " " + product_title).lower()
+
+    # Ingredient-to-image mapping with high-quality, appealing Unsplash images
+    image_map = {
+        "spinach": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=800&auto=format&fit=crop&q=80",
+        "carrot": "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=800&auto=format&fit=crop&q=80",
+        "brussels": "https://images.unsplash.com/photo-1599818101570-447ae8e93480?w=800&auto=format&fit=crop&q=80",
+        "tofu": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80",
+        "miso": "https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=800&auto=format&fit=crop&q=80",
+        "onion": "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=800&auto=format&fit=crop&q=80",
+        "scallion": "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?w=800&auto=format&fit=crop&q=80",
+        "green onion": "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?w=800&auto=format&fit=crop&q=80",
+        "mushroom": "https://images.unsplash.com/photo-1618639149721-92c6b0c69004?w=800&auto=format&fit=crop&q=80",
+        "shiitake": "https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?w=800&auto=format&fit=crop&q=80",
+        "pasta": "https://images.unsplash.com/photo-1551462147-37e03df97613?w=800&auto=format&fit=crop&q=80",
+        "spaghetti": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&auto=format&fit=crop&q=80",
+        "tomato": "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=800&auto=format&fit=crop&q=80",
+        "cherry tomato": "https://images.unsplash.com/photo-1592841200221-a6898f307baa?w=800&auto=format&fit=crop&q=80",
+        "pepper": "https://images.unsplash.com/photo-1525607551316-4a8e16d1f9ba?w=800&auto=format&fit=crop&q=80",
+        "bell pepper": "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=800&auto=format&fit=crop&q=80",
+        "broccoli": "https://images.unsplash.com/photo-1628773822990-03d9e5692f38?w=800&auto=format&fit=crop&q=80",
+        "kale": "https://images.unsplash.com/photo-1560196836-5b3dad4c71e6?w=800&auto=format&fit=crop&q=80",
+        "lettuce": "https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?w=800&auto=format&fit=crop&q=80",
+        "chicken": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=800&auto=format&fit=crop&q=80",
+        "rice": "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=800&auto=format&fit=crop&q=80",
+        "beans": "https://images.unsplash.com/photo-1588167863150-f79e7c58a742?w=800&auto=format&fit=crop&q=80",
+        "potato": "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=800&auto=format&fit=crop&q=80",
+        "milk": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=800&auto=format&fit=crop&q=80",
+        "egg": "https://images.unsplash.com/photo-1518569656558-1f25e69d93d7?w=800&auto=format&fit=crop&q=80",
+        "bread": "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=800&auto=format&fit=crop&q=80",
+        "cheese": "https://images.unsplash.com/photo-1452195100486-9cc805987862?w=800&auto=format&fit=crop&q=80",
+        "yogurt": "https://images.unsplash.com/photo-1571212515935-f2a93d8c2a6a?w=800&auto=format&fit=crop&q=80",
+        "apple": "https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=800&auto=format&fit=crop&q=80",
+        "banana": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=800&auto=format&fit=crop&q=80",
+        "avocado": "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=800&auto=format&fit=crop&q=80",
+        "cucumber": "https://images.unsplash.com/photo-1568584711271-7a6ae4f0f001?w=800&auto=format&fit=crop&q=80",
+        "garlic": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=800&auto=format&fit=crop&q=80",
+        "ginger": "https://images.unsplash.com/photo-1577003833154-a7e6d12c0e79?w=800&auto=format&fit=crop&q=80",
+        "cilantro": "https://images.unsplash.com/photo-1556906918-cbd1c58d72ad?w=800&auto=format&fit=crop&q=80",
+        "basil": "https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=800&auto=format&fit=crop&q=80",
+        "lemon": "https://images.unsplash.com/photo-1590502593747-42a996133562?w=800&auto=format&fit=crop&q=80",
+        "lime": "https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=800&auto=format&fit=crop&q=80",
+        "coconut": "https://images.unsplash.com/photo-1581426846984-d0a1dd9d83f6?w=800&auto=format&fit=crop&q=80",
+        "flour": "https://images.unsplash.com/photo-1628518608608-71e51fb27f59?w=800&auto=format&fit=crop&q=80",
+        "sugar": "https://images.unsplash.com/photo-1587735243615-c03f25aaff15?w=800&auto=format&fit=crop&q=80",
+        "salt": "https://images.unsplash.com/photo-1596485284083-e1a6c7632f73?w=800&auto=format&fit=crop&q=80",
+        "oil": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=800&auto=format&fit=crop&q=80",
+    }
+
+    # Find matching image
+    for keyword, image_url in image_map.items():
+        if keyword in search_text:
+            return image_url
+
+    # Default placeholder for unmatched items - fresh produce
+    return "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&auto=format&fit=crop&q=80"
+
+
 def map_decision_to_cart_item(
     item: DecisionItem,
     product_lookup: dict[str, dict],
     index: int,
     servings: int = 2,
-    quantity: float = 1.0
+    quantity: float = 1.0,
+    store_prefix: str = ""
 ) -> CartItem:
     """Map Orchestrator DecisionItem to React CartItem format."""
 
@@ -249,14 +311,17 @@ def map_decision_to_cart_item(
     unit_price = product.get("unit_price", 0)
     unit_price_unit = product.get("unit_price_unit", "oz")
 
-    # Use placeholder image
-    image = "https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=300&fit=crop"
+    # Get product-specific image based on ingredient name
+    image = get_product_image(item.ingredient_name, title)
 
     # Build catalogue name - product titles already include brand, so just use title
     catalogue_name = title[:60] if title else item.ingredient_name
 
+    # Generate unique ID with store prefix to avoid duplicates across stores
+    unique_id = f"{store_prefix}-item-{index}" if store_prefix else f"item-{index}"
+
     return CartItem(
-        id=f"item-{index}",
+        id=unique_id,
         name=title or item.ingredient_name,
         brand=brand,
         catalogueName=catalogue_name,
@@ -353,12 +418,13 @@ def extract_ingredients(request: CreateCartRequest):
         # Get Anthropic client if available
         anthropic_client = orch.anthropic_client if hasattr(orch, 'anthropic_client') else None
 
-        # Decide optimal store split using classification system
+        # Decide optimal store split using classification system with urgency inference
         store_split_result = decide_optimal_store_split(
             ingredients=ingredients,
             inventory=orch.state.candidates_by_ingredient,
             user_location=request.user_location,
-            anthropic_client=anthropic_client
+            anthropic_client=anthropic_client,
+            meal_plan_text=request.meal_plan
         )
 
         # Format response
@@ -452,6 +518,34 @@ def create_multi_cart(request: CreateCartRequest):
         available_stores = store_split.get("available_stores", [])
         unavailable_items_data = store_split.get("unavailable_items", [])
 
+        # Track which ingredients have been assigned to stores
+        assigned_ingredient_names = set()
+        for store_info in available_stores:
+            assigned_ingredient_names.update(store_info.get("ingredients", []))
+
+        # Find ingredients added by user that aren't in the original store split
+        new_ingredients = [
+            ing for ing in request.confirmed_ingredients
+            if ing.get("name", "") not in assigned_ingredient_names
+        ]
+
+        # If there are new ingredients, add them to the primary store
+        if new_ingredients:
+            primary_store_info = None
+            for store_info in available_stores:
+                if store_info.get("is_primary", False):
+                    primary_store_info = store_info
+                    break
+
+            # If no primary store found, use first store
+            if not primary_store_info and available_stores:
+                primary_store_info = available_stores[0]
+
+            # Add new ingredients to the primary store's ingredient list
+            if primary_store_info:
+                for new_ing in new_ingredients:
+                    primary_store_info["ingredients"].append(new_ing.get("name", ""))
+
         # Build carts for each store
         carts = []
 
@@ -459,6 +553,7 @@ def create_multi_cart(request: CreateCartRequest):
             store_name = store_info.get("store", "")
             store_ingredients_names = store_info.get("ingredients", [])
             is_primary = store_info.get("is_primary", False)
+            delivery_estimate = store_info.get("delivery_estimate", "1-2 days")
 
             # Filter ingredients for this store
             store_ingredients = [
@@ -491,14 +586,17 @@ def create_multi_cart(request: CreateCartRequest):
                 for ing in store_ingredients
             }
 
-            # Map to CartItem format
+            # Map to CartItem format with unique IDs per store
             cart_items = []
             total = 0.0
+
+            # Create store prefix for unique IDs (e.g., "FreshDirect" -> "fd")
+            store_prefix = ''.join([c for c in store_name.lower() if c.isalnum()])[:8]
 
             for idx, decision_item in enumerate(bundle.items):
                 # Get quantity for this ingredient
                 qty, unit = ingredient_quantities.get(decision_item.ingredient_name, (1.0, ""))
-                cart_item = map_decision_to_cart_item(decision_item, lookup, idx, actual_servings, qty)
+                cart_item = map_decision_to_cart_item(decision_item, lookup, idx, actual_servings, qty, store_prefix)
                 # Override store name to match the current store
                 cart_item.store = store_name
                 cart_items.append(cart_item)
@@ -509,7 +607,8 @@ def create_multi_cart(request: CreateCartRequest):
                 is_primary=is_primary,
                 items=cart_items,
                 total=round(total, 2),
-                item_count=len(cart_items)
+                item_count=len(cart_items),
+                delivery_estimate=delivery_estimate
             ))
 
         if not carts:

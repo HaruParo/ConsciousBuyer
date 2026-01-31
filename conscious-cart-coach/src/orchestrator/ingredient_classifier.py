@@ -18,8 +18,9 @@ import re
 FRESH_CATEGORIES = {
     # Produce
     "spinach", "kale", "lettuce", "romaine", "arugula", "chard",
-    "tomato", "tomatoes", "cherry_tomatoes", "grape_tomatoes",
-    "onion", "onions", "garlic", "ginger", "shallot",
+    "tomato", "tomatoes", "cherry_tomatoes", "grape_tomatoes", "plum_tomatoes", "roma_tomatoes", "roma_tomato",
+    "onion", "onions", "red_onion", "red_onions", "yellow_onion", "yellow_onions", "white_onion",
+    "garlic", "ginger", "shallot",
     "bell_pepper", "bell_peppers", "hot_peppers", "jalapeno", "serrano",
     "cucumber", "cucumbers", "carrot", "carrots", "celery",
     "broccoli", "cauliflower", "cabbage", "brussels_sprouts",
@@ -29,8 +30,8 @@ FRESH_CATEGORIES = {
     "apple", "apples", "banana", "bananas", "orange", "oranges",
     "mushroom", "mushrooms", "zucchini", "squash", "eggplant",
     # Herbs (fresh)
-    "cilantro", "parsley", "basil", "mint", "thyme", "rosemary", "oregano",
-    "dill", "chives", "sage", "tarragon",
+    "cilantro", "coriander_leaves", "parsley", "basil", "mint", "mint_leaves",
+    "thyme", "rosemary", "oregano", "dill", "chives", "sage", "tarragon",
     # Proteins (fresh)
     "chicken", "beef", "pork", "lamb", "turkey", "duck",
     "ground_beef", "ground_turkey", "ground_chicken",
@@ -42,22 +43,39 @@ FRESH_CATEGORIES = {
     "eggs", "egg",
 }
 
-# Ethnic specialty ingredients (better options at specialty stores)
+# Alternative ingredient names (for handling different names for the same ingredient)
+INGREDIENT_ALIASES = {
+    "coriander_leaves": "cilantro",
+    "coriander leaves": "cilantro",
+    "chinese_parsley": "cilantro",
+    "mint_leaves": "mint",
+    "mint leaves": "mint",
+    "fresh_mint": "mint",
+    "fresh_cilantro": "cilantro",
+    "fresh_coriander": "cilantro",
+    "fresh_basil": "basil",
+    "fresh_parsley": "parsley",
+}
+
+# Ethnic specialty ingredients (better quality/matching at specialty stores)
+# Strategy: ALL ethnic ingredients go to specialty stores for better quality
 ETHNIC_SPECIALTY = {
-    # Indian spices
+    # Indian spices (ALL spices, including common ones)
     "turmeric", "cumin", "coriander", "cardamom", "cinnamon",
     "clove", "cloves", "bay_leaf", "bay_leaves", "curry_leaves",
     "garam_masala", "curry_powder", "chaat_masala", "tandoori_masala",
     "mustard_seed", "mustard_seeds", "fenugreek", "kasuri_methi",
     "asafoetida", "hing", "fennel_seed", "fennel_seeds",
     "black_pepper", "white_pepper", "red_chili", "kashmiri_chili",
-    # Indian specialty
-    "ghee", "paneer", "dal", "lentils", "urad_dal", "chana_dal",
-    "basmati_rice", "jasmine_rice", "sona_masoori",
+    "paprika", "cayenne", "red_pepper_flakes", "chili_powder",
+    # Indian specialty & staples
+    "ghee", "paneer", "dal", "lentils", "urad_dal", "chana_dal", "toor_dal",
+    "basmati_rice", "jasmine_rice", "sona_masoori", "rice",  # ALL rice types
     "tamarind", "jaggery", "coconut_milk", "coconut_cream",
+    "saffron", "rose_water", "kewra_water",
     # Middle Eastern
     "sumac", "za'atar", "tahini", "pomegranate_molasses", "harissa",
-    "preserved_lemon", "rose_water", "orange_blossom_water",
+    "preserved_lemon", "orange_blossom_water",
     # Asian
     "miso", "miso_paste", "kimchi", "gochugaru", "gochujang",
     "sesame_oil", "rice_vinegar", "black_vinegar", "shaoxing_wine",
@@ -70,20 +88,37 @@ ETHNIC_SPECIALTY = {
     "epazote", "mexican_oregano", "annatto", "achiote",
 }
 
-# Common shelf-stable (available at both)
+# Common shelf-stable (truly basic items available everywhere)
+# Note: Rice, lentils, and most spices moved to specialty for better quality
 COMMON_SHELF_STABLE = {
     "olive_oil", "vegetable_oil", "canola_oil", "avocado_oil",
     "salt", "sea_salt", "kosher_salt", "table_salt",
     "sugar", "brown_sugar", "powdered_sugar", "honey", "maple_syrup",
     "flour", "all_purpose_flour", "bread_flour", "whole_wheat_flour",
     "pasta", "spaghetti", "penne", "linguine", "noodles",
-    "rice", "white_rice", "brown_rice", "wild_rice",
     "quinoa", "couscous", "bulgur", "farro",
-    "beans", "black_beans", "kidney_beans", "chickpeas", "lentils",
+    "beans", "black_beans", "kidney_beans", "chickpeas",  # Removed lentils - goes to specialty
     "canned_tomatoes", "crushed_tomatoes", "diced_tomatoes", "tomato_paste",
     "broth", "stock", "chicken_broth", "vegetable_broth",
     "vinegar", "balsamic_vinegar", "red_wine_vinegar", "white_vinegar",
 }
+
+
+def normalize_ingredient_name(ingredient_name: str) -> str:
+    """
+    Normalize ingredient name by handling aliases and standardizing format.
+
+    Examples:
+        normalize_ingredient_name("coriander leaves") → "cilantro"
+        normalize_ingredient_name("mint leaves") → "mint"
+    """
+    ingredient_lower = ingredient_name.lower().strip().replace(" ", "_")
+
+    # Check for aliases
+    if ingredient_lower in INGREDIENT_ALIASES:
+        return INGREDIENT_ALIASES[ingredient_lower]
+
+    return ingredient_lower
 
 
 def classify_ingredient_store_type(
@@ -104,11 +139,12 @@ def classify_ingredient_store_type(
 
     Examples:
         classify_ingredient_store_type("spinach") → "primary" (fresh)
+        classify_ingredient_store_type("coriander leaves") → "primary" (fresh, alias for cilantro)
         classify_ingredient_store_type("turmeric") → "specialty" (ethnic spice)
         classify_ingredient_store_type("olive_oil") → "both" (common)
         classify_ingredient_store_type("saffron") → "specialty" (exotic spice)
     """
-    ingredient_lower = ingredient_name.lower().strip().replace(" ", "_")
+    ingredient_lower = normalize_ingredient_name(ingredient_name)
 
     # Rule 1: Fresh/perishable items MUST go to primary stores
     # (Specialty stores can't ship fresh produce)
@@ -145,19 +181,23 @@ def is_fresh_ingredient(ingredient: str) -> bool:
     Uses:
     - Known fresh categories (produce, meat, dairy)
     - Keyword patterns ("fresh", "bunch", "leaves")
+    - Normalization to handle aliases
     """
+    # Normalize the ingredient name first
+    normalized = normalize_ingredient_name(ingredient)
+
     # Direct category match
-    if ingredient in FRESH_CATEGORIES:
+    if normalized in FRESH_CATEGORIES:
         return True
 
     # Partial match (e.g., "baby_spinach" matches "spinach")
     for fresh_item in FRESH_CATEGORIES:
-        if fresh_item in ingredient or ingredient in fresh_item:
+        if fresh_item in normalized or normalized in fresh_item:
             return True
 
     # Keyword patterns indicating fresh items
     fresh_keywords = ["fresh", "bunch", "leaf", "leaves", "head", "stalk"]
-    if any(kw in ingredient for kw in fresh_keywords):
+    if any(kw in normalized for kw in fresh_keywords):
         return True
 
     return False
