@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { CartItem as CartItemType } from '@/app/types';
 import { CartItemCard } from '@/app/components/CartItemCard';
+import { UserPreferencesLinks } from '@/app/components/UserPreferencesLinks';
 
 interface ShoppingCartProps {
   items: CartItemType[];
@@ -10,9 +11,22 @@ interface ShoppingCartProps {
   onFindSwap: (id: string) => void;
   metadata?: { store: string; location: string; servings: number } | null;
   onChangeLocation?: () => void;
+  onLocationChange?: (location: string) => void;
+  onServingsChange?: (servings: number) => void;
+  onPreferencesChange?: (preferences: any) => void;
 }
 
-export function ShoppingCart({ items, onUpdateQuantity, onRemoveItem, onFindSwap, metadata, onChangeLocation }: ShoppingCartProps) {
+export function ShoppingCart({
+  items,
+  onUpdateQuantity,
+  onRemoveItem,
+  onFindSwap,
+  metadata,
+  onChangeLocation,
+  onLocationChange,
+  onServingsChange,
+  onPreferencesChange
+}: ShoppingCartProps) {
   const totalPrice = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const store = metadata?.store || items[0]?.store || 'Store Name';
   const location = metadata?.location || items[0]?.location || 'City, State';
@@ -28,19 +42,13 @@ export function ShoppingCart({ items, onUpdateQuantity, onRemoveItem, onFindSwap
             <h2 className="text-base sm:text-lg md:text-xl font-semibold truncate mb-1">
               {store} ({items.length})
             </h2>
-            <div className="flex items-center gap-2">
-              <p className="text-sm sm:text-base opacity-90">
-                Family size: {servings} <span className="opacity-40">|</span> Delivery Location: {location}
-              </p>
-              {onChangeLocation && (
-                <button
-                  onClick={onChangeLocation}
-                  className="text-xs px-2 py-0.5 bg-white/20 hover:bg-white/30 rounded transition-colors flex-shrink-0"
-                >
-                  Change
-                </button>
-              )}
-            </div>
+            <UserPreferencesLinks
+              location={location}
+              servings={servings}
+              onLocationChange={onLocationChange}
+              onServingsChange={onServingsChange}
+              onPreferencesChange={onPreferencesChange}
+            />
           </div>
           <div className="text-right flex-shrink-0">
             <p className="text-xs opacity-75 mb-0.5">est. total</p>

@@ -4,6 +4,7 @@ import { CartItemCard } from '@/app/components/CartItemCard';
 import { designTokens } from '@/app/design-tokens';
 import { Button } from '@/app/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { UserPreferencesLinks } from '@/app/components/UserPreferencesLinks';
 
 interface MultiStoreCartProps {
   carts: CartData[];
@@ -14,6 +15,9 @@ interface MultiStoreCartProps {
   location: string;
   servings: number;
   onChangeLocation?: () => void;
+  onLocationChange?: (location: string) => void;
+  onServingsChange?: (servings: number) => void;
+  onPreferencesChange?: (preferences: any) => void;
 }
 
 export function MultiStoreCart({
@@ -24,7 +28,10 @@ export function MultiStoreCart({
   onAgentCheckout,
   location,
   servings,
-  onChangeLocation
+  onChangeLocation,
+  onLocationChange,
+  onServingsChange,
+  onPreferencesChange
 }: MultiStoreCartProps) {
   const [activeTab, setActiveTab] = useState<string>('all');
 
@@ -55,19 +62,13 @@ export function MultiStoreCart({
             <h2 className="text-base sm:text-lg md:text-xl font-semibold truncate mb-1">
               {totalStores > 1 ? `Multi-store cart: ${totalStores} stores` : '1 store selected'}
             </h2>
-            <div className="flex items-center gap-2">
-              <p className="text-sm sm:text-base opacity-90">
-                Family size: {servings} <span className="opacity-40">|</span> Delivery Location: {location}
-              </p>
-              {onChangeLocation && (
-                <button
-                  onClick={onChangeLocation}
-                  className="text-xs px-2 py-0.5 bg-white/20 hover:bg-white/30 rounded transition-colors flex-shrink-0"
-                >
-                  Change
-                </button>
-              )}
-            </div>
+            <UserPreferencesLinks
+              location={location}
+              servings={servings}
+              onLocationChange={onLocationChange}
+              onServingsChange={onServingsChange}
+              onPreferencesChange={onPreferencesChange}
+            />
           </div>
           <div className="text-right flex-shrink-0">
             <p className="text-xs opacity-75 mb-0.5">est. total</p>
