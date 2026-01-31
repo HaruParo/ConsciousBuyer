@@ -150,6 +150,11 @@ SIMULATED_INVENTORY: dict[str, list[dict]] = {
         {"id": "gh004", "title": "Grass-Fed Ghee", "brand": "4th & Heart", "size": "9oz", "price": 10.99, "organic": True},
         {"id": "gh005", "title": "Organic Grass-Fed Ghee", "brand": "Ancient Organics", "size": "8oz", "price": 14.99, "organic": True},
     ],
+    "biryani_spice_kit": [
+        {"id": "bsk001", "title": "Biryani Spice Kit", "brand": "Deep", "size": "3.5oz", "price": 8.99, "organic": False},
+        {"id": "bsk002", "title": "Organic Biryani Spice Kit", "brand": "Pure Indian Foods", "size": "4oz", "price": 16.99, "organic": True},
+        {"id": "bsk003", "title": "Premium Biryani Masala Kit", "brand": "Laxmi", "size": "4oz", "price": 12.99, "organic": False},
+    ],
     "cumin": [
         {"id": "cu001", "title": "Ground Cumin", "brand": "ShopRite", "size": "2oz", "price": 1.99, "organic": False},
         {"id": "cu002", "title": "Ground Cumin", "brand": "McCormick", "size": "1.5oz", "price": 3.99, "organic": False},
@@ -412,11 +417,13 @@ INGREDIENT_ALIASES: dict[str, str] = {
     "san marzano": "canned_tomatoes", "tomato sauce": "canned_tomatoes",
     "coconut milk": "coconut_milk", "coconut cream": "coconut_milk",
     "firm tofu": "tofu", "extra firm tofu": "tofu", "silken tofu": "tofu",
+    "biryani spice kit": "biryani_spice_kit", "biryani masala kit": "biryani_spice_kit",
+    "biryani spice mix": "biryani_spice_kit", "biryani kit": "biryani_spice_kit",
     "biryani masala": "garam_masala", "garam masala": "garam_masala",
     "cardamom pods": "cardamom", "green cardamom": "cardamom",
     "cinnamon stick": "cinnamon", "cinnamon sticks": "cinnamon", "ground cinnamon": "cinnamon",
     "whole cloves": "cloves", "ground cloves": "cloves", "clove": "cloves",
-    "bay leaf": "bay_leaves",
+    "bay leaf": "bay_leaves", "bay leaves": "bay_leaves",
     "soy sauce": "soy_sauce", "tamari": "soy_sauce", "shoyu": "soy_sauce",
 }
 

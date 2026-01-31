@@ -80,15 +80,20 @@ def _estimate_order_value(
     """
     Estimate order value for a list of ingredients.
 
-    Uses actual product prices when available, otherwise uses average estimate.
+    Uses average product prices (not cheapest) since specialty store customers
+    typically choose organic/premium options rather than cheapest options.
     """
     total = 0.0
     for ing_name in ingredients:
         candidates = candidates_by_ingredient.get(ing_name, [])
         if candidates:
-            # Use the cheapest available product as estimate
+            # Use AVERAGE price (not cheapest) for better specialty store estimation
+            # Specialty customers typically buy organic/premium, not cheapest options
             prices = [c.get("price", AVG_ITEM_PRICE) for c in candidates if c.get("in_stock", True)]
-            total += min(prices) if prices else AVG_ITEM_PRICE
+            if prices:
+                total += sum(prices) / len(prices)  # Average price
+            else:
+                total += AVG_ITEM_PRICE
         else:
             total += AVG_ITEM_PRICE
     return total

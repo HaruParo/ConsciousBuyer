@@ -64,6 +64,7 @@ ETHNIC_SPECIALTY = {
     "turmeric", "cumin", "coriander", "cardamom", "cinnamon",
     "clove", "cloves", "bay_leaf", "bay_leaves", "curry_leaves",
     "garam_masala", "curry_powder", "chaat_masala", "tandoori_masala",
+    "biryani_spice_kit", "biryani_kit", "biryani_masala_kit",
     "mustard_seed", "mustard_seeds", "fenugreek", "kasuri_methi",
     "asafoetida", "hing", "fennel_seed", "fennel_seeds",
     "black_pepper", "white_pepper", "red_chili", "kashmiri_chili",
@@ -196,9 +197,12 @@ def is_fresh_ingredient(ingredient: str) -> bool:
             return True
 
     # Keyword patterns indicating fresh items
-    fresh_keywords = ["fresh", "bunch", "leaf", "leaves", "head", "stalk"]
-    if any(kw in normalized for kw in fresh_keywords):
-        return True
+    # BUT: exclude dried spices that happen to have "leaves" in name (bay_leaves, curry_leaves)
+    dried_leaf_spices = ["bay_leaf", "bay_leaves", "curry_leaves", "kaffir_lime_leaves"]
+    if normalized not in dried_leaf_spices:
+        fresh_keywords = ["fresh", "bunch", "leaf", "leaves", "head", "stalk"]
+        if any(kw in normalized for kw in fresh_keywords):
+            return True
 
     return False
 
