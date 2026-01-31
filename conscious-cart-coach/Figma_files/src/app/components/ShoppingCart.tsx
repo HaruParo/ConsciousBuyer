@@ -25,10 +25,13 @@ export function ShoppingCart({ items, onUpdateQuantity, onRemoveItem, onFindSwap
       <div className="bg-[#6b5f3a] text-white px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-baseline justify-between gap-3 mb-1">
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2 mb-1">
-              <h2 className="text-base sm:text-lg md:text-xl font-semibold truncate">
-                {store}
-              </h2>
+            <h2 className="text-base sm:text-lg md:text-xl font-semibold truncate mb-1">
+              {store} ({items.length})
+            </h2>
+            <div className="flex items-center gap-2">
+              <p className="text-sm sm:text-base opacity-90">
+                Family size: {servings} <span className="opacity-40">|</span> Delivery Location: {location}
+              </p>
               {onChangeLocation && (
                 <button
                   onClick={onChangeLocation}
@@ -38,9 +41,6 @@ export function ShoppingCart({ items, onUpdateQuantity, onRemoveItem, onFindSwap
                 </button>
               )}
             </div>
-            <p className="text-sm sm:text-base opacity-90">
-              {location} <span className="opacity-40">|</span> cart Items ({items.length}) <span className="opacity-40">|</span> serving size ({servings})
-            </p>
           </div>
           <div className="text-right flex-shrink-0">
             <p className="text-xs opacity-75 mb-0.5">est. total</p>
@@ -54,7 +54,7 @@ export function ShoppingCart({ items, onUpdateQuantity, onRemoveItem, onFindSwap
       {/* Cart Items or Empty State */}
       <div className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6">
         {isEmpty ? (
-          <div className="flex items-center justify-center h-full">
+          <div className="flex flex-col items-center justify-center h-full px-4">
             <p className="text-[#9b8f7a] text-center text-sm sm:text-base">
               Ask cart coach to fill up your cart!
             </p>
@@ -68,6 +68,7 @@ export function ShoppingCart({ items, onUpdateQuantity, onRemoveItem, onFindSwap
                 onUpdateQuantity={(quantity) => onUpdateQuantity(item.id, quantity)}
                 onRemove={() => onRemoveItem(item.id)}
                 onFindSwap={() => onFindSwap(item.id)}
+                showStoreChip={true}
               />
             ))}
           </div>

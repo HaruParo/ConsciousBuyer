@@ -1,4 +1,4 @@
-import { Minus, Plus, ChevronDown } from 'lucide-react';
+import { Minus, Plus, ChevronDown, ImageOff } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { CartItem } from '@/app/types';
 import { Badge } from '@/app/components/ui/badge';
@@ -8,9 +8,10 @@ interface CartItemCardProps {
   onUpdateQuantity: (quantity: number) => void;
   onRemove: () => void;
   onFindSwap: () => void;
+  showStoreChip?: boolean;
 }
 
-export function CartItemCard({ item, onUpdateQuantity, onRemove, onFindSwap }: CartItemCardProps) {
+export function CartItemCard({ item, onUpdateQuantity, onRemove, onFindSwap, showStoreChip = false }: CartItemCardProps) {
   const handleDecrement = () => {
     if (item.quantity > 1) {
       onUpdateQuantity(item.quantity - 1);
@@ -24,17 +25,40 @@ export function CartItemCard({ item, onUpdateQuantity, onRemove, onFindSwap }: C
   return (
     <div className="border border-[#e5d5b8] rounded-lg overflow-hidden bg-white">
       <div className="flex gap-2 sm:gap-3 md:gap-4 p-2 sm:p-3 md:p-4">
-        {/* Product Image */}
-        <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded overflow-hidden bg-gray-100">
-          <img
-            src={item.image}
-            alt={item.name}
-            className="w-full h-full object-cover"
-          />
+        {/* Product Image Unavailable */}
+        <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded bg-gray-100 flex flex-col items-center justify-center">
+          <ImageOff className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 mb-1" />
+          <span className="text-[8px] sm:text-[10px] text-gray-500 text-center px-1">Image Unavailable</span>
         </div>
 
         {/* Product Info */}
         <div className="flex-1 min-w-0">
+          {/* Store chip and availability */}
+          <div className="mb-1 sm:mb-2 flex flex-wrap gap-1 sm:gap-1.5">
+            {showStoreChip && (
+              <Badge
+                variant="secondary"
+                className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded font-semibold ${
+                  item.available === false
+                    ? 'bg-[#c5baa8] text-[#6b5f3a]'
+                    : item.store.toLowerCase().includes('freshdirect')
+                      ? 'bg-[#d4976c] text-white'
+                      : 'bg-[#8b7ba8] text-white'
+                }`}
+              >
+                {item.store}
+              </Badge>
+            )}
+            {item.available === false && (
+              <Badge
+                variant="secondary"
+                className="bg-[#c5baa8] text-[#6b5f3a] text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded font-semibold"
+              >
+                Unavailable
+              </Badge>
+            )}
+          </div>
+
           <div className="flex items-start justify-between gap-1 sm:gap-2 mb-1 sm:mb-2">
             <div className="flex-1 min-w-0">
               <h3 className="text-sm sm:text-base font-semibold text-[#4a3f2a] truncate">
@@ -91,6 +115,16 @@ export function CartItemCard({ item, onUpdateQuantity, onRemove, onFindSwap }: C
               ))}
             </div>
           </div>
+
+          {/* Unavailable warning */}
+          {item.available === false && (
+            <div className="mb-2 sm:mb-3 p-2 sm:p-3 bg-[#fff3cd] rounded text-xs sm:text-sm text-[#856404]">
+              This item is currently unavailable.{' '}
+              <a href="#" className="text-[#6b5f3a] underline">
+                Try another store
+              </a>
+            </div>
+          )}
 
           {/* Trade-offs tags */}
           {item.tags.tradeOffs.length > 0 && (

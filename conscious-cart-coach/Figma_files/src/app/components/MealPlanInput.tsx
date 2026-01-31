@@ -55,7 +55,7 @@ export function MealPlanInput({
 
       <div className="mb-3">
         <span className="text-xs sm:text-sm text-[#6b5f4a]">e.g. </span>
-        <span className="text-xs text-[#6b5f4a]">
+        <span className="text-xs sm:text-sm text-[#6b5f4a]">
           "chicken biryani for 4", "stir fry with tofu", "chicken tikka for 2"
         </span>
       </div>

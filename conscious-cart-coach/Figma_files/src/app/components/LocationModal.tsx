@@ -1,6 +1,6 @@
-import { MapPin, Store, Loader2 } from 'lucide-react';
+import { MapPin, Store, Loader2, Check, ArrowRight } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface LocationModalProps {
   onLocationSet: (city: string, state: string) => void;
@@ -27,12 +27,63 @@ const zipcodeDatabase: Record<string, { city: string; state: string }> = {
   '98102': { city: 'Seattle', state: 'WA' },
 };
 
+// Store type colors
+const STORE_TYPE_COLORS = {
+  primary: '#6ba567',    // Green for primary stores
+  specialty: '#8b7ba8'   // Purple for specialty stores
+};
+
+// Available stores with types
+const AVAILABLE_STORES = [
+  {
+    id: 'freshdirect',
+    name: 'FreshDirect',
+    type: 'primary' as const,
+    description: 'Wide selection, competitive prices',
+    color: STORE_TYPE_COLORS.primary
+  },
+  {
+    id: 'whole_foods',
+    name: 'Whole Foods',
+    type: 'primary' as const,
+    description: 'Organic & natural products',
+    color: STORE_TYPE_COLORS.primary
+  },
+  {
+    id: 'indian_grocer',
+    name: 'Pure Indian Foods',
+    type: 'specialty' as const,
+    description: 'Authentic Indian ingredients',
+    color: STORE_TYPE_COLORS.specialty
+  },
+  {
+    id: 'asian_market',
+    name: 'H Mart',
+    type: 'specialty' as const,
+    description: 'Asian grocery specialists',
+    color: STORE_TYPE_COLORS.specialty
+  }
+];
+
 export function LocationModal({ onLocationSet }: LocationModalProps) {
   const [step, setStep] = useState<'zipcode' | 'loading' | 'store'>('zipcode');
   const [zipcode, setZipcode] = useState('');
   const [location, setLocation] = useState<{ city: string; state: string } | null>(null);
+  const [selectedStores, setSelectedStores] = useState<string[]>([]);
   const [showSuggestionInput, setShowSuggestionInput] = useState(false);
   const [storeSuggestion, setStoreSuggestion] = useState('');
+
+  // Load saved favorite stores from localStorage
+  useEffect(() => {
+    const savedStores = localStorage.getItem('favoriteStores');
+    if (savedStores) {
+      try {
+        setSelectedStores(JSON.parse(savedStores));
+      } catch (e) {
+        console.error('Failed to load favorite stores:', e);
+      }
+    }
+  }, []);
 
   const handleZipcodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,8 +103,22 @@ export function LocationModal({ onLocationSet }: LocationModalProps) {
     setStep('store');
   };
 
+  const toggleStore = (storeId: string) => {
+    setSelectedStores(prev => {
+      const newSelection = prev.includes(storeId)
+        ? prev.filter(id => id !== storeId)
+        : [...prev, storeId];
+
+      // Save to localStorage
+      localStorage.setItem('favoriteStores', JSON.stringify(newSelection));
+      return newSelection;
+    });
+  };
+
   const handleStoreConfirm = () => {
     if (location) {
+      // Save selected stores to localStorage
+      localStorage.setItem('favoriteStores', JSON.stringify(selectedStores));
       onLocationSet(location.city, location.state);
     }
   };
@@ -146,36 +211,63 @@ export function LocationModal({ onLocationSet }: LocationModalProps) {
                 <Store className="w-5 h-5 text-[#6b5f4a]" />
               </div>
               <h2 className="text-xl sm:text-2xl font-semibold text-[#4a3f2a]">
-                Store Available
+                Stores Available
               </h2>
             </div>
 
             <p className="text-sm sm:text-base text-[#6b5f4a] mb-4">
-              Great news! We found a store near {location.city}, {location.state}
+              Select your favorite stores near {location.city}, {location.state}. Cart Coach will find the best deals across all selected stores.
             </p>
 
-            {/* Store Card */}
-            <div className="border-2 border-[#d9b899] rounded-lg p-4 mb-4 bg-[#fef9f5]">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-[#d9b899] rounded-lg flex items-center justify-center">
-                  <Store className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-[#4a3f2a]">
-                    FreshDirect
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#6b5f4a]">
-                    Delivers to {location.city}, {location.state}
-                  </p>
-                </div>
-              </div>
+            {/* Store Cards */}
+            <div className="space-y-3 mb-4 max-h-[300px] overflow-y-auto">
+              {AVAILABLE_STORES.map((store) => (
+                <button
+                  key={store.id}
+                  onClick={() => toggleStore(store.id)}
+                  className="w-full flex items-start gap-3 p-3 border-2 rounded-lg transition-all hover:border-[#d4976c]"
+                  style={{
+                    borderColor: selectedStores.includes(store.id) ? store.color : '#e5d5b8',
+                    backgroundColor: selectedStores.includes(store.id) ? `${store.color}10` : 'white'
+                  }}
+                >
+                  <div
+                    className="w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors"
+                    style={{
+                      borderColor: selectedStores.includes(store.id) ? store.color : '#d5c5a8',
+                      backgroundColor: selectedStores.includes(store.id) ? store.color : 'white'
+                    }}
+                  >
+                    {selectedStores.includes(store.id) && (
+                      <Check className="w-3 h-3 text-white" />
+                    )}
+                  </div>
+                  <div className="flex-1 text-left">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <h3 className="font-semibold text-[#4a3f2a] text-sm">
+                        {store.name}
+                      </h3>
+                      <span
+                        className="text-[10px] px-1.5 py-0.5 rounded-full text-white font-medium"
+                        style={{ backgroundColor: store.color }}
+                      >
+                        {store.type}
+                      </span>
+                    </div>
+                    <p className="text-xs text-[#6b5f4a]">
+                      {store.description}
+                    </p>
+                  </div>
+                </button>
+              ))}
             </div>
 
             <Button
               onClick={handleStoreConfirm}
-              className="w-full bg-[#DD9057] hover:bg-[#C87040] text-white py-3 sm:py-4 rounded text-sm sm:text-base mb-3"
+              className="w-full bg-[#6b5f3a] hover:bg-[#5b4f2a] text-white py-3 sm:py-4 rounded text-sm sm:text-base mb-3"
             >
-              Continue with FreshDirect
+              Continue
+              <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
 
             {/* Store Suggestion */}

@@ -391,8 +391,8 @@ def extract_ingredients(request: CreateCartRequest):
         # Extract servings
         actual_servings = extract_servings_from_text(request.meal_plan, default=request.servings)
 
-        # Initialize orchestrator
-        orch = Orchestrator(use_llm_extraction=False, use_llm_explanations=False)
+        # Initialize orchestrator with LLM extraction for comprehensive ingredient parsing
+        orch = Orchestrator(use_llm_extraction=True, use_llm_explanations=False)
 
         # Extract ingredients
         result = orch.step_ingredients(request.meal_plan, servings=actual_servings)

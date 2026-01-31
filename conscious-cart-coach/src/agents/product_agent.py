@@ -332,6 +332,48 @@ SIMULATED_INVENTORY: dict[str, list[dict]] = {
         {"id": "ss004", "title": "Organic Tamari", "brand": "San-J", "size": "10oz", "price": 4.99, "organic": True},
         {"id": "ss005", "title": "Organic Shoyu", "brand": "Eden", "size": "10oz", "price": 5.49, "organic": True},
     ],
+    "garam_masala": [
+        {"id": "gm001", "title": "Garam Masala", "brand": "ShopRite", "size": "2oz", "price": 2.49, "organic": False},
+        {"id": "gm002", "title": "Garam Masala", "brand": "McCormick", "size": "1.75oz", "price": 4.99, "organic": False},
+        {"id": "gm003", "title": "Garam Masala", "brand": "Deep", "size": "3.5oz", "price": 3.99, "organic": False},
+        {"id": "gm004", "title": "Organic Garam Masala", "brand": "Simply Organic", "size": "2.01oz", "price": 5.99, "organic": True},
+        {"id": "gm005", "title": "Organic Garam Masala", "brand": "Frontier Co-op", "size": "1.9oz", "price": 6.49, "organic": True},
+    ],
+    "cardamom": [
+        {"id": "cd001", "title": "Ground Cardamom", "brand": "ShopRite", "size": "1oz", "price": 4.99, "organic": False},
+        {"id": "cd002", "title": "Ground Cardamom", "brand": "McCormick", "size": "0.95oz", "price": 7.99, "organic": False},
+        {"id": "cd003", "title": "Cardamom Pods", "brand": "Deep", "size": "1.76oz", "price": 5.99, "organic": False},
+        {"id": "cd004", "title": "Organic Cardamom", "brand": "Simply Organic", "size": "0.53oz", "price": 8.99, "organic": True},
+        {"id": "cd005", "title": "Organic Cardamom Pods", "brand": "Frontier Co-op", "size": "0.95oz", "price": 9.49, "organic": True},
+    ],
+    "cinnamon": [
+        {"id": "cn001", "title": "Ground Cinnamon", "brand": "ShopRite", "size": "2.37oz", "price": 1.99, "organic": False},
+        {"id": "cn002", "title": "Ground Cinnamon", "brand": "McCormick", "size": "2.37oz", "price": 4.49, "organic": False},
+        {"id": "cn003", "title": "Cinnamon Sticks", "brand": "McCormick", "size": "1.25oz", "price": 5.99, "organic": False},
+        {"id": "cn004", "title": "Organic Ground Cinnamon", "brand": "Simply Organic", "size": "2.45oz", "price": 5.49, "organic": True},
+        {"id": "cn005", "title": "Organic Cinnamon Sticks", "brand": "Frontier Co-op", "size": "1.28oz", "price": 6.99, "organic": True},
+    ],
+    "cloves": [
+        {"id": "cl001", "title": "Ground Cloves", "brand": "ShopRite", "size": "1.62oz", "price": 2.99, "organic": False},
+        {"id": "cl002", "title": "Ground Cloves", "brand": "McCormick", "size": "0.9oz", "price": 4.99, "organic": False},
+        {"id": "cl003", "title": "Whole Cloves", "brand": "McCormick", "size": "0.62oz", "price": 5.49, "organic": False},
+        {"id": "cl004", "title": "Organic Ground Cloves", "brand": "Simply Organic", "size": "2.82oz", "price": 6.49, "organic": True},
+        {"id": "cl005", "title": "Organic Whole Cloves", "brand": "Frontier Co-op", "size": "1.36oz", "price": 6.99, "organic": True},
+    ],
+    "bay_leaves": [
+        {"id": "bl101", "title": "Bay Leaves", "brand": "ShopRite", "size": "0.12oz", "price": 1.99, "organic": False},
+        {"id": "bl102", "title": "Bay Leaves", "brand": "McCormick", "size": "0.12oz", "price": 3.49, "organic": False},
+        {"id": "bl103", "title": "Turkish Bay Leaves", "brand": "Badia", "size": "0.25oz", "price": 2.99, "organic": False},
+        {"id": "bl104", "title": "Organic Bay Leaves", "brand": "Simply Organic", "size": "0.14oz", "price": 4.49, "organic": True},
+        {"id": "bl105", "title": "Organic Bay Leaves", "brand": "Frontier Co-op", "size": "0.14oz", "price": 4.99, "organic": True},
+    ],
+    "saffron": [
+        {"id": "sf001", "title": "Saffron Threads", "brand": "Badia", "size": "0.4g", "price": 12.99, "organic": False},
+        {"id": "sf002", "title": "Saffron", "brand": "McCormick", "size": "0.06oz", "price": 16.99, "organic": False},
+        {"id": "sf003", "title": "Spanish Saffron", "brand": "La Mancha", "size": "1g", "price": 14.99, "organic": False},
+        {"id": "sf004", "title": "Organic Saffron", "brand": "Frontier Co-op", "size": "0.036oz", "price": 18.99, "organic": True},
+        {"id": "sf005", "title": "Persian Saffron", "brand": "Zaran", "size": "1g", "price": 19.99, "organic": False},
+    ],
 }
 
 # Aliases for ingredient normalization
@@ -370,6 +412,11 @@ INGREDIENT_ALIASES: dict[str, str] = {
     "san marzano": "canned_tomatoes", "tomato sauce": "canned_tomatoes",
     "coconut milk": "coconut_milk", "coconut cream": "coconut_milk",
     "firm tofu": "tofu", "extra firm tofu": "tofu", "silken tofu": "tofu",
+    "biryani masala": "garam_masala", "garam masala": "garam_masala",
+    "cardamom pods": "cardamom", "green cardamom": "cardamom",
+    "cinnamon stick": "cinnamon", "cinnamon sticks": "cinnamon", "ground cinnamon": "cinnamon",
+    "whole cloves": "cloves", "ground cloves": "cloves", "clove": "cloves",
+    "bay leaf": "bay_leaves",
     "soy sauce": "soy_sauce", "tamari": "soy_sauce", "shoyu": "soy_sauce",
 }
 
