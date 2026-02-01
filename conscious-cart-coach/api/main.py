@@ -17,6 +17,7 @@ from src.orchestrator.orchestrator import Orchestrator
 from src.contracts.models import DecisionBundle, DecisionItem
 from src.orchestrator.store_split import decide_optimal_store_split
 from src.agents.product_agent import SIMULATED_INVENTORY
+from src.utils.quantity_converter import convert_ingredient_to_product_quantity
 
 
 # =============================================================================
@@ -42,7 +43,7 @@ class CartItem(BaseModel):
     brand: str
     catalogueName: str
     price: float
-    quantity: int
+    quantity: float  # Changed from int to float to support fractional quantities (e.g., 0.5 cups)
     size: str
     image: str
     tags: CartItemTag
@@ -243,6 +244,7 @@ def map_decision_to_cart_item(
     index: int,
     servings: int = 2,
     quantity: float = 1.0,
+    ingredient_unit: str = "",
     store_prefix: str = ""
 ) -> CartItem:
     """Map Orchestrator DecisionItem to React CartItem format."""
@@ -251,8 +253,23 @@ def map_decision_to_cart_item(
     ethical_id = item.conscious_neighbor_id or item.selected_product_id
     product = product_lookup.get(ethical_id, {})
 
-    # Use quantity from confirmed ingredients
-    base_quantity = quantity
+    # Convert ingredient quantity to product quantity using smart conversion
+    size_str = product.get("size", "")
+    product_unit = product.get("unit", "ea")
+
+    # Build ingredient quantity string for converter
+    ingredient_qty_str = f"{quantity} {ingredient_unit}" if ingredient_unit else f"{quantity}"
+
+    # Use quantity converter to calculate product quantity
+    try:
+        product_quantity, display_qty = convert_ingredient_to_product_quantity(
+            ingredient_qty_str, size_str, product_unit
+        )
+        base_quantity = product_quantity
+    except Exception as e:
+        # Fallback to original quantity if conversion fails
+        print(f"Warning: Quantity conversion failed for {item.ingredient_name}: {e}")
+        base_quantity = quantity
 
     # Generate tags
     why_pick_tags = []
@@ -431,9 +448,9 @@ def extract_ingredients(request: CreateCartRequest):
         extracted_ingredients = [
             ExtractedIngredient(
                 name=ing.get("name", ""),
-                quantity=ing.get("quantity", 1),
+                quantity=ing.get("qty", 1),  # IngredientAgent returns "qty", not "quantity"
                 unit=ing.get("unit", ""),
-                category=ing.get("category")
+                category=ing.get("canonical")  # IngredientAgent returns "canonical", not "category"
             )
             for ing in ingredients
         ]
@@ -596,7 +613,7 @@ def create_multi_cart(request: CreateCartRequest):
             for idx, decision_item in enumerate(bundle.items):
                 # Get quantity for this ingredient
                 qty, unit = ingredient_quantities.get(decision_item.ingredient_name, (1.0, ""))
-                cart_item = map_decision_to_cart_item(decision_item, lookup, idx, actual_servings, qty, store_prefix)
+                cart_item = map_decision_to_cart_item(decision_item, lookup, idx, actual_servings, qty, unit, store_prefix)
                 # Override store name to match the current store
                 cart_item.store = store_name
                 cart_items.append(cart_item)
@@ -734,7 +751,7 @@ def create_cart(request: CreateCartRequest):
         for idx, decision_item in enumerate(bundle.items):
             # Get quantity for this ingredient
             qty, unit = ingredient_quantities.get(decision_item.ingredient_name, (1.0, ""))
-            cart_item = map_decision_to_cart_item(decision_item, lookup, idx, actual_servings, qty)
+            cart_item = map_decision_to_cart_item(decision_item, lookup, idx, actual_servings, qty, unit)
             cart_items.append(cart_item)
             total += cart_item.price * cart_item.quantity
 

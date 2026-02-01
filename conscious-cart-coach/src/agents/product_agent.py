@@ -13,15 +13,238 @@ Usage:
     ])
 """
 
+import csv
+import os
 import re
-from typing import Any
+from pathlib import Path
+from typing import Any, Union, Dict, List
 
 from ..contracts.models import IngredientSpec, ProductCandidate
 from ..core.types import AgentResult, Evidence, make_result, make_error
 from ..facts import get_facts, FactsGateway
 
 
-# Simulated inventory for hackathon demo.
+# Store-specific brand mapping
+# Maps brands to their exclusive or primary stores
+STORE_EXCLUSIVE_BRANDS = {
+    # Store brands (exclusive to their store)
+    "365 by Whole Foods Market": ["Whole Foods", "Whole Foods Market"],
+    "ShopRite": ["ShopRite"],
+    "Trader Joe's": ["Trader Joe's"],
+    "Wegmans": ["Wegmans"],
+    "Kroger": ["Kroger"],
+    "Safeway": ["Safeway"],
+    "Sprouts": ["Sprouts", "Sprouts Farmers Market"],
+
+    # Brands commonly found at specific stores (not exclusive but common)
+    "Peri & Sons Farms": ["Sprouts", "Sprouts Farmers Market", "Whole Foods"],
+    "Pure Indian Foods": ["specialty"],  # Specialty stores only
+}
+
+
+# Category to ingredient name mapping
+# Maps CSV categories to normalized ingredient names for lookup
+CATEGORY_TO_INGREDIENT: dict[str, str] = {
+    "protein_poultry": "chicken",
+    "protein_beef": "beef",
+    "protein_pork": "pork",
+    "protein_fish": "fish",
+    "protein_seafood": "seafood",
+    "dairy": "milk",
+    "milk_whole": "milk",
+    "milk_2percent": "milk",
+    "yogurt": "yogurt",
+    "cheese": "cheese",
+    "produce_greens": "spinach",  # Default, will be refined
+    "produce_onions": "onion",
+    "produce_tomatoes": "tomato",
+    "fruit_berries": "berries",
+    "fruit_tropical": "tropical_fruit",
+    "spices": "spices",  # Will need more granular mapping
+    "grain": "rice",
+    "oil": "oil",
+    "condiment": "condiment",
+}
+
+
+def _load_inventory_from_csv(csv_path: Union[str, Path]) -> Dict[str, List[dict]]:
+    """
+    Load product inventory from CSV file.
+
+    Returns dict[ingredient_name, list[product_dict]]
+    Each product has: id, title, brand, size, price, organic, store_type
+    """
+    inventory: Dict[str, List[dict]] = {}
+    product_counter = 0
+
+    if not os.path.exists(csv_path):
+        print(f"Warning: CSV file not found at {csv_path}, using empty inventory")
+        return inventory
+
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        # Skip comment lines
+        lines = [line for line in f if not line.strip().startswith('#')]
+
+    # Parse CSV from filtered lines
+    reader = csv.DictReader(lines)
+    for row in reader:
+        # Skip empty rows or rows with no category
+        if not row.get('category') or not row.get('category').strip():
+            continue
+
+        category = row['category'].strip()
+        product_name = row.get('product_name', '').strip()
+        brand = row.get('brand', '').strip()
+        price_str = row.get('price', '').strip()
+        unit = row.get('unit', 'ea').strip()
+        size = row.get('size', '').strip()
+        certifications = row.get('certifications', '').strip()
+        selected_tier = row.get('selected_tier', '').strip()
+
+        # Parse price (remove $ and commas)
+        try:
+            price_clean = price_str.replace('$', '').replace(',', '').strip()
+            price = float(price_clean)
+        except (ValueError, TypeError):
+            print(f"Warning: Invalid price '{price_str}' for {product_name}, skipping")
+            continue
+
+        # Determine if organic
+        organic = 'USDA Organic' in certifications or 'Organic' in certifications
+
+        # Determine store type and available stores based on brand
+        if selected_tier == "Premium Specialty" or "Pure Indian Foods" in brand:
+            store_type = "specialty"
+        else:
+            store_type = "primary"
+
+        # Determine which stores carry this product
+        available_stores = STORE_EXCLUSIVE_BRANDS.get(brand, ["all"])
+
+        # Generate product ID
+        product_counter += 1
+        product_id = f"prod{product_counter:04d}"
+
+        # Build product dict
+        product = {
+            "id": product_id,
+            "title": product_name,
+            "brand": brand,
+            "size": size,
+            "price": price,
+            "organic": organic,
+            "store_type": store_type,
+            "unit": unit,  # lb, ea, oz, etc.
+            "category": category,
+            "available_stores": available_stores,  # List of stores that carry this product
+        }
+
+        # Map category to ingredient name(s)
+        ingredient_names = _map_category_to_ingredients(category, product_name)
+
+            for ing_name in ingredient_names:
+                if ing_name not in inventory:
+                    inventory[ing_name] = []
+                inventory[ing_name].append(product)
+
+    print(f"Loaded {product_counter} products into {len(inventory)} ingredient categories")
+    return inventory
+
+
+def _map_category_to_ingredients(category: str, product_name: str) -> list[str]:
+    """
+    Map CSV category and product name to ingredient name(s).
+
+    For spices and specific products, extracts the actual ingredient name.
+    For general categories, uses category mapping.
+    """
+    category_lower = category.lower()
+    product_lower = product_name.lower()
+
+    # Handle chicken/poultry
+    if "protein_poultry" in category_lower or "chicken" in product_lower:
+        ingredients = ["chicken"]
+        if "breast" in product_lower:
+            ingredients.append("chicken_breast")
+        if "thigh" in product_lower:
+            ingredients.append("chicken_thigh")
+        return ingredients
+
+    # Handle spices - extract spice name from product
+    if category_lower == "spices":
+        ingredients = ["spices"]  # Generic spices category
+
+        # Common spice mappings
+        spice_keywords = {
+            "turmeric": "turmeric",
+            "cumin": "cumin",
+            "coriander": "coriander",
+            "cardamom": "cardamom",
+            "cinnamon": "cinnamon",
+            "clove": "cloves",
+            "garam masala": "garam_masala",
+            "curry": "curry_powder",
+            "chili": "chili",
+            "pepper": "pepper",
+            "ginger": "ginger",
+            "garlic": "garlic",
+            "fennel": "fennel",
+            "fenugreek": "fenugreek",
+            "mustard": "mustard",
+            "bay": "bay_leaf",
+            "saffron": "saffron",
+            "biryani": "biryani_masala",
+            "ghee": "ghee",
+            "hing": "asafoetida",
+            "asafoetida": "asafoetida",
+        }
+
+        for keyword, spice_name in spice_keywords.items():
+            if keyword in product_lower:
+                ingredients.append(spice_name)
+                break
+
+        return ingredients
+
+    # Handle produce greens
+    if "produce_greens" in category_lower:
+        if "spinach" in product_lower:
+            return ["spinach"]
+        if "kale" in product_lower:
+            return ["kale"]
+        if "lettuce" in product_lower:
+            return ["lettuce"]
+        return ["greens"]
+
+    # Handle onions
+    if "onion" in category_lower or "onion" in product_lower:
+        return ["onion"]
+
+    # Handle rice/grains
+    if "grain" in category_lower or "rice" in product_lower:
+        ingredients = ["rice"]
+        if "basmati" in product_lower:
+            ingredients.append("basmati_rice")
+        return ingredients
+
+    # Handle yogurt
+    if "yogurt" in category_lower or "yogurt" in product_lower:
+        return ["yogurt"]
+
+    # Default: use category mapping or product name
+    if category_lower in CATEGORY_TO_INGREDIENT:
+        return [CATEGORY_TO_INGREDIENT[category_lower]]
+
+    # Fallback: use category as-is
+    return [category_lower]
+
+
+# Load inventory from CSV
+CSV_PATH = Path(__file__).parent.parent.parent / "data" / "alternatives" / "source_listings.csv"
+LOADED_INVENTORY = _load_inventory_from_csv(CSV_PATH)
+
+
+# Simulated inventory for hackathon demo (LEGACY - replaced by CSV loader).
 # Each ingredient has 5-6 products spanning a realistic price/quality range:
 #   1. Store brand value (cheapest, large pack, non-organic)
 #   2. Store brand standard (mid-cheap, normal size, non-organic)
@@ -151,9 +374,7 @@ SIMULATED_INVENTORY: dict[str, list[dict]] = {
         {"id": "gh005", "title": "Organic Grass-Fed Ghee", "brand": "Ancient Organics", "size": "8oz", "price": 14.99, "organic": True},
     ],
     "biryani_spice_kit": [
-        {"id": "bsk001", "title": "Biryani Spice Kit", "brand": "Deep", "size": "3.5oz", "price": 8.99, "organic": False},
-        {"id": "bsk002", "title": "Biryani Masala Seasoning, Certified Organic", "brand": "Pure Indian Foods", "size": "2.2oz", "price": 6.99, "organic": True},
-        {"id": "bsk003", "title": "Premium Biryani Masala Kit", "brand": "Laxmi", "size": "4oz", "price": 12.99, "organic": False},
+        {"id": "bsk001", "title": "Biryani Bundle (Rice, Ghee, Biryani Masala, Garam Masala)", "brand": "Pure Indian Foods", "size": "Bundle Kit", "price": 35.40, "organic": True},
     ],
     "cumin": [
         {"id": "cu001", "title": "Ground Cumin", "brand": "ShopRite", "size": "2oz", "price": 1.99, "organic": False},
@@ -463,18 +684,49 @@ class ProductAgent:
 
     def __init__(self, facts: FactsGateway | None = None):
         self.facts = facts or get_facts()
-        self.inventory = SIMULATED_INVENTORY
+        # Use loaded CSV inventory if available, fallback to simulated
+        self.inventory = LOADED_INVENTORY if LOADED_INVENTORY else SIMULATED_INVENTORY
         self.aliases = INGREDIENT_ALIASES
+
+    def filter_by_store(self, product: dict, target_store: str | None = None) -> bool:
+        """
+        Check if a product is available at the target store.
+
+        Args:
+            product: Product dictionary with available_stores field
+            target_store: Target store name (e.g., "Whole Foods", "ShopRite")
+
+        Returns:
+            True if product is available at target store, False otherwise
+        """
+        if not target_store:
+            return True  # No store filter, show all products
+
+        available_stores = product.get("available_stores", ["all"])
+
+        # If product is available at all stores
+        if "all" in available_stores:
+            return True
+
+        # Check if target store matches any available store (case-insensitive)
+        target_lower = target_store.lower()
+        for store in available_stores:
+            if store.lower() in target_lower or target_lower in store.lower():
+                return True
+
+        return False
 
     def get_candidates(
         self,
         ingredients: list[IngredientSpec] | list[dict],
+        target_store: str | None = None,
     ) -> AgentResult:
         """
         Return candidate products for each ingredient.
 
         Args:
             ingredients: List of IngredientSpec or dicts with {name, quantity}
+            target_store: Optional store name to filter products by
 
         Returns:
             AgentResult with candidates_by_ingredient: dict[str, list[candidate_dict]]
@@ -500,6 +752,10 @@ class ProductAgent:
                     candidates = []
 
                     for p in raw_products:
+                        # Filter by store if target_store is specified
+                        if not self.filter_by_store(p, target_store):
+                            continue
+
                         size_oz = parse_size_oz(p["size"])
                         unit_price = round(p["price"] / size_oz, 4) if size_oz > 0 else p["price"]
 
