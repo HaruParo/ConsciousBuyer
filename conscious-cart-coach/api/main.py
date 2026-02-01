@@ -711,7 +711,8 @@ def create_cart(request: CreateCartRequest):
         # LLM explanations: disabled (no API key available)
         orch = Orchestrator(
             use_llm_extraction=False,
-            use_llm_explanations=False
+            use_llm_explanations=False,
+            target_store="FreshDirect"  # Filter out store-exclusive brands from other stores
         )
 
         # Step 1: Extract ingredients with extracted serving size

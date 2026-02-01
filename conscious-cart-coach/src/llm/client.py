@@ -1,12 +1,30 @@
-"""Anthropic Claude API client wrapper with error handling and retries."""
+"""
+Unified LLM client wrapper with support for Anthropic and Ollama.
+
+This module provides backward compatibility with the existing Anthropic-based
+codebase while adding support for Ollama (local LLMs).
+
+The client automatically switches between providers based on LLM_PROVIDER env variable.
+"""
 
 import logging
 import os
 from typing import Optional
 
-from anthropic import Anthropic, APITimeoutError, APIError
+# Keep Anthropic import for type hints and backward compatibility
+try:
+    from anthropic import Anthropic, APITimeoutError, APIError
+    ANTHROPIC_AVAILABLE = True
+except ImportError:
+    ANTHROPIC_AVAILABLE = False
+    Anthropic = None
+    APITimeoutError = Exception
+    APIError = Exception
 
 logger = logging.getLogger(__name__)
+
+# Import the unified LLM client
+from ..utils.llm_client import get_llm_client, BaseLLMClient, AnthropicClient, OllamaClient, GeminiClient, OpenAIClient
 
 # Opik LLM evaluation and tracing
 try:
@@ -25,15 +43,26 @@ API_TIMEOUT = 30.0
 MAX_RETRIES = 2
 
 
-def get_anthropic_client() -> Optional[Anthropic]:
+def get_anthropic_client() -> Optional[BaseLLMClient]:
     """
-    Initialize and return Anthropic client with optional Opik tracing.
+    Initialize and return LLM client (Anthropic or Ollama) based on configuration.
+
+    Now returns a unified LLM client that can be Anthropic or Ollama based on
+    LLM_PROVIDER environment variable.
 
     Returns:
-        Anthropic client if API key is available, None otherwise.
+        Unified LLM client (BaseLLMClient), or None if initialization fails.
+
+    Note:
+        This function maintains backward compatibility but now returns a unified
+        client instead of a raw Anthropic client. The interface is compatible.
     """
-    # Configure Opik if available
-    if OPIK_AVAILABLE:
+    provider = os.getenv("LLM_PROVIDER", "ollama").lower()
+
+    logger.info(f"Initializing LLM client with provider: {provider}")
+
+    # Configure Opik if available (for Anthropic only currently)
+    if OPIK_AVAILABLE and provider == "anthropic":
         try:
             # Get Opik configuration from environment
             opik_api_key = os.getenv("OPIK_API_KEY")
@@ -57,30 +86,32 @@ def get_anthropic_client() -> Optional[Anthropic]:
         except Exception as e:
             logger.warning(f"Failed to configure Opik: {e}. Continuing without tracing.")
 
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    if not api_key:
-        logger.warning("ANTHROPIC_API_KEY not found in environment")
-        return None
-
     try:
-        client = Anthropic(api_key=api_key)
+        # Get unified client based on provider
+        client = get_llm_client(provider=provider)
 
-        # Wrap client with Opik tracking if available
-        if OPIK_AVAILABLE:
+        # Wrap Anthropic client with Opik tracking if available
+        if OPIK_AVAILABLE and isinstance(client, AnthropicClient) and client.client:
             try:
-                client = track_anthropic(client, project_name=os.getenv("OPIK_PROJECT_NAME", "consciousbuyer"))
+                client.client = track_anthropic(
+                    client.client,
+                    project_name=os.getenv("OPIK_PROJECT_NAME", "consciousbuyer")
+                )
                 logger.info("Anthropic client wrapped with Opik tracking")
             except Exception as e:
                 logger.warning(f"Failed to enable Opik tracking: {e}. Continuing without tracing.")
 
+        logger.info(f"LLM client initialized successfully: {client.__class__.__name__}")
         return client
+
     except Exception as e:
-        logger.error(f"Failed to initialize Anthropic client: {e}")
+        logger.error(f"Failed to initialize LLM client: {e}")
+        logger.warning("Returning None - LLM features will be disabled")
         return None
 
 
 def call_claude_with_retry(
-    client: Anthropic,
+    client: BaseLLMClient,
     prompt: str,
     max_tokens: int = 1024,
     temperature: float = 0.0,
@@ -89,11 +120,13 @@ def call_claude_with_retry(
     metadata: Optional[dict] = None,
 ) -> Optional[str]:
     """
-    Call Claude API with retry logic and Opik tracing.
+    Call LLM API (Anthropic or Ollama) with retry logic and Opik tracing.
+
+    This function now works with both Anthropic and Ollama clients.
 
     Args:
-        client: Anthropic client instance
-        prompt: User prompt to send to Claude
+        client: LLM client instance (AnthropicClient or OllamaClient)
+        prompt: User prompt to send to LLM
         max_tokens: Maximum tokens in response
         temperature: Sampling temperature (0.0 = deterministic)
         max_retries: Maximum number of retry attempts
@@ -101,9 +134,14 @@ def call_claude_with_retry(
         metadata: Optional metadata dict to attach to trace
 
     Returns:
-        Response text from Claude, or None if all retries failed.
+        Response text from LLM, or None if all retries failed.
     """
+    if not client:
+        logger.error("No LLM client available")
+        return None
+
     last_error = None
+    provider_name = client.__class__.__name__
 
     # Create Opik trace context if available
     trace_context = {}
@@ -111,39 +149,45 @@ def call_claude_with_retry(
         trace_context = {
             "name": trace_name,
             "metadata": metadata or {},
-            "tags": ["anthropic", "claude", os.getenv("OPIK_PROJECT_NAME", "consciousbuyer")]
+            "tags": [provider_name.lower(), os.getenv("OPIK_PROJECT_NAME", "consciousbuyer")]
         }
 
     for attempt in range(max_retries):
         try:
-            logger.debug(f"Claude API call attempt {attempt + 1}/{max_retries}")
+            logger.debug(f"{provider_name} API call attempt {attempt + 1}/{max_retries}")
 
             # Track retry attempts in metadata
             if trace_context and attempt > 0:
                 trace_context["metadata"]["retry_attempt"] = attempt
 
-            response = client.messages.create(
-                model=MODEL,
-                max_tokens=max_tokens,
+            # Call the unified client
+            response = client.generate_sync(
+                prompt=prompt,
                 temperature=temperature,
-                timeout=API_TIMEOUT,
-                messages=[{"role": "user", "content": prompt}],
+                max_tokens=max_tokens,
             )
 
-            # Extract text from response blocks
-            response_text = ""
-            for block in response.content:
-                if hasattr(block, "text"):
-                    response_text += block.text
-
-            logger.debug(f"Claude response received: {len(response_text)} chars")
+            response_text = response.text
+            logger.debug(f"{provider_name} response received: {len(response_text)} chars")
+            logger.debug(f"Token usage: {response.usage}")
 
             # Log success to Opik trace
             if trace_context:
                 trace_context["metadata"]["status"] = "success"
                 trace_context["metadata"]["total_attempts"] = attempt + 1
+                trace_context["metadata"]["token_usage"] = response.usage
 
             return response_text
+
+        except ConnectionError as e:
+            logger.warning(f"Connection error on attempt {attempt + 1}: {e}")
+            last_error = f"Connection error: {e}"
+            if isinstance(client, OllamaClient):
+                logger.warning("Make sure Ollama is running: ollama serve")
+
+        except TimeoutError as e:
+            logger.warning(f"Timeout on attempt {attempt + 1}: {e}")
+            last_error = f"Timeout: {e}"
 
         except APITimeoutError as e:
             logger.warning(f"API timeout on attempt {attempt + 1}: {e}")
@@ -163,5 +207,5 @@ def call_claude_with_retry(
         trace_context["metadata"]["total_attempts"] = max_retries
         trace_context["metadata"]["last_error"] = last_error
 
-    logger.error(f"All {max_retries} Claude API attempts failed. Last error: {last_error}")
+    logger.error(f"All {max_retries} {provider_name} API attempts failed. Last error: {last_error}")
     return None

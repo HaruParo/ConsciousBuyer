@@ -104,6 +104,7 @@ class Orchestrator:
         use_llm_extraction: bool = False,
         use_llm_explanations: bool = False,
         anthropic_client: Optional[Anthropic] = None,
+        target_store: str | None = None,
     ):
         """
         Initialize Orchestrator.
@@ -113,10 +114,12 @@ class Orchestrator:
             use_llm_extraction: Enable Claude for ingredient parsing
             use_llm_explanations: Enable Claude for decision explanations
             anthropic_client: Optional shared Anthropic client (created if needed)
+            target_store: Optional target store name for filtering products (e.g., "FreshDirect", "Whole Foods")
         """
         self.user_id = user_id
         self.use_llm_extraction = use_llm_extraction
         self.use_llm_explanations = use_llm_explanations
+        self.target_store = target_store
         self.state = FlowState()
         self.tracker = OpikTracker()
 
@@ -299,7 +302,7 @@ class Orchestrator:
             if self.state.stage not in ("ingredients_confirmed", "candidates_fetched"):
                 return make_error("orchestrator", "Must confirm ingredients first")
 
-            result = self.product_agent.get_candidates(self.state.ingredients)
+            result = self.product_agent.get_candidates(self.state.ingredients, target_store=self.target_store)
 
             if result.status == "error":
                 self.state.stage = "error"
