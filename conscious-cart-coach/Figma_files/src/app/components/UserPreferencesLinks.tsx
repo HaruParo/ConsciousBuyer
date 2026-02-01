@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MapPin, Users, Settings } from 'lucide-react';
 import {
   Dialog,
@@ -17,7 +17,7 @@ import { Label } from '@/app/components/ui/label';
 interface UserPreferencesLinksProps {
   location: string;
   servings: number;
-  onLocationChange?: (location: string) => void;
+  onChangeLocation?: () => void;
   onServingsChange?: (servings: number) => void;
   onPreferencesChange?: (preferences: any) => void;
 }
@@ -25,21 +25,19 @@ interface UserPreferencesLinksProps {
 export function UserPreferencesLinks({
   location,
   servings,
-  onLocationChange,
+  onChangeLocation,
   onServingsChange,
   onPreferencesChange,
 }: UserPreferencesLinksProps) {
-  const [locationDialogOpen, setLocationDialogOpen] = useState(false);
   const [servingsDialogOpen, setServingsDialogOpen] = useState(false);
   const [preferencesDialogOpen, setPreferencesDialogOpen] = useState(false);
 
-  const [tempLocation, setTempLocation] = useState(location);
   const [tempServings, setTempServings] = useState(servings);
 
-  const handleLocationSave = () => {
-    onLocationChange?.(tempLocation);
-    setLocationDialogOpen(false);
-  };
+  // Sync tempServings with servings prop when it changes
+  useEffect(() => {
+    setTempServings(servings);
+  }, [servings]);
 
   const handleServingsSave = () => {
     onServingsChange?.(tempServings);
@@ -48,11 +46,11 @@ export function UserPreferencesLinks({
 
   return (
     <>
-      <div className="flex items-center gap-2 flex-wrap text-sm sm:text-base opacity-90">
+      <div className="flex items-center gap-1 sm:gap-2 flex-wrap text-sm sm:text-base">
         {/* Delivery Location Link */}
         <button
-          onClick={() => setLocationDialogOpen(true)}
-          className="underline hover:opacity-75 transition-opacity inline-flex items-center gap-1"
+          onClick={onChangeLocation}
+          className="inline-flex items-center gap-1 px-2 py-1 rounded hover:bg-white/10 transition-colors"
         >
           <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
           <span>Delivery Location: {location}</span>
@@ -63,7 +61,7 @@ export function UserPreferencesLinks({
         {/* Family Size Link */}
         <button
           onClick={() => setServingsDialogOpen(true)}
-          className="underline hover:opacity-75 transition-opacity inline-flex items-center gap-1"
+          className="inline-flex items-center gap-1 px-2 py-1 rounded hover:bg-white/10 transition-colors"
         >
           <Users className="w-3 h-3 sm:w-4 sm:h-4" />
           <span>Family size: {servings}</span>
@@ -74,56 +72,12 @@ export function UserPreferencesLinks({
         {/* Other Preferences Link */}
         <button
           onClick={() => setPreferencesDialogOpen(true)}
-          className="underline hover:opacity-75 transition-opacity inline-flex items-center gap-1"
+          className="inline-flex items-center gap-1 px-2 py-1 rounded hover:bg-white/10 transition-colors"
         >
           <Settings className="w-3 h-3 sm:w-4 sm:h-4" />
           <span>Other Preferences</span>
         </button>
       </div>
-
-      {/* Delivery Location Dialog */}
-      <Dialog open={locationDialogOpen} onOpenChange={setLocationDialogOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-[#6b5f3a]" />
-              Delivery Location
-            </DialogTitle>
-            <DialogDescription>
-              Update your delivery address for accurate availability and timing.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 py-4">
-            <div className="space-y-2">
-              <Label htmlFor="location">City, State or ZIP Code</Label>
-              <Input
-                id="location"
-                value={tempLocation}
-                onChange={(e) => setTempLocation(e.target.value)}
-                placeholder="e.g., Iselin, NJ or 08830"
-                className="border-[#c9b896]"
-              />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button
-              variant="outline"
-              onClick={() => {
-                setTempLocation(location);
-                setLocationDialogOpen(false);
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              onClick={handleLocationSave}
-              className="bg-[#6b5f3a] hover:bg-[#5a4e2f] text-white"
-            >
-              Save Location
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
 
       {/* Family Size Dialog */}
       <Dialog open={servingsDialogOpen} onOpenChange={setServingsDialogOpen}>
@@ -190,41 +144,68 @@ export function UserPreferencesLinks({
 
       {/* Other Preferences Dialog */}
       <Dialog open={preferencesDialogOpen} onOpenChange={setPreferencesDialogOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Settings className="w-5 h-5 text-[#6b5f3a]" />
               Other Preferences
             </DialogTitle>
             <DialogDescription>
-              Customize your shopping preferences
+              Customize your shopping preferences to get personalized recommendations
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
+            {/* Info text */}
+            <p className="text-sm text-[#6b5f4a] mb-2">
+              Tell us about your dietary needs, health goals, or any special requirements.
+            </p>
+            <div className="bg-[#e8f5e9] border border-[#4a7c59]/25 rounded-lg p-3 text-xs text-[#2d5a3d]">
+              <span className="font-semibold">💡 Tip:</span> You can include preferences in your meal prompt (e.g., "vegetarian pasta for 4") or add them here for all future carts.
+            </div>
+
+            {/* Ingredient Preferences Section */}
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="organic">Prefer Organic</Label>
-                <input
-                  id="organic"
-                  type="checkbox"
-                  className="w-4 h-4 accent-[#6b5f3a]"
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <Label htmlFor="local">Prefer Local Products</Label>
-                <input
-                  id="local"
-                  type="checkbox"
-                  className="w-4 h-4 accent-[#6b5f3a]"
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <Label htmlFor="seasonal">Prefer Seasonal Items</Label>
-                <input
-                  id="seasonal"
-                  type="checkbox"
-                  className="w-4 h-4 accent-[#6b5f3a]"
-                />
+              <div className="space-y-3">
+                <div className="space-y-2">
+                  <Label htmlFor="include-ingredients" className="text-sm font-semibold text-[#4a3f2a]">
+                    Always Include
+                  </Label>
+                  <Input
+                    id="include-ingredients"
+                    placeholder="e.g., turmeric, ginger, garlic, organic produce"
+                    className="border-[#c9b896]"
+                  />
+                  <p className="text-xs text-gray-500">
+                    Ingredients, brands, or qualities you want to prioritize (e.g., "organic", "grass-fed", "local")
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="exclude-ingredients" className="text-sm font-semibold text-[#4a3f2a]">
+                    Don't Include
+                  </Label>
+                  <Input
+                    id="exclude-ingredients"
+                    placeholder="e.g., peanuts, shellfish, dairy, gluten"
+                    className="border-[#c9b896]"
+                  />
+                  <p className="text-xs text-gray-500">
+                    Ingredients to avoid due to allergies, dietary restrictions, or preferences
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="other-preferences" className="text-sm font-semibold text-[#4a3f2a]">
+                    Other Preferences
+                  </Label>
+                  <textarea
+                    id="other-preferences"
+                    placeholder="e.g., recovering from ACL surgery, need high protein, prefer sustainable seafood"
+                    rows={3}
+                    className="w-full px-3 py-2 border border-[#c9b896] rounded bg-white text-[#4a3f2a] placeholder:text-[#9b8f7a] focus:outline-none focus:ring-2 focus:ring-[#d9b899] text-sm resize-none"
+                  />
+                  <p className="text-xs text-gray-500">
+                    Any other dietary needs, health goals, or preferences we should know about
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -237,7 +218,7 @@ export function UserPreferencesLinks({
             </Button>
             <Button
               onClick={() => {
-                // TODO: Handle preferences save
+                // TODO: Collect all preference values and pass to onPreferencesChange
                 onPreferencesChange?.({});
                 setPreferencesDialogOpen(false);
               }}

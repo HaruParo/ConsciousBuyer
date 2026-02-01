@@ -11,7 +11,6 @@ interface ShoppingCartProps {
   onFindSwap: (id: string) => void;
   metadata?: { store: string; location: string; servings: number } | null;
   onChangeLocation?: () => void;
-  onLocationChange?: (location: string) => void;
   onServingsChange?: (servings: number) => void;
   onPreferencesChange?: (preferences: any) => void;
 }
@@ -23,11 +22,10 @@ export function ShoppingCart({
   onFindSwap,
   metadata,
   onChangeLocation,
-  onLocationChange,
   onServingsChange,
   onPreferencesChange
 }: ShoppingCartProps) {
-  const totalPrice = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const totalPrice = Math.round(items.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 100) / 100;
   const store = metadata?.store || items[0]?.store || 'Store Name';
   const location = metadata?.location || items[0]?.location || 'City, State';
   const servings = metadata?.servings || 2;
@@ -45,7 +43,7 @@ export function ShoppingCart({
             <UserPreferencesLinks
               location={location}
               servings={servings}
-              onLocationChange={onLocationChange}
+              onChangeLocation={onChangeLocation}
               onServingsChange={onServingsChange}
               onPreferencesChange={onPreferencesChange}
             />
@@ -83,29 +81,22 @@ export function ShoppingCart({
         )}
       </div>
 
-      {/* Sticky Footer with 3 Buttons */}
-      <div className="p-3 sm:p-4 md:p-6 border-t border-[#e5d5b8] bg-white space-y-2 sm:space-y-3">
-        <Button
-          disabled={isEmpty}
-          className="w-full bg-[#6b5f3a] hover:bg-[#5b4f2a] text-white py-4 sm:py-5 md:py-6 text-sm sm:text-base disabled:bg-[#c5baa8] disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          Continue to store checkout
-          <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
-        </Button>
+      {/* Sticky Footer with Checkout and Download Buttons */}
+      <div className="p-3 sm:p-4 md:p-6 border-t border-[#e5d5b8] bg-white">
         <div className="flex gap-2 sm:gap-3">
           <Button
             variant="outline"
             disabled={isEmpty}
-            className="flex-1 border-[#8b7a5a] text-[#6b5f4a] hover:bg-[#f5e6d3] text-xs sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed py-3 sm:py-4"
+            className="flex-1 border-[#8b7a5a] text-[#6b5f4a] hover:bg-[#f5e6d3] text-xs sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed py-3 sm:py-4 md:py-5"
           >
-            Preferences
+            Download<span className="hidden sm:inline"> list</span>
           </Button>
           <Button
-            variant="outline"
             disabled={isEmpty}
-            className="flex-1 border-[#8b7a5a] text-[#6b5f4a] hover:bg-[#f5e6d3] text-xs sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed py-3 sm:py-4"
+            className="flex-1 bg-[#6b5f3a] hover:bg-[#5b4f2a] text-white py-3 sm:py-4 md:py-5 text-xs sm:text-sm md:text-base disabled:bg-[#c5baa8] disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Download list
+            <span className="hidden sm:inline">Continue to </span>Checkout
+            <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 ml-1 sm:ml-2" />
           </Button>
         </div>
       </div>

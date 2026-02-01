@@ -7,6 +7,7 @@ import { LocationModal } from '@/app/components/LocationModal';
 import { IngredientConfirmModal } from '@/app/components/IngredientConfirmModal';
 import { AgentCheckoutModal } from '@/app/components/AgentCheckoutModal';
 import { LoadingOverlay } from '@/app/components/LoadingOverlay';
+import { FloatingCartCoachButton } from '@/app/components/FloatingCartCoachButton';
 import {
   AppState,
   Ingredient,
@@ -17,6 +18,30 @@ import {
 } from '@/app/types';
 import { extractIngredients, createMultiCart, ApiError } from '@/app/services/api';
 import { BookOpen } from 'lucide-react';
+
+// Helper function to parse serving size from meal plan text
+function parseServingsFromText(text: string): number | null {
+  // Match patterns like "for 4", "serves 4", "4 people", "4 servings"
+  const patterns = [
+    /\bfor\s+(\d+)\b/i,
+    /\bserves?\s+(\d+)\b/i,
+    /\b(\d+)\s+people\b/i,
+    /\b(\d+)\s+servings?\b/i,
+    /\b(\d+)\s+persons?\b/i,
+  ];
+
+  for (const pattern of patterns) {
+    const match = text.match(pattern);
+    if (match && match[1]) {
+      const num = parseInt(match[1], 10);
+      if (num > 0 && num <= 20) { // Reasonable range
+        return num;
+      }
+    }
+  }
+
+  return null;
+}
 
 export default function App() {
   // State
@@ -58,6 +83,70 @@ export default function App() {
     setShowLocationModal(true);
   };
 
+  // Helper to get cooking-aware scale factor for an ingredient
+  const getIngredientScaleFactor = (itemName: string, baseScale: number): number => {
+    const nameLower = itemName.toLowerCase();
+
+    // Spices and herbs - minimal scaling (30%)
+    const spiceKeywords = [
+      'masala', 'powder', 'turmeric', 'cumin', 'coriander', 'cardamom',
+      'cinnamon', 'clove', 'bay', 'pepper', 'chili', 'paprika', 'saffron',
+      'nutmeg', 'cayenne', 'curry', 'fenugreek', 'fennel', 'herb',
+      'thyme', 'rosemary', 'oregano', 'basil', 'mint', 'cilantro'
+    ];
+    if (spiceKeywords.some(spice => nameLower.includes(spice))) {
+      return Math.max(1.0, 1.0 + (baseScale - 1.0) * 0.3);
+    }
+
+    // Cooking fats - moderate scaling (50%)
+    const fatKeywords = ['ghee', 'oil', 'butter'];
+    if (fatKeywords.some(fat => nameLower.includes(fat))) {
+      return Math.max(1.0, 1.0 + (baseScale - 1.0) * 0.5);
+    }
+
+    // Aromatics - moderate scaling (60%)
+    const aromaticKeywords = [
+      'onion', 'garlic', 'ginger', 'shallot', 'scallion', 'leek', 'chile', 'chilli'
+    ];
+    if (aromaticKeywords.some(aromatic => nameLower.includes(aromatic))) {
+      return Math.max(1.0, 1.0 + (baseScale - 1.0) * 0.6);
+    }
+
+    // Main ingredients - full scaling
+    return baseScale;
+  };
+
+  const handleServingsChange = (newServings: number) => {
+    if (newServings <= 0 || newServings === servings) return;
+
+    // Calculate base ratio
+    const baseRatio = newServings / servings;
+
+    // Update cart item quantities with cooking-aware scaling
+    setCarts(prev =>
+      prev.map(cart => {
+        const updatedItems = cart.items.map(item => {
+          // Apply ingredient-specific scale factor
+          const scaleFactor = getIngredientScaleFactor(item.name, baseRatio);
+          return {
+            ...item,
+            quantity: Math.round(item.quantity * scaleFactor * 100) / 100
+          };
+        });
+        const newTotal = updatedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+        return {
+          ...cart,
+          items: updatedItems,
+          total: Math.round(newTotal * 100) / 100
+        };
+      })
+    );
+
+    // Update servings state
+    setServings(newServings);
+  };
+
   // Step 1: Extract ingredients and show confirmation modal
   const handleCreateCart = async () => {
     if (!mealPlan.trim()) return;
@@ -66,6 +155,15 @@ export default function App() {
     if (!userLocation) {
       setShowLocationModal(true);
       return;
+    }
+
+    // Parse serving size from meal plan if mentioned
+    const inferredServings = parseServingsFromText(mealPlan);
+    const finalServings = inferredServings || servings;
+
+    // Update servings if we found a different value in the text
+    if (inferredServings && inferredServings !== servings) {
+      setServings(inferredServings);
     }
 
     setIsLoading(true);
@@ -77,7 +175,7 @@ export default function App() {
 
     try {
       const [response] = await Promise.all([
-        extractIngredients(mealPlan, servings),
+        extractIngredients(mealPlan, finalServings),
         minLoadingTime
       ]);
       setDraftIngredients(response.ingredients);
@@ -217,9 +315,17 @@ export default function App() {
         </header>
 
         {/* Main Content */}
-        <div className="flex flex-col lg:flex-row min-h-[calc(100vh-57px)] sm:min-h-[calc(100vh-65px)] lg:h-[calc(100vh-73px)]">
-          {/* Left Panel - Input */}
-          <div className="lg:w-1/2 p-4 sm:p-6 md:p-8 lg:p-12 lg:overflow-y-auto">
+        <div className="flex flex-col lg:flex-row h-[calc(100vh-57px)] sm:h-[calc(100vh-65px)] lg:h-[calc(100vh-73px)]">
+          {/* Left Panel - Meal Plan Input */}
+          {/* Mobile: Show when cart is empty, hide when cart has items */}
+          {/* Desktop: Always visible */}
+          <div className={`
+            ${allCartItems.length === 0 ? 'block' : 'hidden'}
+            lg:block lg:w-1/2
+            p-4 sm:p-6 md:p-8 lg:p-12
+            overflow-y-auto
+            h-full
+          `}>
             <MealPlanInput
               mealPlan={mealPlan}
               onMealPlanChange={setMealPlan}
@@ -231,7 +337,14 @@ export default function App() {
           </div>
 
           {/* Right Panel - Cart */}
-          <div className="lg:w-1/2 bg-white border-t lg:border-t-0 lg:border-l border-[#e5c7a1] min-h-[500px] lg:h-full">
+          {/* Mobile: Hide when cart is empty, show when cart has items */}
+          {/* Desktop: Always visible */}
+          <div className={`
+            ${allCartItems.length > 0 ? 'block' : 'hidden'}
+            lg:block lg:w-1/2
+            bg-white border-t lg:border-t-0 lg:border-l border-[#e5c7a1]
+            h-full flex flex-col
+          `}>
             {hasMultipleStores ? (
               <MultiStoreCart
                 carts={carts}
@@ -242,6 +355,7 @@ export default function App() {
                 location={userLocation ? `${userLocation.city}, ${userLocation.state}` : 'City, State'}
                 servings={servings}
                 onChangeLocation={handleChangeLocation}
+                onServingsChange={handleServingsChange}
               />
             ) : (
               <ShoppingCart
@@ -255,10 +369,21 @@ export default function App() {
                   servings: servings,
                 }}
                 onChangeLocation={handleChangeLocation}
+                onServingsChange={handleServingsChange}
               />
             )}
           </div>
         </div>
+
+        {/* Floating Cart Coach Button - Only show on mobile when cart has items */}
+        {allCartItems.length > 0 && (
+          <FloatingCartCoachButton
+            mealPlan={mealPlan}
+            onMealPlanChange={setMealPlan}
+            onCreateCart={handleCreateCart}
+            isLoading={isLoading}
+          />
+        )}
       </div>
 
       {/* Modals */}

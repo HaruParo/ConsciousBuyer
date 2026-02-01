@@ -46,7 +46,12 @@ RECIPE_TEMPLATES = {
             {"name": "mint leaves", "canonical": "mint", "qty": 0.5, "unit": "cup", "optional": False},
             {"name": "cilantro", "canonical": "cilantro", "qty": 0.5, "unit": "cup", "optional": False},
             {"name": "ghee", "canonical": "ghee", "qty": 4, "unit": "tbsp", "optional": False},
-            {"name": "biryani spice kit", "canonical": "biryani_spice_kit", "qty": 1, "unit": "kit", "optional": False},
+            {"name": "cumin", "canonical": "cumin", "qty": 2, "unit": "tsp", "optional": False},
+            {"name": "coriander", "canonical": "coriander", "qty": 2, "unit": "tsp", "optional": False},
+            {"name": "cardamom", "canonical": "cardamom", "qty": 6, "unit": "pods", "optional": False},
+            {"name": "cinnamon", "canonical": "cinnamon", "qty": 2, "unit": "sticks", "optional": False},
+            {"name": "cloves", "canonical": "cloves", "qty": 6, "unit": "whole", "optional": False},
+            {"name": "black pepper", "canonical": "black_pepper", "qty": 1, "unit": "tsp", "optional": False},
             {"name": "turmeric", "canonical": "turmeric", "qty": 1, "unit": "tsp", "optional": False},
             {"name": "bay leaves", "canonical": "bay_leaves", "qty": 2, "unit": "leaves", "optional": False},
             {"name": "saffron", "canonical": "saffron", "qty": 1, "unit": "pinch", "optional": True},
@@ -263,10 +268,13 @@ class IngredientAgent:
                 scale = target_servings / base_servings
 
                 for ing in template["base_ingredients"]:
+                    # Apply cooking-aware scaling: spices don't scale linearly
+                    ingredient_scale = self._get_ingredient_scale_factor(ing["name"], scale)
+
                     ingredients.append({
                         "name": ing["name"],
                         "canonical": ing["canonical"],
-                        "qty": round(ing["qty"] * scale, 1) if ing["qty"] else None,
+                        "qty": round(ing["qty"] * ingredient_scale, 1) if ing["qty"] else None,
                         "unit": ing["unit"],
                         "optional": ing["optional"],
                         "confidence": 0.9,  # High confidence for known recipes
@@ -276,20 +284,22 @@ class IngredientAgent:
                 if "protein_options" in template:
                     protein = self._extract_protein(prompt_lower, template["protein_options"])
                     if protein:
+                        protein_scale = self._get_ingredient_scale_factor(protein, scale)
                         ingredients.insert(0, {
                             "name": protein,
                             "canonical": protein.replace(" ", "_"),
-                            "qty": round(1 * scale, 1),
+                            "qty": round(1 * protein_scale, 1),
                             "unit": "lb",
                             "optional": False,
                             "confidence": 0.85,
                         })
                     else:
                         assumptions.append(f"No protein specified, assuming chicken")
+                        chicken_scale = self._get_ingredient_scale_factor("chicken", scale)
                         ingredients.insert(0, {
                             "name": "chicken",
                             "canonical": "chicken",
-                            "qty": round(1 * scale, 1),
+                            "qty": round(1 * chicken_scale, 1),
                             "unit": "lb",
                             "optional": False,
                             "confidence": 0.5,  # Lower confidence for assumption
@@ -363,6 +373,63 @@ class IngredientAgent:
         except Exception as e:
             logger.error(f"Template extraction error: {e}")
             return make_error(self.AGENT_NAME, str(e))
+
+    def _get_ingredient_scale_factor(self, ingredient_name: str, base_scale: float) -> float:
+        """
+        Get cooking-aware scale factor for an ingredient.
+
+        In real cooking, different ingredients scale differently:
+        - Main ingredients (meat, rice, vegetables): scale fully (1.0x)
+        - Cooking fats (ghee, oil, butter): scale moderately (0.5x)
+        - Aromatics (onion, garlic, ginger): scale moderately (0.6x)
+        - Spices and herbs: scale minimally (0.3x) - you don't need 2x spices for 2x servings
+
+        Args:
+            ingredient_name: Name of the ingredient
+            base_scale: The base scaling factor (servings_target / servings_base)
+
+        Returns:
+            Adjusted scale factor to apply to this ingredient's quantity
+        """
+        ingredient_lower = ingredient_name.lower()
+
+        # Spices, seasonings, and herbs - minimal scaling
+        spice_keywords = [
+            "masala", "powder", "turmeric", "cumin", "coriander", "cardamom",
+            "cinnamon", "clove", "bay", "bay leaf", "bay leaves", "pepper",
+            "chili", "paprika", "saffron", "nutmeg", "ginger powder",
+            "garlic powder", "cayenne", "curry", "fenugreek", "fennel",
+            "star anise", "dried", "herb", "thyme", "rosemary", "oregano",
+            "basil", "mint", "cilantro", "parsley", "sage"
+        ]
+        if any(spice in ingredient_lower for spice in spice_keywords):
+            # Scale spices by only 30% of the base scale, with a minimum of 1.0
+            # Example: 2x servings → 1.3x spices (not 2x)
+            return max(1.0, 1.0 + (base_scale - 1.0) * 0.3)
+
+        # Cooking fats and oils - moderate scaling
+        fat_keywords = [
+            "ghee", "oil", "butter", "olive oil", "vegetable oil",
+            "coconut oil", "sesame oil", "canola oil"
+        ]
+        if any(fat in ingredient_lower for fat in fat_keywords):
+            # Scale fats by 50% of the base scale
+            # Example: 2x servings → 1.5x oil
+            return max(1.0, 1.0 + (base_scale - 1.0) * 0.5)
+
+        # Aromatics - moderate scaling
+        aromatic_keywords = [
+            "onion", "garlic", "ginger", "shallot", "scallion",
+            "green onion", "leek", "chile", "chilli", "fresh ginger",
+            "fresh garlic", "green chile", "green chili"
+        ]
+        if any(aromatic in ingredient_lower for aromatic in aromatic_keywords):
+            # Scale aromatics by 60% of the base scale
+            # Example: 2x servings → 1.6x aromatics
+            return max(1.0, 1.0 + (base_scale - 1.0) * 0.6)
+
+        # Main ingredients (default) - full scaling
+        return base_scale
 
     def _extract_servings(self, text: str) -> int | None:
         """Extract serving size from text."""

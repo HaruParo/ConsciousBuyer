@@ -25,11 +25,17 @@ Extract a structured list of ingredients with:
 
 RULES:
 1. Use common ingredient names (not brand names)
-2. Normalize quantities for the specified servings
+2. Normalize quantities for the specified servings using COOKING-AWARE SCALING:
+   - Main ingredients (meat, rice, vegetables, beans): scale fully with servings (2x servings = 2x quantity)
+   - Cooking fats (ghee, oil, butter): scale moderately (2x servings = 1.5x quantity, not 2x)
+   - Aromatics (onion, garlic, ginger, chilies): scale moderately (2x servings = 1.6x quantity, not 2x)
+   - Spices and herbs: scale minimally (2x servings = 1.3x quantity, not 2x) - you don't need double the spices for double servings!
+   - Salt: scale moderately (2x servings = 1.5x quantity)
 3. Include cooking essentials (oil, salt) if recipe requires them
 4. Mark garnishes/optional items as optional: true
 5. Use canonical categories: produce_*, protein_*, grain, dairy, spice, condiment, oil
 6. If the request is vague ("something healthy"), suggest 5-8 common ingredients
+7. Be conservative with spice quantities - it's easier to add more than remove
 
 OUTPUT FORMAT (JSON only, no markdown):
 {{

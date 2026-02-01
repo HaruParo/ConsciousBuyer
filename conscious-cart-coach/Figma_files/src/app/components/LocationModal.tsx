@@ -148,15 +148,21 @@ export function LocationModal({ onLocationSet }: LocationModalProps) {
               </h2>
             </div>
 
+            <div className="bg-[#fff3cd] border-2 border-[#ffc107] rounded-lg p-4 mb-6">
+              <p className="text-sm font-semibold text-[#856404] mb-2">
+                🎯 Demo Limitation
+              </p>
+              <p className="text-sm text-[#856404] mb-2">
+                Currently, only zipcode <span className="font-mono font-bold text-base">08830</span> (Iselin, NJ) has full product and store data available.
+              </p>
+              <p className="text-xs text-[#856404]">
+                We're working on expanding to more areas soon!
+              </p>
+            </div>
+
             <p className="text-sm sm:text-base text-[#6b5f4a] mb-4">
               Enter your zipcode to find stores and products available near you.
             </p>
-
-            <div className="bg-[#e8f5e9] border border-[#4a7c59]/25 rounded-lg p-3 mb-6">
-              <p className="text-xs sm:text-sm text-[#2d5a3d]">
-                <span className="font-semibold">Demo Note:</span> For this hackathon demo, please use zipcode <span className="font-mono font-semibold">08830</span>
-              </p>
-            </div>
 
             <form onSubmit={handleZipcodeSubmit} className="space-y-4">
               <div>
@@ -168,7 +174,7 @@ export function LocationModal({ onLocationSet }: LocationModalProps) {
                   type="text"
                   value={zipcode}
                   onChange={(e) => setZipcode(e.target.value.replace(/\D/g, '').slice(0, 5))}
-                  placeholder="e.g., 10001"
+                  placeholder="Enter 08830"
                   maxLength={5}
                   className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-[#d5c5a8] rounded bg-white text-[#4a3f2a] placeholder:text-[#9b8f7a] focus:outline-none focus:ring-2 focus:ring-[#d9b899] text-sm sm:text-base"
                   required
@@ -215,8 +221,11 @@ export function LocationModal({ onLocationSet }: LocationModalProps) {
               </h2>
             </div>
 
-            <p className="text-sm sm:text-base text-[#6b5f4a] mb-4">
-              Select your favorite stores near {location.city}, {location.state}. Cart Coach will find the best deals across all selected stores.
+            <p className="text-sm sm:text-base text-[#6b5f4a] mb-1">
+              Stores near {location.city}, {location.state}
+            </p>
+            <p className="text-xs text-[#9b8f7a] mb-4">
+              Select your preferred stores. Cart Coach will find the best products across your selected stores.
             </p>
 
             {/* Store Cards */}
