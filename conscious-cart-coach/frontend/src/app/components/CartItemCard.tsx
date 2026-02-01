@@ -92,10 +92,12 @@ export function CartItemCard({ item, onUpdateQuantity, onRemove, onFindSwap, sho
               </button>
             </div>
 
-            <button className="flex items-center gap-0.5 sm:gap-1 px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm text-[#6b5f4a] bg-white border border-[#d5c5a8] rounded hover:bg-[#f5e6d3] transition-colors touch-manipulation">
-              Size: {item.size}
-              <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />
-            </button>
+            {item.size && item.size !== 'varies' && (
+              <button className="flex items-center gap-0.5 sm:gap-1 px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm text-[#6b5f4a] bg-white border border-[#d5c5a8] rounded hover:bg-[#f5e6d3] transition-colors touch-manipulation">
+                Size: {item.size}
+                <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />
+              </button>
+            )}
           </div>
 
           {/* Why this pick tags */}

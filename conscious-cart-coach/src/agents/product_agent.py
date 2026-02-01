@@ -29,16 +29,20 @@ from ..facts import get_facts, FactsGateway
 STORE_EXCLUSIVE_BRANDS = {
     # Store brands (exclusive to their store)
     "365 by Whole Foods Market": ["Whole Foods", "Whole Foods Market"],
+    "365": ["Whole Foods", "Whole Foods Market"],
     "ShopRite": ["ShopRite"],
+    "Just Direct": ["FreshDirect"],
     "Trader Joe's": ["Trader Joe's"],
     "Wegmans": ["Wegmans"],
     "Kroger": ["Kroger"],
     "Safeway": ["Safeway"],
     "Sprouts": ["Sprouts", "Sprouts Farmers Market"],
 
+    # Specialty stores
+    "Pure Indian Foods": ["specialty"],  # Specialty stores only
+
     # Brands commonly found at specific stores (not exclusive but common)
     "Peri & Sons Farms": ["Sprouts", "Sprouts Farmers Market", "Whole Foods"],
-    "Pure Indian Foods": ["specialty"],  # Specialty stores only
 }
 
 
@@ -142,10 +146,10 @@ def _load_inventory_from_csv(csv_path: Union[str, Path]) -> Dict[str, List[dict]
         # Map category to ingredient name(s)
         ingredient_names = _map_category_to_ingredients(category, product_name)
 
-            for ing_name in ingredient_names:
-                if ing_name not in inventory:
-                    inventory[ing_name] = []
-                inventory[ing_name].append(product)
+        for ing_name in ingredient_names:
+            if ing_name not in inventory:
+                inventory[ing_name] = []
+            inventory[ing_name].append(product)
 
     print(f"Loaded {product_counter} products into {len(inventory)} ingredient categories")
     return inventory

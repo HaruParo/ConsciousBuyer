@@ -164,6 +164,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",  # Vite dev server
+        "http://localhost:5174",  # Figma_files dev server
         "http://localhost:3000",  # Alternative React port
         "https://*.vercel.app",   # Vercel deployments
     ],
@@ -245,13 +246,24 @@ def map_decision_to_cart_item(
     servings: int = 2,
     quantity: float = 1.0,
     ingredient_unit: str = "",
-    store_prefix: str = ""
+    store_prefix: str = "",
+    target_store: str = ""
 ) -> CartItem:
     """Map Orchestrator DecisionItem to React CartItem format."""
 
     # Get the ethical pick product
     ethical_id = item.conscious_neighbor_id or item.selected_product_id
     product = product_lookup.get(ethical_id, {})
+
+    # Filter by store - check if product is available at target store
+    if target_store and product:
+        available_stores = product.get("available_stores", ["all"])
+        # If product has specific store restrictions, check if target store is allowed
+        if available_stores != ["all"] and target_store not in available_stores:
+            # Product not available at this store, skip it or find alternative
+            # For now, we'll allow it but this should trigger a product re-selection
+            print(f"Warning: {product.get('title', 'Product')} from {product.get('brand', 'Unknown')} not available at {target_store}")
+            print(f"  Available stores: {available_stores}")
 
     # Convert ingredient quantity to product quantity using smart conversion
     size_str = product.get("size", "")
@@ -613,7 +625,7 @@ def create_multi_cart(request: CreateCartRequest):
             for idx, decision_item in enumerate(bundle.items):
                 # Get quantity for this ingredient
                 qty, unit = ingredient_quantities.get(decision_item.ingredient_name, (1.0, ""))
-                cart_item = map_decision_to_cart_item(decision_item, lookup, idx, actual_servings, qty, unit, store_prefix)
+                cart_item = map_decision_to_cart_item(decision_item, lookup, idx, actual_servings, qty, unit, store_prefix, store_name)
                 # Override store name to match the current store
                 cart_item.store = store_name
                 cart_items.append(cart_item)
@@ -751,7 +763,7 @@ def create_cart(request: CreateCartRequest):
         for idx, decision_item in enumerate(bundle.items):
             # Get quantity for this ingredient
             qty, unit = ingredient_quantities.get(decision_item.ingredient_name, (1.0, ""))
-            cart_item = map_decision_to_cart_item(decision_item, lookup, idx, actual_servings, qty, unit)
+            cart_item = map_decision_to_cart_item(decision_item, lookup, idx, actual_servings, qty, unit, "", "FreshDirect")
             cart_items.append(cart_item)
             total += cart_item.price * cart_item.quantity
 
