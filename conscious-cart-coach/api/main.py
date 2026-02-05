@@ -1002,17 +1002,45 @@ def debug_plan(request: PlanRequestV2):
         debug_info = []
 
         # Collect candidate info for each ingredient
+        from src.contracts.cart_plan import CandidateDebugInfo
         for ingredient in ingredients:
-            candidates = index.retrieve(ingredient, max_candidates=6)
+            candidates = index.retrieve(ingredient, max_candidates=10)
+
+            # Build detailed candidate info
+            candidate_debug_list = [
+                CandidateDebugInfo(
+                    title=c.title,
+                    brand=c.brand,
+                    price=c.price,
+                    store=c.source_store_id,
+                    form_score=c.form_score,
+                    organic=c.organic,
+                    unit_price=c.unit_price
+                )
+                for c in candidates
+            ]
+
+            winner = candidate_debug_list[0] if len(candidate_debug_list) > 0 else None
+            runner_up = candidate_debug_list[1] if len(candidate_debug_list) > 1 else None
+
+            # Get reason (from cart plan if available)
+            reason_line = None
+            reason_code = None
+            # TODO: Extract from cart plan after it's created
 
             debug_info.append(PlannerDebugInfo(
                 ingredient_name=ingredient,
                 candidates_found=len(candidates),
                 candidate_titles=[c.title for c in candidates],
-                candidate_stores=[c.source_store_id for c in candidates],  # NEW: Show provenance
+                candidate_stores=[c.source_store_id for c in candidates],
+                winner=winner,
+                runner_up=runner_up,
+                all_candidates=candidate_debug_list,
+                reason_code=reason_code,
+                reason_line=reason_line,
                 chosen_product_id=candidates[0].product_id if candidates else "none",
                 chosen_title=candidates[0].title if candidates else "not found",
-                chosen_store_id=candidates[0].source_store_id if candidates else "none",  # NEW
+                chosen_store_id=candidates[0].source_store_id if candidates else "none",
                 store_assignment_reason="Primary store (most items)" if candidates else "N/A"
             ))
 

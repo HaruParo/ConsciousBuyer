@@ -208,12 +208,34 @@ class CartPlan(BaseModel):
 # Debug Output
 # ============================================================================
 
+class CandidateDebugInfo(BaseModel):
+    """Debug info for a single candidate"""
+    title: str
+    brand: str
+    price: float
+    store: str
+    form_score: int
+    organic: bool
+    unit_price: float
+
+
 class PlannerDebugInfo(BaseModel):
     """Debug information from planner execution"""
     ingredient_name: str
     candidates_found: int
     candidate_titles: List[str]
     candidate_stores: List[str]  # NEW: source_store_id for each candidate
+
+    # NEW: Detailed candidate info
+    winner: Optional[CandidateDebugInfo] = None
+    runner_up: Optional[CandidateDebugInfo] = None
+    all_candidates: List[CandidateDebugInfo] = []
+
+    # Winner/runner-up comparison
+    reason_code: Optional[str] = None  # ewg_guidance, less_plastic, fewer_prep, better_unit_value, etc.
+    reason_line: Optional[str] = None
+
+    # Legacy fields (keep for compatibility)
     chosen_product_id: str
     chosen_title: str
     chosen_store_id: str  # NEW: source_store_id of chosen product

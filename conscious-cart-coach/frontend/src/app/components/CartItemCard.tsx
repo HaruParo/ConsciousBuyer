@@ -35,7 +35,7 @@ export function CartItemCard({
   if (isUnavailable) {
     return (
       <UnavailableCard
-        ingredientName={item.ingredientName || item.name}
+        ingredientName={item.ingredient_label || item.ingredientName || item.name}
         storeName={item.store}
         reason={item.catalogueName?.includes('Not Available') ? item.catalogueName : undefined}
         onRemove={onRemove}
@@ -80,16 +80,9 @@ export function CartItemCard({
 
         {/* Product Info */}
         <div className="flex-1 min-w-0">
-          {/* 1. Top row: Product title as main heading */}
-          <div className="mb-1">
-            <h3 className="text-sm sm:text-base font-semibold text-[#4a3f2a] mb-1">
-              {formatProductName(item.catalogueName, item.brand)}
-            </h3>
-          </div>
-
-          {/* 2. Badges row: Store chip and swap indicator */}
+          {/* 1. Badges row: Store chip and swap indicator */}
           {(showStoreChip || useCheaperSwap) && (
-            <div className="mb-2 flex items-center gap-2 flex-wrap">
+            <div className="mb-1.5 flex items-center gap-2 flex-wrap">
               {showStoreChip && (
                 <Badge
                   variant="secondary"
@@ -112,6 +105,13 @@ export function CartItemCard({
               )}
             </div>
           )}
+
+          {/* 2. Top row: Product title as main heading */}
+          <div className="mb-1">
+            <h3 className="text-sm sm:text-base font-semibold text-[#4a3f2a] mb-1">
+              {formatProductName(item.catalogueName, item.brand)}
+            </h3>
+          </div>
 
           {/* 3. Price + size row */}
           <div className="flex items-center gap-2 mb-2">

@@ -75,30 +75,44 @@ class ProductCandidate:
         Compute form preference score (lower is better)
 
         Form hierarchy:
-        - 0: Fresh (fresh, bunch, whole produce)
-        - 5: Generic match
-        - 10: Dried/minced (but not powder/granules)
-        - 20: Granules/powder (avoid for fresh ingredients)
+        - 0: Fresh (fresh produce, meat, dairy - NOT spices)
+        - 5: Whole/seeds/pods (spices, legumes)
+        - 10: Dried (but not powder)
+        - 20: Powder/ground (most processed)
+        - 99: Unknown (default)
 
-        IMPORTANT: Check for processed forms FIRST before checking for "root"
-        because "Ginger Root Powder" contains both "root" and "powder"
+        CRITICAL FIX: Spices are NEVER fresh. Only produce/meat/dairy can be fresh.
         """
         title_lower = self.title.lower()
+        category_lower = self.category.lower()
 
-        # Granules/powder/minced/dried WORST for fresh ingredients (check FIRST)
-        if any(word in title_lower for word in ["granules", "powder", "minced", "dried", "ground"]):
+        # Check if this is a spice category (NEVER fresh)
+        is_spice = any(kw in category_lower for kw in ["spice", "seasoning", "herb_dried"])
+
+        # 1. Powder/ground WORST (check FIRST)
+        if any(word in title_lower for word in ["powder", "ground", "granules"]):
             return 20
 
-        # Fresh is best (check AFTER processed forms)
-        if any(word in title_lower for word in ["fresh", "bunch", "organic whole"]):
-            return 0
+        # 2. Dried (but not powder)
+        if "dried" in title_lower:
+            return 10
 
-        # Root/whole (but not if already caught by processed check above)
-        if "root" in title_lower or "whole" in title_lower:
-            return 0
+        # 3. Fresh (ONLY for produce/meat/dairy, NOT spices)
+        if not is_spice:
+            if any(word in title_lower for word in ["fresh", "bunch"]):
+                return 0
 
-        # Generic match (neither explicitly fresh nor processed)
-        return 5
+            # Root/whole produce (e.g., "Ginger Root", "Whole Onion")
+            # But NOT for spices (e.g., "Bay Leaves Whole" is NOT fresh)
+            if "root" in title_lower or ("whole" in title_lower and category_lower.startswith("produce")):
+                return 0
+
+        # 4. Whole/seeds/pods (for spices - intermediate form)
+        if is_spice or any(word in title_lower for word in ["whole", "seeds", "pods", "leaves"]):
+            return 5
+
+        # 5. Unknown/generic (default)
+        return 99
 
 
 # ============================================================================

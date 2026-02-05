@@ -102,6 +102,10 @@ export default function App() {
   // V2 CartPlan state
   const [cartPlan, setCartPlan] = useState<CartPlan | null>(null);
 
+  // Store last confirmed ingredients to preserve user edits
+  const [lastPrompt, setLastPrompt] = useState<string>('');
+  const [lastConfirmedIngredients, setLastConfirmedIngredients] = useState<Ingredient[]>([]);
+
   // Check for stored location on mount
   useEffect(() => {
     const storedLocation = localStorage.getItem('userLocation');
@@ -206,6 +210,18 @@ export default function App() {
       setServings(inferredServings);
     }
 
+    // Check if prompt hasn't changed and we have saved ingredients
+    const promptUnchanged = mealPlan.trim() === lastPrompt.trim();
+    const hasSavedIngredients = lastConfirmedIngredients.length > 0;
+
+    if (promptUnchanged && hasSavedIngredients) {
+      // Reuse user's edited ingredients without re-extraction
+      console.log('✓ Reusing user-edited ingredients (prompt unchanged)');
+      setDraftIngredients(lastConfirmedIngredients);
+      setAppState('confirmingIngredients');
+      return;
+    }
+
     setIsLoading(true);
     setLoadingMessage('Analyzing your meal plan...');
     setLoadingSubmessage('Extracting ingredients and finding best products');
@@ -268,6 +284,11 @@ export default function App() {
       ]);
 
       setCartPlan(plan);
+
+      // Save confirmed ingredients and prompt for reuse (persistence)
+      setLastPrompt(mealPlan);
+      setLastConfirmedIngredients(confirmedIngredients);
+
       setAppState('cartReady');
     } catch (err) {
       await minLoadingTime;

@@ -62,6 +62,7 @@ CATEGORY_TO_INGREDIENT: dict[str, str] = {
     "produce_greens": "spinach",  # Default, will be refined
     "produce_onions": "onion",
     "produce_tomatoes": "tomato",
+    "produce_mushrooms": "mushrooms",
     "fruit_berries": "berries",
     "fruit_tropical": "tropical_fruit",
     "spices": "spices",  # Will need more granular mapping
