@@ -958,14 +958,26 @@ class PlannerEngine:
         ingredient_form: Optional[str]
     ) -> Tuple[str, List[str], ProductChips]:
         """
-        Generate reason_line, reason_details, and tradeoffs using winner-vs-runner-up comparison
+        Generate rule-based explanation (NO competitor mentions)
 
-        NEW APPROACH (deterministic, comparison-based):
-        - Format: "Picked X instead of Y (because Z)"
-        - Z must be deterministic from deltas: EWG guidance, less plastic, faster delivery,
-          fewer prep steps, better unit value, in season, store-only match
-        - No generic reasons like "Fresh pick", "optimal flavor", "good match"
-        - Tradeoffs: 0-2, derived from negative deltas vs runner-up
+        CRITICAL REQUIREMENTS:
+        - NO "Picked X over Y" language
+        - Rule-based explanations only (e.g., "Organic recommended (EWG Dirty Dozen)")
+        - NO vague phrases ("fresh pick", "optimal flavor", "good match")
+        - NO standalone price chips ("+$1.00 more")
+        - Cost only shown as part of tradeoff sentence when relevant
+        - Tooltips must be specific and non-moralizing
+        - NO invented facts in tooltips
+
+        Allowed explanations:
+        1. "Organic recommended (EWG Dirty Dozen)"
+        2. "Conventional is OK (EWG Clean Fifteen)"
+        3. "Wash/peel recommended (EWG guidance)"
+        4. "Lower plastic packaging"
+        5. "In-season in NJ"
+        6. "Faster delivery"
+        7. "Better value per unit"
+        8. "Convenient form (powder/paste/peeled)"
 
         Returns:
             Tuple of (reason_line, reason_details, ProductChips)
@@ -973,161 +985,154 @@ class PlannerEngine:
         winner_candidate = winner["candidate"]
         ewg_category = winner.get("ewg_category")
 
-        # Keep legacy why_pick for backward compatibility (can phase out later)
+        # NO why_pick chips - removed for clarity
         why_pick = []
-        if winner_candidate.organic:
-            why_pick.append("USDA Organic")
 
         # ========================================================================
-        # REASON GENERATION (Winner vs Runner-up Comparison)
+        # RULE-BASED EXPLANATION (NO Competitor Mentions)
         # ========================================================================
 
-        if runner_up is None:
-            # No alternative - store-only match
-            reason_line = f"Picked {winner_candidate.brand} (store-only match)"
+        runner_up_candidate = runner_up["candidate"] if runner_up else None
+        reason_code = None
+        reason_line = ""
+        reason_details = []
+        tradeoffs = []
+
+        # Priority 1: EWG Dirty Dozen (organic recommended)
+        if ewg_category == "dirty_dozen" and winner_candidate.organic:
+            reason_code = "ewg_dirty_dozen"
+            reason_line = "Organic recommended (EWG Dirty Dozen)"
             reason_details = [
-                "Only option available in selected stores",
+                "EWG Dirty Dozen: conventionally grown versions tend to have higher pesticide residues",
+                f"Selected organic option at ${winner_candidate.price:.2f} for {winner_candidate.size}",
+                "Wash thoroughly before use"
+            ]
+
+        # Priority 2: EWG Clean Fifteen (conventional is OK)
+        elif ewg_category == "clean_fifteen":
+            reason_code = "ewg_clean_fifteen"
+            reason_line = "Conventional is OK (EWG Clean Fifteen)"
+            reason_details = [
+                "EWG Clean Fifteen: conventionally grown versions have low pesticide residues",
+                f"${winner_candidate.price:.2f} for {winner_candidate.size}",
+                "Organic option available if preferred"
+            ]
+
+        # Priority 3: Wash/peel recommended (EWG guidance for non-dirty-dozen produce)
+        elif ewg_category and ewg_category not in ["dirty_dozen", "clean_fifteen"] and not winner_candidate.organic:
+            reason_code = "ewg_wash_peel"
+            reason_line = "Wash/peel recommended (EWG guidance)"
+            reason_details = [
+                "Not in EWG Dirty Dozen or Clean Fifteen",
+                "Wash thoroughly and peel if applicable",
                 f"${winner_candidate.price:.2f} for {winner_candidate.size}"
             ]
-            tradeoffs = []  # No tradeoffs if no alternative
-        else:
-            runner_up_candidate = runner_up["candidate"]
 
-            # Find the PRIMARY reason winner beat runner-up (first match wins)
-            reason_code = None
-            reason_line = ""
-            reason_details = []
-
-            # 1. EWG guidance (dirty dozen + organic winner, non-organic runner-up)
-            if ewg_category == "dirty_dozen" and winner_candidate.organic and not runner_up_candidate.organic:
-                reason_code = "ewg_guidance"
-                reason_line = f"Picked {winner_candidate.brand} over {runner_up_candidate.brand} (organic where it matters)"
-                reason_details = [
-                    "EWG Dirty Dozen category - higher pesticide residues expected",
-                    f"Organic option: ${winner_candidate.price:.2f} for {winner_candidate.size}",
-                    f"Non-organic option: ${runner_up_candidate.price:.2f} for {runner_up_candidate.size}"
-                ]
-
-            # 2. Less plastic (packaging comparison)
-            elif not reason_code:
-                winner_pkg = self._detect_packaging(winner_candidate)
-                runner_up_pkg = self._detect_packaging(runner_up_candidate)
-                if winner_pkg != "Unknown" and runner_up_pkg != "Unknown" and winner_pkg != runner_up_pkg:
-                    # Prefer: No packaging > Glass/Metal > Paper > Plastic
-                    pkg_score = {
-                        "No packaging": 4,
-                        "Glass jar": 3,
-                        "Metal can": 3,
-                        "Paper box": 2,
-                        "Plastic bag": 1,
-                        "Plastic clamshell": 1,
-                        "Unknown": 0
-                    }
-                    if pkg_score.get(winner_pkg, 0) > pkg_score.get(runner_up_pkg, 0):
-                        reason_code = "less_plastic"
-                        reason_line = f"Picked {winner_candidate.brand} over {runner_up_candidate.brand} (less plastic packaging)"
-                        reason_details = [
-                            f"Winner packaging: {winner_pkg}",
-                            f"Runner-up packaging: {runner_up_pkg}"
-                        ]
-
-            # 3. Fewer prep steps (form comparison)
-            if not reason_code:
-                winner_form = ingredient_form or "unknown"
-                title_lower = winner_candidate.title.lower()
-                runner_up_title_lower = runner_up_candidate.title.lower()
-
-                # Check if winner is more convenient form
-                winner_is_powder = "powder" in title_lower or winner_form == "powder"
-                runner_up_is_seeds = "seeds" in runner_up_title_lower or "whole" in runner_up_title_lower
-
-                if winner_is_powder and runner_up_is_seeds:
-                    reason_code = "fewer_prep"
-                    reason_line = f"Picked {winner_candidate.brand} over {runner_up_candidate.brand} (no grinding needed)"
+        # Priority 4: Lower plastic packaging (only if packaging known and better)
+        elif not reason_code and runner_up_candidate:
+            winner_pkg = self._detect_packaging(winner_candidate)
+            runner_up_pkg = self._detect_packaging(runner_up_candidate)
+            if winner_pkg != "Unknown" and runner_up_pkg != "Unknown" and winner_pkg != runner_up_pkg:
+                pkg_score = {
+                    "No packaging": 4,
+                    "Glass jar": 3,
+                    "Metal can": 3,
+                    "Paper box": 2,
+                    "Plastic bag": 1,
+                    "Plastic clamshell": 1,
+                    "Unknown": 0
+                }
+                if pkg_score.get(winner_pkg, 0) > pkg_score.get(runner_up_pkg, 0):
+                    reason_code = "lower_plastic"
+                    reason_line = "Lower plastic packaging"
                     reason_details = [
-                        "Powder form saves prep time",
+                        f"Packaging: {winner_pkg}",
+                        f"Alternative had: {runner_up_pkg}",
+                        "Less plastic waste"
+                    ]
+
+        # Priority 5: Convenient form (powder/paste/peeled vs whole/seeds)
+        if not reason_code:
+            title_lower = winner_candidate.title.lower()
+            winner_form = ingredient_form or "unknown"
+
+            # Check if convenient form
+            is_powder = "powder" in title_lower or winner_form == "powder"
+            is_paste = "paste" in title_lower or winner_form == "paste"
+            is_peeled = "peeled" in title_lower or "chopped" in title_lower or "minced" in title_lower
+
+            if is_powder or is_paste or is_peeled:
+                reason_code = "convenient_form"
+                if is_powder:
+                    reason_line = "Convenient form (powder)"
+                    reason_details = [
+                        "Powder form - no grinding needed",
+                        "Ready to use directly in cooking",
+                        f"${winner_candidate.price:.2f} for {winner_candidate.size}"
+                    ]
+                elif is_paste:
+                    reason_line = "Convenient form (paste)"
+                    reason_details = [
+                        "Paste form - saves prep time",
+                        "No chopping or grinding needed",
+                        f"${winner_candidate.price:.2f} for {winner_candidate.size}"
+                    ]
+                elif is_peeled:
+                    reason_line = "Convenient form (pre-prepped)"
+                    reason_details = [
+                        "Already peeled/chopped - saves prep time",
+                        "Ready to use",
                         f"${winner_candidate.price:.2f} for {winner_candidate.size}"
                     ]
 
-            # 4. Better unit value (only if within 15% price difference)
-            if not reason_code:
-                winner_unit_price = winner_candidate.unit_price
-                runner_up_unit_price = runner_up_candidate.unit_price
+        # Priority 6: Better value per unit (only if significantly better, >15%)
+        if not reason_code and runner_up_candidate:
+            winner_unit_price = winner_candidate.unit_price
+            runner_up_unit_price = runner_up_candidate.unit_price
 
-                if winner_unit_price < runner_up_unit_price * 0.85:
-                    reason_code = "better_unit_value"
-                    unit_savings = ((runner_up_unit_price - winner_unit_price) / runner_up_unit_price) * 100
-                    reason_line = f"Picked {winner_candidate.brand} over {runner_up_candidate.brand} (better unit value)"
-                    reason_details = [
-                        f"Winner: ${winner_unit_price:.3f}/oz",
-                        f"Runner-up: ${runner_up_unit_price:.3f}/oz",
-                        f"Saves {unit_savings:.0f}% per ounce"
-                    ]
-
-            # 5. Fallback - organic priority (if winner is organic and runner-up is not)
-            if not reason_code and winner_candidate.organic and not runner_up_candidate.organic:
-                reason_code = "organic_priority"
-                reason_line = f"Picked {winner_candidate.brand} over {runner_up_candidate.brand} (organic)"
+            if winner_unit_price < runner_up_unit_price * 0.85:
+                reason_code = "better_unit_value"
+                unit_savings = ((runner_up_unit_price - winner_unit_price) / runner_up_unit_price) * 100
+                reason_line = "Better value per unit"
                 reason_details = [
-                    "USDA Organic certified",
+                    f"Unit price: ${winner_unit_price:.3f}/oz",
+                    f"Saves {unit_savings:.0f}% per ounce vs alternatives",
                     f"${winner_candidate.price:.2f} for {winner_candidate.size}"
                 ]
 
-            # 6. Final fallback - just show the comparison
-            if not reason_code:
-                reason_code = "general"
-                reason_line = f"Picked {winner_candidate.brand} over {runner_up_candidate.brand}"
-                reason_details = [
-                    f"Winner: ${winner_candidate.price:.2f} for {winner_candidate.size}",
-                    f"Runner-up: ${runner_up_candidate.price:.2f} for {runner_up_candidate.size}"
-                ]
+        # Priority 7: No alternative (store-only match)
+        if not reason_code and runner_up is None:
+            reason_code = "store_only"
+            reason_line = "Available in selected stores"
+            reason_details = [
+                "Only option in current store selection",
+                f"${winner_candidate.price:.2f} for {winner_candidate.size}"
+            ]
 
-            # ========================================================================
-            # TRADEOFF GENERATION (Negative deltas vs runner-up, max 2)
-            # ========================================================================
+        # Fallback: Generic selection (avoid this if possible)
+        if not reason_code:
+            reason_code = "selected"
+            reason_line = "Selected for this recipe"
+            reason_details = [
+                f"${winner_candidate.price:.2f} for {winner_candidate.size}"
+            ]
 
-            tradeoffs = []
+        # ========================================================================
+        # TRADEOFF (embedded cost context, NO standalone price chips)
+        # ========================================================================
 
-            # 1. Ships later (delivery time delta)
-            # TODO: Add when delivery_estimate is available in candidate data
+        # NO standalone price chips like "+$1.00 more"
+        # Cost only shown as part of explanation when it's a meaningful tradeoff
 
-            # 2. More prep (if winner requires more prep than runner-up)
-            winner_needs_prep = self._needs_prep(winner_candidate, ingredient_form, ingredient_name)
-            runner_up_needs_prep = self._needs_prep(runner_up_candidate, ingredient_form, ingredient_name)
-
-            if winner_needs_prep and not runner_up_needs_prep:
-                if "whole chicken" in winner_candidate.title.lower():
-                    tradeoffs.append("More prep time")
-                elif ingredient_form in ["seeds", "pods"]:
-                    tradeoffs.append("Needs grinding")
-                elif ingredient_name.lower() in ["onion", "onions", "tomato", "tomatoes", "ginger", "garlic"]:
-                    tradeoffs.append("Needs chopping")
-
-            # 3. Higher upfront cost (only if significant, >$0.50)
-            if len(tradeoffs) < 2:
-                price_diff = winner_candidate.price - runner_up_candidate.price
-                if price_diff > 0.5:
-                    tradeoffs.append(f"${price_diff:.2f} more")
-
-            # 4. More packaging (if winner has worse packaging)
-            if len(tradeoffs) < 2:
-                winner_pkg = self._detect_packaging(winner_candidate)
-                runner_up_pkg = self._detect_packaging(runner_up_candidate)
-                if winner_pkg != "Unknown" and runner_up_pkg != "Unknown":
-                    pkg_score = {
-                        "No packaging": 4,
-                        "Glass jar": 3,
-                        "Metal can": 3,
-                        "Paper box": 2,
-                        "Plastic bag": 1,
-                        "Plastic clamshell": 1,
-                        "Unknown": 0
-                    }
-                    if pkg_score.get(winner_pkg, 0) < pkg_score.get(runner_up_pkg, 0):
-                        tradeoffs.append("More packaging")
-
-            # Max 2 tradeoffs
-            tradeoffs = tradeoffs[:2]
+        # Check if cost needs to be mentioned as tradeoff
+        if runner_up_candidate:
+            price_diff = winner_candidate.price - runner_up_candidate.price
+            # Only mention cost if it's significant AND not already explained by EWG/quality reason
+            if price_diff > 0.5 and reason_code in ["ewg_dirty_dozen", "lower_plastic", "convenient_form"]:
+                cost_context = f"Costs ~${price_diff:.0f} more upfront; chosen because {reason_line.split('(')[0].strip().lower()}."
+                # Add cost context to reason_details if not already mentioned
+                if not any("$" in detail and "more" in detail.lower() for detail in reason_details):
+                    reason_details.append(cost_context)
 
         return reason_line, reason_details, ProductChips(why_pick=why_pick, tradeoffs=tradeoffs)
 

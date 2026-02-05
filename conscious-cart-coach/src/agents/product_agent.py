@@ -198,8 +198,8 @@ def _load_inventory_from_csv(csv_path: Union[str, Path]) -> Dict[str, List[dict]
         return inventory
 
     with open(csv_path, 'r', encoding='utf-8') as f:
-        # Skip comment lines
-        lines = [line for line in f if not line.strip().startswith('#')]
+        # Skip comment lines (handle both quoted and unquoted comments)
+        lines = [line for line in f if not line.strip().strip('"').startswith('#')]
 
     # Parse CSV from filtered lines
     reader = csv.DictReader(lines)
