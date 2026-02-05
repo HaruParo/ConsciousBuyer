@@ -847,10 +847,30 @@ INGREDIENT_CONSTRAINTS = {
         "exclude": []  # Allow both powder and root
     },
 
-    # Chicken Thighs - Prefer thighs, allow other cuts
+    # Chicken - Specific cuts (enforce correct matches)
+    "chicken thighs": {
+        "include": ["thighs", "thigh"],
+        "exclude": ["breast", "drumstick", "leg (not thigh)", "wing", "ground"]
+    },
+    "chicken legs": {
+        "include": ["leg", "drumstick", "drumsticks"],
+        "exclude": ["thigh", "breast", "wing", "ground"]
+    },
+    "chicken drumsticks": {
+        "include": ["drumstick", "drumsticks", "leg"],
+        "exclude": ["thigh", "breast", "wing", "ground"]
+    },
+    "chicken breasts": {
+        "include": ["breast", "breasts"],
+        "exclude": ["thigh", "drumstick", "leg (not breast)", "wing", "ground"]
+    },
+    "chicken wings": {
+        "include": ["wing", "wings"],
+        "exclude": ["thigh", "drumstick", "leg", "breast", "ground"]
+    },
     "chicken": {
-        "include": ["chicken", "thighs", "breast", "drumstick", "whole"],
-        "exclude": []
+        "include": ["chicken"],
+        "exclude": ["ground", "sausage", "patty", "nugget", "tender", "strip"]
     },
 
     # Basmati Rice - Must be basmati, NOT other rice types
@@ -1104,6 +1124,16 @@ class ProductAgent:
                             else:
                                 # Generic match (not explicitly fresh or dried)
                                 form_score = 5
+
+                        # For chicken: any cut (thighs/breasts/drumsticks) is valid
+                        if "chicken" in name_lower:
+                            # Accept any common chicken cut without penalty
+                            chicken_cuts = ["thigh", "breast", "drumstick", "wing", "leg", "whole"]
+                            if any(cut in title_lower for cut in chicken_cuts):
+                                form_score = 0  # All cuts are equally valid
+                            # Avoid ground/processed forms for whole cuts
+                            elif "ground" in title_lower or "sausage" in title_lower or "meatball" in title_lower:
+                                form_score = 15  # Penalize processed forms
 
                         # 2. Organic preference (0 = organic, 1 = not)
                         organic_score = 0 if c.get("organic") else 1

@@ -909,8 +909,19 @@ def plan_v2(request: PlanRequestV2):
         # Step 1: Get ingredients (either from override or extraction)
         if request.ingredients_override:
             # Use confirmed ingredients from modal (trim whitespace, drop empties)
-            ingredients = [ing.strip() for ing in request.ingredients_override if ing.strip()]
-            print(f"\n✓ Using confirmed ingredients override ({len(ingredients)} items)")
+            raw_ingredients = [ing.strip() for ing in request.ingredients_override if ing.strip()]
+            print(f"\n✓ Using confirmed ingredients override ({len(raw_ingredients)} items)")
+
+            # Deduplicate synonyms (cilantro/coriander/cilantros → cilantro)
+            from src.agents.ingredient_synonyms import deduplicate_ingredients
+            ingredients, duplicates_removed = deduplicate_ingredients(raw_ingredients)
+
+            if duplicates_removed:
+                print(f"\n⚠️  Removed {sum(len(v) for v in duplicates_removed.values())} duplicate ingredients:")
+                for kept, removed in duplicates_removed.items():
+                    print(f"  Kept '{kept}', removed: {', '.join(removed)}")
+
+            print(f"\nFinal ingredient list ({len(ingredients)} items):")
             for ing in ingredients:
                 print(f"  - {ing}")
         else:

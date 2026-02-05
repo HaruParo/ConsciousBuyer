@@ -35,8 +35,14 @@ BIRYANI_INGREDIENT_FORMS: Dict[str, Tuple[str, str]] = {
     "ginger": ("fresh ginger root", "fresh"),
     "garlic": ("fresh garlic cloves", "fresh"),
 
-    # Protein - specify cut
+    # Protein - specify cut (default to thighs for biryani)
     "chicken": ("chicken thighs", "cut"),
+    "chicken thighs": ("chicken thighs", "cut"),
+    "chicken legs": ("chicken legs", "cut"),
+    "chicken drumsticks": ("chicken drumsticks", "cut"),
+    "chicken breasts": ("chicken breasts", "cut"),
+    "chicken wings": ("chicken wings", "cut"),
+    "whole chicken": ("whole chicken", "whole"),
 
     # Vegetables - whole
     "onions": ("whole onions", "whole"),

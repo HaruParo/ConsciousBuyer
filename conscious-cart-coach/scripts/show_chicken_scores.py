@@ -32,8 +32,8 @@ def show_chicken_scores():
         ingredients=ingredients
     )
 
-    if not result.success:
-        print(f"❌ Error: {result.error}")
+    if result.is_error:
+        print(f"❌ Error: {result.error_message}")
         return
 
     candidates = result.facts.get("candidates_by_ingredient", {}).get("chicken thighs", [])
