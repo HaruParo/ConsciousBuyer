@@ -211,7 +211,7 @@ export function CartItemCard({
                     : 'border-[#8b7a5a] text-[#6b5f4a] hover:bg-[#f5e6d3]'
                 } text-[10px] sm:text-xs py-2 sm:py-3 touch-manipulation`}
               >
-                {useCheaperSwap ? 'Switch Back to Organic' : 'Find Budget Option'}
+                {useCheaperSwap ? 'Switch Back to Organic' : 'Find Cheaper Swap'}
               </Button>
             ) : item.available === false ? (
               <div className="text-[10px] sm:text-xs text-[#6b5f4a] italic py-2">
