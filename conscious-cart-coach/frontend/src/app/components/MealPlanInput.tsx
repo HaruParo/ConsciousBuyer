@@ -44,7 +44,7 @@ export function MealPlanInput({
           </li>
           <li className="flex items-start gap-2 text-sm sm:text-base text-[#6b5f4a]">
             <Check className="w-4 h-4 sm:w-5 sm:h-5 text-[#7a6f4a] flex-shrink-0 mt-0.5" />
-            <span>FDA recall alerts and safety checks</span>
+            <span>Safety signals and product quality checks</span>
           </li>
           <li className="flex items-start gap-2 text-sm sm:text-base text-[#6b5f4a]">
             <Check className="w-4 h-4 sm:w-5 sm:h-5 text-[#7a6f4a] flex-shrink-0 mt-0.5" />

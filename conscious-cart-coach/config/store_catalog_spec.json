@@ -1,0 +1,125 @@
+{
+  "stores": {
+    "freshdirect": {
+      "store_id": "freshdirect",
+      "store_name": "FreshDirect",
+      "store_type": "primary",
+      "private_label": "FreshDirect",
+      "allowed_categories": ["protein_poultry", "produce", "dairy", "pantry"],
+      "persona": "Premium online grocer with focus on fresh produce and quality proteins",
+      "trusted_source_file": "FreshDirect Chicken-Table 1.tsv",
+      "private_label_enforcement": "strict",
+      "notes": "Carries Farmer Focus chicken (premium brand). Private label 'FreshDirect' only valid here."
+    },
+    "wholefoods": {
+      "store_id": "wholefoods",
+      "store_name": "Whole Foods Market",
+      "store_type": "primary",
+      "private_label": "365 by Whole Foods Market",
+      "allowed_categories": ["protein_poultry", "produce", "dairy", "pantry", "spices"],
+      "persona": "Organic-focused retailer with high standards for sourcing",
+      "trusted_source_file": "Whole Foods Chicken-Table 1.tsv",
+      "private_label_enforcement": "strict",
+      "notes": "365 brand ONLY valid in Whole Foods. Strong organic selection."
+    },
+    "pure_indian_foods": {
+      "store_id": "pure_indian_foods",
+      "store_name": "Pure Indian Foods",
+      "store_type": "specialty",
+      "private_label": "Pure Indian Foods",
+      "allowed_categories": ["spices", "rice", "ghee", "pantry"],
+      "persona": "Specialty Indian grocery with authentic ingredients",
+      "trusted_source_file": "Pure Indian Foods-Table 1.tsv",
+      "private_label_enforcement": "strict",
+      "brand_whitelist": ["Pure Indian Foods", "Swad", "Laxmi", "Deep", "Pride of India"],
+      "brand_blacklist": ["Shan", "Everest"],
+      "notes": "Do NOT recommend Shan/Everest by default. Treat as standard brand, transparency unknown."
+    },
+    "kaiser": {
+      "store_id": "kaiser",
+      "store_name": "Kesar Grocery",
+      "store_type": "specialty",
+      "private_label": "Kaiser Select",
+      "allowed_categories": ["spices", "rice", "ghee", "produce", "pantry"],
+      "persona": "Indian/South Asian specialty grocer",
+      "trusted_source_file": "Kaser Grocery Store-Table 1.tsv",
+      "private_label_enforcement": "strict",
+      "notes": "May carry different brands than Pure Indian Foods. Do not assume identical catalogs."
+    },
+    "shoprite": {
+      "store_id": "shoprite",
+      "store_name": "ShopRite",
+      "store_type": "primary",
+      "private_label": "Bowl & Basket",
+      "allowed_categories": ["protein_poultry", "produce", "dairy", "pantry", "spices"],
+      "persona": "Value-focused supermarket chain",
+      "trusted_source_file": "shoprite_inventory.csv",
+      "private_label_enforcement": "strict",
+      "notes": "Bowl & Basket private label only valid here."
+    }
+  },
+  
+  "allowed_tags": {
+    "from_listing": ["USDA Organic", "package_size", "brand", "title"],
+    "from_facts_store": ["ewg_category", "recall_signals", "seasonality"],
+    "from_store_provenance": ["source_store_id", "private_label_enforcement"],
+    "computed": ["unit_price", "ingredient_key", "ingredient_form"]
+  },
+  
+  "prohibited_tags": [
+    "ethical_score",
+    "brand_trust", 
+    "transparent_sources",
+    "healthy",
+    "safe",
+    "meets_standards",
+    "quality_score"
+  ],
+  
+  "ingredient_forms": {
+    "valid_forms": ["powder", "seeds", "pods", "leaves", "whole", "paste", "chopped", "ground", "flakes", "unknown"],
+    "inference_keywords": {
+      "powder": ["powder", "ground", "powdered"],
+      "seeds": ["seeds", "whole seeds"],
+      "pods": ["pods", "whole pods", "cardamom"],
+      "leaves": ["leaves", "fresh", "bunch"],
+      "whole": ["whole", "entire"],
+      "paste": ["paste"],
+      "chopped": ["chopped", "diced", "minced"],
+      "flakes": ["flakes", "crushed"]
+    }
+  },
+  
+  "synthetic_fill_rules": {
+    "enabled": true,
+    "mark_as_synthetic": true,
+    "only_if_missing": true,
+    "candidates_per_ingredient": 6,
+    "respect_store_whitelist": true,
+    "no_invented_claims": true,
+    "required_for_demo": ["basmati rice", "garam masala", "turmeric", "cumin", "coriander", "cardamom", "bay leaves", "mint", "cilantro", "onions", "tomatoes", "yogurt", "ginger", "garlic", "ghee"]
+  },
+  
+  "chip_generation_rules": {
+    "cart_level_universal": [
+      "Recall signals checked (all items)",
+      "EWG guidance applied (produce only)"
+    ],
+    "per_item_allowed": [
+      "USDA Organic",
+      "EWG Dirty Dozen - consider organic",
+      "EWG Clean Fifteen",
+      "Recall advisory: {category}",
+      "Plastic packaging",
+      "Glass packaging",
+      "$X more than alternative"
+    ],
+    "prohibited_language": [
+      "ethically sourced",
+      "transparent brand",
+      "meets our standards",
+      "safe choice",
+      "healthy option"
+    ]
+  }
+}

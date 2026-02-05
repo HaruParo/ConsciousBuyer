@@ -71,6 +71,117 @@ CATEGORY_TO_INGREDIENT: dict[str, str] = {
 }
 
 
+# Price sanity ranges by ingredient and size
+# Format: {ingredient: {size_range: (min_price, max_price)}}
+PRICE_SANITY_RANGES = {
+    "basmati rice": {
+        (8, 12): (18, 45),    # 10lb range
+        (4, 6): (9, 25),      # 5lb range
+        (1.5, 2.5): (3, 12),  # 2lb range
+    },
+    "rice": {
+        (8, 12): (15, 40),
+        (4, 6): (8, 22),
+        (1.5, 2.5): (3, 10),
+    },
+    "ghee": {
+        (14, 18): (8, 25),    # 16oz range
+        (28, 36): (15, 40),   # 32oz range
+    },
+    "chicken": {
+        (0.8, 1.2): (2, 12),  # per lb
+    },
+    # Spice jars (1.5-3oz)
+    "_spice_jar": {
+        (1.0, 4.0): (2, 12),
+    },
+    # Fresh herbs per bunch
+    "_herb_bunch": {
+        (0.5, 2.0): (1, 4),
+    },
+}
+
+# Ingredient categories for fallback price checks
+SPICE_INGREDIENTS = {
+    "garam masala", "turmeric", "coriander", "cumin", "cardamom",
+    "bay leaves", "cinnamon", "cloves", "nutmeg", "paprika",
+    "chili powder", "black pepper", "fennel"
+}
+
+HERB_INGREDIENTS = {
+    "mint", "cilantro", "basil", "parsley", "thyme", "rosemary",
+    "oregano", "dill", "sage"
+}
+
+
+def _is_price_plausible(
+    ingredient_name: str,
+    product_title: str,
+    size: str,
+    price: float
+) -> tuple[bool, str]:
+    """
+    Check if product price is within plausible range for the ingredient and size.
+
+    Args:
+        ingredient_name: Normalized ingredient name
+        product_title: Product title (for context)
+        size: Size string (e.g., "10lb", "16oz", "per bunch")
+        price: Product price in USD
+
+    Returns:
+        (is_plausible, reason) - True if price is plausible, False with reason if not
+    """
+    import logging
+    logger = logging.getLogger(__name__)
+
+    # Parse size in pounds
+    size_lb = parse_size_oz(size) / 16.0 if parse_size_oz(size) > 0 else 0
+
+    # Check exact ingredient match
+    if ingredient_name in PRICE_SANITY_RANGES:
+        ranges = PRICE_SANITY_RANGES[ingredient_name]
+        for (min_size, max_size), (min_price, max_price) in ranges.items():
+            if min_size <= size_lb <= max_size:
+                if not (min_price <= price <= max_price):
+                    reason = f"Price ${price} outside range ${min_price}-${max_price} for {size}"
+                    logger.warning(f"Filtered {product_title}: {reason}")
+                    return False, reason
+                return True, "OK"
+
+    # Fallback: Check by category (spices, herbs)
+    if ingredient_name in SPICE_INGREDIENTS:
+        # Most spice jars are 1-4oz, should be $2-$12
+        size_oz = parse_size_oz(size)
+        if 1.0 <= size_oz <= 4.0:
+            if not (2 <= price <= 12):
+                reason = f"Spice price ${price} outside $2-$12 for {size}"
+                logger.warning(f"Filtered {product_title}: {reason}")
+                return False, reason
+
+    if ingredient_name in HERB_INGREDIENTS:
+        # Herbs are typically per bunch, should be $1-$4
+        if "bunch" in size.lower() or size_lb < 0.2:  # < 3oz
+            if not (1 <= price <= 4):
+                reason = f"Herb price ${price} outside $1-$4 for {size}"
+                logger.warning(f"Filtered {product_title}: {reason}")
+                return False, reason
+
+    # Generic sanity check: No product over $200
+    if price > 200:
+        reason = f"Price ${price} exceeds maximum of $200"
+        logger.warning(f"Filtered {product_title}: {reason}")
+        return False, reason
+
+    # Generic sanity check: No negative prices
+    if price < 0:
+        reason = f"Negative price ${price}"
+        logger.warning(f"Filtered {product_title}: {reason}")
+        return False, reason
+
+    return True, "OK"
+
+
 def _load_inventory_from_csv(csv_path: Union[str, Path]) -> Dict[str, List[dict]]:
     """
     Load product inventory from CSV file.
@@ -653,6 +764,164 @@ INGREDIENT_ALIASES: dict[str, str] = {
 }
 
 
+# ============================================================================
+# Synonym/Anti-synonym Dictionary for Hard Form Constraints
+# ============================================================================
+
+# Define specific inclusion/exclusion rules for ingredients to prevent wrong matches
+# Used BEFORE scoring to filter out incorrect product forms
+INGREDIENT_CONSTRAINTS = {
+    # Cumin Seeds - Must be seeds, NOT kalonji (nigella/black seed/onion seed)
+    "cumin seeds": {
+        "include": ["cumin", "jeera", "whole cumin"],
+        "exclude": ["kalonji", "nigella", "black seed", "onion seed", "black cumin"]
+    },
+    "cumin": {
+        "include": ["cumin", "jeera"],
+        "exclude": ["kalonji", "nigella", "black seed", "onion seed"]
+    },
+
+    # Bay Leaves - Must be leaves, NOT blends or mixes
+    "bay leaves": {
+        "include": ["bay leaf", "bay", "tej patta", "tejpatta", "indian bay"],
+        "exclude": ["blend", "mix", "chaat", "diy", "garam masala", "biryani masala", "curry"]
+    },
+
+    # Fresh Ginger - Must be fresh root, NOT powder/paste/dried
+    "fresh ginger": {
+        "include": ["ginger root", "fresh ginger", "organic ginger", "ginger (fresh)"],
+        "exclude": ["powder", "paste", "dried", "minced ginger", "granules", "ground"]
+    },
+    "ginger": {
+        "include": ["ginger root", "fresh ginger", "organic ginger"],
+        "exclude": ["powder", "paste", "dried", "minced", "granules", "ground"]
+    },
+
+    # Fresh Garlic - Must be fresh cloves, NOT powder/minced/granules
+    "fresh garlic": {
+        "include": ["garlic cloves", "fresh garlic", "garlic bulb", "organic garlic"],
+        "exclude": ["powder", "minced", "granules", "dried", "paste"]
+    },
+    "garlic": {
+        "include": ["garlic cloves", "fresh garlic", "garlic bulb", "organic garlic"],
+        "exclude": ["powder", "minced", "granules", "dried", "paste"]
+    },
+
+    # Coriander Powder - Must be powder/ground, NOT seeds or leaves (cilantro)
+    "coriander powder": {
+        "include": ["ground coriander", "coriander powder"],
+        "exclude": ["seeds", "whole coriander", "leaves", "cilantro", "fresh"]
+    },
+    "coriander": {
+        "include": ["coriander"],
+        "exclude": []  # Allow both powder and seeds, but product_index will use form to filter
+    },
+
+    # Cumin Powder - Must be powder/ground, NOT whole seeds
+    "cumin powder": {
+        "include": ["ground cumin", "cumin powder"],
+        "exclude": ["seeds", "whole cumin", "jeera seeds", "kalonji"]
+    },
+
+    # Cardamom Pods - Prefer pods, allow powder
+    "cardamom": {
+        "include": ["cardamom", "green cardamom", "black cardamom"],
+        "exclude": []
+    },
+
+    # Mint Leaves - Must be fresh leaves, NOT dried
+    "mint": {
+        "include": ["fresh mint", "mint leaves", "mint bunch", "organic mint"],
+        "exclude": ["dried", "powder"]
+    },
+
+    # Cilantro Leaves - Must be fresh leaves, NOT coriander seeds
+    "cilantro": {
+        "include": ["cilantro", "fresh cilantro", "cilantro bunch", "coriander leaves"],
+        "exclude": ["seeds", "powder", "dried", "coriander seed"]
+    },
+
+    # Turmeric Powder - Must be powder/ground, NOT root
+    "turmeric": {
+        "include": ["turmeric", "ground turmeric", "turmeric powder"],
+        "exclude": []  # Allow both powder and root
+    },
+
+    # Chicken Thighs - Prefer thighs, allow other cuts
+    "chicken": {
+        "include": ["chicken", "thighs", "breast", "drumstick", "whole"],
+        "exclude": []
+    },
+
+    # Basmati Rice - Must be basmati, NOT other rice types
+    "basmati rice": {
+        "include": ["basmati"],
+        "exclude": ["jasmine", "sushi", "arborio", "wild rice"]
+    },
+}
+
+
+def apply_form_constraints(candidates: list[dict], ingredient_label: str) -> list[dict]:
+    """
+    Apply hard form constraints to filter out incorrect product matches.
+
+    This filters BEFORE scoring to prevent wrong forms from being selected.
+    Example: "cumin seeds" should NEVER match "kalonji" (black seed)
+
+    Args:
+        candidates: List of product candidates
+        ingredient_label: Full ingredient label ("fresh ginger root", "cumin seeds", etc.)
+
+    Returns:
+        Filtered list of candidates that pass constraints
+    """
+    ingredient_lower = ingredient_label.lower().strip()
+
+    # Check if we have specific constraints for this ingredient
+    constraints = None
+    for key, rules in INGREDIENT_CONSTRAINTS.items():
+        if key in ingredient_lower:
+            constraints = rules
+            break
+
+    # If no constraints, return all candidates
+    if not constraints:
+        return candidates
+
+    filtered = []
+    for candidate in candidates:
+        title_lower = candidate["title"].lower()
+        brand_lower = candidate.get("brand", "").lower()
+        combined_text = f"{title_lower} {brand_lower}"
+
+        # Check exclude rules (hard constraint - must pass)
+        excluded = False
+        for exclude_term in constraints.get("exclude", []):
+            if exclude_term.lower() in combined_text:
+                excluded = True
+                break
+
+        if excluded:
+            continue  # Skip this candidate
+
+        # Check include rules (must match at least one)
+        include_terms = constraints.get("include", [])
+        if include_terms:
+            matched = False
+            for include_term in include_terms:
+                if include_term.lower() in combined_text:
+                    matched = True
+                    break
+
+            if not matched:
+                continue  # Skip if doesn't match any include term
+
+        # Passed all constraints
+        filtered.append(candidate)
+
+    return filtered
+
+
 def parse_size_oz(size_str: str) -> float:
     """
     Parse a size string to ounces for unit price normalization.
@@ -760,8 +1029,36 @@ class ProductAgent:
                         if not self.filter_by_store(p, target_store):
                             continue
 
+                        # Price sanity filter: Reject products with unrealistic prices
+                        is_plausible, reason = _is_price_plausible(
+                            normalized,
+                            p["title"],
+                            p["size"],
+                            p["price"]
+                        )
+                        if not is_plausible:
+                            # Log and skip this candidate
+                            continue
+
                         size_oz = parse_size_oz(p["size"])
-                        unit_price = round(p["price"] / size_oz, 4) if size_oz > 0 else p["price"]
+
+                        # CRITICAL: Skip products with missing/invalid size info
+                        # Without valid size, we can't compute unit pricing for comparison
+                        if size_oz <= 0:
+                            import logging
+                            logger = logging.getLogger(__name__)
+                            logger.warning(f"Skipping {p['title']}: missing size information (size={p.get('size', 'N/A')})")
+                            continue
+
+                        unit_price = round(p["price"] / size_oz, 4)
+
+                        # Unit price consistency validation
+                        if unit_price <= 0 or unit_price > 1000:
+                            # Invalid unit price calculation, skip this candidate
+                            import logging
+                            logger = logging.getLogger(__name__)
+                            logger.warning(f"Invalid unit price for {p['title']}: unit_price={unit_price}")
+                            continue
 
                         candidates.append({
                             "product_id": p["id"],
@@ -774,10 +1071,50 @@ class ProductAgent:
                             "unit_price_unit": "oz",
                             "organic": p.get("organic", False),
                             "in_stock": True,
+                            "available_stores": p.get("available_stores", ["all"]),
+                            "store_type": p.get("store_type", "primary"),
                         })
 
-                    # Sort by unit_price ascending (cheapest first)
-                    candidates.sort(key=lambda c: c["unit_price"])
+                    # Smart sort: form match > freshness > organic > price
+                    def sort_key(c):
+                        title_lower = c["title"].lower()
+
+                        # 1. Form preference (0 = best, higher = worse)
+                        form_score = 10  # default
+
+                        # For spices: powder > granules > whole
+                        if "powder" in name_lower or "ground" in name_lower:
+                            if "ground" in title_lower or "powder" in title_lower:
+                                form_score = 0  # Perfect match
+                            elif "granules" in title_lower or "coarse" in title_lower:
+                                form_score = 5  # Acceptable but not ideal
+                            elif "whole" in title_lower or "root" in title_lower:
+                                form_score = 10  # Avoid whole for ground spices
+
+                        # For produce: fresh > dried (CHECK GRANULES FIRST!)
+                        if name_lower in ["ginger", "garlic", "mint", "cilantro", "basil"]:
+                            # CRITICAL: Check for dried/granules FIRST (even if organic)
+                            if "granules" in title_lower or "minced" in title_lower or "dried" in title_lower or "powder" in title_lower:
+                                form_score = 20  # Avoid dried/granules for fresh ingredients
+                            elif "fresh" in title_lower or "bunch" in title_lower or "root" in title_lower:
+                                form_score = 0  # Fresh is best
+                            elif "organic" in title_lower and "granules" not in title_lower:
+                                # Organic whole produce (not granules)
+                                form_score = 0
+                            else:
+                                # Generic match (not explicitly fresh or dried)
+                                form_score = 5
+
+                        # 2. Organic preference (0 = organic, 1 = not)
+                        organic_score = 0 if c.get("organic") else 1
+
+                        # 3. Price (normalize to 0-10 range)
+                        price_score = min(c["unit_price"], 10)
+
+                        # Combined score (form is most important)
+                        return (form_score, organic_score, price_score)
+
+                    candidates.sort(key=sort_key)
                     candidates_by_ingredient[name_lower] = candidates
 
                     evidence.append(Evidence(

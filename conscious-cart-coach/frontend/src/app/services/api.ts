@@ -169,3 +169,65 @@ export async function createMultiCart(
     );
   }
 }
+
+/**
+ * V2 API: Create CartPlan using new planner engine
+ *
+ * This calls /api/plan-v2 which returns a complete CartPlan.
+ * Now supports direct ingredients_override field for confirmed ingredients.
+ */
+export async function createCartPlanV2(
+  prompt: string,
+  servings: number = 4,
+  ingredientsOverride?: string[]
+): Promise<any> {
+  try {
+    // Build request body with optional ingredients_override
+    const requestBody: any = {
+      prompt: prompt,
+      servings: servings,
+    };
+
+    // If ingredients override provided, send it directly to backend
+    if (ingredientsOverride && ingredientsOverride.length > 0) {
+      requestBody.ingredients_override = ingredientsOverride;
+    }
+
+    const response = await fetch(`${API_BASE_URL}/api/plan-v2`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new ApiError(
+        errorData.detail || 'Failed to create cart plan',
+        response.status,
+        errorData.detail
+      );
+    }
+
+    return await response.json();
+  } catch (error) {
+    if (error instanceof ApiError) {
+      throw error;
+    }
+
+    if (error instanceof TypeError && error.message.includes('fetch')) {
+      throw new ApiError(
+        'Unable to connect to the server. Please make sure the backend is running.',
+        0,
+        'Connection failed'
+      );
+    }
+
+    throw new ApiError(
+      'An unexpected error occurred',
+      500,
+      error instanceof Error ? error.message : 'Unknown error'
+    );
+  }
+}

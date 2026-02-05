@@ -14,9 +14,10 @@ import {
   CartData,
   ExtractIngredientsResponse,
   MultiCartResponse,
-  StoreSplit
+  StoreSplit,
+  CartPlan
 } from '@/app/types';
-import { extractIngredients, createMultiCart, ApiError } from '@/app/services/api';
+import { extractIngredients, createMultiCart, createCartPlanV2, ApiError } from '@/app/services/api';
 import { BookOpen } from 'lucide-react';
 
 // Helper function to parse serving size from meal plan text
@@ -43,6 +44,42 @@ function parseServingsFromText(text: string): number | null {
   return null;
 }
 
+/**
+ * Canonicalize ingredient names based on meal context.
+ * Replaces ambiguous names with more specific variants (e.g., "rice" → "basmati rice" for biryani).
+ * Does NOT add or remove ingredients, only renames existing ones.
+ */
+function canonicalizeIngredients(
+  ingredientNames: string[],
+  mealPlan: string,
+  isOverrideMode: boolean = false
+): string[] {
+  // Don't canonicalize in override mode - user has explicitly set the list
+  if (isOverrideMode) {
+    return ingredientNames;
+  }
+
+  const mealPlanLower = mealPlan.toLowerCase();
+  const isBiryani = mealPlanLower.includes('biryani') || mealPlanLower.includes('pulao');
+
+  if (!isBiryani) {
+    return ingredientNames; // Only canonicalize for known contexts
+  }
+
+  // Biryani canonical mappings (only rename ambiguous ingredients)
+  return ingredientNames.map(name => {
+    const nameLower = name.toLowerCase().trim();
+
+    // Only replace generic "rice" with "basmati rice" for biryani
+    if (nameLower === 'rice') {
+      return 'basmati rice';
+    }
+
+    // Return original name unchanged
+    return name;
+  });
+}
+
 export default function App() {
   // State
   const [appState, setAppState] = useState<AppState>('idle');
@@ -61,6 +98,9 @@ export default function App() {
   const [storeSplit, setStoreSplit] = useState<StoreSplit | null>(null);
   const [carts, setCarts] = useState<CartData[]>([]);
   const [multiCartData, setMultiCartData] = useState<MultiCartResponse | null>(null);
+
+  // V2 CartPlan state
+  const [cartPlan, setCartPlan] = useState<CartPlan | null>(null);
 
   // Check for stored location on mount
   useEffect(() => {
@@ -147,7 +187,7 @@ export default function App() {
     setServings(newServings);
   };
 
-  // Step 1: Extract ingredients and show confirmation modal
+  // Step 1: Extract ingredients and show confirmation modal (V2 API)
   const handleCreateCart = async () => {
     if (!mealPlan.trim()) return;
 
@@ -168,18 +208,31 @@ export default function App() {
 
     setIsLoading(true);
     setLoadingMessage('Analyzing your meal plan...');
-    setLoadingSubmessage('Extracting ingredients and checking product availability');
+    setLoadingSubmessage('Extracting ingredients and finding best products');
     setError(null);
 
     const minLoadingTime = new Promise(resolve => setTimeout(resolve, 800));
 
     try {
-      const [response] = await Promise.all([
-        extractIngredients(mealPlan, finalServings),
+      const [plan] = await Promise.all([
+        createCartPlanV2(mealPlan, finalServings),
         minLoadingTime
       ]);
-      setDraftIngredients(response.ingredients);
-      setStoreSplit(response.store_split);
+
+      // Set draft ingredients from CartPlan for confirmation modal
+      // Apply canonicalization BEFORE showing modal (e.g., rice → basmati rice for biryani)
+      const isOverrideMode = false; // Initial extraction is never override mode
+      const canonicalNames = canonicalizeIngredients(plan.ingredients, mealPlan, isOverrideMode);
+
+      // Convert string[] to Ingredient[] for modal compatibility
+      const ingredientsForModal: Ingredient[] = canonicalNames.map((name: string) => ({
+        name,
+        quantity: 0, // Quantity is in products, not needed here
+        unit: ''
+      }));
+
+      setDraftIngredients(ingredientsForModal);
+      setCartPlan(plan); // Store the full plan
       setAppState('confirmingIngredients');
     } catch (err) {
       await minLoadingTime;
@@ -188,14 +241,14 @@ export default function App() {
       } else {
         setError('An unexpected error occurred. Please try again.');
       }
-      console.error('Failed to extract ingredients:', err);
+      console.error('Failed to create cart plan:', err);
     } finally {
       setIsLoading(false);
       setLoadingSubmessage(undefined);
     }
   };
 
-  // Step 2: User confirms ingredients, create multi-cart
+  // Step 2: User confirms ingredients, create cart plan with edited ingredients (V2 API)
   const handleConfirmIngredients = async (confirmedIngredients: Ingredient[]) => {
     setIsLoading(true);
     setLoadingMessage('Building your personalized cart...');
@@ -205,13 +258,16 @@ export default function App() {
     const minLoadingTime = new Promise(resolve => setTimeout(resolve, 1200));
 
     try {
-      const [response] = await Promise.all([
-        createMultiCart(mealPlan, confirmedIngredients, storeSplit, servings),
+      // Extract ingredient names for V2 API
+      const ingredientNames = confirmedIngredients.map(ing => ing.name);
+
+      // Call V2 API with edited ingredients
+      const [plan] = await Promise.all([
+        createCartPlanV2(mealPlan, servings, ingredientNames),
         minLoadingTime
       ]);
 
-      setCarts(response.carts);
-      setMultiCartData(response);
+      setCartPlan(plan);
       setAppState('cartReady');
     } catch (err) {
       await minLoadingTime;
@@ -220,7 +276,7 @@ export default function App() {
       } else {
         setError('An unexpected error occurred. Please try again.');
       }
-      console.error('Failed to create cart:', err);
+      console.error('Failed to create cart plan:', err);
       setAppState('idle');
     } finally {
       setIsLoading(false);
@@ -292,8 +348,14 @@ export default function App() {
     return <StyleGuide />;
   }
 
-  const hasMultipleStores = carts.length > 1;
-  const allCartItems = carts.flatMap(c => c.items);
+  // V2: Determine if we have cart data (either old format or new CartPlan)
+  const hasCartPlan = cartPlan !== null;
+  const hasMultipleStores = hasCartPlan
+    ? (cartPlan.store_plan?.stores?.length || 0) > 1
+    : carts.length > 1;
+  const allCartItems = hasCartPlan
+    ? [] // CartPlan uses different rendering (MultiStoreCart will handle it)
+    : carts.flatMap(c => c.items);
 
   return (
     <>
@@ -320,7 +382,7 @@ export default function App() {
           {/* Mobile: Show when cart is empty, hide when cart has items */}
           {/* Desktop: Always visible */}
           <div className={`
-            ${allCartItems.length === 0 ? 'block' : 'hidden'}
+            ${(!hasCartPlan && allCartItems.length === 0) ? 'block' : 'hidden'}
             lg:block lg:w-1/2
             p-4 sm:p-6 md:p-8 lg:p-12
             overflow-y-auto
@@ -332,7 +394,7 @@ export default function App() {
               onCreateCart={handleCreateCart}
               isLoading={isLoading}
               error={error}
-              hasItems={allCartItems.length > 0}
+              hasItems={hasCartPlan || allCartItems.length > 0}
             />
           </div>
 
@@ -340,12 +402,21 @@ export default function App() {
           {/* Mobile: Hide when cart is empty, show when cart has items */}
           {/* Desktop: Always visible */}
           <div className={`
-            ${allCartItems.length > 0 ? 'block' : 'hidden'}
+            ${(hasCartPlan || allCartItems.length > 0) ? 'block' : 'hidden'}
             lg:block lg:w-1/2
             bg-white border-t lg:border-t-0 lg:border-l border-[#e5c7a1]
             h-full flex flex-col
           `}>
-            {hasMultipleStores ? (
+            {hasCartPlan ? (
+              <MultiStoreCart
+                cartPlan={cartPlan}
+                onAgentCheckout={handleAgentCheckout}
+                location={userLocation ? `${userLocation.city}, ${userLocation.state}` : 'City, State'}
+                servings={servings}
+                onChangeLocation={handleChangeLocation}
+                onServingsChange={handleServingsChange}
+              />
+            ) : hasMultipleStores ? (
               <MultiStoreCart
                 carts={carts}
                 onUpdateQuantity={handleUpdateQuantity}
@@ -376,7 +447,7 @@ export default function App() {
         </div>
 
         {/* Floating Cart Coach Button - Only show on mobile when cart has items */}
-        {allCartItems.length > 0 && (
+        {(hasCartPlan || allCartItems.length > 0) && (
           <FloatingCartCoachButton
             mealPlan={mealPlan}
             onMealPlanChange={setMealPlan}
@@ -395,8 +466,12 @@ export default function App() {
         />
       )}
 
-      {appState === 'agentCheckout' && carts.length > 0 && (
-        <AgentCheckoutModal carts={carts} onClose={handleCloseAgentCheckout} />
+      {appState === 'agentCheckout' && (hasCartPlan || carts.length > 0) && (
+        <AgentCheckoutModal
+          carts={hasCartPlan ? [] : carts}
+          cartPlan={hasCartPlan ? cartPlan : undefined}
+          onClose={handleCloseAgentCheckout}
+        />
       )}
 
       {/* Loading Overlay */}

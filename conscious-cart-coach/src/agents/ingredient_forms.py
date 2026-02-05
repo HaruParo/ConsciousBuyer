@@ -18,7 +18,7 @@ BIRYANI_INGREDIENT_FORMS: Dict[str, Tuple[str, str]] = {
     "basmati rice": ("basmati rice", "whole"),
 
     # Spices - specify powder vs seeds vs pods
-    "coriander": ("coriander powder", "powder"),
+    "coriander": ("coriander seeds", "seeds"),  # Changed to seeds (powder not in inventory)
     "cumin": ("cumin seeds", "seeds"),
     "cardamom": ("green cardamom pods", "pods"),
     "green cardamom": ("green cardamom pods", "pods"),

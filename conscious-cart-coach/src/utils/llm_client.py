@@ -20,7 +20,14 @@ import os
 import json
 import requests
 from typing import Optional, Dict, Any, List
-from anthropic import Anthropic
+
+# Make anthropic import optional (only needed for Anthropic provider)
+try:
+    from anthropic import Anthropic
+    ANTHROPIC_AVAILABLE = True
+except ImportError:
+    Anthropic = None
+    ANTHROPIC_AVAILABLE = False
 
 
 class LLMResponse:
@@ -59,6 +66,9 @@ class AnthropicClient(BaseLLMClient):
     """Anthropic (Claude) API client"""
 
     def __init__(self, api_key: Optional[str] = None, model: str = "claude-3-5-sonnet-20241022"):
+        if not ANTHROPIC_AVAILABLE:
+            raise ImportError("anthropic package not installed. Install with: pip install anthropic")
+
         self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY")
         self.model = model
         self.client = Anthropic(api_key=self.api_key) if self.api_key else None

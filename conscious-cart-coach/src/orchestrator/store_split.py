@@ -10,7 +10,7 @@ Implements the 6-factor decision logic from MULTI_STORE_CART_SYSTEM.md:
 6. Efficiency Threshold (1-item rule + minimum order amount)
 
 Key Rules:
-- Don't add a specialty store for just 1 item - merge to primary for efficiency
+- Don't add a specialty store for <3 items - merge to primary for efficiency
 - Don't add a specialty store if estimated order value < minimum threshold
 """
 
@@ -117,7 +117,7 @@ def split_ingredients_by_store(
     Implements:
     - Fresh/shelf-stable constraint (fresh → primary only)
     - Ethnic ingredients → specialty (better quality matching)
-    - 1-item rule (don't add specialty store for just 1 item)
+    - 3-item efficiency rule (don't add specialty store for <3 items)
     - Minimum order amount (don't add store if order < minimum)
     - Urgency inference (tonight/today → Kesar Grocery, else → Pure Indian Foods)
     - Primary store = store with MOST items
@@ -174,8 +174,8 @@ def split_ingredients_by_store(
     reasoning.append(f"  - Specialty: {len(specialty_items)} items")
     reasoning.append(f"  - Both: {len(both_items)} items")
 
-    # Step 3: Apply the 1-ITEM RULE
-    # Don't add specialty store for just 1 specialty item
+    # Step 3: Apply the 3-ITEM EFFICIENCY RULE
+    # Don't add specialty store for <3 items (not worth the trip)
     applied_1_item_rule = False
 
     if len(specialty_items) == 0:
@@ -192,11 +192,11 @@ def split_ingredients_by_store(
             )
         ]
 
-    elif len(specialty_items) == 1:
-        # THE 1-ITEM RULE: Merge to primary for efficiency
-        reasoning.append(f"\n⚠️  1-ITEM RULE APPLIED")
-        reasoning.append(f"  - Only 1 specialty item: {specialty_items[0]}")
-        reasoning.append(f"  - Not worth adding specialty store for 1 item")
+    elif len(specialty_items) < 3:
+        # THE 3-ITEM EFFICIENCY RULE: Merge to primary if <3 items
+        reasoning.append(f"\n⚠️  3-ITEM EFFICIENCY RULE APPLIED")
+        reasoning.append(f"  - Only {len(specialty_items)} specialty item(s): {', '.join(specialty_items)}")
+        reasoning.append(f"  - Need at least 3 items to justify adding a store")
         reasoning.append(f"  - Merging to primary store for efficiency")
 
         applied_1_item_rule = True

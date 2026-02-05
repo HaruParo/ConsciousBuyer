@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CartData } from '@/app/types';
+import { CartData, CartPlan } from '@/app/types';
 import { designTokens } from '@/app/design-tokens';
 import { X, Check } from 'lucide-react';
 
@@ -10,21 +10,36 @@ interface CheckoutStore {
 }
 
 interface AgentCheckoutModalProps {
-  carts: CartData[];
+  carts?: CartData[];
+  cartPlan?: CartPlan;
   onClose: () => void;
 }
 
-export function AgentCheckoutModal({ carts, onClose }: AgentCheckoutModalProps) {
+export function AgentCheckoutModal({ carts, cartPlan, onClose }: AgentCheckoutModalProps) {
   const [stores, setStores] = useState<CheckoutStore[]>([]);
   const [isCreating, setIsCreating] = useState(true);
 
   useEffect(() => {
-    // Initialize stores
-    const storeList: CheckoutStore[] = carts.map(cart => ({
-      name: cart.store,
-      url: `https://${cart.store.toLowerCase().replace(/\s+/g, '')}.com/cart`,
-      ready: false
-    }));
+    // Initialize stores from either cartPlan or carts
+    let storeList: CheckoutStore[];
+
+    if (cartPlan) {
+      // V2: Use CartPlan stores
+      storeList = (cartPlan.store_plan?.stores || []).map(store => ({
+        name: store.store_name,
+        url: store.checkout_url_template || `https://${store.store_name.toLowerCase().replace(/\s+/g, '')}.com/cart`,
+        ready: false
+      }));
+    } else if (carts) {
+      // Old format: Use CartData[]
+      storeList = carts.map(cart => ({
+        name: cart.store,
+        url: `https://${cart.store.toLowerCase().replace(/\s+/g, '')}.com/cart`,
+        ready: false
+      }));
+    } else {
+      storeList = [];
+    }
 
     setStores(storeList);
 

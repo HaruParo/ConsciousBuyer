@@ -109,7 +109,7 @@ Default: unspecified
 
 BIRYANI CANONICAL DEFAULTS (apply for biryani-like dishes):
 - rice → name="basmati rice", form="basmati"
-- coriander → name="coriander", form="powder" (unless user says "seeds")
+- coriander → name="coriander", form="seeds" (whole coriander seeds)
 - cumin → name="cumin", form="seeds"
 - cardamom → name="cardamom", form="whole_spice" (green pods unless "black" mentioned)
 - bay leaves → name="bay leaves", form="leaves"
@@ -149,7 +149,7 @@ Output:
     {{"name": "ghee", "form": "unspecified", "quantity": 3, "unit": "tbsp"}},
     {{"name": "garam masala", "form": "powder", "quantity": 2, "unit": "tsp"}},
     {{"name": "turmeric", "form": "powder", "quantity": 1, "unit": "tsp"}},
-    {{"name": "coriander", "form": "powder", "quantity": 1, "unit": "tbsp"}},
+    {{"name": "coriander", "form": "seeds", "quantity": 1, "unit": "tbsp"}},
     {{"name": "cumin", "form": "seeds", "quantity": 1, "unit": "tsp"}},
     {{"name": "cardamom", "form": "whole_spice", "quantity": 4, "unit": "pods"}},
     {{"name": "bay leaves", "form": "leaves", "quantity": 2, "unit": "leaves"}},
