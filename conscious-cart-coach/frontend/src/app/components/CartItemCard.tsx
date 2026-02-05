@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Minus, Plus, Info, ImageOff } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { CartItem } from '@/app/types';
 import { Badge } from '@/app/components/ui/badge';
 import { UnavailableCard } from './UnavailableCard';
+import { ScoringDrawer } from './ScoringDrawer';
 import {
   formatProductName,
   sanitizeChipText
@@ -43,6 +45,9 @@ export function CartItemCard({
     );
   }
 
+  // State for scoring drawer
+  const [showScoringDrawer, setShowScoringDrawer] = useState(false);
+
   const handleDecrement = () => {
     if (item.quantity > 1) {
       onUpdateQuantity(item.quantity - 1);
@@ -70,6 +75,7 @@ export function CartItemCard({
     : [];
 
   return (
+    <>
     <div className="border border-[#e5d5b8] rounded-lg overflow-hidden bg-white">
       <div className="flex gap-2 sm:gap-3 md:gap-4 p-2 sm:p-3 md:p-4">
         {/* Product Image Placeholder */}
@@ -125,19 +131,30 @@ export function CartItemCard({
 
           {/* 4. Reason line + ⓘ details (from backend) */}
           {reasonDetails.length > 0 && (
-            <div className="mb-2 group relative inline-block">
-              <div className="flex items-center gap-1 text-xs sm:text-sm text-[#6b5f4a]">
-                <span className="font-medium">{reasonLine}</span>
-                <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#8b7a5a] cursor-help" />
+            <div className="mb-2">
+              <div className="group relative inline-block">
+                <div className="flex items-center gap-1 text-xs sm:text-sm text-[#6b5f4a]">
+                  <span className="font-medium">{reasonLine}</span>
+                  <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#8b7a5a] cursor-help" />
+                </div>
+                {/* Hover tooltip with details */}
+                <div className="absolute left-0 top-full mt-1 w-64 p-2 bg-[#4a3f2a] text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity z-10">
+                  <ul className="list-disc list-inside space-y-1">
+                    {reasonDetails.map((detail, idx) => (
+                      <li key={idx}>{detail}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              {/* Hover tooltip with details */}
-              <div className="absolute left-0 top-full mt-1 w-64 p-2 bg-[#4a3f2a] text-white text-xs rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity z-10">
-                <ul className="list-disc list-inside space-y-1">
-                  {reasonDetails.map((detail, idx) => (
-                    <li key={idx}>{detail}</li>
-                  ))}
-                </ul>
-              </div>
+              {/* Scoring system link */}
+              {item.decision_trace && (
+                <button
+                  className="ml-2 text-[10px] text-blue-600 hover:underline"
+                  onClick={() => setShowScoringDrawer(true)}
+                >
+                  Scoring system →
+                </button>
+              )}
             </div>
           )}
 
@@ -232,5 +249,16 @@ export function CartItemCard({
         </div>
       </div>
     </div>
+
+    {/* Scoring Drawer */}
+    {item.decision_trace && (
+      <ScoringDrawer
+        isOpen={showScoringDrawer}
+        onClose={() => setShowScoringDrawer(false)}
+        ingredientName={item.ingredient_label || item.ingredientName || item.name}
+        trace={item.decision_trace}
+      />
+    )}
+    </>
   );
 }

@@ -835,6 +835,15 @@ class PlannerEngine:
                     ethical, runner_up, cheaper, canonical_name, form
                 )
 
+                # Build decision trace for scoring drawer
+                all_candidates = selection.get("all_candidates", [])
+                decision_trace = self._build_decision_trace(
+                    winner=ethical,
+                    runner_up=runner_up,
+                    all_candidates=all_candidates,
+                    reason_line=reason_line
+                )
+
                 # Create cart item
                 cart_item = CartItem(
                     ingredient_name=canonical_name,  # Use canonical name
@@ -850,7 +859,8 @@ class PlannerEngine:
                     chips=chips,
                     ewg_category=ethical.get("ewg_category"),
                     recall_status=ethical.get("recall_status", "safe"),
-                    seasonality=ethical.get("seasonality", "available")
+                    seasonality=ethical.get("seasonality", "available"),
+                    decision_trace=decision_trace  # NEW: For scoring drawer
                 )
 
             cart_items.append(cart_item)
@@ -1189,6 +1199,110 @@ class PlannerEngine:
                 return True
 
         return False
+
+    def _build_decision_trace(
+        self,
+        winner: Dict,
+        runner_up: Optional[Dict],
+        all_candidates: List[Dict],
+        reason_line: str
+    ) -> Dict:
+        """
+        Build decision trace for scoring drawer
+
+        Returns dict with:
+        - winner_score, runner_up_score
+        - candidates list (all considered + filtered)
+        - filtered_out_summary
+        - score_drivers
+        """
+        winner_candidate = winner["candidate"]
+        runner_up_candidate = runner_up["candidate"] if runner_up else None
+
+        # Simple scoring: organic=40, form_score_bonus=30, unit_price_bonus=30
+        winner_score = self._calculate_simple_score(winner_candidate)
+        runner_up_score = self._calculate_simple_score(runner_up_candidate) if runner_up_candidate else None
+
+        # Build candidates list
+        candidates = []
+        for idx, c_dict in enumerate(all_candidates[:10]):  # Top 10
+            c = c_dict["candidate"]
+            score = self._calculate_simple_score(c)
+
+            # Determine status
+            if c.product_id == winner_candidate.product_id:
+                status = "Winner"
+            elif runner_up_candidate and c.product_id == runner_up_candidate.product_id:
+                status = "Runner-up"
+            else:
+                status = "Considered"
+
+            candidates.append({
+                "product": c.title,
+                "brand": c.brand,
+                "store": c.source_store_id,
+                "price": c.price,
+                "unit_price": round(c.unit_price, 3),
+                "organic": c.organic,
+                "form_score": c.form_score,
+                "packaging": self._detect_packaging(c),
+                "status": status,
+                "score": score
+            })
+
+        # Score drivers (based on reason_line)
+        drivers = []
+        if "EWG Dirty Dozen" in reason_line or "EWG Clean Fifteen" in reason_line:
+            drivers.append({"rule": "EWG guidance applied", "delta": 15})
+        if "Lower plastic" in reason_line:
+            drivers.append({"rule": "Better packaging", "delta": 5})
+        if "Convenient form" in reason_line:
+            drivers.append({"rule": "Time-saving form", "delta": 5})
+        if "Better value" in reason_line:
+            drivers.append({"rule": "Unit price advantage", "delta": 10})
+        if winner_candidate.organic:
+            drivers.append({"rule": "Organic certification", "delta": 10})
+
+        # Top 2 drivers
+        drivers = sorted(drivers, key=lambda d: d["delta"], reverse=True)[:2]
+
+        return {
+            "winner_score": winner_score,
+            "runner_up_score": runner_up_score,
+            "score_margin": winner_score - (runner_up_score or 0),
+            "candidates": candidates,
+            "filtered_out_summary": {},  # TODO: Track elimination reasons
+            "drivers": drivers
+        }
+
+    def _calculate_simple_score(self, candidate) -> int:
+        """Calculate simple 0-100 score for candidate"""
+        if candidate is None:
+            return 0
+
+        score = 50  # Base score
+
+        # Organic bonus
+        if candidate.organic:
+            score += 20
+
+        # Form score bonus (lower form_score is better)
+        if candidate.form_score == 0:
+            score += 15  # Fresh/whole
+        elif candidate.form_score <= 5:
+            score += 10  # Seeds/pods
+        elif candidate.form_score <= 10:
+            score += 5   # Dried
+        # Powder/granules get no bonus
+
+        # Unit price bonus (relative, capped)
+        # Lower unit price is better, but cap at +15
+        if candidate.unit_price > 0:
+            # Normalize to a 0-15 scale (assuming $0.10/oz is excellent, $1.00/oz is poor)
+            price_score = max(0, 15 - int(candidate.unit_price * 15))
+            score += min(15, price_score)
+
+        return min(100, score)  # Cap at 100
 
     # ========================================================================
     # Step 6: Calculate Totals

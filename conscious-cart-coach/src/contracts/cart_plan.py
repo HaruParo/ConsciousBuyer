@@ -91,6 +91,9 @@ class CartItem(BaseModel):
     ewg_category: Optional[str] = None  # "dirty_dozen", "clean_fifteen"
     recall_status: str = "safe"  # "safe", "advisory", "recalled"
 
+    # Decision trace (for scoring drawer) - Optional, only included if debug=True
+    decision_trace: Optional[Dict] = None  # Contains: winner_score, runner_up_score, all_candidates, filtered_out_summary, score_drivers
+
 
 # ============================================================================
 # Store Plan
