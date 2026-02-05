@@ -80,37 +80,38 @@ export function CartItemCard({
 
         {/* Product Info */}
         <div className="flex-1 min-w-0">
-          {/* 1. Top row: Ingredient name (no form - redundant with product title) */}
-          <div className="mb-1 flex items-center gap-2 flex-wrap">
-            <h3 className="text-sm sm:text-base font-semibold text-[#4a3f2a]">
-              {item.ingredientName || item.name}
+          {/* 1. Top row: Product title as main heading */}
+          <div className="mb-1">
+            <h3 className="text-sm sm:text-base font-semibold text-[#4a3f2a] mb-1">
+              {formatProductName(item.catalogueName, item.brand)}
             </h3>
-            {showStoreChip && (
-              <Badge
-                variant="secondary"
-                className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded font-semibold ${
-                  item.store.toLowerCase().includes('freshdirect')
-                    ? 'bg-[#d4976c] text-white'
-                    : 'bg-[#8b7ba8] text-white'
-                }`}
-              >
-                {item.store}
-              </Badge>
-            )}
-            {useCheaperSwap && (
-              <Badge
-                variant="secondary"
-                className="bg-[#e8f5e9] text-[#2d5a3d] border border-[#4a7c59]/25 text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded font-semibold"
-              >
-                💸 Swap active
-              </Badge>
-            )}
           </div>
 
-          {/* 2. Product display (brand deduplication) */}
-          <div className="mb-1 text-xs sm:text-sm text-[#6b5f4a]">
-            {formatProductName(item.catalogueName, item.brand)}
-          </div>
+          {/* 2. Badges row: Store chip and swap indicator */}
+          {(showStoreChip || useCheaperSwap) && (
+            <div className="mb-2 flex items-center gap-2 flex-wrap">
+              {showStoreChip && (
+                <Badge
+                  variant="secondary"
+                  className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded font-semibold ${
+                    item.store.toLowerCase().includes('freshdirect')
+                      ? 'bg-[#d4976c] text-white'
+                      : 'bg-[#8b7ba8] text-white'
+                  }`}
+                >
+                  {item.store}
+                </Badge>
+              )}
+              {useCheaperSwap && (
+                <Badge
+                  variant="secondary"
+                  className="bg-[#e8f5e9] text-[#2d5a3d] border border-[#4a7c59]/25 text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded font-semibold"
+                >
+                  💸 Swap active
+                </Badge>
+              )}
+            </div>
+          )}
 
           {/* 3. Price + size row */}
           <div className="flex items-center gap-2 mb-2">
