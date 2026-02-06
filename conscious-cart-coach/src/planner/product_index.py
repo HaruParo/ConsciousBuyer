@@ -30,6 +30,11 @@ class ProductCandidate:
     available_stores: List[str]
     source_store_id: str  # MANDATORY: Which store this product comes from
 
+    # Enhanced metadata for decision summaries
+    packaging: str = ""  # Packaging type and environmental impact
+    nutrition: str = ""  # Nutritional information
+    labels: str = ""     # Additional certifications (Non-GMO, Cage-Free, etc.)
+
     # Computed and loaded fields
     unit_price: float = 0.0  # per oz
     unit_price_unit: str = "oz"  # Unit for unit_price
@@ -261,8 +266,8 @@ class ProductIndex:
             return
 
         with open(self.inventory_path, 'r', encoding='utf-8') as f:
-            # Skip comment lines
-            lines = [line for line in f if not line.strip().startswith('#')]
+            # Skip comment lines (handle both quoted and unquoted comments)
+            lines = [line for line in f if not line.strip().strip('"').startswith('#')]
 
         reader = csv.DictReader(lines)
         product_counter = 0
@@ -289,6 +294,11 @@ class ProductIndex:
             # Determine organic status
             certifications = row.get('certifications', '')
             organic = 'USDA Organic' in certifications or 'Organic' in certifications
+
+            # Extract enhanced metadata
+            packaging = row.get('packaging', '').strip()
+            nutrition = row.get('nutrition', '').strip()
+            labels = row.get('labels', '').strip()
 
             # Determine store type, available stores, and source_store_id
             if "Pure Indian Foods" in brand:
@@ -320,7 +330,10 @@ class ProductIndex:
                 category=category,
                 store_type=store_type,
                 available_stores=available_stores,
-                source_store_id=source_store_id
+                source_store_id=source_store_id,
+                packaging=packaging,
+                nutrition=nutrition,
+                labels=labels
             )
 
             self.all_products.append(candidate)
@@ -366,9 +379,11 @@ class ProductIndex:
         # 2. Search ingredient-specific category (for legacy inventory)
         if normalized in self.inventory and normalized != ingredient_lower:
             for product in self.inventory[normalized]:
-                if product.product_id not in seen_ids:
-                    candidates.append(product)
-                    seen_ids.add(product.product_id)
+                # Check if product title matches the ingredient name
+                if self._matches_ingredient(product.title, ingredient_lower):
+                    if product.product_id not in seen_ids:
+                        candidates.append(product)
+                        seen_ids.add(product.product_id)
 
         # 2. CRITICAL FIX: For fresh produce ingredients, search multiple categories
         if normalized in FRESH_PRODUCE_INGREDIENTS:
@@ -473,20 +488,119 @@ class ProductIndex:
         ingredient_name = ingredient_name.lower().strip()
 
         # Map common ingredient names to categories
+        # IMPORTANT: These must match actual categories in source_listings.csv
         category_map = {
+            # Chicken - all forms
             "chicken breast": "protein_poultry",
             "chicken thigh": "protein_poultry",
+            "chicken thighs": "protein_poultry",
+            "chicken thighs cut": "protein_poultry",  # Canonical form from ingredient_forms.py
             "chicken": "protein_poultry",
-            "basmati rice": "rice",
-            "rice": "rice",
-            "onion": "onions",
-            "onions": "onions",
-            "tomato": "tomatoes",
-            "tomatoes": "tomatoes",
-            "yogurt": "dairy",
-            "ghee": "oil",
-            "cooking oil": "oil",
-            "olive oil": "oil",
+
+            # Rice - all forms (rice products in grain_rice_dry category)
+            "basmati rice": "grain_rice_dry",
+            "whole basmati rice": "grain_rice_dry",  # Canonical form
+            "rice": "grain_rice_dry",
+            "jasmine rice": "grain_rice_dry",
+            "brown rice": "grain_rice_dry",
+            "sushi rice": "grain_rice_dry",
+
+            # Onions - all forms
+            "onion": "produce_onions",
+            "onions": "produce_onions",
+            "whole onions": "produce_onions",  # Canonical form
+
+            # Garlic - all forms (NOTE: garlic in produce category)
+            "garlic": "produce",
+            "fresh garlic cloves": "produce",  # Canonical form
+            "garlic cloves": "produce",
+
+            # Ginger - all forms
+            "ginger": "produce",
+            "fresh ginger root": "produce",  # Canonical form
+            "ginger root": "produce",
+
+            # Tomatoes
+            "tomato": "produce_tomatoes",
+            "tomatoes": "produce_tomatoes",
+            "whole tomatoes": "produce_tomatoes",
+
+            # Yogurt - all forms
+            "yogurt": "dairy_yogurt",
+            "plain yogurt": "dairy_yogurt",  # Canonical form
+            "greek yogurt": "dairy_yogurt",
+
+            # Dairy
+            "milk": "milk_whole",
+            "eggs": "dairy_eggs",
+            "butter": "dairy_butter",
+            "cheese": "dairy_cheese",
+            "sour cream": "dairy_sour_cream",
+            "ghee": "dairy_ghee",  # Pure Indian Foods ghee products
+
+            # Seafood
+            "salmon": "protein_seafood_salmon",
+            "shrimp": "protein_seafood_shrimp",
+            "scallops": "protein_seafood_shellfish",
+            "clams": "protein_seafood_shellfish",
+            "mussels": "protein_seafood_shellfish",
+            "oysters": "protein_seafood_shellfish",
+            "fish": "protein_seafood_fish",
+            "cod": "protein_seafood_fish",
+            "halibut": "protein_seafood_fish",
+
+            # Spices - base names
+            "garam masala": "spices",
+            "turmeric": "spices",
+            "coriander": "spices",
+            "cumin": "spices",
+            "cardamom": "spices",
+            "salt": "spices",
+            "cloves": "spices",
+            "cinnamon": "spices",
+            "bay leaves": "spices",
+            "bay leaf": "spices",
+
+            # Spices - canonical forms with qualifiers
+            "garam masala powder": "spices",  # Canonical form
+            "turmeric powder": "spices",  # Canonical form
+            "coriander seeds": "spices",  # Canonical form
+            "cumin seeds": "spices",  # Canonical form
+            "green cardamom pods": "spices",  # Canonical form
+            "black cardamom pods": "spices",
+            "whole bay leaves": "spices",  # Canonical form
+
+            # Herbs - base names
+            "mint": "produce",  # Will also search produce_greens
+            "cilantro": "produce",  # Will also search produce_greens
+
+            # Herbs - canonical forms
+            "fresh mint leaves": "produce",  # Canonical form
+            "mint leaves": "produce",
+            "fresh cilantro leaves": "produce",  # Canonical form
+            "cilantro leaves": "produce",
+
+            # Mushrooms
+            "mushroom": "produce_mushrooms",
+            "mushrooms": "produce_mushrooms",
+
+            # Carrots
+            "carrot": "produce_roots",
+            "carrots": "produce_roots",
+            "baby carrots": "produce_roots",
+
+            # Asian condiments
+            "soy sauce": "condiments_asian",
+            "oyster sauce": "condiments_asian",
+            "sesame oil": "condiments_asian",
+            "hoisin sauce": "condiments_asian",
+            "teriyaki": "condiments_asian",
+            "teriyaki sauce": "condiments_asian",
+            "gochujang": "condiments_asian",
+            "miso": "condiments_asian",
+            "miso paste": "condiments_asian",
+            "curry paste": "condiments_asian",
+            "fish sauce": "condiments_asian",
         }
 
         # Check direct mapping first

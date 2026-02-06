@@ -1,389 +1,739 @@
 "# NOTE: Recommendations are based on availability. Items marked ""Sold out"" may affect tier selections if they become available."
 "# SOLD OUT items documented with ""IF AVAILABLE"" notes indicate potential tier changes when restocked."
-category,product_name,brand,price,unit,size,certifications,notes,item_type,seasonality,selected_tier,selection_reason
-produce_greens,Baby Spinach Pack 5oz,Satur Farms,$3.99,ea,5oz,None (conventional),User history showed spinach preference,staple,,Conventional not suitable for Dirty Dozen ,
-produce_greens,Organic Baby Spinach,Earthbound Farm,$6.99,ea,10oz,USDA Organic,,staple,,,
-produce_greens,Organic Lacinato Kale,Generic,$2.99,ea,0.5lb,USDA Organic,,staple,,,
-produce_greens,Organic Green Kale,Generic,$2.99,ea,1lb,USDA Organic,,staple,,,
-produce_greens,Baby Spinach Pack,Satur Farms,$5.99,ea,10oz,None (conventional),,staple,,Conventional not suitable for Dirty Dozen ,
-produce_greens,Powerhouse Spinach Blend,organicgirl,$4.99,ea,5oz,USDA Organic,,staple,,,
-produce_greens,Organic Rainbow Swiss Chard,Generic,$3.49,ea,1lb,USDA Organic,,staple,,,
-produce_greens,Supergreens,organicgirl,$4.99,ea,5oz,USDA Organic,Blend,convenience,,Pre-mixed blend,
-produce_greens,Spinach,Ocean Mist Farms,$2.99,ea,10oz,None (conventional),Cheapest spinach but conventional - not suitable for ,,,,
-produce_greens,Chopped Green Curly Kale,Generic,$4.99,ea,8oz,,Save 20% - Any 2 for $8.00,convenience,,Pre-chopped,
-produce_greens,Organic Collard Greens,Generic,$2.99,ea,0.75lb,USDA Organic,Collards ,,,,
-produce_greens,Local Organic Young Arugula,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Save 27% - Any 2 for $8.00,staple,,,
-produce_greens,Organic Red Kale,Generic,$1.99,ea,1lb,USDA Organic,CHEAPEST ORGANIC - $0.12/oz,staple,cheaper,Lowest cost organic that satisfies Dirty Dozen ,
-produce_greens,Organic Power Greens,Earthbound Farm,$6.99,ea,10oz,USDA Organic,Blend,convenience,,Pre-mixed blend,
-produce_greens,Watercress,Generic,$4.99,ea,4oz,,Earliest delivery Saturday Jan 24,specialty,,Only if recipe/user specifies,
-produce_greens,Romaine,organicgirl,$4.99,ea,6oz,USDA Organic,,staple,,Lettuce category - different from cooking greens,
-produce_greens,Protein Greens,organicgirl,$4.99,ea,4.2oz,USDA Organic,Blend,convenience,,Pre-mixed blend,
-produce_greens,Organic Dandelion Greens,Generic,$2.99,ea,8oz,USDA Organic,,specialty,,Only if recipe/user specifies - bitter green,
-produce_greens,Local Organic Young Spinach,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Save 27% - Any 2 for $8.00,staple,,,
-produce_greens,Organic Green Swiss Chard,Generic,$3.49,ea,1lb,USDA Organic,,staple,balanced,Moderate cost organic variety - different flavor than kale,
-produce_greens,Arugula,Generic,$1.99,ea,10oz,None (conventional),Cheapest but conventional,staple,,,
-produce_greens,Butter Baby!,organicgirl,$4.99,ea,4oz,USDA Organic,Butter lettuce,staple,,Lettuce category,
-produce_greens,Organic Spinach,Generic,$2.99,ea,6oz,USDA Organic,~$8/lb - more expensive than kale per lb,staple,,,
-produce_greens,Shredded Kale and Brussel Sprouts Blend,Generic,$5.99,ea,5oz,,Save 16% - Any 2 for $10.00,convenience,,Pre-mixed blend,
-produce_greens,Organic Mustard Greens,Generic,$2.99,ea,0.5lb,USDA Organic,Mustard greens ,,,,
-produce_greens,Baby Spring Mix,organicgirl,$4.99,ea,5oz,USDA Organic,Earliest delivery Sunday Jan 25,convenience,,Pre-mixed blend,
-produce_greens,Baby Spinach,organicgirl,$4.99,ea,5oz,USDA Organic,,staple,,,
-produce_greens,Local Organic Young Rainbow Chard,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Save 27% - Any 2 for $8.00,staple,,,
-produce_greens,Sweet Crunchy Mix,organicgirl,$4.99,ea,4oz,USDA Organic,Blend,convenience,,Pre-mixed blend,
-produce_greens,Local Organic Young Kale,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Save 27% - Any 2 for $8.00 - EXCELLENT noted,staple,conscious,Local cooperative + organic + premium young kale,
-produce_greens,Chopped Collard Greens,Generic,$5.49,ea,5oz,,Save 27% - Any 2 for $8.00,convenience,,Pre-chopped,
-produce_greens,Snow Pea Tips,Generic,$13.49,lb,,,Premium specialty green,specialty,,Only if recipe/user specifies - Asian cuisine,
-produce_greens,Baby Spinach & Arugula,organicgirl,$4.99,ea,5oz,USDA Organic,Blend,convenience,,Pre-mixed blend,
-produce_greens,Wild Arugula Pack 5oz,Satur Farms,Sold out,ea,5oz,,SOLD OUT,staple,,IF AVAILABLE - peppery arugula variety option,
-produce_greens,Baby Arugula,organicgirl,Sold out,ea,,USDA Organic,SOLD OUT,staple,,IF AVAILABLE - organic arugula option for variety,
-produce_onions,Scallions,Generic,$1.99,ea,6oz,None (conventional),,staple,,Green onions - common cooking ingredient,
-produce_onions,Garlic,Generic,$3.49,ea,3ct 3.2oz,None (conventional),,staple,,Essential aromatic,
-produce_onions,Jumbo Yellow Onion,Generic,$0.99,lb,,None (conventional),Earliest delivery Sat Jan 24 - Clean Fifteen ,,,,
-produce_onions,Yellow Onions (bag),Generic,$2.49,ea,6ct 2lb bag,None (conventional),Earliest delivery Sat Jan 24,staple,,Bulk option,
-produce_onions,Red Onion Large,Generic,$1.99,lb,,None (conventional),USER HISTORY: showed red onions,staple,,User preference noted,
-produce_onions,Shallots,Generic,$4.99,ea,1lb bag,None (conventional),,specialty,,Only if recipe specifies,
-produce_onions,Organic Garlic,Generic,$3.99,ea,3ct 2.4oz,USDA Organic,,staple,,,
-produce_onions,Local Organic Sweet Onion,Lancaster Farm Fresh Cooperative,$1.99,lb,,USDA Organic + Local,Same price as conventional!,staple,,,
-produce_onions,Peeled Garlic,Generic,$4.99,ea,8oz,,Save 20% - Any 2 for $8.00,convenience,,Pre-peeled,
-produce_onions,Local Organic Yellow Onion Medium,Lancaster Farm Fresh Cooperative,$1.99,lb,,USDA Organic + Local,Same price as conventional!,staple,conscious,Local cooperative + organic at conventional price,
-produce_onions,Red Onions (bag),Generic,$3.99,ea,6ct 2lb bag,None (conventional),,staple,,Bulk option,
-produce_onions,Organic Diced Onion,Generic,$5.99,ea,10oz,USDA Organic,Save 16% - Any 2 for $10.00,convenience,,Pre-diced,
-produce_onions,Sweet Onion,Generic,$1.49,lb,,None (conventional),Milder sweeter than yellow,staple,balanced,Moderate cost - sweeter flavor variety,
-produce_onions,Local Organic Yellow Onions (bag),Lancaster Farm Fresh Cooperative,$4.49,ea,4ct 2lb bag,USDA Organic + Local,,staple,,Bulk option,
-produce_onions,Organic Leeks Bunch,Generic,$5.99,ea,2-3ct 3lb,USDA Organic,Different allium variety,specialty,,Only if recipe specifies,
-produce_onions,White Onion Large,Generic,$0.99,lb (min 2),,None (conventional),Same price as yellow,staple,,,
-produce_onions,Local Organic Sweet Onions (bag),Lancaster Farm Fresh Cooperative,$5.49,ea,6ct 3lb bag,USDA Organic + Local,,staple,,Bulk option,
-produce_onions,Organic Diced Red Onion,Generic,$5.99,ea,10oz,USDA Organic,Save 16% - Any 2 for $10.00,convenience,,Pre-diced,
-produce_onions,Leeks Bunch,Generic,$5.99,ea,2-3ct 1lb,None (conventional),,specialty,,Only if recipe specifies,
-produce_onions,Organic Shallots,Christopher Ranch,$3.99,ea,3ct 6oz,USDA Organic,,specialty,,Only if recipe specifies,
-produce_onions,Local Organic Red Onions (bag),Lancaster Farm Fresh Cooperative,$4.99,ea,4ct 2lb bag,USDA Organic + Local,,staple,,Bulk option,
-produce_onions,Fresh Peeled White Pearl Onions,Generic,$7.49,ea,8oz,,Save 20% - Any 2 for $12.00 - Earliest delivery Sun Jan 25,specialty,,Only if recipe specifies - garnish/stew,
-produce_onions,Organic Peeled Garlic,Christopher Ranch,$4.99,ea,6oz,USDA Organic,,convenience,,Pre-peeled,
-produce_onions,Peeled Garlic,Christopher Ranch,$6.99,ea,1lb,,Branded conventional,convenience,,Pre-peeled bulk,
-produce_onions,Cipollini Onions,Black Dirt Region,$2.99,ea,1lb bag,,Regional specialty - gourmet,specialty,,Only if recipe specifies - Italian,
-produce_onions,Organic Black Garlic,Pete's Greens,$9.99,ea,3oz,USDA Organic,EXCELLENT noted - fermented probiotic,specialty_promotable,,Promote if: user history OR recipe OR health-conscious user (fermented + organic),
-produce_onions,Garlic Braid,Christopher Ranch,$15.99,ea,20oz,,Decorative/bulk,specialty,,Decorative or bulk storage,
-produce_onions,Local Organic Red Onions Medium,Lancaster Farm Fresh Cooperative,Sold out,lb,,USDA Organic + Local,SOLD OUT,staple,,IF AVAILABLE - would be conscious tier (local + organic + user history red onion preference),
-produce_onions,Local Organic Shallots,Lancaster Farm Fresh Cooperative,Sold out,ea,,USDA Organic + Local,SOLD OUT,specialty,,IF AVAILABLE - premium local organic shallot option,
-produce_roots,Organic Ginger Root,Generic,$2.99,ea,6oz,USDA Organic,Aromatic root - not main veggie,specialty,year-round (imported),,Only if recipe/user specifies
-produce_roots,Parsnips,Generic,$2.99,lb (min 2),,None (conventional),Earliest delivery Sat Jan 24,specialty,fall-winter (Oct-Mar) - PEAK NOW,,Promote in season - sweeter after frost
-produce_roots,Radishes,Jersey Fresh,$1.99,ea,bunch,Jersey Fresh (regional),Regional NJ program,staple,spring-fall (Mar-Nov),balanced,Brand traceability + regional - recall safe vs generic
-produce_roots,Organic Cooked Beets,Love Beets,$4.99,ea,8.8oz,USDA Organic,Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Precooked convenience product
-produce_roots,Loose Organic Beets,Generic,$2.99,lb,,USDA Organic,,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
-produce_roots,Organic Red Radish,Generic,$2.99,ea,1lb,USDA Organic,Save 16% - buy 2 for $5 - EXCELLENT noted,staple,spring-fall (Mar-Nov),,
-produce_roots,Organic Watermelon Radishes,Lancaster Farm Fresh Cooperative,$2.49,ea,0.5lb,USDA Organic + Local,EXCELLENT noted - high criteria score,specialty_promotable,fall-winter (Oct-Feb) - PEAK NOW,,Promote NOW: in season + user history OR recipe OR variety (organic + local + heirloom)
-produce_roots,Turmeric Root,Generic,$2.99,ea,2oz,,Aromatic/medicinal root,specialty,year-round (imported),,Only if recipe/user specifies
-produce_roots,Turnip,Generic,$1.49,lb,,None (conventional),Cheapest root - middle category,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
-produce_roots,Cooked Beets,Love Beets,$3.49,ea,8.8oz,,Precooked,convenience,year-round (processed),,Precooked convenience product
-produce_roots,Organic Beets Bunch,Generic,$3.99,ea,4ct 1lb,USDA Organic,,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
-produce_roots,Diced Red Beets,Generic,$5.49,ea,12oz,,Save 27% - Any 2 for $8.00,convenience,year-round (processed),,Pre-diced convenience product
-produce_roots,Organic Daikon Bunch,Generic,$2.99,lb,,USDA Organic,Asian radish variety - high criteria score,specialty_promotable,fall-winter (Oct-Mar) - PEAK NOW,,Promote NOW: in season + user history 3x+ OR recipe OR variety (organic + good price)
-produce_roots,Perfectly Pickled Beets Slightly Sweet,Love Beets,$4.99,ea,6.5oz,,Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/pickled product
-produce_roots,Organic Marinated Baby Beets Classic Vinegar,Love Beets,$4.99,ea,8oz,USDA Organic,Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/marinated product
-produce_roots,Celery Root,Generic,$3.99,lb,,None (conventional),Celeriac,specialty,fall-winter (Oct-Mar) - PEAK NOW,,Promote in season if recipe/user specifies
-produce_roots,Local Organic Jerusalem Artichokes,Lancaster Farm Fresh Cooperative,$5.99,lb,,USDA Organic + Local,Sunchokes,specialty,fall-winter (Nov-Mar) - PEAK NOW,,Promote in season if recipe/user specifies - specialty tuber
-produce_roots,Marinated Baby Beets White Wine Balsamic,Love Beets,$4.99,ea,6.5oz,,Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/marinated product
-produce_roots,Organic Gold Beets,Generic,$2.99,lb,,USDA Organic,Yellow/golden variety,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,Color variety of staple beet
-produce_roots,Organic Badger Flame Beets,Lancaster Farm Fresh Cooperative,$3.49,lb,,USDA Organic + Local,Heirloom variety - cooperative,staple,fall-winter (Oct-Mar) - PEAK NOW,conscious,Local cooperative + organic + heirloom variety - IN SEASON
-produce_roots,Perfectly Pickled Beets Honey Ginger,Love Beets,$4.99,ea,6.5oz,,Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/pickled product
-produce_roots,Local Organic Chioggia Beets,Lancaster Farm Fresh Cooperative,$2.49,ea,0.5oz,USDA Organic + Local,Candy-stripe heirloom,specialty,fall-winter (Oct-Mar) - PEAK NOW,,Promote in season - heirloom variety
-produce_roots,Organic Turnip,Generic,$2.99,lb (min 2),,USDA Organic,,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
-produce_roots,Rutabaga,Generic,$2.49,lb,,None (conventional),GREAT CHOICE noted - versatile root,specialty,fall-winter storage (Oct-Mar) - PEAK NOW,,Promote in season if recipe/user specifies
-produce_roots,Perfectly Pickled Beets Sweet Chili,Love Beets,$4.99,ea,6.5oz,,Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/pickled product
-produce_roots,Yuca,Generic,$3.49,lb (min 2),,,EXCELLENT noted - tropical root starch,specialty,year-round (imported tropical),,Only if recipe/user specifies - Latin cuisine
-produce_roots,Organic Gold Beets Bunch,Generic,$2.99,ea,4ct,USDA Organic,,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
-produce_roots,Turnip,Generic,$1.99,lb (min 2),,None (conventional),Middle category - peelable skin,staple,fall-winter storage (Oct-Mar) - PEAK NOW,cheaper,Lowest cost versatile root - IN SEASON
-fruit_tropical,Fresh Pineapple Chunks,Generic,$3.99,ea,8oz,,Pre-cut convenience,convenience,year-round (imported),,
-fruit_tropical,Tommy Atkins Mango,Generic,$2.49,ea (min 2),1lb ea,None (conventional),,staple,year-round (imported) - peak spring/summer,,
-fruit_tropical,Pomegranate Arils,Generic,$6.99,ea,4.4oz,,Pre-seeded convenience,convenience,fall-winter (Oct-Feb) - PEAK NOW,,Seasonal fruit - promote in season
-fruit_tropical,Fresh Cubed Mango,Generic,$7.99,ea,8oz,,Pre-cut convenience,convenience,year-round (imported),,
-fruit_tropical,Golden Pineapple,Generic,$6.99,ea,5.25lb,None (conventional),Clean Fifteen ,,,,
-fruit_tropical,Fresh Mango Spears,Generic,$6.49,ea,8oz,,Pre-cut convenience,convenience,year-round (imported),,
-fruit_tropical,Kiwifruit,Generic,$0.99,ea (min 2),0.25lb,None (conventional),Clean Fifteen ,,,,
-fruit_tropical,Organic Kiwifruit,Generic,$0.79,ea (min 2),0.30lb,USDA Organic,CHEAPER than conventional! Unusual pricing,staple,year-round (imported),balanced,Organic CHEAPER than conventional - great value
-fruit_tropical,Fresh Cored Pineapple,Generic,$7.99,ea,23.2oz,,Pre-cored convenience,convenience,year-round (imported),,
-fruit_tropical,Organic Tommy Atkins Mango,Generic,$3.99,ea,1lb,USDA Organic,,staple,year-round (imported) - peak spring/summer,,
-fruit_tropical,Fresh Black Mission Figs,Generic,$6.99,ea,8oz,,,specialty,summer-fall (Jun-Oct) - OFF SEASON,,Only if recipe/user specifies - limited season
-fruit_tropical,Mini Honeyglow Pineapple,Generic,$6.99,ea,3lb,,Smaller portion option,staple,year-round (imported),,
-fruit_tropical,Yellow Plantains,Generic,$1.49,ea (min 2),0.5lb,,Ripe - sweet for frying/baking,specialty,year-round (imported tropical),,Only if recipe/user specifies - Latin cuisine
-fruit_tropical,Maradol Papaya,Generic,$7.99,ea,3lb,None (conventional),Clean Fifteen ,,,,
-fruit_tropical,Organic Golden Pineapple,Generic,$7.99,ea,4lb,USDA Organic,Clean Fifteen ,,,,
-fruit_tropical,Fresh Pineapple Chunks 2lb,Generic,$11.99,ea,2lb,,Bulk pre-cut convenience,convenience,year-round (imported),,
-fruit_tropical,Fresh Pineapple & Jumbo Blueberry Medley,Generic,$5.99,ea,8oz,,Mixed fruit convenience,convenience,year-round,,
-fruit_tropical,Golden Dragon Fruit,Generic,$8.99,ea,1lb,,Exotic specialty,specialty,year-round (imported),,Only if recipe/user specifies - exotic
-fruit_tropical,Green Plantains,Generic,$1.49,ea (min 2),0.5lb,,Unripe - starchy for tostones/mofongo,specialty,year-round (imported tropical),,Only if recipe/user specifies - Latin cuisine
-fruit_tropical,White Dragon Fruit,Generic,$7.99,ea,1lb,,Exotic specialty,specialty,year-round (imported),,Only if recipe/user specifies - exotic
-fruit_tropical,Kaki Persimmons,Generic,$3.99,ea,8oz,,It's Back - seasonal,specialty_promotable,fall-winter (Oct-Jan) - PEAK NOW,,Promote NOW: in season + user history OR recipe
-fruit_tropical,Organic Coconut Chunks Original,Genuine Coconut,$4.99,ea,4oz,USDA Organic,Pre-cut coconut,convenience,year-round,,
-fruit_tropical,Tommy Atkins Mangoes Case,Generic,$14.99,ea,8-12ct ~1lb ea,,Bulk case option,staple,year-round (imported),,Bulk discount
-fruit_tropical,Sharon Fruit,Generic,$3.99,ea,0.35lb,,GREAT CHOICE noted - non-astringent persimmon,specialty_promotable,fall-winter (Oct-Jan) - PEAK NOW,,Promote NOW: in season + GREAT CHOICE + user history OR recipe
-fruit_tropical,Aloe Vera Leaf,Generic,$2.99,lb,,,Specialty - not typical fruit,specialty,year-round,,Only if recipe/user specifies
-fruit_tropical,Mexican Guava,Generic,$3.99,ea,1lb,,,specialty,fall-winter (Oct-Mar),,Only if recipe/user specifies - tropical
-fruit_tropical,Sweet Tamarind,Generic,$8.49,ea,1lb,,,specialty,year-round (imported),,Only if recipe/user specifies - Asian/Latin cuisine
-fruit_tropical,Soursop Fruit Pulp,Generic,$9.99,ea,16oz,,Processed pulp,specialty,year-round (processed),,Only if recipe/user specifies - Caribbean/Latin
-fruit_tropical,Breadfruit,Generic,$4.99,ea,2lb,,Starchy tropical - like potato,specialty,year-round (imported),,Only if recipe/user specifies - Caribbean/Pacific
-fruit_tropical,Cacao Fruit,Generic,$12.99,ea,3lb,,Whole cacao pod,specialty,year-round (imported),,Only if recipe/user specifies - specialty
-fruit_tropical,Buddha's Hand Citron,Flavors by Bhumi,$14.99,lb,,,Aromatic citrus - zest/fragrance,specialty,fall-winter (Nov-Feb),,Only if recipe/user specifies - specialty citrus
-fruit_tropical,Passion Fruit,Generic,$4.99,ea,0.1lb,,EXCELLENT noted,specialty_promotable,summer-fall (Jun-Oct) - off season now,,Promote if: user history OR recipe (limited availability now)
-fruit_tropical,Kent Mango,Generic,$0.99,ea,,None (conventional),SALE 23% off - sweetest mango variety,staple,year-round (peak spring/summer),,Sale price - promote
-fruit_tropical,Plantain Yellow Case,Generic,$79.99,ea,50ct,,Bulk foodservice,specialty,year-round,,Foodservice only
-fruit_tropical,Plantain Green Case,Generic,$79.99,ea,50ct,,Bulk foodservice,specialty,year-round,,Foodservice only
-fruit_tropical,Sweet Tamarind Case,Generic,$129.05,cs,16ct ~1lb ea,,Bulk case - SALE 5% off,specialty,year-round,,Foodservice/bulk only
-fruit_tropical,Pomegranates,Generic,Sold out,ea,,,SOLD OUT,staple,fall-winter (Oct-Feb) - PEAK NOW,,IF AVAILABLE - seasonal staple IN PEAK SEASON - high demand causes stockouts
-fruit_tropical,SunGold Kiwifruit,Zespri,Sold out,ea,,,SOLD OUT - premium yellow kiwi,staple,year-round,,IF AVAILABLE - would be balanced/conscious tier (premium brand + sweeter variety)
-fruit_tropical,Green Guavas,Generic,Sold out,ea,,,SOLD OUT,specialty,fall-winter,,
-fruit_tropical,Rambutan,Generic,Sold out,ea,,,SOLD OUT - exotic,specialty,summer,,Exotic - sold out
-fruit_berries,Jumbo Ultra-Premium Blueberries,Family Tree Farms,$9.99,ea,9.8oz,,Earliest delivery Sat Jan 24 - premium,staple,year-round (imported winter) - blueberries ,,
-fruit_berries,Organic Strawberries,Driscoll's,$9.99,ea,16oz,USDA Organic,Strawberries ,,,,
-fruit_berries,Strawberries,Driscoll's,$5.99,ea,16oz,None (conventional),Strawberries ,,,,
-fruit_berries,Organic Raspberries,Driscoll's,$6.99,ea,6oz,USDA Organic,High-risk berry - organic chosen,staple,year-round (imported winter),balanced,Organic + Driscoll's brand safety + delicate berry
-fruit_berries,Organic Blueberries,Generic,$12.99,ea,18oz,USDA Organic,Earliest delivery Sat Jan 24 - blueberries ,,,,
-fruit_berries,Raspberries,Generic,$3.99,ea,6oz,None (conventional),SALE 37% - buy 2 for $5,staple,year-round (imported winter),,Sale price but conventional
-fruit_berries,Raspberries,Driscoll's,$3.99,ea,6oz,None (conventional),,staple,year-round (imported winter),,Conventional raspberry
-fruit_berries,Blackberries,Driscoll's,$4.99,ea,6oz,None (conventional),,staple,year-round (imported winter),,Conventional blackberry
-fruit_berries,Strawberries,Generic,$4.99,ea,16oz,None (conventional),SALE 28% off - was $6.99 - ,,,,
-fruit_berries,Local Strawberries,The Strawberry Farm,$9.99,ea,8oz,,LOCAL but not organic - ,,,,
-fruit_berries,Fresh Berry Medley,Generic,$5.99,ea,8oz,,Mixed berries convenience,convenience,year-round,,Pre-mixed
-fruit_berries,Organic Strawberries,Generic,$6.99,ea,16oz,USDA Organic,Strawberries ,,,,
-fruit_berries,Fresh Halved Strawberries,Generic,$6.99,ea,8oz,,Pre-cut convenience - but conventional ,,,,
-fruit_berries,Blueberries,Generic,$9.99,ea,18oz,None (conventional),Blueberries ,,,,
-fruit_berries,Sweet Selections Blackberries,Naturipe,$7.99,ea,10oz,,Larger pack,staple,year-round (imported winter),,Bulk option
-fruit_berries,Mini Koyo Berries,Oishii,$9.99,ea,4.2oz,,Premium indoor-grown Japanese variety,specialty,year-round (vertical farm),,Premium specialty - only if user specifies
-fruit_berries,The Koyo Berry,Oishii,$9.99,ea,4.2oz (8-11ct),,Premium indoor-grown - Earliest delivery Sat Jan 24,specialty,year-round (vertical farm),,Premium specialty - only if user specifies
-fruit_berries,Fresh Pineapple & Jumbo Blueberry Medley,Generic,$5.99,ea,8oz,,Mixed fruit - Earliest delivery Sat Jan 24,convenience,year-round,,Pre-mixed
-fruit_berries,Cape Gooseberries,Generic,$5.99,ea,6oz,,Earliest delivery Sat Jan 24 - specialty,specialty,year-round (imported),,Only if recipe/user specifies
-fruit_berries,The Omakase Berry,Oishii,$14.99,ea,4.2oz (6-8ct),,ULTRA-PREMIUM indoor-grown - Earliest delivery Sat Jan 24,specialty,year-round (vertical farm),,Ultra-premium specialty - only if user specifies
-fruit_berries,Jumbo Ultra-Premium Blueberries Case,Family Tree Farms,$113.89,cs,12ct 9.8oz ea,,SALE 5% off - bulk,specialty,year-round,,Foodservice/bulk only
-fruit_berries,Strawberries Case,Generic,$37.92,cs,8ct 16oz ea,,SALE 5% off - bulk conventional - ,,,,
-fruit_berries,Blackberries Case,Generic,$56.89,cs,12ct 6oz ea,,SALE 5% off - bulk,specialty,year-round,,Foodservice/bulk only
-fruit_berries,Limited Edition Sweetest Batch Blueberries,Driscoll's,Sold out,ea,,,SOLD OUT - premium,staple,year-round,,Premium variety - sold out
-fruit_berries,Organic Blackberries,Driscoll's,Sold out,ea,,USDA Organic,SOLD OUT - organic blackberry,staple,year-round,,IF AVAILABLE - would be balanced tier (organic + Driscoll's brand safety) - CRITICAL AVAILABILITY GAP
-fruit_berries,Strawberries,Driscoll's,Sold out,ea,16oz,,SOLD OUT - conventional,staple,year-round,,Sold out
-fruit_berries,The Nikko Berry,Oishii,Sold out,ea,,,SOLD OUT - ultra-premium,specialty,year-round,,Ultra-premium - sold out
-fruit_berries,Raspberries Case,Generic,Sold out,cs,,,SOLD OUT - bulk,specialty,year-round,,Bulk - sold out
-fruit_berries,Berry Bundle with Blackberries,Generic,Sold out,ea,,,SOLD OUT - bundle,convenience,year-round,,Bundle - sold out
-fruit_berries,Blueberries Case,Generic,Sold out,cs,,,SOLD OUT - bulk,specialty,year-round,,Bulk - sold out
-produce_tomatoes,Tomatoes on the Vine,Generic,$2.99,lb (min 3),,None (conventional),Tomatoes NOT on Dirty Dozen or Clean Fifteen (middle category),staple,year-round (greenhouse/imported),cheaper,Lowest cost - conventional OK (middle category)
-produce_tomatoes,Organic Tomatoes on the Vine,Generic,$4.49,lb (min 3),,USDA Organic,,staple,year-round (greenhouse/imported),balanced,Organic option at moderate price - 50% premium over conventional
-produce_tomatoes,Organic Grape Tomatoes,Generic,$4.99,ea,12oz,USDA Organic,,staple,year-round (greenhouse/imported),,Organic snacking tomato
-produce_tomatoes,Beefsteak Tomatoes Large,Generic,$2.49,lb (min 2),,None (conventional),Large slicing tomato,staple,year-round (greenhouse/imported),,Budget slicing tomato
-produce_tomatoes,Organic Mixed Cherry Tomatoes,Long Wind Farms,$6.99,ea,12oz,USDA Organic,SALE 12% off (was $7.99) - farm brand,staple,year-round,conscious,Farm-branded organic + heirloom variety mix + on sale
-produce_tomatoes,Grape Tomatoes,Generic,$3.49,ea,10oz,None (conventional),,staple,year-round (greenhouse/imported),,Conventional snacking tomato
-produce_tomatoes,Plum Tomatoes,Generic,$3.99,ea,1lb bag,None (conventional),Roma-style for sauce/cooking,staple,year-round,,Cooking tomato
-produce_tomatoes,Honey Bombs Golden Sweet Tomatoes,Sunset Grown,$5.99,ea,12oz,,EXCELLENT noted - premium greenhouse brand,specialty_promotable,year-round (greenhouse),,Promote if: user history OR recipe OR premium taste preference (EXCELLENT rating)
-produce_tomatoes,Angel Sweet Grape Tomatoes 32oz,Sunset Grown,$9.99,ea,32oz,,Bulk premium grape tomatoes,staple,year-round (greenhouse),,Bulk option - premium brand
-produce_tomatoes,Organic Beefsteak Tomatoes,Long Wind Farms,$6.99,lb,,USDA Organic,Farm-branded organic,staple,year-round,,Premium organic slicing tomato
-produce_tomatoes,Campari Tomatoes,Sunset Grown,$4.99,ea,16oz,,Earliest delivery Sun Jan 25 - cocktail tomato,staple,year-round (greenhouse),,Popular cocktail/snacking size
-produce_tomatoes,Lolli Bombs Tomatoes,Sunset Grown,$5.99,ea,12oz,,Premium variety,specialty,year-round (greenhouse),,Only if recipe/user specifies - premium
-produce_tomatoes,Kumato Tomatoes,Sunset Grown,$3.99,ea,9oz (3ct),,Brown/green variety - unique flavor,specialty,year-round (greenhouse),,Only if recipe/user specifies - unique variety
-produce_tomatoes,Organic Roma Tomatoes,Generic,$4.99,ea,1lb,USDA Organic,Sauce/cooking tomato - organic,staple,year-round,,Organic cooking tomato
-produce_tomatoes,Angel Sweet Grape Tomatoes 12oz,Sunset Grown,$3.99,ea,12oz,,Premium grape - smaller pack,staple,year-round (greenhouse),,Premium snacking size
-produce_tomatoes,Organic Red Beefsteak Tomato,Generic,$4.49,lb (min 2),,USDA Organic,It's Back - seasonal return,staple,year-round,,Organic slicing - returned to stock
-produce_tomatoes,Plum Tomato Large,Generic,$1.99,lb (min 2),,None (conventional),CHEAPEST tomato option,staple,year-round,,Budget cooking tomato
-produce_tomatoes,Tomatillos Pack,Generic,$3.49,ea,8oz,,Mexican cuisine - salsa verde,specialty,year-round (imported Mexico),,Only if recipe specifies - Latin cuisine
-produce_tomatoes,Bahama Bombs,Sunset Grown,$5.99,ea,12oz,,Earliest delivery Sun Jan 25 - premium,specialty,year-round (greenhouse),,Only if recipe/user specifies - premium
-produce_tomatoes,Fair Trade Organic Mixed Heirloom Tomatoes,Generic,$6.99,lb,,USDA Organic + Fair Trade,Dual certification - heirloom varieties,specialty_promotable,summer-fall (peak) year-round (greenhouse),,Promote if: user history OR recipe OR conscious tier (Fair Trade + Organic + heirloom)
-produce_tomatoes,Bombs Squad,Sunset Grown,$5.99,ea,12oz,,Mixed premium variety pack,specialty,year-round (greenhouse),,Only if recipe/user specifies - premium mix
-produce_tomatoes,Organic Mixed Cherry Tomatoes,Lady Moon Farms,$5.99,ea,16oz,USDA Organic,Earliest delivery Tue Jan 27 - farm brand,staple,year-round,,Farm-branded organic - good value per oz
-produce_tomatoes,Wild Wonders Tomatoes,Sunset Grown,Sold out,ea,,,SOLD OUT - premium variety mix,specialty,year-round (greenhouse),,Premium mix - IF AVAILABLE would be specialty_promotable
-produce_peppers,Red Greenhouse Bell Pepper,Generic,$3.49,lb,,None (conventional),Bell peppers ,,,,
-produce_peppers,Rainbow Pepper Pack,Generic,$4.99,ea,1.3lb (3ct),None (conventional),SALE 16% off (was $5.99) - mixed colors,staple,year-round (greenhouse),,Sale but conventional - Dirty Dozen 
-produce_peppers,Green Bell Pepper,Generic,$2.99,lb,,None (conventional),Cheapest bell pepper - Dirty Dozen ,,,,
-produce_peppers,Organic Red Greenhouse Bell Pepper,Generic,$5.49,lb,,USDA Organic,Bell peppers ,,,,
-produce_peppers,Organic Rainbow Pepper Pack,Generic,$8.19,ea,1.3lb (3ct),USDA Organic,Organic mixed colors - Dirty Dozen compliant,staple,year-round (greenhouse),conscious,Organic + variety pack (red/yellow/orange) - full color range
-produce_peppers,Jalapeño Pepper,Generic,$0.49,ea (min 4),1oz,None (conventional),Hot peppers also ,,,,
-produce_peppers,Mini Sweet Mixed Peppers,Generic,$3.99,ea,1lb,None (conventional),Snacking peppers - conventional,staple,year-round (greenhouse),,Convenient snacking size
-produce_peppers,Organic Sweet Mini Bell Peppers,Generic,$5.49,ea,8oz,USDA Organic,Organic snacking peppers - Dirty Dozen compliant,staple,year-round (greenhouse),,Organic snacking option
-produce_peppers,Organic Orange Greenhouse Bell Pepper,Generic,$5.49,lb,,USDA Organic,Bell peppers ,,,,
-produce_peppers,Orange Greenhouse Bell Pepper,Generic,$3.49,lb,,None (conventional),Bell peppers ,,,,
-produce_peppers,Organic Yellow Greenhouse Bell Pepper,Generic,$5.49,lb,,USDA Organic,Bell peppers ,,,,
-produce_peppers,Yellow Greenhouse Bell Pepper,Generic,$3.49,lb,,None (conventional),Bell peppers ,,,,
-produce_peppers,Serrano Peppers,Generic,$0.99,ea,0.25lb (3-4ct),None (conventional),Hot pepper - Mexican cuisine,specialty,year-round,,Only if recipe specifies - hotter than jalapeño
-produce_peppers,Green Shishito Peppers,Ark Foods,$4.99,ea,8oz,,Save 20% - buy 2 for $8 - Japanese mild pepper,specialty_promotable,summer-fall (peak) year-round (greenhouse),,Promote if: user history OR recipe OR Asian cuisine preference (branded + mild roasting pepper)
-produce_peppers,Poblano Pepper,Generic,$4.99,lb (min 2),,None (conventional),Mild Mexican pepper - stuffing/roasting,specialty,year-round,,Only if recipe specifies - chiles rellenos
-produce_peppers,Organic Green Bell Pepper,Generic,$2.99,lb,,USDA Organic,SAME PRICE as conventional! Unusual,staple,year-round (greenhouse),,Organic at conventional price - EXCELLENT VALUE
-produce_peppers,Thai Peppers Packaged,Generic,$1.99,ea,2oz,,Very hot - Asian cuisine,specialty,year-round,,Only if recipe specifies - Southeast Asian
-produce_peppers,Habanero Peppers,Generic,$4.99,ea,0.25lb (12ct),,Very hot peppers,specialty,year-round,,Only if recipe specifies - extreme heat
-produce_peppers,Organic Green Bell Peppers,Generic,Sold out,lb,,USDA Organic,SOLD OUT - organic green bell,staple,year-round (greenhouse),,IF AVAILABLE - organic green at $2.99 is best value (same as conventional)
-produce_squash,Organic Green Zucchini,Generic,$2.99,lb (min 2),,USDA Organic,Squash/zucchini NOT on Dirty Dozen or Clean Fifteen (middle),staple,year-round (greenhouse),balanced,Organic at moderate price - middle category so organic optional but preferred
-produce_squash,Green Zucchini,Generic,$1.99,lb (min 2),,None (conventional),Summer squash - middle category,staple,year-round (greenhouse),cheaper,Lowest cost zucchini - conventional OK for middle category
-produce_squash,Organic Butternut Squash Chunks,Generic,$4.99,ea,16oz,USDA Organic,SALE 16% off (was $5.99) - Earliest delivery Sat Jan 24,convenience,fall-winter (Sep-Mar) - PEAK NOW,,Pre-cut convenience - on sale
-produce_squash,Peeled Butternut Squash,Generic,$2.99,ea,16oz,None (conventional),SALE 25% off (was $3.99) - pre-peeled,convenience,fall-winter (Sep-Mar) - PEAK NOW,,Pre-peeled convenience - good sale
-produce_squash,Yellow Zucchini,Generic,$2.29,lb (min 2),,None (conventional),Yellow summer squash,staple,year-round (greenhouse),,Color variety
-produce_squash,Organic Delicata Squash,Generic,$2.49,lb,,USDA Organic,Sweet potato flavor - edible skin,staple,fall-winter (Sep-Dec) - PEAK NOW,,Winter squash variety
-produce_squash,Butternut Squash,Generic,$1.49,lb,,None (conventional),EXCELLENT noted - versatile winter squash,staple,fall-winter (Sep-Mar) - PEAK NOW,,Budget winter squash - EXCELLENT rating
-produce_squash,Local Organic Butternut Squash,Lancaster Farm Fresh Cooperative,$2.49,lb,,USDA Organic + Local,Local cooperative organic,staple,fall-winter (Sep-Mar) - PEAK NOW,conscious,Local cooperative + organic + IN SEASON - best conscious choice
-produce_squash,Organic Kabocha Squash,Generic,$2.49,lb,,USDA Organic,Japanese pumpkin - sweet dense flesh,specialty,fall-winter (Sep-Jan) - PEAK NOW,,Promote in season if: user history OR recipe OR Asian cuisine
-produce_squash,Organic Green Zucchini Noodles,Generic,$9.99,ea,16oz,USDA Organic,Spiralized convenience product,convenience,year-round,,Pre-spiralized - premium convenience
-produce_squash,Spaghetti Squash,Generic,$1.99,lb,,None (conventional),Natural noodle substitute,staple,fall-winter (Sep-Mar) - PEAK NOW,,Low-carb alternative - in season
-produce_squash,Long Island Delicata Squash,Generic,$2.49,lb,,,Regional Long Island variety,staple,fall-winter (Sep-Dec) - PEAK NOW,,Regional variety - same price as organic
-produce_squash,Primavera Zucchini Noodles,Generic,$7.49,ea,1lb,,Save 20% - Any 2 for $12 - Earliest delivery Sat Jan 24,convenience,year-round,,Pre-spiralized mixed convenience
-produce_squash,Baby Zucchini,Urban Roots,$3.99,ea,8oz,,Earliest delivery Sun Jan 25 - tender baby size,specialty,year-round (greenhouse),,Only if recipe specifies - gourmet presentation
-produce_squash,Organic Butternut Squash,Generic,$2.49,lb,,USDA Organic,EXCELLENT noted - whole organic butternut,staple,fall-winter (Sep-Mar) - PEAK NOW,,EXCELLENT rating + organic + in season
-produce_squash,Fresh Green and Yellow Zoodles,Generic,$7.49,ea,16oz,,Save 20% - Any 2 for $12 - Earliest delivery Sat Jan 24,convenience,year-round,,Pre-spiralized mixed convenience
-produce_squash,Butternut Squash Noodles,Generic,$7.49,ea,16oz,,Save 20% - Any 2 for $12,convenience,fall-winter (Sep-Mar),,Pre-spiralized butternut convenience
-produce_squash,Acorn Squash,Generic,$0.99,lb,,None (conventional),CHEAPEST squash - classic winter variety,staple,fall-winter (Sep-Mar) - PEAK NOW,,Budget winter squash option
-produce_squash,Organic Stripetti Squash,Lancaster Farm Fresh Cooperative,$2.49,lb,,USDA Organic + Local,Hybrid spaghetti/delicata - local cooperative,specialty_promotable,fall-winter (Sep-Jan) - PEAK NOW,,Promote NOW: in season + local + organic + unique variety (natural noodle squash)
-produce_squash,Organic Carnival Squash,Generic,$1.99,lb,,USDA Organic,Colorful decorative/eating squash,specialty,fall-winter (Sep-Dec) - PEAK NOW,,Decorative variety - promote in season
-produce_squash,Butternut Squash Halves,Generic,$1.49,lb,ea,None (conventional),SALE 25% off (was $1.99) - pre-halved,convenience,fall-winter (Sep-Mar) - PEAK NOW,,Pre-cut convenience - same price as whole
-produce_squash,Organic Spaghetti Squash,Generic,Sold out,lb,,USDA Organic,SOLD OUT - organic spaghetti squash,staple,fall-winter (Sep-Mar) - PEAK NOW,,IF AVAILABLE - would be balanced tier (organic low-carb alternative)
-produce_squash,Local Organic Acorn Squash,Lancaster Farm Fresh Cooperative,Sold out,lb,,USDA Organic + Local,SOLD OUT - local organic acorn,staple,fall-winter (Sep-Mar) - PEAK NOW,,IF AVAILABLE - would be conscious tier (local + organic + budget at $0.99 conventional baseline)
-produce_squash,Organic Yellow Squash,Generic,Sold out,lb,,USDA Organic,SOLD OUT - organic yellow zucchini,staple,year-round (greenhouse),,IF AVAILABLE - organic yellow summer squash option
-milk_whole,Whole Milk Plastic Bottle 1/2gal,Just FreshDirect,$2.99,ea,1/2 gallon,,USER HISTORY: whole milk bought consistently - $0.05/fl oz,staple,year-round,cheaper,Lowest cost whole milk - matches user history preference
-milk_whole,Local Organic Whole Milk Carton,Just FreshDirect,$4.89,ea,1/2 gallon,USDA Organic + Local,$0.08/fl oz - local organic,staple,year-round,balanced,Local organic whole milk - matches user history + organic upgrade
-milk_whole,Whole Milk Plastic Bottle 1gal,Just FreshDirect,$4.99,ea,1 gallon,,$0.04/fl oz - best value per oz,staple,year-round,,Best $/oz for conventional whole milk
-milk_whole,Ultra-Pasteurized Whole Milk Carton,Organic Valley,$5.99,ea,1/2 gallon,USDA Organic,$0.09/fl oz - national organic brand,staple,year-round,,National organic brand option
-milk_whole,Grassmilk Whole Milk Ultra-Pasteurized Carton,Organic Valley,$7.39,ea,59fl oz,USDA Organic + Grass-fed,$0.13/fl oz - grass-fed premium,staple,year-round,conscious,Grass-fed organic - highest welfare + nutrition standards
-milk_whole,Growing Years Whole Milk Carton,Horizon Organic,$8.99,ea,59fl oz,USDA Organic,$0.15/fl oz - fortified for children,specialty,year-round,,Only if children in household
-milk_whole,Grassfed Whole Milk Carton,Horizon Organic,$8.99,ea,59fl oz,USDA Organic + Grass-fed,$0.15/fl oz - grass-fed organic,staple,year-round,,Premium grass-fed option
-milk_whole,A2/A2 Organic 4% Whole Milk Carton,Alexandre,$8.49,ea,59fl oz,USDA Organic + A2,$0.14/fl oz - A2 protein + organic,specialty_promotable,year-round,,Promote if: digestive sensitivity OR health-conscious (A2 protein easier to digest)
-milk_whole,Whole Milk Carton,a2 Milk,$6.49,ea,59fl oz,A2 protein,$0.11/fl oz - A2 protein (not organic),specialty,year-round,,A2 protein for digestive sensitivity - not organic
-milk_whole,100% Grass-Fed A2 Organic Whole Milk Plastic Bottle,Family Farmstead,$5.49,ea,32fl oz,USDA Organic + Grass-fed + A2,$0.17/fl oz - triple premium (small size),specialty,year-round,,Premium small-format option
-milk_whole,All Natural Creamline Milk Plastic Bottle,Ronnybrook,$5.49,ea,1/2 gallon,None (natural),$0.09/fl oz - non-homogenized cream-top,specialty_promotable,year-round,,Promote if: user history OR artisan preference (Hudson Valley farm + cream-top)
-milk_whole,Family First Whole Milk with DHA Omega-3 Carton,Organic Valley,$6.79,ea,1/2 gallon,USDA Organic + DHA,$0.11/fl oz - fortified organic,specialty,year-round,,Only if DHA supplementation needed
-milk_whole,Organic Whole Milk Carton,Farmland,$7.99,ea,1/2 gallon,USDA Organic,$0.12/fl oz,staple,year-round,,Alternative organic brand
-milk_whole,100% Lactose-Free Whole Milk Carton,Lactaid,$5.99,ea,1/2 gallon,Lactose-free,$0.09/fl oz - lactose-free,specialty,year-round,,Only if lactose intolerant
-milk_whole,Lactose Free Whole Milk Carton,Organic Valley,$6.29,ea,1/2 gallon,USDA Organic + Lactose-free,$0.10/fl oz - organic lactose-free,specialty,year-round,,Lactose intolerant + organic preference
-milk_whole,Grade A Whole Goat Milk Ultra-Pasteurized Carton,Meyenberg,$9.99,ea,1 quart,,$0.31/fl oz - goat milk alternative,specialty,year-round,,Only if goat milk preference/need
-milk_whole,100% Goat Milk Plastic Bottle,Oak Knoll Dairy,$8.49,ea,1 quart,,$0.27/fl oz - local goat milk,specialty,year-round,,Local goat milk option
-milk_whole,Whole Milk Plastic Bottle 96oz,Lactaid,$6.49,ea,96fl oz,Lactose-free,$0.07/fl oz - bulk lactose-free,specialty,year-round,,Bulk lactose-free option
-milk_whole,Organic Whole Milk Cartons Case,Just FreshDirect,$27.87,cs,6ct 1/2gal ea,USDA Organic,SALE 5% off - $0.07/fl oz bulk,staple,year-round,,Bulk organic - good value
-milk_whole,Grassmilk Whole Milk Cartons Case,Organic Valley,$42.12,cs,6ct 59oz ea,USDA Organic + Grass-fed,SALE 5% off - $0.12/fl oz bulk,staple,year-round,,Bulk grass-fed organic
-milk_whole,Whole Milk Plastic Bottles Case,Just FreshDirect,$18.96,cs,4ct 1gal ea,,SALE 5% off - $0.04/fl oz BEST bulk value,staple,year-round,,BEST bulk value - conventional
-milk_whole,All Natural Creamline Milk Plastic Bottles Case,Ronnybrook,$31.29,cs,6ct 1/2gal ea,None (natural),SALE 5% off - $0.08/fl oz bulk artisan,specialty,year-round,,Bulk artisan creamline
-milk_whole,Whole Milk Cartons Case,Just FreshDirect,$25.56,cs,9ct 1/2gal ea,,SALE 5% off - $0.04/fl oz bulk,staple,year-round,,Bulk conventional - good value
-milk_whole,Grassfed Whole Milk Cartons Case,Horizon Organic,$51.24,cs,6ct 64oz ea,USDA Organic + Grass-fed,SALE 5% off - $0.13/fl oz bulk,staple,year-round,,Bulk grass-fed organic
-milk_whole,Family First Whole Milk with DHA Cartons Case,Organic Valley,$38.70,cs,6ct 64oz ea,USDA Organic + DHA,SALE 5% off - $0.10/fl oz bulk,specialty,year-round,,Bulk DHA-fortified organic
-milk_whole,Whole Milk Plastic Bottle,Tuscan Dairy Farms,Sold out,ea,,,SOLD OUT - regional conventional,staple,year-round,,IF AVAILABLE - regional conventional option
-milk_whole,Ultra-Pasteurized Whole Milk Carton,Organic Valley,Sold out,ea,1/2 gallon,USDA Organic,SOLD OUT - single unit,staple,year-round,,IF AVAILABLE - preferred single-unit organic
-milk_whole,Whole Milk Carton,Horizon Organic,Sold out,ea,,USDA Organic,SOLD OUT - national organic,staple,year-round,,IF AVAILABLE - would compete for balanced tier
-milk_whole,100% Grass-Fed A2 Organic Whole Milk Plastic Bottle 1/2gal,Family Farmstead,Sold out,ea,1/2 gallon,USDA Organic + Grass-fed + A2,SOLD OUT - larger A2 size,specialty,year-round,,IF AVAILABLE - better value A2 option
-milk_whole,Lactose Free Ultra-Filtered Whole Milk Plastic Bottle,Fairlife,Sold out,ea,,Lactose-free + Ultra-filtered,SOLD OUT - ultra-filtered,specialty,year-round,,IF AVAILABLE - premium lactose-free
-milk_whole,Whole Milk with DHA Omega-3 and Vitamin D Carton,Horizon Organic,Sold out,ea,,USDA Organic + DHA,SOLD OUT - fortified organic,specialty,year-round,,IF AVAILABLE - DHA-fortified option
-milk_whole,Whole Milk Cartons Case,Horizon Organic,Sold out,cs,,USDA Organic,SOLD OUT - bulk organic,staple,year-round,,IF AVAILABLE - bulk national organic
-milk_whole,Ultra-Pasteurized Whole Milk Cartons Case,Organic Valley,Sold out,cs,,USDA Organic,SOLD OUT - bulk organic,staple,year-round,,IF AVAILABLE - bulk organic option
-spices,Dried Edible Rose Petals,Pure Indian Foods,5.99,ea,1oz,USDA Organic,SOLD OUT,specialty,,Premium Specialty,Authentic Indian specialty ingredient
-spices,Royal Garnish Blend,Pure Indian Foods,7.99,ea,35g,USDA Organic,New - 1 Review,specialty,,Premium Specialty,Authentic Indian specialty blend
-spices,Organic Red Chili Pepper Flakes,Pure Indian Foods,4.99,ea,2oz,USDA Organic,New - 1 Review,staple,,Premium Specialty,High quality organic spice
-spices,Ayurvedic Six Tastes Churna,Pure Indian Foods,7.99,ea,2.2oz,USDA Organic,New - 3 Reviews,specialty,,Premium Specialty,Ayurvedic spice blend
-spices,Green Chili Powder (Serrano),Pure Indian Foods,4.99,ea,1.9oz,USDA Organic,New - 1 Review,specialty,,Premium Specialty,Specialty chili powder
-spices,Ghost Pepper (Smoked Bhut Jolokia) Whole Peppers,Pure Indian Foods,8.99,ea,1.4oz,None (conventional),,specialty,,Premium Specialty,Super hot pepper
-spices,Biryani Masala Seasoning,Pure Indian Foods,6.99,ea,2.2oz,USDA Organic,New - 1 Review,specialty,,Premium Specialty,Essential biryani spice blend
-spices,Vata Churna,Pure Indian Foods,7.99,ea,2.2oz,USDA Organic,New - 3 Reviews,specialty,,Premium Specialty,Ayurvedic dosha blend
-spices,Pitta Churna,Pure Indian Foods,7.99,ea,2.2oz,USDA Organic,New,specialty,,Premium Specialty,Ayurvedic dosha blend
-spices,Kapha Churna,Pure Indian Foods,7.99,ea,2.2oz,USDA Organic,New - 2 Reviews,specialty,,Premium Specialty,Ayurvedic dosha blend
-spices,Lemongrass Cut & Dried,Pure Indian Foods,6.99,ea,1.5oz,USDA Organic,New - 1 Review,specialty,,Premium Specialty,Aromatic herb
-spices,AfterMeal Roasted Coriander Seeds (Dhana Dal),Pure Indian Foods,3.99,ea,3oz,None (conventional),Sale - from $9.99,specialty,,Premium Specialty,Digestive aid
-spices,Kokum Black Dried,Pure Indian Foods,9.99,ea,5oz,USDA Organic,New - 2 Reviews,specialty,,Premium Specialty,Souring agent
-spices,Fill Up Your Spice Box Indian Spice Set,Pure Indian Foods,45.00,ea,12 mini pouches,USDA Organic,New - 4 Reviews,specialty,,Premium Specialty,Complete spice collection
-spices,Galangal Dried Slices,Pure Indian Foods,12.99,ea,3oz,USDA Organic,,specialty,,Premium Specialty,Thai/Indian aromatic root
-spices,Poppy Seeds,Pure Indian Foods,12.99,ea,8oz,USDA Organic,,staple,,Premium Specialty,Baking and cooking seeds
-spices,Bombay Chaat Masala Ground,Pure Indian Foods,5.99,ea,2oz,USDA Organic,15 Reviews,specialty,,Premium Specialty,Essential chaat seasoning
-spices,Black Turmeric,Pure Indian Foods,8.99,ea,2oz,USDA Organic,27 Reviews,specialty,,Premium Specialty,Rare turmeric variety
-spices,Lakadong Turmeric (High Curcumin >7%),Pure Indian Foods,6.99,ea,3oz,USDA Organic,Best Seller - 50 Reviews,staple,,Premium Specialty,Highest curcumin content turmeric
-spices,Chipotle Morita Chili Pepper,Pure Indian Foods,9.99,ea,5oz,USDA Organic,8 Reviews,specialty,,Premium Specialty,Smoked chili pepper
-spices,KICK Salt - Himalayan Pink Salt & Smoked Ghost Pepper,Pure Indian Foods,4.99,ea,4.5oz,USDA Organic,15 Reviews,specialty,,Premium Specialty,Spicy finishing salt
-spices,Ghost Pepper (Smoked Bhut Jolokia) Ground,Pure Indian Foods,4.99,ea,1oz,USDA Organic,11 Reviews,specialty,,Premium Specialty,Extremely hot ground pepper
-spices,Kashmiri Saffron,Pure Indian Foods,20.99,ea,1g,USDA Organic,Best Seller - 24 Reviews,specialty,,Premium Specialty,Premium saffron threads
-spices,Combo Pack of 6 Spices,Pure Indian Foods,34.68,ea,6 pack,USDA Organic,Sale from $38.48 - 40 Reviews,specialty,,Premium Specialty,Value spice bundle
-spices,Fennel Seed,Pure Indian Foods,5.61,ea,3oz,USDA Organic,23 Reviews,staple,,Premium Specialty,Digestive spice
-spices,Curry Leaves Dried,Pure Indian Foods,11.99,ea,1oz,USDA Organic,Best Seller - 33 Reviews,specialty,,Premium Specialty,Essential South Indian leaf
-spices,Tellicherry Special Extra Bold Peppercorns,Pure Indian Foods,7.83,ea,3oz,USDA Organic,33 Reviews,staple,,Premium Specialty,Premium black pepper
-spices,Sesame Seeds Black,Pure Indian Foods,6.99,ea,8oz,USDA Organic,4 Reviews,staple,,Premium Specialty,Black sesame seeds
-spices,Vindaloo Curry Seasoning,Pure Indian Foods,6.49,ea,2.25oz,USDA Organic,20 Reviews,specialty,,Premium Specialty,Vindaloo spice blend
-spices,Vanilla Pure Extract,Pure Indian Foods,8.99,ea,2floz,USDA Organic,17 Reviews,staple,,Premium Specialty,Pure vanilla extract
-spices,Turmeric Root Ground (High Curcumin 4-5%),Pure Indian Foods,6.99,ea,3oz,USDA Organic,Best Seller - 115 Reviews,staple,,Premium Specialty,High curcumin turmeric
-spices,Tandoori Masala Seasoning,Pure Indian Foods,6.49,ea,2.25oz,USDA Organic,21 Reviews,specialty,,Premium Specialty,Tandoori spice blend
-spices,Turmeric Root Coarse Granules,Pure Indian Foods,6.99,ea,2.5oz,USDA Organic,4 Reviews - Grinder Top Bottle,staple,,Premium Specialty,Coarse turmeric in grinder
-spices,Star Anise Whole,Pure Indian Foods,8.99,ea,0.8oz,USDA Organic,9 Reviews,specialty,,Premium Specialty,Whole star anise
-spices,Indian Spice Passport,Pure Indian Foods,19.99,ea,set,USDA Organic,6 Reviews,specialty,,Premium Specialty,Spice exploration set
-spices,Sambar Powder,24 Mantra,3.99,ea,3.5oz,USDA Organic,SOLD OUT - 2 Reviews,specialty,,Conventional not suitable,Alternative brand
-spices,La Mancha D.O.P. Spanish Saffron 1g Glass Bottle,Pure Indian Foods,20.99,ea,1g,USDA Organic,Best Seller - 18 Reviews,specialty,,Premium Specialty,Spanish D.O.P. saffron
-spices,Rasam Powder,24 Mantra,3.99,ea,3.5oz,USDA Organic,SOLD OUT - 3 Reviews,specialty,,Conventional not suitable,Alternative brand
-spices,Nutmeg,Pure Indian Foods,7.99,ea,2oz,USDA Organic,18 Reviews,staple,,Premium Specialty,Whole nutmeg
-spices,Mustard Seed Brown,Pure Indian Foods,4.99,ea,3oz,USDA Organic,31 Reviews,staple,,Premium Specialty,Brown mustard seeds
-spices,Mustard Seed Yellow,Pure Indian Foods,4.99,ea,3oz,USDA Organic,4 Reviews,staple,,Premium Specialty,Yellow mustard seeds
-spices,Mace,Pure Indian Foods,4.99,ea,1oz,USDA Organic,12 Reviews,specialty,,Premium Specialty,Nutmeg shell spice
-spices,Kitchari Spice Mix,Pure Indian Foods,6.99,ea,2.5oz,USDA Organic,Best Seller - 94 Reviews,specialty,,Premium Specialty,Complete kitchari blend
-spices,Kashmiri Chili Powder (Mild),Pure Indian Foods,6.49,ea,2oz,USDA Organic,Best Seller - 52 Reviews,staple,,Premium Specialty,Mild red chili powder
-spices,Ginger Root Powder,Pure Indian Foods,5.34,ea,2oz,USDA Organic,10 Reviews,staple,,Premium Specialty,Ground ginger
-spices,Fenugreek Leaves (Kasoori Methi),Pure Indian Foods,10.99,ea,1.3oz,USDA Organic,40 Reviews,specialty,,Premium Specialty,Dried fenugreek leaves
-spices,Fenugreek Seed,Pure Indian Foods,4.99,ea,3oz,USDA Organic,Best Seller - 42 Reviews,staple,,Premium Specialty,Whole fenugreek seeds
-spices,Kitchari Spice Mix DIY - Whole Spices,Pure Indian Foods,6.64,ea,1.9oz,USDA Organic,Sale from $6.99 - 13 Reviews,specialty,,Premium Specialty,DIY kitchari spices
-spices,Spice Up Your Life: 3 Whole Spice Blends,Pure Indian Foods,19.99,ea,set,USDA Organic,1 Review,specialty,,Premium Specialty,Three blend collection
-spices,Garam Masala DIY - Exotic Whole Spices,Pure Indian Foods,7.49,ea,2oz,USDA Organic,29 Reviews,specialty,,Premium Specialty,DIY garam masala kit
-spices,Balti Curry DIY - Whole Spices,Pure Indian Foods,7.49,ea,1.7oz,USDA Organic,4 Reviews,specialty,,Premium Specialty,DIY balti curry kit
-spices,Cumin Seeds (Jeera),Pure Indian Foods,6.69,ea,3oz,USDA Organic,Best Seller - 54 Reviews,staple,,Premium Specialty,Whole cumin seeds
-spices,Curry Powder Seasoning Blend,Pure Indian Foods,6.49,ea,2oz,USDA Organic,Best Seller - 26 Reviews,staple,,Premium Specialty,Curry powder blend
-spices,Coriander Seed,Pure Indian Foods,5.31,ea,3oz,USDA Organic,Best Seller - 42 Reviews,staple,,Premium Specialty,Whole coriander seeds
-spices,Cloves Whole,Pure Indian Foods,6.99,ea,1.4oz,USDA Organic,17 Reviews,staple,,Premium Specialty,Whole cloves
-spices,Cinnamon (Ceylon True),Pure Indian Foods,5.99,ea,2.5oz,USDA Organic,Best Seller - 60 Reviews,staple,,Premium Specialty,True Ceylon cinnamon
-spices,Cayenne Red Chili Pepper Ground (Lal Mirch),Pure Indian Foods,6.99,ea,2oz,USDA Organic,7 Reviews,staple,,Premium Specialty,Ground cayenne pepper
-spices,Cardamom Green,Pure Indian Foods,12.99,ea,2oz,USDA Organic,Best Seller - 59 Reviews,staple,,Premium Specialty,Green cardamom pods
-spices,Malabar Black Pepper Fine Ground,Pure Indian Foods,13.99,ea,8oz,USDA Organic,15 Reviews,staple,,Premium Specialty,Premium ground black pepper
-spices,Black Salt (Indian Kala Namak),Pure Indian Foods,5.39,ea,4oz,None (conventional),Best Seller - 92 Reviews,specialty,,Premium Specialty,Sulfurous Indian black salt
-spices,Cardamom Black Whole,Pure Indian Foods,8.99,ea,1.4oz,USDA Organic,Best Seller - 25 Reviews,specialty,,Premium Specialty,Black cardamom pods
-spices,Allspice Whole,Pure Indian Foods,4.99,ea,1.5oz,USDA Organic,9 Reviews,staple,,Premium Specialty,Whole allspice berries
-spices,Amchoor Powder,Pure Indian Foods,6.50,ea,2oz,USDA Organic,Best Seller - 35 Reviews,specialty,,Premium Specialty,Dried mango powder
-spices,Ajwain Seed,Pure Indian Foods,6.99,ea,3oz,USDA Organic,38 Reviews,specialty,,Premium Specialty,Carom seeds
-spices,AIP Everyday Seasoning DIY - Whole Spices,Pure Indian Foods,7.99,ea,1.75oz,USDA Organic,7 Reviews,specialty,,Premium Specialty,AIP compliant blend
-spices,Best Hing Ever (Asafoetida),Pure Indian Foods,14.29,ea,1.7oz,None (conventional),Best Seller - 205 Reviews,specialty,,Premium Specialty,Highest quality hing
-spices,Garam Masala,Pure Indian Foods,6.49,ea,2oz,USDA Organic,Best Seller - 45 Reviews,staple,,Premium Specialty,Classic garam masala
-spices,Ginger Root Coarse Granules,Pure Indian Foods,6.99,ea,1.5oz,USDA Organic,6 Reviews - Grinder Top Bottle,staple,,Premium Specialty,Coarse ginger in grinder
-spices,Garlic Minced,Pure Indian Foods,6.50,ea,2oz,USDA Organic,Best Seller - 9 Reviews - Grinder Top Bottle,staple,,Premium Specialty,Dried minced garlic
-spices,Bombay Chaat Masala DIY - Whole Spices,Pure Indian Foods,7.49,ea,2.5oz,USDA Organic,7 Reviews,specialty,,Premium Specialty,DIY chaat masala kit
-spices,Indian Bay Leaf (Cassia/Tejapatta),Pure Indian Foods,3.99,ea,0.5oz,USDA Organic,21 Reviews,specialty,,Premium Specialty,Indian bay leaves
-spices,Black Seed (Kalonji Black Cumin Seed),Pure Indian Foods,5.49,ea,3oz,USDA Organic,Best Seller - 44 Reviews,specialty,,Premium Specialty,Nigella seeds
-spices,Indian Five Spice Blend (Panch Phoron),Pure Indian Foods,6.49,ea,2oz,USDA Organic,34 Reviews,specialty,,Premium Specialty,Bengali five spice
-spices,Sesame Seeds White,Pure Indian Foods,6.99,ea,8oz,USDA Organic,11 Reviews,staple,,Premium Specialty,White sesame seeds
-spices,Pure Himalayan Pink Salt,Pure Indian Foods,16.99,ea,large,None (conventional),Best Seller - 30 Reviews,staple,,Premium Specialty,Himalayan pink salt
-spices,Biryani Bundle,Pure Indian Foods,35.40,ea,4-piece kit,USDA Organic,Includes Basmati Rice + Grassfed Ghee + Biryani Masala powder + DIY Garam Masala whole spices,specialty,,Premium Specialty,Complete authentic biryani kit with rice and spices
-produce_mushrooms,"Organic Baby Bella Mushrooms, Packaged",FreshDirect,3.49,ea,8 oz,USDA Organic,Cremini mushrooms,staple,,Balanced,Organic baby bella
-produce_mushrooms,Organic Heirloom Sliced Shiitake Mushrooms,Mushroom King,5.99,ea,4 oz,USDA Organic,Pre-sliced,staple,,Conscious,Premium organic shiitake
-produce_mushrooms,"Sliced Baby Bella Mushrooms, Packaged",FreshDirect,1.49,ea,8 oz,None (conventional),"Pre-sliced, cheapest",staple,,Cheaper,Budget-friendly sliced mushrooms
-produce_mushrooms,"Organic Gourmet Mushroom Blend, Packaged",FreshDirect,3.99,ea,4 oz,USDA Organic,Mixed varieties,specialty,,Balanced,Organic blend
-produce_mushrooms,Organic Heirloom Mushroom Medley,Mushroom King,5.99,ea,4 oz,USDA Organic,Mixed varieties,specialty,,Conscious,Premium organic medley
-produce_mushrooms,"Organic White Mushrooms, Packaged",FreshDirect,3.49,ea,8 oz,USDA Organic,Button mushrooms,staple,,Balanced,Organic white mushrooms
-produce_mushrooms,"Sliced Organic Baby Bella Mushrooms, Packaged",FreshDirect,3.49,ea,8 oz,USDA Organic,Pre-sliced,staple,,Balanced,Organic sliced cremini
-produce_mushrooms,"White Button Mushrooms, Packaged",FreshDirect,2.99,ea,8 oz,None (conventional),Standard white,staple,,Cheaper,Budget-friendly white mushrooms
-produce_mushrooms,"Baby Bella Mushrooms, Packaged",FreshDirect,2.99,ea,8 oz,None (conventional),Cremini,staple,,Cheaper,Budget-friendly baby bella
-produce_mushrooms,Organic Shiitake Mushroom Caps,Mushroom King,6.99,ea,8 oz,USDA Organic,Caps only,specialty,,Conscious,Premium organic shiitake caps
-produce_mushrooms,Organic Maitake Mushrooms,Mushroom King,5.99,ea,3.5 oz,USDA Organic,Hen of the woods,specialty,,Conscious,Premium organic maitake
-produce_mushrooms,"Organic Shiitake Mushrooms, Packaged",FreshDirect,4.49,ea,3.5 oz,USDA Organic,Whole shiitake,specialty,,Balanced,Organic shiitake
-produce_mushrooms,"Oyster Mushrooms, Packaged",FreshDirect,2.99,ea,3.5 oz,None (conventional),Oyster variety,specialty,,Cheaper,Budget oyster mushrooms
-produce_mushrooms,"Organic Portabella Mushroom Caps, Packaged",FreshDirect,3.99,ea,6 oz,USDA Organic,Large caps,staple,,Balanced,Organic portabella caps
-produce_mushrooms,Organic Heirloom Asian Blend,Mushroom King,6.99,ea,8 oz,USDA Organic,Asian varieties,specialty,,Conscious,Premium Asian mushroom blend
-produce_mushrooms,Sliced White Mushroom,FreshDirect,2.99,ea,8 oz,None (conventional),Pre-sliced white,staple,,Cheaper,Budget sliced white
-produce_mushrooms,Organic Heirloom Baby Shiitake Mushrooms,Mushroom King,5.99,ea,4 oz,USDA Organic,Small shiitake,specialty,,Conscious,Premium baby shiitake
-produce_mushrooms,"Royal Trumpet Mushrooms, Packaged",FreshDirect,4.49,ea,4 oz,None (conventional),King trumpet,specialty,,Balanced,King trumpet mushrooms
-produce_mushrooms,Organic Sliced King Trumpet Mushrooms,Mushroom King,5.99,ea,4 oz,USDA Organic,Pre-sliced,specialty,,Conscious,Organic sliced trumpet
-produce_mushrooms,Jumbo Maitake Mushroom,Meadows and More,14.49,ea,10 oz,None (conventional),Large size,specialty,,Premium Specialty,Jumbo maitake
-produce_mushrooms,Yellowfoot Chanterelle Mushrooms,FreshDirect,7.99,ea,3.5 oz,None (conventional),Wild variety,specialty,,Premium Specialty,Chanterelle mushrooms
-produce_mushrooms,"Baby Petite White Mushrooms, Packaged",FreshDirect,2.99,ea,6 oz,None (conventional),Small white,staple,,Cheaper,Petite white mushrooms
-produce_mushrooms,Dried Porcini Mushrooms,Goodness Gardens,7.49,ea,0.5 oz,None (conventional),Dried,specialty,,Premium Specialty,Dried porcini
-produce_mushrooms,"Steak Cut Mushrooms, Packaged",FreshDirect,2.99,ea,8 oz,None (conventional),Thick sliced,staple,,Cheaper,Thick-cut mushrooms
-produce_mushrooms,Organic Lion's Mane Mushrooms,Mushroom King,6.99,ea,3.5 oz,USDA Organic,Lion's mane,specialty,,Conscious,Premium lion's mane
-produce_mushrooms,Hedgehog Mushrooms,FreshDirect,9.99,ea,3.5 oz,None (conventional),Wild variety,specialty,,Premium Specialty,Hedgehog mushrooms
-produce_mushrooms,Dried Morel Mushrooms,Goodness Gardens,15.99,ea,0.5 oz,None (conventional),Dried wild,specialty,,Premium Specialty,Dried morel
-protein_poultry,Boneless Skinless Chicken Breast,365 by Whole Foods Market,5.99,lb,1.5 lb,None (conventional),,staple,,Cheaper,Budget-friendly chicken breast
-protein_poultry,Boneless Skinless Chicken Thighs,365 by Whole Foods Market,5.49,lb,1.5 lb,None (conventional),,staple,,Cheaper,Budget-friendly chicken thighs
-protein_poultry,Chicken Breast Step 2,Bell & Evans,5.99,lb,1.5 lb,Air-Chilled,,staple,,Cheaper,Air-chilled conventional chicken
-protein_poultry,Boneless Skinless Chicken Breast,Bell & Evans,6.99,lb,1.5 lb,Air-Chilled,,staple,,Balanced,Premium conventional air-chilled
-protein_poultry,Boneless Skinless Chicken Thighs,Bell & Evans,6.49,lb,1.5 lb,Air-Chilled,,staple,,Balanced,Premium conventional thighs
-protein_poultry,Organic Boneless Skinless Chicken Thighs,365 by Whole Foods Market,5.99,lb,1.5 lb,USDA Organic,,staple,,Conscious,Cheapest organic chicken thighs
-protein_poultry,Organic Boneless Skinless Chicken Breast,365 by Whole Foods Market,7.99,lb,1.5 lb,USDA Organic,,staple,,Conscious,Organic store brand
-protein_poultry,Organic Boneless Skinless Chicken Breast,Bell & Evans,8.99,lb,1.5 lb,USDA Organic; Air-Chilled,,staple,,Conscious,Premium organic air-chilled
-protein_poultry,Organic Boneless Skinless Chicken Breast Cutlets,Bell & Evans,9.99,lb,1.5 lb,USDA Organic; Air-Chilled,,staple,,Premium Specialty,Premium organic cutlets
-produce_onions,Yellow Onions Medium,Peri & Sons Farms,2.99,ea,3 lb bag,None (conventional),Premium Nevada-grown onions,staple,,Balanced,Premium grower brand
-produce_onions,Organic Yellow Onions,Peri & Sons Farms,4.99,ea,3 lb bag,USDA Organic,Certified organic from California,staple,,Conscious,Organic premium grower
-produce_onions,Red Onions Medium,Peri & Sons Farms,3.49,ea,3 lb bag,None (conventional),Premium red onions,staple,,Balanced,Premium grower brand
-produce_onions,Organic Red Onions,Peri & Sons Farms,5.49,ea,3 lb bag,USDA Organic,Certified organic red onions,staple,,Conscious,Organic premium grower
-produce_onions,Sweetie Sweet Onions,Peri & Sons Farms,4.99,ea,3 lb bag,None (conventional),Exclusive sweet variety - Aug to Dec,specialty,,Premium Specialty,Exclusive sweet onion variety
-produce_onions,Sweetie Tearless Sweet Onions,Peri & Sons Farms,5.99,ea,3 lb bag,None (conventional),Tearless sweet variety - Dec to Mar,specialty,,Premium Specialty,Unique tearless variety
-produce_onions,Shallots,Peri & Sons Farms,3.99,ea,1 lb bag,None (conventional),Premium shallots,staple,,Balanced,Premium grower brand
-produce_onions,Organic Shallots,Peri & Sons Farms,5.99,ea,1 lb bag,USDA Organic,Certified organic shallots,staple,,Conscious,Organic premium grower
-produce,Fresh Organic Ginger Root,FreshDirect,3.99,lb,per lb,USDA Organic,Fresh produce,primary,,Conscious Pick,Fresh organic ginger root
-produce,Organic Garlic,FreshDirect,5.99,lb,per lb,USDA Organic,Fresh produce,primary,,Conscious Pick,Fresh organic garlic cloves
-produce,Fresh Mint Bunch,FreshDirect,2.99,bunch,per bunch,Conventional,Fresh herbs,primary,,Good Value,Fresh mint leaves
-produce,Fresh Cilantro Bunch,FreshDirect,1.99,bunch,per bunch,Conventional,Fresh herbs,primary,,Good Value,Fresh cilantro leaves
-produce,Organic Cilantro Bunch,FreshDirect,2.99,bunch,per bunch,USDA Organic,Fresh herbs,primary,,Conscious Pick,Organic fresh cilantro
+category,product_name,brand,price,unit,size,certifications,packaging,nutrition,labels,notes,item_type,seasonality,selected_tier,selection_reason
+produce_greens,Baby Spinach Pack 5oz,Satur Farms,$3.99,ea,5oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",User history showed spinach preference,staple,,Conventional not suitable for Dirty Dozen ,
+produce_greens,Organic Baby Spinach,Earthbound Farm,$6.99,ea,10oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_greens,Organic Lacinato Kale,Generic,$2.99,ea,0.5lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_greens,Organic Green Kale,Generic,$2.99,ea,1lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_greens,Baby Spinach Pack,Satur Farms,$5.99,ea,10oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",,staple,,Conventional not suitable for Dirty Dozen ,
+produce_greens,Powerhouse Spinach Blend,organicgirl,$4.99,ea,5oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_greens,Organic Rainbow Swiss Chard,Generic,$3.49,ea,1lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,,staple,,,
+produce_greens,Supergreens,organicgirl,$4.99,ea,5oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,,Blend,convenience,,Pre-mixed blend,
+produce_greens,Spinach,Ocean Mist Farms,$2.99,ea,10oz,None (conventional),Loose bunch in produce bag + plastic twist-tie,,"Naturally Gluten-Free, Vegan",Cheapest spinach but conventional - not suitable for ,,,,
+produce_greens,Chopped Green Curly Kale,Generic,$4.99,ea,8oz,,Plastic bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,,Pre-chopped,
+produce_greens,Organic Collard Greens,Generic,$2.99,ea,0.75lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,Collards ,,,,
+produce_greens,Local Organic Young Arugula,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Clear plastic clamshell (recyclable #1 PET),,,Save 27% - Any 2 for $8.00,staple,,,
+produce_greens,Organic Red Kale,Generic,$1.99,ea,1lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,"Naturally Gluten-Free, Vegan",CHEAPEST ORGANIC - $0.12/oz,staple,cheaper,Lowest cost organic that satisfies Dirty Dozen ,
+produce_greens,Organic Power Greens,Earthbound Farm,$6.99,ea,10oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,Blend,convenience,,Pre-mixed blend,
+produce_greens,Watercress,Generic,$4.99,ea,4oz,,Loose bunch in produce bag + plastic twist-tie,,,Earliest delivery Saturday Jan 24,specialty,,Only if recipe/user specifies,
+produce_greens,Romaine,organicgirl,$4.99,ea,6oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,,staple,,Lettuce category - different from cooking greens,
+produce_greens,Protein Greens,organicgirl,$4.99,ea,4.2oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,Blend,convenience,,Pre-mixed blend,
+produce_greens,Organic Dandelion Greens,Generic,$2.99,ea,8oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,,specialty,,Only if recipe/user specifies - bitter green,
+produce_greens,Local Organic Young Spinach,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Save 27% - Any 2 for $8.00,staple,,,
+produce_greens,Organic Green Swiss Chard,Generic,$3.49,ea,1lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,,staple,balanced,Moderate cost organic variety - different flavor than kale,
+produce_greens,Arugula,Generic,$1.99,ea,10oz,None (conventional),Loose bunch in produce bag + plastic twist-tie,,,Cheapest but conventional,staple,,,
+produce_greens,Butter Baby!,organicgirl,$4.99,ea,4oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,,Butter lettuce,staple,,Lettuce category,
+produce_greens,Organic Spinach,Generic,$2.99,ea,6oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,"Naturally Gluten-Free, Vegan",~$8/lb - more expensive than kale per lb,staple,,,
+produce_greens,Shredded Kale and Brussel Sprouts Blend,Generic,$5.99,ea,5oz,,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Save 16% - Any 2 for $10.00,convenience,,Pre-mixed blend,
+produce_greens,Organic Mustard Greens,Generic,$2.99,ea,0.5lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,Mustard greens ,,,,
+produce_greens,Baby Spring Mix,organicgirl,$4.99,ea,5oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,,Earliest delivery Sunday Jan 25,convenience,,Pre-mixed blend,
+produce_greens,Baby Spinach,organicgirl,$4.99,ea,5oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_greens,Local Organic Young Rainbow Chard,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Clear plastic clamshell (recyclable #1 PET),,,Save 27% - Any 2 for $8.00,staple,,,
+produce_greens,Sweet Crunchy Mix,organicgirl,$4.99,ea,4oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,,Blend,convenience,,Pre-mixed blend,
+produce_greens,Local Organic Young Kale,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Save 27% - Any 2 for $8.00 - EXCELLENT noted,staple,conscious,Local cooperative + organic + premium young kale,
+produce_greens,Chopped Collard Greens,Generic,$5.49,ea,5oz,,Clear plastic clamshell (recyclable #1 PET),,,Save 27% - Any 2 for $8.00,convenience,,Pre-chopped,
+produce_greens,Snow Pea Tips,Generic,$13.49,lb,,,Loose bunch in produce bag + plastic twist-tie,,,Premium specialty green,specialty,,Only if recipe/user specifies - Asian cuisine,
+produce_greens,Baby Spinach & Arugula,organicgirl,$4.99,ea,5oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Blend,convenience,,Pre-mixed blend,
+produce_greens,Wild Arugula Pack 5oz,Satur Farms,Sold out,ea,5oz,,Clear plastic clamshell (recyclable #1 PET),,,SOLD OUT,staple,,IF AVAILABLE - peppery arugula variety option,
+produce_greens,Baby Arugula,organicgirl,Sold out,ea,,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,,SOLD OUT,staple,,IF AVAILABLE - organic arugula option for variety,
+produce_onions,Scallions,Generic,$1.99,ea,6oz,None (conventional),Bunched with twist-tie,,,,staple,,Green onions - common cooking ingredient,
+produce_onions,Garlic,Generic,$3.49,ea,3ct 3.2oz,None (conventional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,Essential aromatic,
+produce_onions,Jumbo Yellow Onion,Generic,$0.99,lb,,None (conventional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Earliest delivery Sat Jan 24 - Clean Fifteen ,,,,
+produce_onions,Yellow Onions (bag),Generic,$2.49,ea,6ct 2lb bag,None (conventional),Mesh bag,,"Naturally Gluten-Free, Vegan",Earliest delivery Sat Jan 24,staple,,Bulk option,
+produce_onions,Red Onion Large,Generic,$1.99,lb,,None (conventional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",USER HISTORY: showed red onions,staple,,User preference noted,
+produce_onions,Shallots,Generic,$4.99,ea,1lb bag,None (conventional),Mesh bag,,,,specialty,,Only if recipe specifies,
+produce_onions,Organic Garlic,Generic,$3.99,ea,3ct 2.4oz,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_onions,Local Organic Sweet Onion,Lancaster Farm Fresh Cooperative,$1.99,lb,,USDA Organic + Local,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Same price as conventional!,staple,,,
+produce_onions,Peeled Garlic,Generic,$4.99,ea,8oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,,Pre-peeled,
+produce_onions,Local Organic Yellow Onion Medium,Lancaster Farm Fresh Cooperative,$1.99,lb,,USDA Organic + Local,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Same price as conventional!,staple,conscious,Local cooperative + organic at conventional price,
+produce_onions,Red Onions (bag),Generic,$3.99,ea,6ct 2lb bag,None (conventional),Mesh bag,,"Naturally Gluten-Free, Vegan",,staple,,Bulk option,
+produce_onions,Organic Diced Onion,Generic,$5.99,ea,10oz,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",Save 16% - Any 2 for $10.00,convenience,,Pre-diced,
+produce_onions,Sweet Onion,Generic,$1.49,lb,,None (conventional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Milder sweeter than yellow,staple,balanced,Moderate cost - sweeter flavor variety,
+produce_onions,Local Organic Yellow Onions (bag),Lancaster Farm Fresh Cooperative,$4.49,ea,4ct 2lb bag,USDA Organic + Local,Mesh bag,,"Naturally Gluten-Free, Vegan",,staple,,Bulk option,
+produce_onions,Organic Leeks Bunch,Generic,$5.99,ea,2-3ct 3lb,USDA Organic,Loose bulk in produce bag,,,Different allium variety,specialty,,Only if recipe specifies,
+produce_onions,White Onion Large,Generic,$0.99,lb (min 2),,None (conventional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Same price as yellow,staple,,,
+produce_onions,Local Organic Sweet Onions (bag),Lancaster Farm Fresh Cooperative,$5.49,ea,6ct 3lb bag,USDA Organic + Local,Mesh bag,,"Naturally Gluten-Free, Vegan",,staple,,Bulk option,
+produce_onions,Organic Diced Red Onion,Generic,$5.99,ea,10oz,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",Save 16% - Any 2 for $10.00,convenience,,Pre-diced,
+produce_onions,Leeks Bunch,Generic,$5.99,ea,2-3ct 1lb,None (conventional),Loose bulk in produce bag,,,,specialty,,Only if recipe specifies,
+produce_onions,Organic Shallots,Christopher Ranch,$3.99,ea,3ct 6oz,USDA Organic,Loose bulk in produce bag,,,,specialty,,Only if recipe specifies,
+produce_onions,Local Organic Red Onions (bag),Lancaster Farm Fresh Cooperative,$4.99,ea,4ct 2lb bag,USDA Organic + Local,Mesh bag,,"Naturally Gluten-Free, Vegan",,staple,,Bulk option,
+produce_onions,Fresh Peeled White Pearl Onions,Generic,$7.49,ea,8oz,,Plastic bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $12.00 - Earliest delivery Sun Jan 25,specialty,,Only if recipe specifies - garnish/stew,
+produce_onions,Organic Peeled Garlic,Christopher Ranch,$4.99,ea,6oz,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,convenience,,Pre-peeled,
+produce_onions,Peeled Garlic,Christopher Ranch,$6.99,ea,1lb,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Branded conventional,convenience,,Pre-peeled bulk,
+produce_onions,Cipollini Onions,Black Dirt Region,$2.99,ea,1lb bag,,Mesh bag,,"Naturally Gluten-Free, Vegan",Regional specialty - gourmet,specialty,,Only if recipe specifies - Italian,
+produce_onions,Organic Black Garlic,Pete's Greens,$9.99,ea,3oz,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",EXCELLENT noted - fermented probiotic,specialty_promotable,,Promote if: user history OR recipe OR health-conscious user (fermented + organic),
+produce_onions,Garlic Braid,Christopher Ranch,$15.99,ea,20oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Decorative/bulk,specialty,,Decorative or bulk storage,
+produce_onions,Local Organic Red Onions Medium,Lancaster Farm Fresh Cooperative,Sold out,lb,,USDA Organic + Local,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",SOLD OUT,staple,,IF AVAILABLE - would be conscious tier (local + organic + user history red onion preference),
+produce_onions,Local Organic Shallots,Lancaster Farm Fresh Cooperative,Sold out,ea,,USDA Organic + Local,Loose bulk in produce bag,,,SOLD OUT,specialty,,IF AVAILABLE - premium local organic shallot option,
+produce_roots,Organic Ginger Root,Generic,$2.99,ea,6oz,USDA Organic,Loose bulk in produce bag,,,Aromatic root - not main veggie,specialty,year-round (imported),,Only if recipe/user specifies
+produce_roots,Parsnips,Generic,$2.99,lb (min 2),,None (conventional),Loose bulk in produce bag,,,Earliest delivery Sat Jan 24,specialty,fall-winter (Oct-Mar) - PEAK NOW,,Promote in season - sweeter after frost
+produce_roots,Radishes,Jersey Fresh,$1.99,ea,bunch,Jersey Fresh (regional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Regional NJ program,staple,spring-fall (Mar-Nov),balanced,Brand traceability + regional - recall safe vs generic
+produce_roots,Organic Cooked Beets,Love Beets,$4.99,ea,8.8oz,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Precooked convenience product
+produce_roots,Loose Organic Beets,Generic,$2.99,lb,,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
+produce_roots,Organic Red Radish,Generic,$2.99,ea,1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Save 16% - buy 2 for $5 - EXCELLENT noted,staple,spring-fall (Mar-Nov),,
+produce_roots,Organic Watermelon Radishes,Lancaster Farm Fresh Cooperative,$2.49,ea,0.5lb,USDA Organic + Local,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",EXCELLENT noted - high criteria score,specialty_promotable,fall-winter (Oct-Feb) - PEAK NOW,,Promote NOW: in season + user history OR recipe OR variety (organic + local + heirloom)
+produce_roots,Turmeric Root,Generic,$2.99,ea,2oz,,Loose bulk in produce bag,,,Aromatic/medicinal root,specialty,year-round (imported),,Only if recipe/user specifies
+produce_roots,Turnip,Generic,$1.49,lb,,None (conventional),Loose bulk in produce bag,,,Cheapest root - middle category,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
+produce_roots,Cooked Beets,Love Beets,$3.49,ea,8.8oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Precooked,convenience,year-round (processed),,Precooked convenience product
+produce_roots,Organic Beets Bunch,Generic,$3.99,ea,4ct 1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
+produce_roots,Diced Red Beets,Generic,$5.49,ea,12oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Save 27% - Any 2 for $8.00,convenience,year-round (processed),,Pre-diced convenience product
+produce_roots,Organic Daikon Bunch,Generic,$2.99,lb,,USDA Organic,Loose bulk in produce bag,,,Asian radish variety - high criteria score,specialty_promotable,fall-winter (Oct-Mar) - PEAK NOW,,Promote NOW: in season + user history 3x+ OR recipe OR variety (organic + good price)
+produce_roots,Perfectly Pickled Beets Slightly Sweet,Love Beets,$4.99,ea,6.5oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/pickled product
+produce_roots,Organic Marinated Baby Beets Classic Vinegar,Love Beets,$4.99,ea,8oz,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/marinated product
+produce_roots,Celery Root,Generic,$3.99,lb,,None (conventional),Loose bulk in produce bag,,,Celeriac,specialty,fall-winter (Oct-Mar) - PEAK NOW,,Promote in season if recipe/user specifies
+produce_roots,Local Organic Jerusalem Artichokes,Lancaster Farm Fresh Cooperative,$5.99,lb,,USDA Organic + Local,Loose bulk in produce bag,,,Sunchokes,specialty,fall-winter (Nov-Mar) - PEAK NOW,,Promote in season if recipe/user specifies - specialty tuber
+produce_roots,Marinated Baby Beets White Wine Balsamic,Love Beets,$4.99,ea,6.5oz,,Plastic bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/marinated product
+produce_roots,Organic Gold Beets,Generic,$2.99,lb,,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Yellow/golden variety,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,Color variety of staple beet
+produce_roots,Organic Badger Flame Beets,Lancaster Farm Fresh Cooperative,$3.49,lb,,USDA Organic + Local,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Heirloom variety - cooperative,staple,fall-winter (Oct-Mar) - PEAK NOW,conscious,Local cooperative + organic + heirloom variety - IN SEASON
+produce_roots,Perfectly Pickled Beets Honey Ginger,Love Beets,$4.99,ea,6.5oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/pickled product
+produce_roots,Local Organic Chioggia Beets,Lancaster Farm Fresh Cooperative,$2.49,ea,0.5oz,USDA Organic + Local,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Candy-stripe heirloom,specialty,fall-winter (Oct-Mar) - PEAK NOW,,Promote in season - heirloom variety
+produce_roots,Organic Turnip,Generic,$2.99,lb (min 2),,USDA Organic,Loose bulk in produce bag,,,,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
+produce_roots,Rutabaga,Generic,$2.49,lb,,None (conventional),Loose bulk in produce bag,,,GREAT CHOICE noted - versatile root,specialty,fall-winter storage (Oct-Mar) - PEAK NOW,,Promote in season if recipe/user specifies
+produce_roots,Perfectly Pickled Beets Sweet Chili,Love Beets,$4.99,ea,6.5oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/pickled product
+produce_roots,Yuca,Generic,$3.49,lb (min 2),,,Loose bulk in produce bag,,,EXCELLENT noted - tropical root starch,specialty,year-round (imported tropical),,Only if recipe/user specifies - Latin cuisine
+produce_roots,Organic Gold Beets Bunch,Generic,$2.99,ea,4ct,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
+produce_roots,Turnip,Generic,$1.99,lb (min 2),,None (conventional),Loose bulk in produce bag,,,Middle category - peelable skin,staple,fall-winter storage (Oct-Mar) - PEAK NOW,cheaper,Lowest cost versatile root - IN SEASON
+fruit_tropical,Fresh Pineapple Chunks,Generic,$3.99,ea,8oz,,Plastic bag,,,Pre-cut convenience,convenience,year-round (imported),,
+fruit_tropical,Tommy Atkins Mango,Generic,$2.49,ea (min 2),1lb ea,None (conventional),Plastic bag,,,,staple,year-round (imported) - peak spring/summer,,
+fruit_tropical,Pomegranate Arils,Generic,$6.99,ea,4.4oz,,Plastic bag,,,Pre-seeded convenience,convenience,fall-winter (Oct-Feb) - PEAK NOW,,Seasonal fruit - promote in season
+fruit_tropical,Fresh Cubed Mango,Generic,$7.99,ea,8oz,,Plastic bag,,,Pre-cut convenience,convenience,year-round (imported),,
+fruit_tropical,Golden Pineapple,Generic,$6.99,ea,5.25lb,None (conventional),Plastic bag,,,Clean Fifteen ,,,,
+fruit_tropical,Fresh Mango Spears,Generic,$6.49,ea,8oz,,Plastic bag,,,Pre-cut convenience,convenience,year-round (imported),,
+fruit_tropical,Kiwifruit,Generic,$0.99,ea (min 2),0.25lb,None (conventional),Plastic bag,,,Clean Fifteen ,,,,
+fruit_tropical,Organic Kiwifruit,Generic,$0.79,ea (min 2),0.30lb,USDA Organic,Plastic bag,,,CHEAPER than conventional! Unusual pricing,staple,year-round (imported),balanced,Organic CHEAPER than conventional - great value
+fruit_tropical,Fresh Cored Pineapple,Generic,$7.99,ea,23.2oz,,Plastic bag,,,Pre-cored convenience,convenience,year-round (imported),,
+fruit_tropical,Organic Tommy Atkins Mango,Generic,$3.99,ea,1lb,USDA Organic,Plastic bag,,,,staple,year-round (imported) - peak spring/summer,,
+fruit_tropical,Fresh Black Mission Figs,Generic,$6.99,ea,8oz,,Plastic bag,,,,specialty,summer-fall (Jun-Oct) - OFF SEASON,,Only if recipe/user specifies - limited season
+fruit_tropical,Mini Honeyglow Pineapple,Generic,$6.99,ea,3lb,,Plastic bag,,,Smaller portion option,staple,year-round (imported),,
+fruit_tropical,Yellow Plantains,Generic,$1.49,ea (min 2),0.5lb,,Plastic bag,,,Ripe - sweet for frying/baking,specialty,year-round (imported tropical),,Only if recipe/user specifies - Latin cuisine
+fruit_tropical,Maradol Papaya,Generic,$7.99,ea,3lb,None (conventional),Plastic bag,,,Clean Fifteen ,,,,
+fruit_tropical,Organic Golden Pineapple,Generic,$7.99,ea,4lb,USDA Organic,Plastic bag,,,Clean Fifteen ,,,,
+fruit_tropical,Fresh Pineapple Chunks 2lb,Generic,$11.99,ea,2lb,,Plastic bag,,,Bulk pre-cut convenience,convenience,year-round (imported),,
+fruit_tropical,Fresh Pineapple & Jumbo Blueberry Medley,Generic,$5.99,ea,8oz,,Plastic bag,,,Mixed fruit convenience,convenience,year-round,,
+fruit_tropical,Golden Dragon Fruit,Generic,$8.99,ea,1lb,,Plastic bag,,,Exotic specialty,specialty,year-round (imported),,Only if recipe/user specifies - exotic
+fruit_tropical,Green Plantains,Generic,$1.49,ea (min 2),0.5lb,,Plastic bag,,,Unripe - starchy for tostones/mofongo,specialty,year-round (imported tropical),,Only if recipe/user specifies - Latin cuisine
+fruit_tropical,White Dragon Fruit,Generic,$7.99,ea,1lb,,Plastic bag,,,Exotic specialty,specialty,year-round (imported),,Only if recipe/user specifies - exotic
+fruit_tropical,Kaki Persimmons,Generic,$3.99,ea,8oz,,Plastic bag,,,It's Back - seasonal,specialty_promotable,fall-winter (Oct-Jan) - PEAK NOW,,Promote NOW: in season + user history OR recipe
+fruit_tropical,Organic Coconut Chunks Original,Genuine Coconut,$4.99,ea,4oz,USDA Organic,Plastic bag,,,Pre-cut coconut,convenience,year-round,,
+fruit_tropical,Tommy Atkins Mangoes Case,Generic,$14.99,ea,8-12ct ~1lb ea,,Plastic bag,,,Bulk case option,staple,year-round (imported),,Bulk discount
+fruit_tropical,Sharon Fruit,Generic,$3.99,ea,0.35lb,,Plastic bag,,,GREAT CHOICE noted - non-astringent persimmon,specialty_promotable,fall-winter (Oct-Jan) - PEAK NOW,,Promote NOW: in season + GREAT CHOICE + user history OR recipe
+fruit_tropical,Aloe Vera Leaf,Generic,$2.99,lb,,,Plastic bag,,,Specialty - not typical fruit,specialty,year-round,,Only if recipe/user specifies
+fruit_tropical,Mexican Guava,Generic,$3.99,ea,1lb,,Plastic bag,,,,specialty,fall-winter (Oct-Mar),,Only if recipe/user specifies - tropical
+fruit_tropical,Sweet Tamarind,Generic,$8.49,ea,1lb,,Plastic bag,,,,specialty,year-round (imported),,Only if recipe/user specifies - Asian/Latin cuisine
+fruit_tropical,Soursop Fruit Pulp,Generic,$9.99,ea,16oz,,Plastic bag,,,Processed pulp,specialty,year-round (processed),,Only if recipe/user specifies - Caribbean/Latin
+fruit_tropical,Breadfruit,Generic,$4.99,ea,2lb,,Plastic bag,,,Starchy tropical - like potato,specialty,year-round (imported),,Only if recipe/user specifies - Caribbean/Pacific
+fruit_tropical,Cacao Fruit,Generic,$12.99,ea,3lb,,Plastic bag,,,Whole cacao pod,specialty,year-round (imported),,Only if recipe/user specifies - specialty
+fruit_tropical,Buddha's Hand Citron,Flavors by Bhumi,$14.99,lb,,,Plastic bag,,,Aromatic citrus - zest/fragrance,specialty,fall-winter (Nov-Feb),,Only if recipe/user specifies - specialty citrus
+fruit_tropical,Passion Fruit,Generic,$4.99,ea,0.1lb,,Plastic bag,,,EXCELLENT noted,specialty_promotable,summer-fall (Jun-Oct) - off season now,,Promote if: user history OR recipe (limited availability now)
+fruit_tropical,Kent Mango,Generic,$0.99,ea,,None (conventional),Plastic bag,,,SALE 23% off - sweetest mango variety,staple,year-round (peak spring/summer),,Sale price - promote
+fruit_tropical,Plantain Yellow Case,Generic,$79.99,ea,50ct,,Plastic bag,,,Bulk foodservice,specialty,year-round,,Foodservice only
+fruit_tropical,Plantain Green Case,Generic,$79.99,ea,50ct,,Plastic bag,,,Bulk foodservice,specialty,year-round,,Foodservice only
+fruit_tropical,Sweet Tamarind Case,Generic,$129.05,cs,16ct ~1lb ea,,Plastic bag,,,Bulk case - SALE 5% off,specialty,year-round,,Foodservice/bulk only
+fruit_tropical,Pomegranates,Generic,Sold out,ea,,,Plastic bag,,,SOLD OUT,staple,fall-winter (Oct-Feb) - PEAK NOW,,IF AVAILABLE - seasonal staple IN PEAK SEASON - high demand causes stockouts
+fruit_tropical,SunGold Kiwifruit,Zespri,Sold out,ea,,,Plastic bag,,,SOLD OUT - premium yellow kiwi,staple,year-round,,IF AVAILABLE - would be balanced/conscious tier (premium brand + sweeter variety)
+fruit_tropical,Green Guavas,Generic,Sold out,ea,,,Plastic bag,,,SOLD OUT,specialty,fall-winter,,
+fruit_tropical,Rambutan,Generic,Sold out,ea,,,Plastic bag,,,SOLD OUT - exotic,specialty,summer,,Exotic - sold out
+fruit_berries,Jumbo Ultra-Premium Blueberries,Family Tree Farms,$9.99,ea,9.8oz,,Plastic bag,,,Earliest delivery Sat Jan 24 - premium,staple,year-round (imported winter) - blueberries ,,
+fruit_berries,Organic Strawberries,Driscoll's,$9.99,ea,16oz,USDA Organic,Plastic bag,,,Strawberries ,,,,
+fruit_berries,Strawberries,Driscoll's,$5.99,ea,16oz,None (conventional),Plastic bag,,,Strawberries ,,,,
+fruit_berries,Organic Raspberries,Driscoll's,$6.99,ea,6oz,USDA Organic,Plastic bag,,,High-risk berry - organic chosen,staple,year-round (imported winter),balanced,Organic + Driscoll's brand safety + delicate berry
+fruit_berries,Organic Blueberries,Generic,$12.99,ea,18oz,USDA Organic,Plastic bag,,,Earliest delivery Sat Jan 24 - blueberries ,,,,
+fruit_berries,Raspberries,Generic,$3.99,ea,6oz,None (conventional),Plastic bag,,,SALE 37% - buy 2 for $5,staple,year-round (imported winter),,Sale price but conventional
+fruit_berries,Raspberries,Driscoll's,$3.99,ea,6oz,None (conventional),Plastic bag,,,,staple,year-round (imported winter),,Conventional raspberry
+fruit_berries,Blackberries,Driscoll's,$4.99,ea,6oz,None (conventional),Plastic bag,,,,staple,year-round (imported winter),,Conventional blackberry
+fruit_berries,Strawberries,Generic,$4.99,ea,16oz,None (conventional),Plastic bag,,,SALE 28% off - was $6.99 - ,,,,
+fruit_berries,Local Strawberries,The Strawberry Farm,$9.99,ea,8oz,,Plastic bag,,,LOCAL but not organic - ,,,,
+fruit_berries,Fresh Berry Medley,Generic,$5.99,ea,8oz,,Plastic bag,,,Mixed berries convenience,convenience,year-round,,Pre-mixed
+fruit_berries,Organic Strawberries,Generic,$6.99,ea,16oz,USDA Organic,Plastic bag,,,Strawberries ,,,,
+fruit_berries,Fresh Halved Strawberries,Generic,$6.99,ea,8oz,,Plastic bag,,,Pre-cut convenience - but conventional ,,,,
+fruit_berries,Blueberries,Generic,$9.99,ea,18oz,None (conventional),Plastic bag,,,Blueberries ,,,,
+fruit_berries,Sweet Selections Blackberries,Naturipe,$7.99,ea,10oz,,Plastic bag,,,Larger pack,staple,year-round (imported winter),,Bulk option
+fruit_berries,Mini Koyo Berries,Oishii,$9.99,ea,4.2oz,,Plastic bag,,,Premium indoor-grown Japanese variety,specialty,year-round (vertical farm),,Premium specialty - only if user specifies
+fruit_berries,The Koyo Berry,Oishii,$9.99,ea,4.2oz (8-11ct),,Plastic bag,,,Premium indoor-grown - Earliest delivery Sat Jan 24,specialty,year-round (vertical farm),,Premium specialty - only if user specifies
+fruit_berries,Fresh Pineapple & Jumbo Blueberry Medley,Generic,$5.99,ea,8oz,,Plastic bag,,,Mixed fruit - Earliest delivery Sat Jan 24,convenience,year-round,,Pre-mixed
+fruit_berries,Cape Gooseberries,Generic,$5.99,ea,6oz,,Plastic bag,,,Earliest delivery Sat Jan 24 - specialty,specialty,year-round (imported),,Only if recipe/user specifies
+fruit_berries,The Omakase Berry,Oishii,$14.99,ea,4.2oz (6-8ct),,Plastic bag,,,ULTRA-PREMIUM indoor-grown - Earliest delivery Sat Jan 24,specialty,year-round (vertical farm),,Ultra-premium specialty - only if user specifies
+fruit_berries,Jumbo Ultra-Premium Blueberries Case,Family Tree Farms,$113.89,cs,12ct 9.8oz ea,,Plastic bag,,,SALE 5% off - bulk,specialty,year-round,,Foodservice/bulk only
+fruit_berries,Strawberries Case,Generic,$37.92,cs,8ct 16oz ea,,Plastic bag,,,SALE 5% off - bulk conventional - ,,,,
+fruit_berries,Blackberries Case,Generic,$56.89,cs,12ct 6oz ea,,Plastic bag,,,SALE 5% off - bulk,specialty,year-round,,Foodservice/bulk only
+fruit_berries,Limited Edition Sweetest Batch Blueberries,Driscoll's,Sold out,ea,,,Plastic bag,,,SOLD OUT - premium,staple,year-round,,Premium variety - sold out
+fruit_berries,Organic Blackberries,Driscoll's,Sold out,ea,,USDA Organic,Plastic bag,,,SOLD OUT - organic blackberry,staple,year-round,,IF AVAILABLE - would be balanced tier (organic + Driscoll's brand safety) - CRITICAL AVAILABILITY GAP
+fruit_berries,Strawberries,Driscoll's,Sold out,ea,16oz,,Plastic bag,,,SOLD OUT - conventional,staple,year-round,,Sold out
+fruit_berries,The Nikko Berry,Oishii,Sold out,ea,,,Plastic bag,,,SOLD OUT - ultra-premium,specialty,year-round,,Ultra-premium - sold out
+fruit_berries,Raspberries Case,Generic,Sold out,cs,,,Plastic bag,,,SOLD OUT - bulk,specialty,year-round,,Bulk - sold out
+fruit_berries,Berry Bundle with Blackberries,Generic,Sold out,ea,,,Plastic bag,,,SOLD OUT - bundle,convenience,year-round,,Bundle - sold out
+fruit_berries,Blueberries Case,Generic,Sold out,cs,,,Plastic bag,,,SOLD OUT - bulk,specialty,year-round,,Bulk - sold out
+produce_tomatoes,Tomatoes on the Vine,Generic,$2.99,lb (min 3),,None (conventional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Tomatoes NOT on Dirty Dozen or Clean Fifteen (middle category),staple,year-round (greenhouse/imported),cheaper,Lowest cost - conventional OK (middle category)
+produce_tomatoes,Organic Tomatoes on the Vine,Generic,$4.49,lb (min 3),,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,year-round (greenhouse/imported),balanced,Organic option at moderate price - 50% premium over conventional
+produce_tomatoes,Organic Grape Tomatoes,Generic,$4.99,ea,12oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",,staple,year-round (greenhouse/imported),,Organic snacking tomato
+produce_tomatoes,Beefsteak Tomatoes Large,Generic,$2.49,lb (min 2),,None (conventional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Large slicing tomato,staple,year-round (greenhouse/imported),,Budget slicing tomato
+produce_tomatoes,Organic Mixed Cherry Tomatoes,Long Wind Farms,$6.99,ea,12oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",SALE 12% off (was $7.99) - farm brand,staple,year-round,conscious,Farm-branded organic + heirloom variety mix + on sale
+produce_tomatoes,Grape Tomatoes,Generic,$3.49,ea,10oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",,staple,year-round (greenhouse/imported),,Conventional snacking tomato
+produce_tomatoes,Plum Tomatoes,Generic,$3.99,ea,1lb bag,None (conventional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Roma-style for sauce/cooking,staple,year-round,,Cooking tomato
+produce_tomatoes,Honey Bombs Golden Sweet Tomatoes,Sunset Grown,$5.99,ea,12oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",EXCELLENT noted - premium greenhouse brand,specialty_promotable,year-round (greenhouse),,Promote if: user history OR recipe OR premium taste preference (EXCELLENT rating)
+produce_tomatoes,Angel Sweet Grape Tomatoes 32oz,Sunset Grown,$9.99,ea,32oz,,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Bulk premium grape tomatoes,staple,year-round (greenhouse),,Bulk option - premium brand
+produce_tomatoes,Organic Beefsteak Tomatoes,Long Wind Farms,$6.99,lb,,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Farm-branded organic,staple,year-round,,Premium organic slicing tomato
+produce_tomatoes,Campari Tomatoes,Sunset Grown,$4.99,ea,16oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Earliest delivery Sun Jan 25 - cocktail tomato,staple,year-round (greenhouse),,Popular cocktail/snacking size
+produce_tomatoes,Lolli Bombs Tomatoes,Sunset Grown,$5.99,ea,12oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Premium variety,specialty,year-round (greenhouse),,Only if recipe/user specifies - premium
+produce_tomatoes,Kumato Tomatoes,Sunset Grown,$3.99,ea,9oz (3ct),,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Brown/green variety - unique flavor,specialty,year-round (greenhouse),,Only if recipe/user specifies - unique variety
+produce_tomatoes,Organic Roma Tomatoes,Generic,$4.99,ea,1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Sauce/cooking tomato - organic,staple,year-round,,Organic cooking tomato
+produce_tomatoes,Angel Sweet Grape Tomatoes 12oz,Sunset Grown,$3.99,ea,12oz,,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Premium grape - smaller pack,staple,year-round (greenhouse),,Premium snacking size
+produce_tomatoes,Organic Red Beefsteak Tomato,Generic,$4.49,lb (min 2),,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",It's Back - seasonal return,staple,year-round,,Organic slicing - returned to stock
+produce_tomatoes,Plum Tomato Large,Generic,$1.99,lb (min 2),,None (conventional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",CHEAPEST tomato option,staple,year-round,,Budget cooking tomato
+produce_tomatoes,Tomatillos Pack,Generic,$3.49,ea,8oz,,Loose bulk in produce bag,,,Mexican cuisine - salsa verde,specialty,year-round (imported Mexico),,Only if recipe specifies - Latin cuisine
+produce_tomatoes,Bahama Bombs,Sunset Grown,$5.99,ea,12oz,,Loose bulk in produce bag,,,Earliest delivery Sun Jan 25 - premium,specialty,year-round (greenhouse),,Only if recipe/user specifies - premium
+produce_tomatoes,Fair Trade Organic Mixed Heirloom Tomatoes,Generic,$6.99,lb,,USDA Organic + Fair Trade,Loose bulk in produce bag,,"Fair Trade Certified, Naturally Gluten-Free, Vegan",Dual certification - heirloom varieties,specialty_promotable,summer-fall (peak) year-round (greenhouse),,Promote if: user history OR recipe OR conscious tier (Fair Trade + Organic + heirloom)
+produce_tomatoes,Bombs Squad,Sunset Grown,$5.99,ea,12oz,,Loose bulk in produce bag,,,Mixed premium variety pack,specialty,year-round (greenhouse),,Only if recipe/user specifies - premium mix
+produce_tomatoes,Organic Mixed Cherry Tomatoes,Lady Moon Farms,$5.99,ea,16oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Earliest delivery Tue Jan 27 - farm brand,staple,year-round,,Farm-branded organic - good value per oz
+produce_tomatoes,Wild Wonders Tomatoes,Sunset Grown,Sold out,ea,,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",SOLD OUT - premium variety mix,specialty,year-round (greenhouse),,Premium mix - IF AVAILABLE would be specialty_promotable
+produce_peppers,Red Greenhouse Bell Pepper,Generic,$3.49,lb,,None (conventional),Plastic bag,,,Bell peppers ,,,,
+produce_peppers,Rainbow Pepper Pack,Generic,$4.99,ea,1.3lb (3ct),None (conventional),Plastic bag,,,SALE 16% off (was $5.99) - mixed colors,staple,year-round (greenhouse),,Sale but conventional - Dirty Dozen 
+produce_peppers,Green Bell Pepper,Generic,$2.99,lb,,None (conventional),Plastic bag,,,Cheapest bell pepper - Dirty Dozen ,,,,
+produce_peppers,Organic Red Greenhouse Bell Pepper,Generic,$5.49,lb,,USDA Organic,Plastic bag,,,Bell peppers ,,,,
+produce_peppers,Organic Rainbow Pepper Pack,Generic,$8.19,ea,1.3lb (3ct),USDA Organic,Plastic bag,,,Organic mixed colors - Dirty Dozen compliant,staple,year-round (greenhouse),conscious,Organic + variety pack (red/yellow/orange) - full color range
+produce_peppers,Jalapeño Pepper,Generic,$0.49,ea (min 4),1oz,None (conventional),Plastic bag,,,Hot peppers also ,,,,
+produce_peppers,Mini Sweet Mixed Peppers,Generic,$3.99,ea,1lb,None (conventional),Plastic bag,,,Snacking peppers - conventional,staple,year-round (greenhouse),,Convenient snacking size
+produce_peppers,Organic Sweet Mini Bell Peppers,Generic,$5.49,ea,8oz,USDA Organic,Plastic bag,,,Organic snacking peppers - Dirty Dozen compliant,staple,year-round (greenhouse),,Organic snacking option
+produce_peppers,Organic Orange Greenhouse Bell Pepper,Generic,$5.49,lb,,USDA Organic,Plastic bag,,,Bell peppers ,,,,
+produce_peppers,Orange Greenhouse Bell Pepper,Generic,$3.49,lb,,None (conventional),Plastic bag,,,Bell peppers ,,,,
+produce_peppers,Organic Yellow Greenhouse Bell Pepper,Generic,$5.49,lb,,USDA Organic,Plastic bag,,,Bell peppers ,,,,
+produce_peppers,Yellow Greenhouse Bell Pepper,Generic,$3.49,lb,,None (conventional),Plastic bag,,,Bell peppers ,,,,
+produce_peppers,Serrano Peppers,Generic,$0.99,ea,0.25lb (3-4ct),None (conventional),Plastic bag,,,Hot pepper - Mexican cuisine,specialty,year-round,,Only if recipe specifies - hotter than jalapeño
+produce_peppers,Green Shishito Peppers,Ark Foods,$4.99,ea,8oz,,Plastic bag,,,Save 20% - buy 2 for $8 - Japanese mild pepper,specialty_promotable,summer-fall (peak) year-round (greenhouse),,Promote if: user history OR recipe OR Asian cuisine preference (branded + mild roasting pepper)
+produce_peppers,Poblano Pepper,Generic,$4.99,lb (min 2),,None (conventional),Plastic bag,,,Mild Mexican pepper - stuffing/roasting,specialty,year-round,,Only if recipe specifies - chiles rellenos
+produce_peppers,Organic Green Bell Pepper,Generic,$2.99,lb,,USDA Organic,Plastic bag,,,SAME PRICE as conventional! Unusual,staple,year-round (greenhouse),,Organic at conventional price - EXCELLENT VALUE
+produce_peppers,Thai Peppers Packaged,Generic,$1.99,ea,2oz,,Plastic bag,,,Very hot - Asian cuisine,specialty,year-round,,Only if recipe specifies - Southeast Asian
+produce_peppers,Habanero Peppers,Generic,$4.99,ea,0.25lb (12ct),,Plastic bag,,,Very hot peppers,specialty,year-round,,Only if recipe specifies - extreme heat
+produce_peppers,Organic Green Bell Peppers,Generic,Sold out,lb,,USDA Organic,Plastic bag,,,SOLD OUT - organic green bell,staple,year-round (greenhouse),,IF AVAILABLE - organic green at $2.99 is best value (same as conventional)
+produce_squash,Organic Green Zucchini,Generic,$2.99,lb (min 2),,USDA Organic,Plastic bag,,,Squash/zucchini NOT on Dirty Dozen or Clean Fifteen (middle),staple,year-round (greenhouse),balanced,Organic at moderate price - middle category so organic optional but preferred
+produce_squash,Green Zucchini,Generic,$1.99,lb (min 2),,None (conventional),Plastic bag,,,Summer squash - middle category,staple,year-round (greenhouse),cheaper,Lowest cost zucchini - conventional OK for middle category
+produce_squash,Organic Butternut Squash Chunks,Generic,$4.99,ea,16oz,USDA Organic,Plastic bag,,,SALE 16% off (was $5.99) - Earliest delivery Sat Jan 24,convenience,fall-winter (Sep-Mar) - PEAK NOW,,Pre-cut convenience - on sale
+produce_squash,Peeled Butternut Squash,Generic,$2.99,ea,16oz,None (conventional),Plastic bag,,,SALE 25% off (was $3.99) - pre-peeled,convenience,fall-winter (Sep-Mar) - PEAK NOW,,Pre-peeled convenience - good sale
+produce_squash,Yellow Zucchini,Generic,$2.29,lb (min 2),,None (conventional),Plastic bag,,,Yellow summer squash,staple,year-round (greenhouse),,Color variety
+produce_squash,Organic Delicata Squash,Generic,$2.49,lb,,USDA Organic,Plastic bag,,,Sweet potato flavor - edible skin,staple,fall-winter (Sep-Dec) - PEAK NOW,,Winter squash variety
+produce_squash,Butternut Squash,Generic,$1.49,lb,,None (conventional),Plastic bag,,,EXCELLENT noted - versatile winter squash,staple,fall-winter (Sep-Mar) - PEAK NOW,,Budget winter squash - EXCELLENT rating
+produce_squash,Local Organic Butternut Squash,Lancaster Farm Fresh Cooperative,$2.49,lb,,USDA Organic + Local,Plastic bag,,,Local cooperative organic,staple,fall-winter (Sep-Mar) - PEAK NOW,conscious,Local cooperative + organic + IN SEASON - best conscious choice
+produce_squash,Organic Kabocha Squash,Generic,$2.49,lb,,USDA Organic,Plastic bag,,,Japanese pumpkin - sweet dense flesh,specialty,fall-winter (Sep-Jan) - PEAK NOW,,Promote in season if: user history OR recipe OR Asian cuisine
+produce_squash,Organic Green Zucchini Noodles,Generic,$9.99,ea,16oz,USDA Organic,Plastic bag,,,Spiralized convenience product,convenience,year-round,,Pre-spiralized - premium convenience
+produce_squash,Spaghetti Squash,Generic,$1.99,lb,,None (conventional),Plastic bag,,,Natural noodle substitute,staple,fall-winter (Sep-Mar) - PEAK NOW,,Low-carb alternative - in season
+produce_squash,Long Island Delicata Squash,Generic,$2.49,lb,,,Plastic bag,,,Regional Long Island variety,staple,fall-winter (Sep-Dec) - PEAK NOW,,Regional variety - same price as organic
+produce_squash,Primavera Zucchini Noodles,Generic,$7.49,ea,1lb,,Plastic bag,,,Save 20% - Any 2 for $12 - Earliest delivery Sat Jan 24,convenience,year-round,,Pre-spiralized mixed convenience
+produce_squash,Baby Zucchini,Urban Roots,$3.99,ea,8oz,,Plastic bag,,,Earliest delivery Sun Jan 25 - tender baby size,specialty,year-round (greenhouse),,Only if recipe specifies - gourmet presentation
+produce_squash,Organic Butternut Squash,Generic,$2.49,lb,,USDA Organic,Plastic bag,,,EXCELLENT noted - whole organic butternut,staple,fall-winter (Sep-Mar) - PEAK NOW,,EXCELLENT rating + organic + in season
+produce_squash,Fresh Green and Yellow Zoodles,Generic,$7.49,ea,16oz,,Plastic bag,,,Save 20% - Any 2 for $12 - Earliest delivery Sat Jan 24,convenience,year-round,,Pre-spiralized mixed convenience
+produce_squash,Butternut Squash Noodles,Generic,$7.49,ea,16oz,,Plastic bag,,,Save 20% - Any 2 for $12,convenience,fall-winter (Sep-Mar),,Pre-spiralized butternut convenience
+produce_squash,Acorn Squash,Generic,$0.99,lb,,None (conventional),Plastic bag,,,CHEAPEST squash - classic winter variety,staple,fall-winter (Sep-Mar) - PEAK NOW,,Budget winter squash option
+produce_squash,Organic Stripetti Squash,Lancaster Farm Fresh Cooperative,$2.49,lb,,USDA Organic + Local,Plastic bag,,,Hybrid spaghetti/delicata - local cooperative,specialty_promotable,fall-winter (Sep-Jan) - PEAK NOW,,Promote NOW: in season + local + organic + unique variety (natural noodle squash)
+produce_squash,Organic Carnival Squash,Generic,$1.99,lb,,USDA Organic,Plastic bag,,,Colorful decorative/eating squash,specialty,fall-winter (Sep-Dec) - PEAK NOW,,Decorative variety - promote in season
+produce_squash,Butternut Squash Halves,Generic,$1.49,lb,ea,None (conventional),Plastic bag,,,SALE 25% off (was $1.99) - pre-halved,convenience,fall-winter (Sep-Mar) - PEAK NOW,,Pre-cut convenience - same price as whole
+produce_squash,Organic Spaghetti Squash,Generic,Sold out,lb,,USDA Organic,Plastic bag,,,SOLD OUT - organic spaghetti squash,staple,fall-winter (Sep-Mar) - PEAK NOW,,IF AVAILABLE - would be balanced tier (organic low-carb alternative)
+produce_squash,Local Organic Acorn Squash,Lancaster Farm Fresh Cooperative,Sold out,lb,,USDA Organic + Local,Plastic bag,,,SOLD OUT - local organic acorn,staple,fall-winter (Sep-Mar) - PEAK NOW,,IF AVAILABLE - would be conscious tier (local + organic + budget at $0.99 conventional baseline)
+produce_squash,Organic Yellow Squash,Generic,Sold out,lb,,USDA Organic,Plastic bag,,,SOLD OUT - organic yellow zucchini,staple,year-round (greenhouse),,IF AVAILABLE - organic yellow summer squash option
+milk_whole,Whole Milk Plastic Bottle 1/2gal,Just FreshDirect,$2.99,ea,1/2 gallon,,Plastic bottle (HDPE #2 recyclable),,,USER HISTORY: whole milk bought consistently - $0.05/fl oz,staple,year-round,cheaper,Lowest cost whole milk - matches user history preference
+milk_whole,Local Organic Whole Milk Carton,Just FreshDirect,$4.89,ea,1/2 gallon,USDA Organic + Local,Gable-top carton (paper/plastic laminate),,,$0.08/fl oz - local organic,staple,year-round,balanced,Local organic whole milk - matches user history + organic upgrade
+milk_whole,Whole Milk Plastic Bottle 1gal,Just FreshDirect,$4.99,ea,1 gallon,,Plastic bottle (HDPE #2 recyclable),,,$0.04/fl oz - best value per oz,staple,year-round,,Best $/oz for conventional whole milk
+milk_whole,Ultra-Pasteurized Whole Milk Carton,Organic Valley,$5.99,ea,1/2 gallon,USDA Organic,Gable-top carton (paper/plastic laminate),,,$0.09/fl oz - national organic brand,staple,year-round,,National organic brand option
+milk_whole,Grassmilk Whole Milk Ultra-Pasteurized Carton,Organic Valley,$7.39,ea,59fl oz,USDA Organic + Grass-fed,Gable-top carton (paper/plastic laminate),,Grass-Fed,$0.13/fl oz - grass-fed premium,staple,year-round,conscious,Grass-fed organic - highest welfare + nutrition standards
+milk_whole,Growing Years Whole Milk Carton,Horizon Organic,$8.99,ea,59fl oz,USDA Organic,Gable-top carton (paper/plastic laminate),,,$0.15/fl oz - fortified for children,specialty,year-round,,Only if children in household
+milk_whole,Grassfed Whole Milk Carton,Horizon Organic,$8.99,ea,59fl oz,USDA Organic + Grass-fed,Gable-top carton (paper/plastic laminate),,Grass-Fed,$0.15/fl oz - grass-fed organic,staple,year-round,,Premium grass-fed option
+milk_whole,A2/A2 Organic 4% Whole Milk Carton,Alexandre,$8.49,ea,59fl oz,USDA Organic + A2,Gable-top carton (paper/plastic laminate),,,$0.14/fl oz - A2 protein + organic,specialty_promotable,year-round,,Promote if: digestive sensitivity OR health-conscious (A2 protein easier to digest)
+milk_whole,Whole Milk Carton,a2 Milk,$6.49,ea,59fl oz,A2 protein,Gable-top carton (paper/plastic laminate),,,$0.11/fl oz - A2 protein (not organic),specialty,year-round,,A2 protein for digestive sensitivity - not organic
+milk_whole,100% Grass-Fed A2 Organic Whole Milk Plastic Bottle,Family Farmstead,$5.49,ea,32fl oz,USDA Organic + Grass-fed + A2,Plastic bottle (HDPE #2 recyclable),,Grass-Fed,$0.17/fl oz - triple premium (small size),specialty,year-round,,Premium small-format option
+milk_whole,All Natural Creamline Milk Plastic Bottle,Ronnybrook,$5.49,ea,1/2 gallon,None (natural),Plastic bottle (HDPE #2 recyclable),,,$0.09/fl oz - non-homogenized cream-top,specialty_promotable,year-round,,Promote if: user history OR artisan preference (Hudson Valley farm + cream-top)
+milk_whole,Family First Whole Milk with DHA Omega-3 Carton,Organic Valley,$6.79,ea,1/2 gallon,USDA Organic + DHA,Gable-top carton (paper/plastic laminate),,,$0.11/fl oz - fortified organic,specialty,year-round,,Only if DHA supplementation needed
+milk_whole,Organic Whole Milk Carton,Farmland,$7.99,ea,1/2 gallon,USDA Organic,Gable-top carton (paper/plastic laminate),,,$0.12/fl oz,staple,year-round,,Alternative organic brand
+milk_whole,100% Lactose-Free Whole Milk Carton,Lactaid,$5.99,ea,1/2 gallon,Lactose-free,Gable-top carton (paper/plastic laminate),,,$0.09/fl oz - lactose-free,specialty,year-round,,Only if lactose intolerant
+milk_whole,Lactose Free Whole Milk Carton,Organic Valley,$6.29,ea,1/2 gallon,USDA Organic + Lactose-free,Gable-top carton (paper/plastic laminate),,,$0.10/fl oz - organic lactose-free,specialty,year-round,,Lactose intolerant + organic preference
+milk_whole,Grade A Whole Goat Milk Ultra-Pasteurized Carton,Meyenberg,$9.99,ea,1 quart,,Gable-top carton (paper/plastic laminate),,,$0.31/fl oz - goat milk alternative,specialty,year-round,,Only if goat milk preference/need
+milk_whole,100% Goat Milk Plastic Bottle,Oak Knoll Dairy,$8.49,ea,1 quart,,Plastic bottle (HDPE #2 recyclable),,,$0.27/fl oz - local goat milk,specialty,year-round,,Local goat milk option
+milk_whole,Whole Milk Plastic Bottle 96oz,Lactaid,$6.49,ea,96fl oz,Lactose-free,Plastic bottle (HDPE #2 recyclable),,,$0.07/fl oz - bulk lactose-free,specialty,year-round,,Bulk lactose-free option
+milk_whole,Organic Whole Milk Cartons Case,Just FreshDirect,$27.87,cs,6ct 1/2gal ea,USDA Organic,Gable-top carton (paper/plastic laminate),,,SALE 5% off - $0.07/fl oz bulk,staple,year-round,,Bulk organic - good value
+milk_whole,Grassmilk Whole Milk Cartons Case,Organic Valley,$42.12,cs,6ct 59oz ea,USDA Organic + Grass-fed,Gable-top carton (paper/plastic laminate),,Grass-Fed,SALE 5% off - $0.12/fl oz bulk,staple,year-round,,Bulk grass-fed organic
+milk_whole,Whole Milk Plastic Bottles Case,Just FreshDirect,$18.96,cs,4ct 1gal ea,,Plastic bottle (HDPE #2 recyclable),,,SALE 5% off - $0.04/fl oz BEST bulk value,staple,year-round,,BEST bulk value - conventional
+milk_whole,All Natural Creamline Milk Plastic Bottles Case,Ronnybrook,$31.29,cs,6ct 1/2gal ea,None (natural),Plastic bottle (HDPE #2 recyclable),,,SALE 5% off - $0.08/fl oz bulk artisan,specialty,year-round,,Bulk artisan creamline
+milk_whole,Whole Milk Cartons Case,Just FreshDirect,$25.56,cs,9ct 1/2gal ea,,Gable-top carton (paper/plastic laminate),,,SALE 5% off - $0.04/fl oz bulk,staple,year-round,,Bulk conventional - good value
+milk_whole,Grassfed Whole Milk Cartons Case,Horizon Organic,$51.24,cs,6ct 64oz ea,USDA Organic + Grass-fed,Gable-top carton (paper/plastic laminate),,Grass-Fed,SALE 5% off - $0.13/fl oz bulk,staple,year-round,,Bulk grass-fed organic
+milk_whole,Family First Whole Milk with DHA Cartons Case,Organic Valley,$38.70,cs,6ct 64oz ea,USDA Organic + DHA,Gable-top carton (paper/plastic laminate),,,SALE 5% off - $0.10/fl oz bulk,specialty,year-round,,Bulk DHA-fortified organic
+milk_whole,Whole Milk Plastic Bottle,Tuscan Dairy Farms,Sold out,ea,,,Plastic bottle (HDPE #2 recyclable),,,SOLD OUT - regional conventional,staple,year-round,,IF AVAILABLE - regional conventional option
+milk_whole,Ultra-Pasteurized Whole Milk Carton,Organic Valley,Sold out,ea,1/2 gallon,USDA Organic,Gable-top carton (paper/plastic laminate),,,SOLD OUT - single unit,staple,year-round,,IF AVAILABLE - preferred single-unit organic
+milk_whole,Whole Milk Carton,Horizon Organic,Sold out,ea,,USDA Organic,Gable-top carton (paper/plastic laminate),,,SOLD OUT - national organic,staple,year-round,,IF AVAILABLE - would compete for balanced tier
+milk_whole,100% Grass-Fed A2 Organic Whole Milk Plastic Bottle 1/2gal,Family Farmstead,Sold out,ea,1/2 gallon,USDA Organic + Grass-fed + A2,Plastic bottle (HDPE #2 recyclable),,Grass-Fed,SOLD OUT - larger A2 size,specialty,year-round,,IF AVAILABLE - better value A2 option
+milk_whole,Lactose Free Ultra-Filtered Whole Milk Plastic Bottle,Fairlife,Sold out,ea,,Lactose-free + Ultra-filtered,Plastic bottle (HDPE #2 recyclable),,,SOLD OUT - ultra-filtered,specialty,year-round,,IF AVAILABLE - premium lactose-free
+milk_whole,Whole Milk with DHA Omega-3 and Vitamin D Carton,Horizon Organic,Sold out,ea,,USDA Organic + DHA,Gable-top carton (paper/plastic laminate),,,SOLD OUT - fortified organic,specialty,year-round,,IF AVAILABLE - DHA-fortified option
+milk_whole,Whole Milk Cartons Case,Horizon Organic,Sold out,cs,,USDA Organic,Gable-top carton (paper/plastic laminate),,,SOLD OUT - bulk organic,staple,year-round,,IF AVAILABLE - bulk national organic
+milk_whole,Ultra-Pasteurized Whole Milk Cartons Case,Organic Valley,Sold out,cs,,USDA Organic,Gable-top carton (paper/plastic laminate),,,SOLD OUT - bulk organic,staple,year-round,,IF AVAILABLE - bulk organic option
+spices,Dried Edible Rose Petals,Pure Indian Foods,5.99,ea,1oz,USDA Organic,Glass jar with plastic cap,,,SOLD OUT,specialty,,Premium Specialty,Authentic Indian specialty ingredient
+spices,Royal Garnish Blend,Pure Indian Foods,7.99,ea,35g,USDA Organic,Opaque white plastic bag,,,New - 1 Review,specialty,,Premium Specialty,Authentic Indian specialty blend
+spices,Organic Red Chili Pepper Flakes,Pure Indian Foods,4.99,ea,2oz,USDA Organic,Glass jar with plastic cap,,,New - 1 Review,staple,,Premium Specialty,High quality organic spice
+spices,Ayurvedic Six Tastes Churna,Pure Indian Foods,7.99,ea,2.2oz,USDA Organic,Glass jar with plastic cap,,,New - 3 Reviews,specialty,,Premium Specialty,Ayurvedic spice blend
+spices,Green Chili Powder (Serrano),Pure Indian Foods,4.99,ea,1.9oz,USDA Organic,Glass jar with plastic cap,,,New - 1 Review,specialty,,Premium Specialty,Specialty chili powder
+spices,Ghost Pepper (Smoked Bhut Jolokia) Whole Peppers,Pure Indian Foods,8.99,ea,1.4oz,None (conventional),Glass jar with plastic cap,,,,specialty,,Premium Specialty,Super hot pepper
+spices,Biryani Masala Seasoning,Pure Indian Foods,6.99,ea,2.2oz,USDA Organic,Glass jar with plastic cap,,,New - 1 Review,specialty,,Premium Specialty,Essential biryani spice blend
+spices,Vata Churna,Pure Indian Foods,7.99,ea,2.2oz,USDA Organic,Glass jar with plastic cap,,,New - 3 Reviews,specialty,,Premium Specialty,Ayurvedic dosha blend
+spices,Pitta Churna,Pure Indian Foods,7.99,ea,2.2oz,USDA Organic,Glass jar with plastic cap,,,New,specialty,,Premium Specialty,Ayurvedic dosha blend
+spices,Kapha Churna,Pure Indian Foods,7.99,ea,2.2oz,USDA Organic,Glass jar with plastic cap,,,New - 2 Reviews,specialty,,Premium Specialty,Ayurvedic dosha blend
+spices,Lemongrass Cut & Dried,Pure Indian Foods,6.99,ea,1.5oz,USDA Organic,Glass jar with plastic cap,,,New - 1 Review,specialty,,Premium Specialty,Aromatic herb
+spices,AfterMeal Roasted Coriander Seeds (Dhana Dal),Pure Indian Foods,3.99,ea,3oz,None (conventional),Glass jar with plastic cap,,,Sale - from $9.99,specialty,,Premium Specialty,Digestive aid
+spices,Kokum Black Dried,Pure Indian Foods,9.99,ea,5oz,USDA Organic,Glass jar with plastic cap,,,New - 2 Reviews,specialty,,Premium Specialty,Souring agent
+spices,Fill Up Your Spice Box Indian Spice Set,Pure Indian Foods,45.00,ea,12 mini pouches,USDA Organic,Glass jar with plastic cap,,,New - 4 Reviews,specialty,,Premium Specialty,Complete spice collection
+spices,Galangal Dried Slices,Pure Indian Foods,12.99,ea,3oz,USDA Organic,Glass jar with plastic cap,,,,specialty,,Premium Specialty,Thai/Indian aromatic root
+spices,Poppy Seeds,Pure Indian Foods,12.99,ea,8oz,USDA Organic,Glass jar with plastic cap,,,,staple,,Premium Specialty,Baking and cooking seeds
+spices,Bombay Chaat Masala Ground,Pure Indian Foods,5.99,ea,2oz,USDA Organic,Glass jar with plastic cap,,,15 Reviews,specialty,,Premium Specialty,Essential chaat seasoning
+spices,Black Turmeric,Pure Indian Foods,8.99,ea,2oz,USDA Organic,Glass jar with plastic cap,,,27 Reviews,specialty,,Premium Specialty,Rare turmeric variety
+spices,Lakadong Turmeric (High Curcumin >7%),Pure Indian Foods,6.99,ea,3oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 50 Reviews,staple,,Premium Specialty,Highest curcumin content turmeric
+spices,Chipotle Morita Chili Pepper,Pure Indian Foods,9.99,ea,5oz,USDA Organic,Glass jar with plastic cap,,,8 Reviews,specialty,,Premium Specialty,Smoked chili pepper
+spices,KICK Salt - Himalayan Pink Salt & Smoked Ghost Pepper,Pure Indian Foods,4.99,ea,4.5oz,USDA Organic,Glass jar with plastic cap,,,15 Reviews,specialty,,Premium Specialty,Spicy finishing salt
+spices,Ghost Pepper (Smoked Bhut Jolokia) Ground,Pure Indian Foods,4.99,ea,1oz,USDA Organic,Glass jar with plastic cap,,,11 Reviews,specialty,,Premium Specialty,Extremely hot ground pepper
+spices,Kashmiri Saffron,Pure Indian Foods,20.99,ea,1g,USDA Organic,Glass jar with plastic cap,,,Best Seller - 24 Reviews,specialty,,Premium Specialty,Premium saffron threads
+spices,Combo Pack of 6 Spices,Pure Indian Foods,34.68,ea,6 pack,USDA Organic,Glass jar with plastic cap,,,Sale from $38.48 - 40 Reviews,specialty,,Premium Specialty,Value spice bundle
+spices,Fennel Seed,Pure Indian Foods,5.61,ea,3oz,USDA Organic,Glass jar with plastic cap,,,23 Reviews,staple,,Premium Specialty,Digestive spice
+spices,Curry Leaves Dried,Pure Indian Foods,11.99,ea,1oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 33 Reviews,specialty,,Premium Specialty,Essential South Indian leaf
+spices,Tellicherry Special Extra Bold Peppercorns,Pure Indian Foods,7.83,ea,3oz,USDA Organic,Glass jar with plastic cap,,,33 Reviews,staple,,Premium Specialty,Premium black pepper
+spices,Sesame Seeds Black,Pure Indian Foods,6.99,ea,8oz,USDA Organic,Glass jar with plastic cap,,,4 Reviews,staple,,Premium Specialty,Black sesame seeds
+spices,Vindaloo Curry Seasoning,Pure Indian Foods,6.49,ea,2.25oz,USDA Organic,Glass jar with plastic cap,,,20 Reviews,specialty,,Premium Specialty,Vindaloo spice blend
+spices,Vanilla Pure Extract,Pure Indian Foods,8.99,ea,2floz,USDA Organic,Glass jar with plastic cap,,,17 Reviews,staple,,Premium Specialty,Pure vanilla extract
+spices,Turmeric Root Ground (High Curcumin 4-5%),Pure Indian Foods,6.99,ea,3oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 115 Reviews,staple,,Premium Specialty,High curcumin turmeric
+spices,Tandoori Masala Seasoning,Pure Indian Foods,6.49,ea,2.25oz,USDA Organic,Glass jar with plastic cap,,,21 Reviews,specialty,,Premium Specialty,Tandoori spice blend
+spices,Turmeric Root Coarse Granules,Pure Indian Foods,6.99,ea,2.5oz,USDA Organic,Glass jar with plastic cap,,,4 Reviews - Grinder Top Bottle,staple,,Premium Specialty,Coarse turmeric in grinder
+spices,Star Anise Whole,Pure Indian Foods,8.99,ea,0.8oz,USDA Organic,Glass jar with plastic cap,,,9 Reviews,specialty,,Premium Specialty,Whole star anise
+spices,Indian Spice Passport,Pure Indian Foods,19.99,ea,set,USDA Organic,Glass jar with plastic cap,,,6 Reviews,specialty,,Premium Specialty,Spice exploration set
+spices,Sambar Powder,24 Mantra,3.99,ea,3.5oz,USDA Organic,Plastic bag,,,SOLD OUT - 2 Reviews,specialty,,Conventional not suitable,Alternative brand
+spices,La Mancha D.O.P. Spanish Saffron 1g Glass Bottle,Pure Indian Foods,20.99,ea,1g,USDA Organic,Glass jar with plastic cap,,,Best Seller - 18 Reviews,specialty,,Premium Specialty,Spanish D.O.P. saffron
+spices,Rasam Powder,24 Mantra,3.99,ea,3.5oz,USDA Organic,Plastic bag,,,SOLD OUT - 3 Reviews,specialty,,Conventional not suitable,Alternative brand
+spices,Nutmeg,Pure Indian Foods,7.99,ea,2oz,USDA Organic,Glass jar with plastic cap,,,18 Reviews,staple,,Premium Specialty,Whole nutmeg
+spices,Mustard Seed Brown,Pure Indian Foods,4.99,ea,3oz,USDA Organic,Glass jar with plastic cap,,,31 Reviews,staple,,Premium Specialty,Brown mustard seeds
+spices,Mustard Seed Yellow,Pure Indian Foods,4.99,ea,3oz,USDA Organic,Glass jar with plastic cap,,,4 Reviews,staple,,Premium Specialty,Yellow mustard seeds
+spices,Mace,Pure Indian Foods,4.99,ea,1oz,USDA Organic,Glass jar with plastic cap,,,12 Reviews,specialty,,Premium Specialty,Nutmeg shell spice
+spices,Kitchari Spice Mix,Pure Indian Foods,6.99,ea,2.5oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 94 Reviews,specialty,,Premium Specialty,Complete kitchari blend
+spices,Kashmiri Chili Powder (Mild),Pure Indian Foods,6.49,ea,2oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 52 Reviews,staple,,Premium Specialty,Mild red chili powder
+spices,Ginger Root Powder,Pure Indian Foods,5.34,ea,2oz,USDA Organic,Glass jar with plastic cap,,,10 Reviews,staple,,Premium Specialty,Ground ginger
+spices,Fenugreek Leaves (Kasoori Methi),Pure Indian Foods,10.99,ea,1.3oz,USDA Organic,Glass jar with plastic cap,,,40 Reviews,specialty,,Premium Specialty,Dried fenugreek leaves
+spices,Fenugreek Seed,Pure Indian Foods,4.99,ea,3oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 42 Reviews,staple,,Premium Specialty,Whole fenugreek seeds
+spices,Kitchari Spice Mix DIY - Whole Spices,Pure Indian Foods,6.64,ea,1.9oz,USDA Organic,Glass jar with plastic cap,,,Sale from $6.99 - 13 Reviews,specialty,,Premium Specialty,DIY kitchari spices
+spices,Spice Up Your Life: 3 Whole Spice Blends,Pure Indian Foods,19.99,ea,set,USDA Organic,Opaque white plastic bag,,,1 Review,specialty,,Premium Specialty,Three blend collection
+spices,Garam Masala DIY - Exotic Whole Spices,Pure Indian Foods,7.49,ea,2oz,USDA Organic,Glass jar with plastic cap,,,29 Reviews,specialty,,Premium Specialty,DIY garam masala kit
+spices,Balti Curry DIY - Whole Spices,Pure Indian Foods,7.49,ea,1.7oz,USDA Organic,Glass jar with plastic cap,,,4 Reviews,specialty,,Premium Specialty,DIY balti curry kit
+spices,Cumin Seeds (Jeera),Pure Indian Foods,6.69,ea,3oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 54 Reviews,staple,,Premium Specialty,Whole cumin seeds
+spices,Curry Powder Seasoning Blend,Pure Indian Foods,6.49,ea,2oz,USDA Organic,Opaque white plastic bag,,,Best Seller - 26 Reviews,staple,,Premium Specialty,Curry powder blend
+spices,Coriander Seed,Pure Indian Foods,5.31,ea,3oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 42 Reviews,staple,,Premium Specialty,Whole coriander seeds
+spices,Cloves Whole,Pure Indian Foods,6.99,ea,1.4oz,USDA Organic,Glass jar with plastic cap,,,17 Reviews,staple,,Premium Specialty,Whole cloves
+spices,Cinnamon (Ceylon True),Pure Indian Foods,5.99,ea,2.5oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 60 Reviews,staple,,Premium Specialty,True Ceylon cinnamon
+spices,Cayenne Red Chili Pepper Ground (Lal Mirch),Pure Indian Foods,6.99,ea,2oz,USDA Organic,Glass jar with plastic cap,,,7 Reviews,staple,,Premium Specialty,Ground cayenne pepper
+spices,Cardamom Green,Pure Indian Foods,12.99,ea,2oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 59 Reviews,staple,,Premium Specialty,Green cardamom pods
+spices,Malabar Black Pepper Fine Ground,Pure Indian Foods,13.99,ea,8oz,USDA Organic,Glass jar with plastic cap,,,15 Reviews,staple,,Premium Specialty,Premium ground black pepper
+spices,Black Salt (Indian Kala Namak),Pure Indian Foods,5.39,ea,4oz,None (conventional),Glass jar with plastic cap,,,Best Seller - 92 Reviews,specialty,,Premium Specialty,Sulfurous Indian black salt
+spices,Cardamom Black Whole,Pure Indian Foods,8.99,ea,1.4oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 25 Reviews,specialty,,Premium Specialty,Black cardamom pods
+spices,Allspice Whole,Pure Indian Foods,4.99,ea,1.5oz,USDA Organic,Glass jar with plastic cap,,,9 Reviews,staple,,Premium Specialty,Whole allspice berries
+spices,Amchoor Powder,Pure Indian Foods,6.50,ea,2oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 35 Reviews,specialty,,Premium Specialty,Dried mango powder
+spices,Ajwain Seed,Pure Indian Foods,6.99,ea,3oz,USDA Organic,Glass jar with plastic cap,,,38 Reviews,specialty,,Premium Specialty,Carom seeds
+spices,AIP Everyday Seasoning DIY - Whole Spices,Pure Indian Foods,7.99,ea,1.75oz,USDA Organic,Glass jar with plastic cap,,,7 Reviews,specialty,,Premium Specialty,AIP compliant blend
+spices,Best Hing Ever (Asafoetida),Pure Indian Foods,14.29,ea,1.7oz,None (conventional),Glass jar with plastic cap,,,Best Seller - 205 Reviews,specialty,,Premium Specialty,Highest quality hing
+spices,Garam Masala,Pure Indian Foods,6.49,ea,2oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 45 Reviews,staple,,Premium Specialty,Classic garam masala
+spices,Ginger Root Coarse Granules,Pure Indian Foods,6.99,ea,1.5oz,USDA Organic,Glass jar with plastic cap,,,6 Reviews - Grinder Top Bottle,staple,,Premium Specialty,Coarse ginger in grinder
+spices,Garlic Minced,Pure Indian Foods,6.50,ea,2oz,USDA Organic,Glass jar with plastic cap,,"Naturally Gluten-Free, Vegan",Best Seller - 9 Reviews - Grinder Top Bottle,staple,,Premium Specialty,Dried minced garlic
+spices,Bombay Chaat Masala DIY - Whole Spices,Pure Indian Foods,7.49,ea,2.5oz,USDA Organic,Glass jar with plastic cap,,,7 Reviews,specialty,,Premium Specialty,DIY chaat masala kit
+spices,Indian Bay Leaf (Cassia/Tejapatta),Pure Indian Foods,3.99,ea,0.5oz,USDA Organic,Glass jar with plastic cap,,,21 Reviews,specialty,,Premium Specialty,Indian bay leaves
+spices,Black Seed (Kalonji Black Cumin Seed),Pure Indian Foods,5.49,ea,3oz,USDA Organic,Glass jar with plastic cap,,,Best Seller - 44 Reviews,specialty,,Premium Specialty,Nigella seeds
+spices,Indian Five Spice Blend (Panch Phoron),Pure Indian Foods,6.49,ea,2oz,USDA Organic,Opaque white plastic bag,,,34 Reviews,specialty,,Premium Specialty,Bengali five spice
+spices,Sesame Seeds White,Pure Indian Foods,6.99,ea,8oz,USDA Organic,Glass jar with plastic cap,,,11 Reviews,staple,,Premium Specialty,White sesame seeds
+spices,Pure Himalayan Pink Salt,Pure Indian Foods,16.99,ea,large,None (conventional),Glass jar with plastic cap,,,Best Seller - 30 Reviews,staple,,Premium Specialty,Himalayan pink salt
+spices,Biryani Bundle,Pure Indian Foods,35.40,ea,4-piece kit,USDA Organic,Glass jar with plastic cap,,Grass-Fed,Includes Basmati Rice + Grassfed Ghee + Biryani Masala powder + DIY Garam Masala whole spices,specialty,,Premium Specialty,Complete authentic biryani kit with rice and spices
+produce_mushrooms,"Organic Baby Bella Mushrooms, Packaged",FreshDirect,3.49,ea,8 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Cremini mushrooms,staple,,Balanced,Organic baby bella
+produce_mushrooms,Organic Heirloom Sliced Shiitake Mushrooms,Mushroom King,5.99,ea,4 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Pre-sliced,staple,,Conscious,Premium organic shiitake
+produce_mushrooms,"Sliced Baby Bella Mushrooms, Packaged",FreshDirect,1.49,ea,8 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan","Pre-sliced, cheapest",staple,,Cheaper,Budget-friendly sliced mushrooms
+produce_mushrooms,"Organic Gourmet Mushroom Blend, Packaged",FreshDirect,3.99,ea,4 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Mixed varieties,specialty,,Balanced,Organic blend
+produce_mushrooms,Organic Heirloom Mushroom Medley,Mushroom King,5.99,ea,4 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Mixed varieties,specialty,,Conscious,Premium organic medley
+produce_mushrooms,"Organic White Mushrooms, Packaged",FreshDirect,3.49,ea,8 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Button mushrooms,staple,,Balanced,Organic white mushrooms
+produce_mushrooms,"Sliced Organic Baby Bella Mushrooms, Packaged",FreshDirect,3.49,ea,8 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Pre-sliced,staple,,Balanced,Organic sliced cremini
+produce_mushrooms,"White Button Mushrooms, Packaged",FreshDirect,2.99,ea,8 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Standard white,staple,,Cheaper,Budget-friendly white mushrooms
+produce_mushrooms,"Baby Bella Mushrooms, Packaged",FreshDirect,2.99,ea,8 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Cremini,staple,,Cheaper,Budget-friendly baby bella
+produce_mushrooms,Organic Shiitake Mushroom Caps,Mushroom King,6.99,ea,8 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Caps only,specialty,,Conscious,Premium organic shiitake caps
+produce_mushrooms,Organic Maitake Mushrooms,Mushroom King,5.99,ea,3.5 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Hen of the woods,specialty,,Conscious,Premium organic maitake
+produce_mushrooms,"Organic Shiitake Mushrooms, Packaged",FreshDirect,4.49,ea,3.5 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Whole shiitake,specialty,,Balanced,Organic shiitake
+produce_mushrooms,"Oyster Mushrooms, Packaged",FreshDirect,2.99,ea,3.5 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Oyster variety,specialty,,Cheaper,Budget oyster mushrooms
+produce_mushrooms,"Organic Portabella Mushroom Caps, Packaged",FreshDirect,3.99,ea,6 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Large caps,staple,,Balanced,Organic portabella caps
+produce_mushrooms,Organic Heirloom Asian Blend,Mushroom King,6.99,ea,8 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,,Asian varieties,specialty,,Conscious,Premium Asian mushroom blend
+produce_mushrooms,Sliced White Mushroom,FreshDirect,2.99,ea,8 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Pre-sliced white,staple,,Cheaper,Budget sliced white
+produce_mushrooms,Organic Heirloom Baby Shiitake Mushrooms,Mushroom King,5.99,ea,4 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Small shiitake,specialty,,Conscious,Premium baby shiitake
+produce_mushrooms,"Royal Trumpet Mushrooms, Packaged",FreshDirect,4.49,ea,4 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",King trumpet,specialty,,Balanced,King trumpet mushrooms
+produce_mushrooms,Organic Sliced King Trumpet Mushrooms,Mushroom King,5.99,ea,4 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Pre-sliced,specialty,,Conscious,Organic sliced trumpet
+produce_mushrooms,Jumbo Maitake Mushroom,Meadows and More,14.49,ea,10 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Large size,specialty,,Premium Specialty,Jumbo maitake
+produce_mushrooms,Yellowfoot Chanterelle Mushrooms,FreshDirect,7.99,ea,3.5 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Wild variety,specialty,,Premium Specialty,Chanterelle mushrooms
+produce_mushrooms,"Baby Petite White Mushrooms, Packaged",FreshDirect,2.99,ea,6 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Small white,staple,,Cheaper,Petite white mushrooms
+produce_mushrooms,Dried Porcini Mushrooms,Goodness Gardens,7.49,ea,0.5 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Dried,specialty,,Premium Specialty,Dried porcini
+produce_mushrooms,"Steak Cut Mushrooms, Packaged",FreshDirect,2.99,ea,8 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Thick sliced,staple,,Cheaper,Thick-cut mushrooms
+produce_mushrooms,Organic Lion's Mane Mushrooms,Mushroom King,6.99,ea,3.5 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Lion's mane,specialty,,Conscious,Premium lion's mane
+produce_mushrooms,Hedgehog Mushrooms,FreshDirect,9.99,ea,3.5 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Wild variety,specialty,,Premium Specialty,Hedgehog mushrooms
+produce_mushrooms,Dried Morel Mushrooms,Goodness Gardens,15.99,ea,0.5 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Dried wild,specialty,,Premium Specialty,Dried morel
+protein_poultry,Boneless Skinless Chicken Breast,365 by Whole Foods Market,5.99,lb,1.5 lb,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly chicken breast
+protein_poultry,Boneless Skinless Chicken Thighs,365 by Whole Foods Market,5.49,lb,1.5 lb,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly chicken thighs
+protein_poultry,Chicken Breast Step 2,Bell & Evans,5.99,lb,1.5 lb,Air-Chilled,Plastic bag,,,,staple,,Cheaper,Air-chilled conventional chicken
+protein_poultry,Boneless Skinless Chicken Breast,Bell & Evans,6.99,lb,1.5 lb,Air-Chilled,Plastic bag,,,,staple,,Balanced,Premium conventional air-chilled
+protein_poultry,Boneless Skinless Chicken Thighs,Bell & Evans,6.49,lb,1.5 lb,Air-Chilled,Plastic bag,,,,staple,,Balanced,Premium conventional thighs
+protein_poultry,Organic Boneless Skinless Chicken Thighs,365 by Whole Foods Market,5.99,lb,1.5 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Cheapest organic chicken thighs
+protein_poultry,Organic Boneless Skinless Chicken Breast,365 by Whole Foods Market,7.99,lb,1.5 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic store brand
+protein_poultry,Organic Boneless Skinless Chicken Breast,Bell & Evans,8.99,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,,staple,,Conscious,Premium organic air-chilled
+protein_poultry,Organic Boneless Skinless Chicken Breast Cutlets,Bell & Evans,9.99,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,,staple,,Premium Specialty,Premium organic cutlets
+produce_onions,Yellow Onions Medium,Peri & Sons Farms,2.99,ea,3 lb bag,None (conventional),Mesh bag,,"Naturally Gluten-Free, Vegan",Premium Nevada-grown onions,staple,,Balanced,Premium grower brand
+produce_onions,Organic Yellow Onions,Peri & Sons Farms,4.99,ea,3 lb bag,USDA Organic,Mesh bag,,"Naturally Gluten-Free, Vegan",Certified organic from California,staple,,Conscious,Organic premium grower
+produce_onions,Red Onions Medium,Peri & Sons Farms,3.49,ea,3 lb bag,None (conventional),Mesh bag,,"Naturally Gluten-Free, Vegan",Premium red onions,staple,,Balanced,Premium grower brand
+produce_onions,Organic Red Onions,Peri & Sons Farms,5.49,ea,3 lb bag,USDA Organic,Mesh bag,,"Naturally Gluten-Free, Vegan",Certified organic red onions,staple,,Conscious,Organic premium grower
+produce_onions,Sweetie Sweet Onions,Peri & Sons Farms,4.99,ea,3 lb bag,None (conventional),Mesh bag,,"Naturally Gluten-Free, Vegan",Exclusive sweet variety - Aug to Dec,specialty,,Premium Specialty,Exclusive sweet onion variety
+produce_onions,Sweetie Tearless Sweet Onions,Peri & Sons Farms,5.99,ea,3 lb bag,None (conventional),Mesh bag,,"Naturally Gluten-Free, Vegan",Tearless sweet variety - Dec to Mar,specialty,,Premium Specialty,Unique tearless variety
+produce_onions,Shallots,Peri & Sons Farms,3.99,ea,1 lb bag,None (conventional),Mesh bag,,,Premium shallots,staple,,Balanced,Premium grower brand
+produce_onions,Organic Shallots,Peri & Sons Farms,5.99,ea,1 lb bag,USDA Organic,Mesh bag,,,Certified organic shallots,staple,,Conscious,Organic premium grower
+produce,Fresh Organic Ginger Root,FreshDirect,3.99,lb,per lb,USDA Organic,Plastic bag,,,Fresh produce,primary,,Conscious Pick,Fresh organic ginger root
+produce,Organic Garlic,FreshDirect,5.99,lb,per lb,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",Fresh produce,primary,,Conscious Pick,Fresh organic garlic cloves
+produce,Fresh Mint Bunch,FreshDirect,2.99,bunch,per bunch,Conventional,Plastic bag,,,Fresh herbs,primary,,Good Value,Fresh mint leaves
+produce,Fresh Cilantro Bunch,FreshDirect,1.99,bunch,per bunch,Conventional,Plastic bag,,,Fresh herbs,primary,,Good Value,Fresh cilantro leaves
+produce,Organic Cilantro Bunch,FreshDirect,2.99,bunch,per bunch,USDA Organic,Plastic bag,,,Fresh herbs,primary,,Conscious Pick,Organic fresh cilantro
+dairy_ghee,Original Ghee Grassfed & Certified Organic,Pure Indian Foods,12.99,ea,7.5 oz,USDA Organic; Grassfed,Glass jar with aluminum cap,,Grass-Fed,Best Seller - versatile cooking fat,staple,,Conscious,Organic grassfed ghee
+dairy_ghee,Cultured Ghee Grassfed & Certified Organic,Pure Indian Foods,14.99,ea,7.5 oz,USDA Organic; Grassfed,Glass jar with aluminum cap,,Grass-Fed,Best Seller - traditional cultured,staple,,Conscious,Premium cultured ghee
+dairy_ghee,Turmeric Superghee Grassfed & Certified Organic,Pure Indian Foods,20.99,ea,7.5 oz,USDA Organic; Grassfed,Glass jar with aluminum cap,,Grass-Fed,Best Seller - anti-inflammatory,specialty,,Premium Specialty,Turmeric-infused ghee
+dairy_ghee,Chai Spice Ghee Grassfed & Certified Organic,Pure Indian Foods,10.99,ea,3.4 oz,USDA Organic; Grassfed,Glass jar with aluminum cap,,Grass-Fed,New - warming spices,specialty,,Premium Specialty,Chai-spiced ghee
+dairy_ghee,Coffee++ Butter Coffee Creamer Certified Organic,Pure Indian Foods,15.99,ea,8.5 oz,USDA Organic,Glass jar with aluminum cap,,,Best Seller - coffee enhancer,specialty,,Premium Specialty,Coffee creamer blend
+dairy_ghee,Garlic Ghee Grassfed & Certified Organic,Pure Indian Foods,15.99,ea,7.8 oz,USDA Organic; Grassfed,Glass jar with aluminum cap,,"Grass-Fed, Naturally Gluten-Free, Vegan",Best Seller - savory cooking,staple,,Conscious,Garlic-infused ghee
+dairy_ghee,Digestive Ghee Grassfed & Certified Organic,Pure Indian Foods,15.99,ea,7.8 oz,USDA Organic; Grassfed,Glass jar with aluminum cap,,Grass-Fed,Ayurvedic digestive support,specialty,,Premium Specialty,Digestive wellness ghee
+dairy_ghee,Ashwagandha Ghee Certified Organic,Pure Indian Foods,21.99,ea,5.3 oz,USDA Organic,Glass jar with aluminum cap,,,Herbal - adaptogenic,specialty,,Premium Specialty,Ashwagandha herbal ghee
+dairy_ghee,Brahmi Ghee Certified Organic,Pure Indian Foods,21.99,ea,5.3 oz,USDA Organic,Glass jar with aluminum cap,,,Herbal - cognitive support,specialty,,Premium Specialty,Brahmi herbal ghee
+dairy_ghee,Shatavari Ghee Certified Organic,Pure Indian Foods,21.99,ea,5.3 oz,USDA Organic,Glass jar with aluminum cap,,,Herbal - women's wellness,specialty,,Premium Specialty,Shatavari herbal ghee
+dairy_ghee,Triphala Ghee Certified Organic,Pure Indian Foods,21.99,ea,5.3 oz,USDA Organic,Glass jar with aluminum cap,,,Herbal - detoxifying,specialty,,Premium Specialty,Triphala herbal ghee
+dairy_ghee,Niter Kibbeh Ghee (Ethiopian Spiced) Grassfed & Certified Organic,Pure Indian Foods,15.99,ea,7.8 oz,USDA Organic; Grassfed,Glass jar with aluminum cap,,Grass-Fed,Ethiopian spice blend,specialty,,Premium Specialty,Ethiopian spiced ghee
+dairy_ghee,PrimalFat Coconut Ghee Virgin & Certified Organic,Pure Indian Foods,20.28,ea,14.2 oz,USDA Organic,Glass jar with aluminum cap,,,Best Seller - coconut blend,staple,,Balanced,Coconut ghee blend
+dairy_ghee,Indian Dessert Ghee Grassfed & Certified Organic,Pure Indian Foods,15.99,ea,7.8 oz,USDA Organic; Grassfed,Glass jar with aluminum cap,,Grass-Fed,For sweets and desserts,specialty,,Premium Specialty,Dessert ghee
+dairy_ghee,Italian Ghee Grassfed & Certified Organic,Pure Indian Foods,15.99,ea,7.8 oz,USDA Organic; Grassfed,Glass jar with aluminum cap,,Grass-Fed,Italian herbs blend,specialty,,Premium Specialty,Italian herb ghee
+dairy_ghee,Arjuna Ghee Certified Organic,Pure Indian Foods,21.99,ea,5.3 oz,USDA Organic,Glass jar with aluminum cap,,,Herbal - heart health,specialty,,Premium Specialty,Arjuna herbal ghee
+dairy_ghee,Herbes de Provence Ghee Grassfed & Certified Organic,Pure Indian Foods,15.99,ea,7.8 oz,USDA Organic; Grassfed,Glass jar with aluminum cap,,Grass-Fed,French herb blend,specialty,,Premium Specialty,French herb ghee
+dairy_ghee,Hing Ghee,Pure Indian Foods,15.99,ea,3.4 oz,None (conventional),Glass jar with aluminum cap,,,Asafoetida-infused,specialty,,Balanced,Hing asafoetida ghee
+protein_seafood_fish,Branzino Fillet,FreshDirect,28.99,ea,7.7 oz,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality fish
+protein_seafood_salmon,Icelandic Salmon Fillet,FreshDirect,18.99,ea,,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality salmon
+protein_seafood_salmon,"Icelandic Salmon, Center Cut",FreshDirect,11.99,ea,8 oz,None (conventional),Plastic bag,,,Quality: Exceptional | $1.60/oz,staple,,Balanced,Good quality salmon
+protein_seafood_salmon,"Icelandic Salmon, Whole Side",FreshDirect,18.49,ea,3.5 lb,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality salmon
+protein_seafood_shellfish,Local Littleneck Clams,FreshDirect,0.69,ea,,None (conventional),Plastic bag,,,Quality: Exceptional | min. of 12,staple,,Cheaper,Budget-friendly option
+protein_seafood_prepared,Mediterranean Stuffed Branzino,FreshDirect,20.49,ea,,None (conventional),Plastic bag,,,Quality: Exceptional | $1.07/oz,staple,,Balanced,Good quality prepared
+protein_seafood_shellfish,Nantucket Bay Dry Scallops,FreshDirect,45.99,ea,,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality shellfish
+protein_seafood_fish,Nordic Halibut Fillet,FreshDirect,35.99,ea,,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality fish
+protein_seafood_shellfish,Wild Cockles,FreshDirect,9.49,ea,,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality shellfish
+protein_seafood_salmon,Wild Patagonian King Salmon Fillet,FreshDirect,38.99,ea,,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality salmon
+protein_seafood_shrimp,"All-Natural Wild Domestic Gulf Shrimp, Cleaned, 16-20/lb, Previously Frozen",FreshDirect,27.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,convenience,,Balanced,Good quality shrimp
+protein_seafood_salmon,Farm-Raised Atlantic Salmon Fillet,Sixty South,15.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality salmon
+protein_seafood_salmon,"EU Organic Salmon Fillet, Farm-Raised",Valhalla,20.99,ea,,USDA Organic,Plastic bag,,,Save 12% (was $23.99) | Quality: Excellent,staple,,Conscious,Organic salmon
+protein_seafood_fish,Wild Icelandic Cod Loins,FreshDirect,23.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality fish
+protein_seafood_shrimp,"Fresh White Shrimp, Cleaned, 26-30/lb",Blue Foot,12.99,ea,,None (conventional),Plastic bag,,,Save 18% (was $15.99) | Quality: Excellent,staple,,Balanced,Good quality shrimp
+protein_seafood_salmon,"Farm-Raised Atlantic Salmon Fillet, Center Cut",Sixty South,9.99,ea,8 oz,None (conventional),Plastic bag,,,Quality: Excellent | $1.33/oz,staple,,Balanced,Good quality salmon
+protein_seafood_fish,Wild Icelandic Haddock Fillet,FreshDirect,17.09,ea,,None (conventional),Plastic bag,,,Save 14% (was $19.99) | Quality: Excellent,staple,,Balanced,Good quality fish
+protein_seafood_shrimp,"Wild Patagonian Red Shrimp, Cleaned, 16-20/lb",FreshDirect,15.49,ea,,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality shrimp
+protein_seafood_salmon,"Wild Alaska Sockeye Salmon Fillet, Previously Frozen",FreshDirect,20.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,convenience,,Balanced,Good quality salmon
+protein_seafood_fish,Farm-Raised Arctic Char Fillet,FreshDirect,17.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality fish
+protein_seafood_salmon,"Farm-Raised Atlantic Salmon Fillet, Family Pack",Sixty South,14.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality salmon
+protein_seafood_salmon,"Wild Sockeye Salmon Individually Wrapped Fillets, Family Pack, Frozen",City Pier,35.49,ea,1.5 lb,None (conventional),Plastic bag,,,Quality: $1.48/oz,convenience,,Balanced,Good quality salmon
+protein_seafood_salmon,Farm-Raised King Salmon Fillet,Ora King,30.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality salmon
+protein_seafood_salmon,Farm-Raised Atlantic Salmon Whole Side Fillet,Sixty South,14.99,ea,each,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality salmon
+protein_seafood_shrimp,"All-Natural Wild Domestic Gulf Shrimp, Cleaned, 26-30/lb, Previously Frozen",FreshDirect,17.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"Farm-Raised Shrimp, Cleaned, Tail On, 26-30/lb, Frozen",FreshDirect,10.49,ea,12 oz,None (conventional),Plastic bag,,,$0.87/oz,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"Wild Patagonian Red Shrimp, EZ Peel, 16-20/lb, Previously Frozen",FreshDirect,14.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,Poached Colossal Shrimp,FreshDirect,27.99,ea,20 ct,None (conventional),Plastic bag,,,$1.75/oz,staple,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"Cooked Shrimp Ring, Frozen",FreshDirect,19.49,ea,16 oz,None (conventional),Plastic bag,,,Save 11% (was $21.99) | $1.22/oz,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"Wild Gulf Shrimp, Cleaned, Tail On, 36-40/lb, Frozen",FreshDirect,25.99,ea,2 lb,None (conventional),Plastic bag,,,$0.81/oz,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"All-Natural Wild Domestic Gulf Shrimp, Cleaned, 21-25/lb, Previously Frozen",FreshDirect,20.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"Wild Gulf Shrimp, Cleaned, Tail On, 16-20/lb, Frozen",FreshDirect,40.49,ea,2 lb,None (conventional),Plastic bag,,,$1.27/oz,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"Wild Gulf Shrimp, Cleaned, Tail On, 26-30/lb, Frozen",FreshDirect,34.99,ea,2 lb,None (conventional),Plastic bag,,,$1.09/oz,convenience,,Balanced,Good quality shrimp
+protein_seafood_fish,"Black Cod Fillet, Frozen",Seremoni,28.99,ea,12 oz,None (conventional),Plastic bag,,,$2.42/oz,convenience,,Balanced,Good quality fish
+protein_seafood_fish,Wild Red Snapper Fillet,Seremoni,36.99,ea,8 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality fish
+protein_seafood_fish,Wild Vermillion Rockfish Fillet,Seremoni,37.99,ea,,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality fish
+protein_seafood_fish,Wild Flounder Fillet,FreshDirect,19.99,ea,7 oz,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality fish
+protein_seafood_shellfish,Organic Iceberg Mussels,FreshDirect,4.49,ea,,USDA Organic,Plastic bag,,,Save 10% (was $4.99) | Quality: Excellent,staple,,Conscious,Organic shellfish
+protein_seafood_shellfish,Local Cherrystone Clams,FreshDirect,0.59,ea,,None (conventional),Plastic bag,,,Save 14% (was $0.69) | Quality: Excellent | min. of 12,staple,,Cheaper,Budget-friendly option
+protein_seafood_shellfish,Steamer Clams,FreshDirect,12.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent | min. of 2lb,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,Authentic Rhode Island Stuffed Quahogs,Tony's Seafood,30.49,ea,6 ct,None (conventional),Plastic bag,,,$0.85/oz,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,Just the Clams Stuffed Quahogs with No Meat,Tony's Seafood,30.49,ea,6 ct,None (conventional),Plastic bag,,,$0.85/oz,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,Moondancer Oysters,FreshDirect,1.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent | min. of 12,staple,,Cheaper,Budget-friendly option
+protein_seafood_shellfish,Shucked Oysters,FreshDirect,13.49,ea,8 oz,None (conventional),Plastic bag,,,$1.69/oz,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,"Moondancer Oysters, Box",FreshDirect,65.99,ea,50 ct,None (conventional),Plastic bag,,,$1.32/ct,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,East Coast Oyster Sampler Moondancer,FreshDirect,9.49,ea,6 ct,None (conventional),Plastic bag,,,$1.58/ct,staple,,Balanced,Good quality shellfish
+protein_seafood_prepared,"Crab Cakes, Uncooked",FreshDirect,17.49,ea,2 ct,None (conventional),Plastic bag,,,$2.19/oz,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,"Salmon with Lemon and Capers, Char-Marked and Uncooked",FreshDirect,14.49,ea,8 oz,None (conventional),Plastic bag,,,$1.81/oz,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,Fish Cubes,FreshDirect,10.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,"Salmon Burgers, Previously Frozen",FreshDirect,14.49,ea,2 ct,None (conventional),Plastic bag,,,Quality: Excellent | $1.21/oz,convenience,,Balanced,Good quality prepared
+protein_seafood_prepared,Salmon Cakes w/ Tartar Sauce,FreshDirect,11.49,ea,2 ct,None (conventional),Plastic bag,,,$1.15/oz,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,Shrimp Scampi,FreshDirect,14.99,ea,12 oz,None (conventional),Plastic bag,,,$1.25/oz,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,Crab Stuffed Salmon,FreshDirect,20.49,ea,2 ct,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,Miso Marinated Black Cod,FreshDirect,29.99,ea,2 ct,None (conventional),Plastic bag,,,$3.00/oz,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,"Salmon Cakes, Uncooked",FreshDirect,9.49,ea,2 ct,None (conventional),Plastic bag,,,$1.05/oz,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,Farm-Raised Cajun Catfish Fillet,FreshDirect,14.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,Banana-Leaf Wrapped Coconut-Cilantro Salmon,FreshDirect,12.49,ea,8 oz,None (conventional),Plastic bag,,,Quality: Excellent | $1.56/oz,staple,,Balanced,Good quality prepared
+other,"Wild Atlantic Cod Individually Wrapped Fillets, Family Pack, Frozen",City Pier,28.49,ea,1.5 lb,None (conventional),Plastic bag,,,$1.19/oz,convenience,,Balanced,Good quality other
+other,Breaded Fish Sticks,Mrs. Paul's,8.99,ea,44 ct,None (conventional),Plastic bag,,,$0.37/oz,convenience,,Balanced,Good quality other
+other,"Cooked Farm-Raised Shrimp, Cleaned, 91-110/lb, Frozen",FreshDirect,10.99,ea,1 lb,None (conventional),Plastic bag,,,$0.69/oz,convenience,,Balanced,Good quality other
+other,"Shrimp Wonton Soup with Bok Choy, Frozen",Royal Asia,8.49,ea,1 lb,None (conventional),Plastic bag,,,$0.53/oz,convenience,,Balanced,Good quality other
+other,Beer Battered Fish Fillets,Mrs. Paul's,8.99,ea,10 ct,None (conventional),Plastic bag,,,$0.47/oz,convenience,,Balanced,Good quality other
+protein_seafood_shellfish,"Local Dry Sea Scallops, 10-20/lb",FreshDirect,36.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,Japanese Hokkaido Dry Sea Scallops 20-30/lb,FreshDirect,31.99,ea,,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,Japanese Hokkaido Dry Sea Scallops 10-20/lb,FreshDirect,37.99,ea,,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,"Blackened & Smoked Bay Scallops, Frozen",My Fish Dish,10.49,ea,7 oz,None (conventional),Plastic bag,,,$1.50/oz,convenience,,Balanced,Good quality shellfish
+protein_seafood_shellfish,"Sea Scallop, Frozen",Bristol Seafood,23.99,ea,12 oz,None (conventional),Plastic bag,,,$2.00/oz,convenience,,Balanced,Good quality shellfish
+protein_seafood_shellfish,"40/80 Bay Peruvian Scallops, Frozen",Bristol Seafood,18.99,ea,16 oz,None (conventional),Plastic bag,,,$1.19/oz,convenience,,Balanced,Good quality shellfish
+dairy_eggs,"Cage-Free Grade A Large White Eggs, Dozen",Alderfer Eggs,3.79,ea,1 dozen,Free-Range,Plastic bag,,"Cage-Free, Free-Range",,staple,,Cheaper,Budget-friendly option
+dairy_eggs,"Cage-Free Grade A Large Brown Eggs, Dozen",Alderfer Eggs,3.79,ea,1 dozen,Free-Range,Plastic bag,,"Cage-Free, Free-Range",,staple,,Cheaper,Budget-friendly option
+dairy_eggs,"Local Organic Large Brown Eggs, Dozen",Just FreshDirect,4.79,ea,1 dozen,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic eggs
+dairy_eggs,"Local Organic Extra Large Brown Eggs, Dozen",Just FreshDirect,5.49,ea,1 dozen,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic eggs
+dairy_eggs,"Organic Cage-Free Pasture-Raised Grade A Large Eggs, Dozen",Just FreshDirect,6.49,ea,1 dozen,USDA Organic; Free-Range; Pasture-Raised,Plastic bag,,"Cage-Free, Pasture-Raised, Free-Range",,staple,,Conscious,Organic eggs
+dairy_eggs,"Pasture-Raised Organic Large Eggs, Dozen",Vital Farms,11.99,ea,1 dozen,USDA Organic; Pasture-Raised,Plastic bag,,Pasture-Raised,,staple,,Conscious,Organic eggs
+dairy_milk,"Local Organic Whole Milk, Carton",Just FreshDirect,4.89,ea,0.5 g,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic milk
+dairy_milk,"Local Organic 2% Reduced Fat Milk, Carton",Just FreshDirect,4.89,ea,0.5 g,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic milk
+dairy_milk,"Whole Milk, Plastic Bottle",Just FreshDirect,2.99,ea,0.5 g,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly option
+dairy_milk,"Ultra-Pasteurized Whole Milk, Carton",Organic Valley,5.99,ea,0.5 g,None (conventional),Plastic bag,,,Save 20% - Any 2 for $9.50,staple,,Balanced,Good quality milk
+dairy_yogurt,"TOTAL 0% Greek Yogurt, Plain",Fage,7.59,ea,32 oz,None (conventional),Recyclable plastic tub,,,,staple,,Balanced,Good quality yogurt
+dairy_yogurt,"TOTAL 2% Greek Yogurt, Plain",Fage,7.59,ea,32 oz,None (conventional),Recyclable plastic tub,,,,staple,,Balanced,Good quality yogurt
+dairy_yogurt,"Non-Fat Greek Yogurt, Plain (Single)",Chobani,1.49,ea,5.3 oz,None (conventional),Recyclable plastic tub,,,,staple,,Cheaper,Budget-friendly option
+dairy_yogurt,"Non-Fat Greek Yogurt, Plain",Chobani,6.59,ea,32 oz,None (conventional),Recyclable plastic tub,,,,staple,,Balanced,Good quality yogurt
+dairy_butter,Salted Pure Irish Butter,Kerrygold,5.59,ea,8 oz,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
+dairy_butter,Unsalted Pure Irish Butter,Kerrygold,5.59,ea,8 oz,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
+dairy_butter,"Sweet Cream Butter, Salted",Cabot,7.99,ea,4 ct,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
+dairy_butter,Unsalted Butter,Land O'Lakes,7.49,ea,4 ct,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
+dairy_butter,Organic Unsalted Butter,Organic Valley,10.79,ea,4 ct,USDA Organic,Paper-wrapped sticks in box,,,,staple,,Conscious,Organic butter
+dairy_cheese,"Cream Cheese Spread, Original",Philadelphia,5.59,ea,8 oz,None (conventional),Plastic wrap,,,,staple,,Balanced,Good quality cheese
+dairy_cheese,Mozzarella Stringles,Organic Valley,6.89,ea,8 ct,None (conventional),Plastic wrap,,,Save 11% (was $7.79),staple,,Balanced,Good quality cheese
+dairy_sour_cream,Sour Cream (16oz),Breakstone's,4.49,ea,16 oz,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly option
+dairy_sour_cream,Sour Cream,Organic Valley,4.09,ea,16 oz,None (conventional),Plastic bag,,,Save 18% (was $4.99),staple,,Cheaper,Budget-friendly option
+dairy_ghee,Organic Valley Ghee Clarified Butter,Organic Valley,10.99,ea,7.5 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic ghee from grass-fed cows
+dairy_ghee,4th & Heart Ghee Butter Original Recipe,4th & Heart,13.49,ea,9 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Quality ghee option
+protein_seafood_fish,Branzino Fillet,FreshDirect,28.99,ea,7.7 oz,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality fish
+protein_seafood_salmon,Icelandic Salmon Fillet,FreshDirect,18.99,ea,,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality salmon
+protein_seafood_salmon,"Icelandic Salmon, Center Cut",FreshDirect,11.99,ea,8 oz,None (conventional),Plastic bag,,,Quality: Exceptional | $1.60/oz,staple,,Balanced,Good quality salmon
+protein_seafood_salmon,"Icelandic Salmon, Whole Side",FreshDirect,18.49,ea,3.5 lb,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality salmon
+protein_seafood_shellfish,Local Littleneck Clams,FreshDirect,0.69,ea,,None (conventional),Plastic bag,,,Quality: Exceptional | min. of 12,staple,,Cheaper,Budget-friendly option
+protein_seafood_prepared,Mediterranean Stuffed Branzino,FreshDirect,20.49,ea,,None (conventional),Plastic bag,,,Quality: Exceptional | $1.07/oz,staple,,Balanced,Good quality prepared
+protein_seafood_shellfish,Nantucket Bay Dry Scallops,FreshDirect,45.99,ea,,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality shellfish
+protein_seafood_fish,Nordic Halibut Fillet,FreshDirect,35.99,ea,,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality fish
+protein_seafood_shellfish,Wild Cockles,FreshDirect,9.49,ea,,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality shellfish
+protein_seafood_salmon,Wild Patagonian King Salmon Fillet,FreshDirect,38.99,ea,,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality salmon
+protein_seafood_shrimp,"All-Natural Wild Domestic Gulf Shrimp, Cleaned, 16-20/lb, Previously Frozen",FreshDirect,27.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,convenience,,Balanced,Good quality shrimp
+protein_seafood_salmon,Farm-Raised Atlantic Salmon Fillet,Sixty South,15.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality salmon
+protein_seafood_salmon,"EU Organic Salmon Fillet, Farm-Raised",Valhalla,20.99,ea,,USDA Organic,Plastic bag,,,Save 12% (was $23.99) | Quality: Excellent,staple,,Conscious,Organic salmon
+protein_seafood_fish,Wild Icelandic Cod Loins,FreshDirect,23.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality fish
+protein_seafood_shrimp,"Fresh White Shrimp, Cleaned, 26-30/lb",Blue Foot,12.99,ea,,None (conventional),Plastic bag,,,Save 18% (was $15.99) | Quality: Excellent,staple,,Balanced,Good quality shrimp
+protein_seafood_salmon,"Farm-Raised Atlantic Salmon Fillet, Center Cut",Sixty South,9.99,ea,8 oz,None (conventional),Plastic bag,,,Quality: Excellent | $1.33/oz,staple,,Balanced,Good quality salmon
+protein_seafood_fish,Wild Icelandic Haddock Fillet,FreshDirect,17.09,ea,,None (conventional),Plastic bag,,,Save 14% (was $19.99) | Quality: Excellent,staple,,Balanced,Good quality fish
+protein_seafood_shrimp,"Wild Patagonian Red Shrimp, Cleaned, 16-20/lb",FreshDirect,15.49,ea,,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality shrimp
+protein_seafood_salmon,"Wild Alaska Sockeye Salmon Fillet, Previously Frozen",FreshDirect,20.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,convenience,,Balanced,Good quality salmon
+protein_seafood_fish,Farm-Raised Arctic Char Fillet,FreshDirect,17.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality fish
+protein_seafood_salmon,"Farm-Raised Atlantic Salmon Fillet, Family Pack",Sixty South,14.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality salmon
+protein_seafood_salmon,"Wild Sockeye Salmon Individually Wrapped Fillets, Family Pack, Frozen",City Pier,35.49,ea,1.5 lb,None (conventional),Plastic bag,,,Quality: $1.48/oz,convenience,,Balanced,Good quality salmon
+protein_seafood_salmon,Farm-Raised King Salmon Fillet,Ora King,30.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality salmon
+protein_seafood_salmon,Farm-Raised Atlantic Salmon Whole Side Fillet,Sixty South,14.99,ea,each,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality salmon
+protein_seafood_shrimp,"All-Natural Wild Domestic Gulf Shrimp, Cleaned, 26-30/lb, Previously Frozen",FreshDirect,17.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"Farm-Raised Shrimp, Cleaned, Tail On, 26-30/lb, Frozen",FreshDirect,10.49,ea,12 oz,None (conventional),Plastic bag,,,$0.87/oz,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"Wild Patagonian Red Shrimp, EZ Peel, 16-20/lb, Previously Frozen",FreshDirect,14.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,Poached Colossal Shrimp,FreshDirect,27.99,ea,20 ct,None (conventional),Plastic bag,,,$1.75/oz,staple,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"Cooked Shrimp Ring, Frozen",FreshDirect,19.49,ea,16 oz,None (conventional),Plastic bag,,,Save 11% (was $21.99) | $1.22/oz,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"Wild Gulf Shrimp, Cleaned, Tail On, 36-40/lb, Frozen",FreshDirect,25.99,ea,2 lb,None (conventional),Plastic bag,,,$0.81/oz,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"All-Natural Wild Domestic Gulf Shrimp, Cleaned, 21-25/lb, Previously Frozen",FreshDirect,20.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"Wild Gulf Shrimp, Cleaned, Tail On, 16-20/lb, Frozen",FreshDirect,40.49,ea,2 lb,None (conventional),Plastic bag,,,$1.27/oz,convenience,,Balanced,Good quality shrimp
+protein_seafood_shrimp,"Wild Gulf Shrimp, Cleaned, Tail On, 26-30/lb, Frozen",FreshDirect,34.99,ea,2 lb,None (conventional),Plastic bag,,,$1.09/oz,convenience,,Balanced,Good quality shrimp
+protein_seafood_fish,"Black Cod Fillet, Frozen",Seremoni,28.99,ea,12 oz,None (conventional),Plastic bag,,,$2.42/oz,convenience,,Balanced,Good quality fish
+protein_seafood_fish,Wild Red Snapper Fillet,Seremoni,36.99,ea,8 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality fish
+protein_seafood_fish,Wild Vermillion Rockfish Fillet,Seremoni,37.99,ea,,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality fish
+protein_seafood_fish,Wild Flounder Fillet,FreshDirect,19.99,ea,7 oz,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality fish
+protein_seafood_shellfish,Organic Iceberg Mussels,FreshDirect,4.49,ea,,USDA Organic,Plastic bag,,,Save 10% (was $4.99) | Quality: Excellent,staple,,Conscious,Organic shellfish
+protein_seafood_shellfish,Local Cherrystone Clams,FreshDirect,0.59,ea,,None (conventional),Plastic bag,,,Save 14% (was $0.69) | Quality: Excellent | min. of 12,staple,,Cheaper,Budget-friendly option
+protein_seafood_shellfish,Steamer Clams,FreshDirect,12.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent | min. of 2lb,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,Authentic Rhode Island Stuffed Quahogs,Tony's Seafood,30.49,ea,6 ct,None (conventional),Plastic bag,,,$0.85/oz,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,Just the Clams Stuffed Quahogs with No Meat,Tony's Seafood,30.49,ea,6 ct,None (conventional),Plastic bag,,,$0.85/oz,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,Moondancer Oysters,FreshDirect,1.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent | min. of 12,staple,,Cheaper,Budget-friendly option
+protein_seafood_shellfish,Shucked Oysters,FreshDirect,13.49,ea,8 oz,None (conventional),Plastic bag,,,$1.69/oz,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,"Moondancer Oysters, Box",FreshDirect,65.99,ea,50 ct,None (conventional),Plastic bag,,,$1.32/ct,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,East Coast Oyster Sampler Moondancer,FreshDirect,9.49,ea,6 ct,None (conventional),Plastic bag,,,$1.58/ct,staple,,Balanced,Good quality shellfish
+protein_seafood_prepared,"Crab Cakes, Uncooked",FreshDirect,17.49,ea,2 ct,None (conventional),Plastic bag,,,$2.19/oz,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,"Salmon with Lemon and Capers, Char-Marked and Uncooked",FreshDirect,14.49,ea,8 oz,None (conventional),Plastic bag,,,$1.81/oz,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,Fish Cubes,FreshDirect,10.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,"Salmon Burgers, Previously Frozen",FreshDirect,14.49,ea,2 ct,None (conventional),Plastic bag,,,Quality: Excellent | $1.21/oz,convenience,,Balanced,Good quality prepared
+protein_seafood_prepared,Salmon Cakes w/ Tartar Sauce,FreshDirect,11.49,ea,2 ct,None (conventional),Plastic bag,,,$1.15/oz,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,Shrimp Scampi,FreshDirect,14.99,ea,12 oz,None (conventional),Plastic bag,,,$1.25/oz,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,Crab Stuffed Salmon,FreshDirect,20.49,ea,2 ct,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,Miso Marinated Black Cod,FreshDirect,29.99,ea,2 ct,None (conventional),Plastic bag,,,$3.00/oz,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,"Salmon Cakes, Uncooked",FreshDirect,9.49,ea,2 ct,None (conventional),Plastic bag,,,$1.05/oz,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,Farm-Raised Cajun Catfish Fillet,FreshDirect,14.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality prepared
+protein_seafood_prepared,Banana-Leaf Wrapped Coconut-Cilantro Salmon,FreshDirect,12.49,ea,8 oz,None (conventional),Plastic bag,,,Quality: Excellent | $1.56/oz,staple,,Balanced,Good quality prepared
+other,"Wild Atlantic Cod Individually Wrapped Fillets, Family Pack, Frozen",City Pier,28.49,ea,1.5 lb,None (conventional),Plastic bag,,,$1.19/oz,convenience,,Balanced,Good quality other
+other,Breaded Fish Sticks,Mrs. Paul's,8.99,ea,44 ct,None (conventional),Plastic bag,,,$0.37/oz,convenience,,Balanced,Good quality other
+other,"Cooked Farm-Raised Shrimp, Cleaned, 91-110/lb, Frozen",FreshDirect,10.99,ea,1 lb,None (conventional),Plastic bag,,,$0.69/oz,convenience,,Balanced,Good quality other
+other,"Shrimp Wonton Soup with Bok Choy, Frozen",Royal Asia,8.49,ea,1 lb,None (conventional),Plastic bag,,,$0.53/oz,convenience,,Balanced,Good quality other
+other,Beer Battered Fish Fillets,Mrs. Paul's,8.99,ea,10 ct,None (conventional),Plastic bag,,,$0.47/oz,convenience,,Balanced,Good quality other
+protein_seafood_shellfish,"Local Dry Sea Scallops, 10-20/lb",FreshDirect,36.99,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,Japanese Hokkaido Dry Sea Scallops 20-30/lb,FreshDirect,31.99,ea,,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,Japanese Hokkaido Dry Sea Scallops 10-20/lb,FreshDirect,37.99,ea,,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality shellfish
+protein_seafood_shellfish,"Blackened & Smoked Bay Scallops, Frozen",My Fish Dish,10.49,ea,7 oz,None (conventional),Plastic bag,,,$1.50/oz,convenience,,Balanced,Good quality shellfish
+protein_seafood_shellfish,"Sea Scallop, Frozen",Bristol Seafood,23.99,ea,12 oz,None (conventional),Plastic bag,,,$2.00/oz,convenience,,Balanced,Good quality shellfish
+protein_seafood_shellfish,"40/80 Bay Peruvian Scallops, Frozen",Bristol Seafood,18.99,ea,16 oz,None (conventional),Plastic bag,,,$1.19/oz,convenience,,Balanced,Good quality shellfish
+grain_rice_prepared,Steamed Jasmine Rice,FreshDirect,5.49,ea,12 oz,None (conventional),Plastic bag,,,,convenience,,Balanced,Good quality prepared
+grain_rice_prepared,Crispy Spinach Coconut Rice with Garlic Butter,FreshDirect,9.19,ea,11.8 oz,None (conventional),Plastic bag,,"Naturally Gluten-Free, Vegan",,convenience,,Balanced,Good quality prepared
+grain_rice_prepared,Steamed Brown Rice,FreshDirect,5.49,ea,12 oz,None (conventional),Plastic bag,,,,convenience,,Balanced,Good quality prepared
+grain_rice_prepared,Black Beans and Rice with Salsa Verde,FreshDirect,7.49,ea,12.2 oz,None (conventional),Plastic bag,,,,convenience,,Balanced,Good quality prepared
+grain_rice_dry,Organic White Long Grain Rice,Lundberg,9.49,ea,2 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,California White Basmati Rice,Lundberg,9.49,ea,2 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Organic California White Basmati Rice,Lundberg,11.49,ea,2 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,Organic California Sushi Rice,Lundberg,11.99,ea,2 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,Organic California Brown Basmati Rice,Lundberg,11.99,ea,2 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,Organic Short Grain Brown Rice,Lundberg,9.49,ea,2 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,Organic Long Grain Brown Rice,Lundberg,9.49,ea,2 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,Wild Rice Blend,Lundberg,8.49,ea,1 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Organic White Jasmine Rice,Lundberg,4.99,ea,8 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,Organic Brown Jasmine Rice,Lundberg,4.99,ea,8 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,Organic Cilantro Lime Rice,Lundberg,4.99,ea,8 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,Organic Coconut Rice,Lundberg,4.99,ea,8 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,White Arborio Rice,Lundberg,11.49,ea,2 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,California White Jasmine Rice,Lundberg,9.49,ea,2 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Organic Wild Rice,Lundberg,11.49,ea,8 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,Premium Medium-Grain Sushi Rice,Nishiki,13.99,ea,5 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Jasmine Rice,Dynasty,11.49,ea,5 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Jasmine Brown Rice,Dynasty,6.49,ea,32 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Extra Long Grain White Rice (2lb),Carolina,4.49,ea,2 lb,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly option
+grain_rice_dry,Extra Long Grain White Rice (5lb),Carolina,7.49,ea,5 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Extra Long Grain White Rice (10lb),Carolina,11.49,ea,10 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Extra Long Grain White Rice (20lb),Carolina,14.99,ea,20 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Natural Whole Grain Brown Rice,Carolina,7.49,ea,5 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Jasmati Long Grain American Jasmine Rice,Rice Select,7.99,ea,32 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Texmati Long Grain American Basmati Rice,Rice Select,7.49,ea,32 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,"Organic Jasmati, White Rice",Rice Select,10.99,ea,32 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,Arborio Rice,Rice Select,8.99,ea,32 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Calrose Musenmai Rice,Botan,15.99,ea,5 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Basmati Rice,Khazana,5.99,ea,32 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Thai Jasmine Rice (5lb),Goya,13.99,ea,5 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Thai Jasmine Rice (2lb),Goya,6.49,ea,2 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_instant,"Ready Rice, Jasmine",Ben's Original,3.49,ea,8.5 oz,None (conventional),Plastic bag,,,,convenience,,Cheaper,Budget-friendly option
+grain_rice_instant,"Ready Rice, Basmati",Ben's Original,3.49,ea,8.5 oz,None (conventional),Plastic bag,,,,convenience,,Cheaper,Budget-friendly option
+grain_rice_instant,"Ready Rice, Original Long Grain White",Ben's Original,3.49,ea,8.8 oz,None (conventional),Plastic bag,,,,convenience,,Cheaper,Budget-friendly option
+grain_rice_instant,"Ready Rice, Whole Grain Brown",Ben's Original,3.49,ea,8.8 oz,None (conventional),Plastic bag,,,,convenience,,Cheaper,Budget-friendly option
+dairy_eggs,"Cage-Free Grade A Large White Eggs, Dozen",Alderfer Eggs,3.79,ea,1 dozen,Free-Range,Plastic bag,,"Cage-Free, Free-Range",,staple,,Cheaper,Budget-friendly option
+dairy_eggs,"Cage-Free Grade A Large Brown Eggs, Dozen",Alderfer Eggs,3.79,ea,1 dozen,Free-Range,Plastic bag,,"Cage-Free, Free-Range",,staple,,Cheaper,Budget-friendly option
+dairy_eggs,"Local Organic Large Brown Eggs, Dozen",Just FreshDirect,4.79,ea,1 dozen,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic eggs
+dairy_eggs,"Local Organic Extra Large Brown Eggs, Dozen",Just FreshDirect,5.49,ea,1 dozen,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic eggs
+dairy_eggs,"Organic Cage-Free Pasture-Raised Grade A Large Eggs, Dozen",Just FreshDirect,6.49,ea,1 dozen,USDA Organic; Free-Range; Pasture-Raised,Plastic bag,,"Cage-Free, Pasture-Raised, Free-Range",,staple,,Conscious,Organic eggs
+dairy_eggs,"Pasture-Raised Organic Large Eggs, Dozen",Vital Farms,11.99,ea,1 dozen,USDA Organic; Pasture-Raised,Plastic bag,,Pasture-Raised,,staple,,Conscious,Organic eggs
+dairy_milk,"Local Organic Whole Milk, Carton",Just FreshDirect,4.89,ea,0.5 g,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic milk
+dairy_milk,"Local Organic 2% Reduced Fat Milk, Carton",Just FreshDirect,4.89,ea,0.5 g,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic milk
+dairy_milk,"Whole Milk, Plastic Bottle",Just FreshDirect,2.99,ea,0.5 g,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly option
+dairy_milk,"Ultra-Pasteurized Whole Milk, Carton",Organic Valley,5.99,ea,0.5 g,None (conventional),Plastic bag,,,Save 20% - Any 2 for $9.50,staple,,Balanced,Good quality milk
+dairy_yogurt,"TOTAL 0% Greek Yogurt, Plain",Fage,7.59,ea,32 oz,None (conventional),Recyclable plastic tub,,,,staple,,Balanced,Good quality yogurt
+dairy_yogurt,"TOTAL 2% Greek Yogurt, Plain",Fage,7.59,ea,32 oz,None (conventional),Recyclable plastic tub,,,,staple,,Balanced,Good quality yogurt
+dairy_yogurt,"Non-Fat Greek Yogurt, Plain (Single)",Chobani,1.49,ea,5.3 oz,None (conventional),Recyclable plastic tub,,,,staple,,Cheaper,Budget-friendly option
+dairy_yogurt,"Non-Fat Greek Yogurt, Plain",Chobani,6.59,ea,32 oz,None (conventional),Recyclable plastic tub,,,,staple,,Balanced,Good quality yogurt
+dairy_butter,Salted Pure Irish Butter,Kerrygold,5.59,ea,8 oz,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
+dairy_butter,Unsalted Pure Irish Butter,Kerrygold,5.59,ea,8 oz,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
+dairy_butter,"Sweet Cream Butter, Salted",Cabot,7.99,ea,4 ct,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
+dairy_butter,Unsalted Butter,Land O'Lakes,7.49,ea,4 ct,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
+dairy_butter,Organic Unsalted Butter,Organic Valley,10.79,ea,4 ct,USDA Organic,Paper-wrapped sticks in box,,,,staple,,Conscious,Organic butter
+dairy_cheese,"Cream Cheese Spread, Original",Philadelphia,5.59,ea,8 oz,None (conventional),Plastic wrap,,,,staple,,Balanced,Good quality cheese
+dairy_cheese,Mozzarella Stringles,Organic Valley,6.89,ea,8 ct,None (conventional),Plastic wrap,,,Save 11% (was $7.79),staple,,Balanced,Good quality cheese
+dairy_sour_cream,Sour Cream (16oz),Breakstone's,4.49,ea,16 oz,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly option
+dairy_sour_cream,Sour Cream,Organic Valley,4.09,ea,16 oz,None (conventional),Plastic bag,,,Save 18% (was $4.99),staple,,Cheaper,Budget-friendly option
+protein_poultry,Organic Boneless Skinless Chicken Breast,Farmer Focus,13.79,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: 2-3ct,staple,,Conscious,Organic breasts
+protein_poultry,"Boneless Skinless Chicken Breasts, Raised w/o Antibiotics",Springer Mountain Farms,9.73,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 2-3ct,staple,,Balanced,Quality breast
+protein_poultry,Organic Boneless Chicken Tenders,Farmer Focus,18.43,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: 10-12ct,staple,,Conscious,Quality tender
+protein_poultry,Organic Boneless Skinless Thin-Sliced Chicken Breast,Farmer Focus,20.98,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: 4ct,staple,,Conscious,Organic breasts
+protein_poultry,"Boneless Skinless Chicken Breast, Value Pack, Air-Chilled, Raised w/o Antibiotics",Katie's Best,11.23,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: 6ct,staple,,Balanced,Quality breast
+protein_poultry,"Organic Thin Sliced Chicken Breasts, Air-Chilled",Smart Chicken,23.23,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,Count: 4ct,staple,,Conscious,Organic breasts
+protein_poultry,"Chicken Tenders, Raised w/o Antibiotics",Springer Mountain Farms,10.48,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 6-8ct,staple,,Balanced,Quality tender
+protein_poultry,"Boneless Skinless Chicken Breast, Pasture-Raised, Heritage, Slow-Grown, Air-Chilled",LaBelle Patrimoine,18.73,lb,1.5 lb,Pasture-Raised,Plastic bag,,Pasture-Raised,,staple,,Balanced,Pasture-raised chicken
+protein_poultry,"Organic Boneless Skinless Breasts, Air-Chilled",Smart Chicken,20.23,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,Count: 2ct,staple,,Conscious,Organic breasts
+protein_poultry,"Boneless Skinless Chicken Breasts Value Pack, Raised w/o Antibiotics",Springer Mountain Farms,8.23,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 5-7ct,staple,,Balanced,Quality breast
+protein_poultry,"Boneless Skinless Thin-Sliced Chicken Breasts, Raised w/o Antibiotics",Springer Mountain Farms,12.73,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 5-6ct,staple,,Balanced,Quality breast
+protein_poultry,"Boneless Skinless Chicken Breasts, Air-Chilled, Raised w/o Antibiotics",Katie's Best,11.98,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: 3ct,staple,,Balanced,Quality breast
+protein_poultry,"Chicken Breast with Ribs, Air-Chilled, Raised w/o Antibiotics",Katie's Best,8.23,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: 2ct,staple,,Balanced,Quality breast
+protein_poultry,"Chicken Breasts, Boneless and Skinless, Raised w/o Antibiotics",Empire Kosher,15.73,lb,1.5 lb,No Antibiotics,Plastic bag,,Kosher,Count: 2-3ct,staple,,Balanced,Quality breast
+protein_poultry,"Breaded Parmesan Chicken Cutlet, Uncooked",FreshDirect,17.23,lb,1.5 lb,None (conventional),Plastic bag,,,Count: 3-4ct,convenience,,Balanced,Quality mixed
+protein_poultry,"Chicken Breasts with Ribs, Raised w/o Antibiotics",Springer Mountain Farms,8.23,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 2ct,staple,,Balanced,Quality breast
+protein_poultry,Organic Boneless Skinless Chicken Breasts Value Pack,Farmer Focus,13.48,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: each,staple,,Conscious,Organic breasts
+protein_poultry,"Boneless Skinless Breasts, Air-Chilled, Raised Without Antibiotics",Smart Chicken,13.48,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: each,staple,,Balanced,Quality breast
+protein_poultry,"Breaded Chicken Cutlet, Uncooked",FreshDirect,17.23,lb,1.5 lb,None (conventional),Plastic bag,,,Count: 3-4ct,convenience,,Balanced,Quality mixed
+protein_poultry,"Lemon Herb Boneless Skinless Chicken Breasts, Raised w/o Antibiotics, Uncooked",Just FreshDirect,15.73,lb,1.5 lb,No Antibiotics,Plastic bag,,,,staple,,Balanced,Quality breast
+protein_poultry,"Peruvian Boneless Skinless Chicken Breasts, Raised w/o Antibiotics, Uncooked",Just FreshDirect,14.23,lb,1.5 lb,No Antibiotics,Plastic bag,,,,staple,,Balanced,Quality breast
+protein_poultry,Bacon & Cheddar Chicken Rollups,FreshDirect,15.73,lb,1.5 lb,None (conventional),Plastic bag,,,Count: 4-5ct,staple,,Balanced,Quality mixed
+protein_poultry,"Boneless Skinless Thin-Sliced Chicken Breasts, Air-Chilled, Raised Without Antibiotics",Smart Chicken,14.98,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: each,staple,,Balanced,Quality breast
+protein_poultry,Chicken Cordon Bleu,FreshDirect,18.73,lb,1.5 lb,None (conventional),Plastic bag,,,Count: 2ct,staple,,Balanced,Quality mixed
+protein_poultry,Broccoli & Cheddar Stuffed Chicken Breasts,FreshDirect,15.73,lb,1.5 lb,None (conventional),Plastic bag,,,Count: 2ct,convenience,,Balanced,Quality breast
+protein_poultry,"Maple Dijon Boneless Skinless Chicken Breasts, Raised w/o Antibiotics, Uncooked",Just FreshDirect,14.23,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 2ct,staple,,Balanced,Quality breast
+protein_poultry,"Roasted Red Pepper, Pepperoni & Mozzarella Chicken Rollups",FreshDirect,15.73,lb,1.5 lb,None (conventional),Plastic bag,,,Count: 4-5ct,staple,,Balanced,Quality mixed
+protein_poultry,"Organic Chicken Tenders, Air-Chilled, Raised Without Antibiotics",Smart Chicken,22.48,lb,1.5 lb,USDA Organic; Air-Chilled; No Antibiotics,Plastic bag,,,Count: each,staple,,Conscious,Quality tender
+protein_poultry,"Tenders, Air-Chilled, Raised Without Antibiotics",Smart Chicken,14.23,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: each,staple,,Balanced,Quality tender
+protein_poultry,Organic Boneless Skinless Chicken Thighs,Farmer Focus,12.43,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: 4-5ct,staple,,Conscious,Organic thighs
+protein_poultry,"Boneless Skinless Chicken Thighs, Raised w/o Antibiotics",Springer Mountain Farms,8.38,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 5-6ct,staple,,Balanced,Quality thigh
+protein_poultry,"Bone-In Chicken Thighs, Air-Chilled, Raised w/o Antibiotics",Katie's Best,8.23,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: 4ct,staple,,Balanced,Quality thigh
+protein_poultry,"Bone-In Chicken Thighs, Raised w/o Antibiotics",Springer Mountain Farms,5.99,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 4ct,staple,,Cheaper,Budget-friendly thigh
+protein_poultry,"Boneless Skinless Chicken Thighs, Air-Chilled, Raised w/o Antibiotics",Katie's Best,10.48,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: 4-5ct,staple,,Balanced,Quality thigh
+protein_poultry,Organic Chicken Wings,Farmer Focus,9.73,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: 10-12ct | Sale - Save 13%,staple,,Conscious,Quality wing
+protein_poultry,"Organic Boneless Skinless Thighs, Air-Chilled",Smart Chicken,14.98,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,Count: 4ct,staple,,Conscious,Organic thighs
+protein_poultry,"Chicken Drumsticks, Raised w/o Antibiotics",Springer Mountain Farms,5.24,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 4-5ct,staple,,Cheaper,Budget-friendly drumstick
+protein_poultry,"Bone-In Chicken Thigh, Pasture-Raised, Heritage, Slow-Grown, Air-Chilled",LaBelle Patrimoine,10.48,lb,1.5 lb,Pasture-Raised,Plastic bag,,Pasture-Raised,,staple,,Balanced,Pasture-raised chicken
+protein_poultry,"Organic Chicken Wings, Air Chilled",Smart Chicken,11.23,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: approx. 10ct,staple,,Conscious,Quality wing
+protein_poultry,"Organic Whole Legs, Air-Chilled",Smart Chicken,8.23,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,Count: 2ct,staple,,Conscious,Quality leg
+protein_poultry,"Chicken Drumsticks & Thighs, Air-Chilled, Raised w/o Antibiotics",Katie's Best,7.49,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,"Count: 2 drums, 2 thighs",staple,,Cheaper,Budget-friendly thigh
+protein_poultry,"Whole Chicken Legs, Air-Chilled, Raised w/o Antibiotics",Katie's Best,6.74,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: 2ct,staple,,Cheaper,Budget-friendly leg
+protein_poultry,"Organic Chicken Wings, Party Pack, Frozen",Farmer Focus,8.69,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: approx. 30-36ct | Sale - Save 17%,convenience,,Conscious,Quality wing
+protein_poultry,"Chicken Drumsticks, Air-Chilled, Raised w/o Antibiotics",Katie's Best,6.74,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: 4-6ct,staple,,Cheaper,Budget-friendly drumstick
+protein_poultry,"Chicken Leg Quarters, Raised w/o Antibiotics",Empire Kosher,7.49,lb,1.5 lb,No Antibiotics,Plastic bag,,Kosher,Count: 2-3ct,staple,,Cheaper,Budget-friendly mixed
+protein_poultry,"Bone-In Chicken Thighs with Back Portions, Raised w/o Antibiotics",Empire Kosher,11.23,lb,1.5 lb,No Antibiotics,Plastic bag,,Kosher,Count: 3-4ct,staple,,Balanced,Quality thigh
+protein_poultry,"Tikka-Marinated Chicken Thighs, Uncooked",FreshDirect,14.98,lb,1.5 lb,None (conventional),Plastic bag,,,Count: 5-6ct,convenience,,Balanced,Quality thigh
+protein_poultry,"Chicken Drumsticks, Raised w/o Antibiotics",Empire Kosher,8.98,lb,1.5 lb,No Antibiotics,Plastic bag,,Kosher,Count: approx. 6ct,staple,,Balanced,Quality drumstick
+protein_poultry,"Whole Chicken Wings, Pasture-Raised, Heritage, Slow-Grown, Air-Chilled",LaBelle Patrimoine,10.48,lb,1.5 lb,Pasture-Raised,Plastic bag,,Pasture-Raised,,staple,,Balanced,Pasture-raised chicken
+protein_poultry,"Sweet Chili Boneless Chicken Thighs, Raised w/o Antibiotics, Uncooked",FreshDirect,13.48,lb,1.5 lb,No Antibiotics,Plastic bag,,,,staple,,Balanced,Quality thigh
+protein_poultry,"Boneless Skinless Drumsticks, Air-Chilled, Raised Without Antibiotics",Smart Chicken,7.49,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: each,staple,,Cheaper,Budget-friendly drumstick
+protein_poultry,"Boneless Skinless Chicken Thighs, Air-Chilled, Raised Without Antibiotics",Smart Chicken,11.98,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: each,staple,,Balanced,Quality thigh
+protein_poultry,"Organic Boneless Skinless Drumsticks, Air-Chilled",Smart Chicken,10.48,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,Count: 6ct,staple,,Conscious,Quality drumstick
+protein_poultry,Organic Whole Chicken,Farmer Focus,7.49,lb,1.5 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Quality whole
+protein_poultry,"Whole Chicken, Air-Chilled, Raised w/o Antibiotics",Katie's Best,6.74,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,,staple,,Cheaper,Budget-friendly whole
+protein_poultry,"Whole Chicken, Pasture-Raised, Heritage, Slow-Grown, Air-Chilled",LaBelle Patrimoine,8.98,lb,1.5 lb,Pasture-Raised,Plastic bag,,Pasture-Raised,,staple,,Balanced,Pasture-raised chicken
+protein_poultry,"Cut-Up Whole Chicken, Air-Chilled, Raised w/o Antibiotics",Katie's Best,8.23,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: 8ct,staple,,Balanced,Quality whole
+protein_poultry,"Whole Chicken, Raised w/o Antibiotics",Springer Mountain Farms,5.24,lb,1.5 lb,No Antibiotics,Plastic bag,,,,staple,,Cheaper,Budget-friendly whole
+protein_poultry,"Cut-Up Whole Chicken, Raised w/o Antibiotics",Empire Kosher,7.49,lb,1.5 lb,No Antibiotics,Plastic bag,,Kosher,Count: 8ct,staple,,Cheaper,Budget-friendly whole
+protein_poultry,"Local Heritage Slow-Growth Chicken, Air-Chilled, Raised w/o Antibiotics",Snowdance Farm,11.23,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,,staple,,Balanced,Quality mixed
+protein_poultry,"Broiler Chicken, Raised w/o Antibiotics",Empire Kosher,7.49,lb,1.5 lb,No Antibiotics,Plastic bag,,Kosher,,staple,,Cheaper,Budget-friendly whole
+protein_poultry,"Organic Whole Chicken, Air-Chilled",Smart Chicken,9.73,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,,staple,,Conscious,Quality whole
+protein_poultry,"Lemon Herb Spatchcock Chicken, Raised w/o Antibiotics, Uncooked",Just FreshDirect,9.73,lb,1.5 lb,No Antibiotics,Plastic bag,,,,staple,,Balanced,Quality whole
+protein_poultry,"Whole Large Roasting Chicken, Raised w/o Antibiotics",Springer Mountain Farms,5.99,lb,1.5 lb,No Antibiotics,Plastic bag,,,,staple,,Cheaper,Budget-friendly whole
+protein_poultry,"Peruvian Spatchcock Chicken, Raised w/o Antibiotics, Uncooked",Just FreshDirect,9.73,lb,1.5 lb,No Antibiotics,Plastic bag,,,,staple,,Balanced,Quality whole
+protein_poultry,"Maple Dijon Spatchcock Chicken, Raised w/o Antibiotics, Uncooked",Just FreshDirect,9.73,lb,1.5 lb,No Antibiotics,Plastic bag,,,,staple,,Balanced,Quality whole
+protein_poultry,"Party Wings, Air-Chilled, Raised Without Antibiotics",Smart Chicken,10.48,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: each,staple,,Balanced,Quality wing
+protein_poultry,"Whole Chicken, Air-Chilled, Raised Without Antibiotics",Smart Chicken,5.69,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: each,staple,,Cheaper,Budget-friendly whole
+produce_roots,Organic Baby Carrots,Cal-Organic,1.79,ea,1lb,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Carrots,Cal-Organic,1.79,ea,1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Jumbo Carrots,Cal-Organic,2.49,lb,1 lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Rainbow Carrots,Cal-Organic,4.99,ea,1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Baby Carrots (2lb),Cal-Organic,3.49,ea,2lb,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Shredded Carrots,Cal-Organic,2.99,ea,10oz,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Rainbow Baby Carrots,Cal-Organic,2.49,ea,12oz,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Carrot Chips,Cal-Organic,2.99,ea,1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,"Organic Peeled Rainbow Baby Carrots, Case",Cal-Organic,28.39,cs,"12ct, 12oz ea",USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,"Organic Baby Carrots, Case",Cal-Organic,51.02,cs,"30ct, 1lb ea",USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Local Organic Carrots (bag),Lancaster Farm Fresh Cooperative,5.99,ea,2lb bag,USDA Organic,Mesh bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Local Organic Carrots (loose),Lancaster Farm Fresh Cooperative,2.99,lb,1 lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Local Organic Rainbow Carrots,Lancaster Farm Fresh Cooperative,5.99,ea,2lb bag,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Local Organic Purple Carrots,Lancaster Farm Fresh Cooperative,5.99,ea,2lb bag,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Clean Organic Rainbow Carrots,Pete's Greens,9.99,ea,1.5lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Clean Organic Real Baby Carrots,Pete's Greens,9.99,ea,1.5lb,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,"Clean Organic Real Baby Carrots, Case",Pete's Greens,159.37,cs,"24ct, 1.5lb ea",USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Multi-Color Baby Carrots,Urban Roots,3.99,ea,8oz,,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Carrot Sticks,FreshDirect,7.49,ea,14oz,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Jumbo Carrots,FreshDirect,1.49,lb,1 lb,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Carrots,FreshDirect,3.49,ea,1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Shredded Carrots,FreshDirect,5.99,ea,8oz,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Diced Carrots,FreshDirect,5.99,ea,10oz,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+condiments_asian,The Original Japanese Barbecue Sauce,Bachan's,10.49,ea,17oz,,Glass bottle,,,,staple,,,
+condiments_asian,"Less Sodium Marinade & Sauce, Veri Veri Teriyaki",Soy Vay,6.49,ea,21oz,,Glass bottle,,,,staple,,,
+condiments_asian,"Marinade & Sauce, Veri Veri Teriyaki",Soy Vay,6.49,ea,21oz,,Glass bottle,,,,staple,,,
+condiments_asian,Gochujang Fermented Chili Paste,Mother In Law's,10.99,ea,10oz,,Glass jar with plastic lid,,,,staple,,,
+condiments_asian,"Gochujang Korean Chili Sauce, Sweet & Spicy",We Love You,8.49,ea,15oz,,Glass bottle,,,,staple,,,
+condiments_asian,Premium Oyster Flavored Sauce,Lee Kum Kee,6.49,ea,9oz,,Glass bottle,,,,staple,,,
+condiments_asian,Organic Tamari Soy Sauce,Eden Foods,11.49,ea,10fl oz,USDA Organic,Glass bottle,,,,staple,,,
+condiments_asian,Soy Sauce,Momofuku,14.49,ea,8fl oz,,Glass bottle,,,,staple,,,
+condiments_asian,Thai Peanut Sauce,Watcharee's,10.49,ea,9.8fl oz,,Glass bottle,,,,staple,,,
+condiments_asian,Organic No-Soy Teriyaki Sauce & Marinade,Primal Kitchen,9.49,ea,8.5oz,USDA Organic,Glass bottle,,,,staple,,,
+condiments_asian,Szechuan Chili Oil,Blank Slate Kitchen,13.99,ea,6fl oz,,Glass bottle,,,,staple,,,
+condiments_asian,"Organic Dressing, Asian Sesame",Annie's,8.49,ea,8fl oz,USDA Organic,Glass bottle,,,,staple,,,
+condiments_asian,Ginger Dressing,Makoto,6.49,ea,9fl oz,,Glass bottle,,,,staple,,,
+condiments_asian,Organic Mellow White Miso,Miso Master,7.99,ea,8oz,USDA Organic,Glass bottle,,,,staple,,,
+condiments_asian,Organic Traditional Red Miso,Miso Master,7.99,ea,8oz,USDA Organic,Glass bottle,,,,staple,,,
+condiments_asian,Red Curry Paste,Thai Kitchen,5.49,ea,4oz,,Glass jar with plastic lid,,,,staple,,,
+condiments_asian,Green Curry Paste,Thai Kitchen,5.49,ea,4oz,,Glass jar with plastic lid,,,,staple,,,
+condiments_asian,Korean-Style Pickled Vegetables,Kim Chee Pride,5.49,ea,13oz,,Glass bottle,,,,staple,,,

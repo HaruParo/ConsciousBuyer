@@ -32,6 +32,11 @@ class Product(BaseModel):
     image_url: Optional[str] = None
     source_store_id: str  # MANDATORY: Which store this product comes from
 
+    # Enhanced metadata for decision summaries
+    packaging: str = ""
+    nutrition: str = ""
+    labels: str = ""
+
 
 class ProductChoice(BaseModel):
     """Product selection with metadata"""
@@ -56,6 +61,69 @@ class ProductChips(BaseModel):
         if len(v) > 5:
             return v[:5]
         return v
+
+
+# ============================================================================
+# Decision Trace (for scoring drawer)
+# ============================================================================
+
+class CandidateTrace(BaseModel):
+    """Single candidate in decision trace"""
+    product: str
+    brand: str
+    store: str
+    price: float
+    unit_price: float
+    organic: bool
+    form_score: int
+    packaging: str
+    nutrition: str = ""
+    labels: str = ""
+    status: str  # winner, runner_up, considered, filtered_out
+    score_total: Optional[int] = None
+    score_breakdown: Optional[Dict[str, int]] = None  # Component breakdown
+    elimination_reasons: List[str] = Field(default_factory=list)
+    elimination_explanation: Optional[str] = None  # Human-readable explanation
+    elimination_stage: Optional[str] = None  # STORE_ENFORCEMENT, FORM_CONSTRAINTS, etc.
+
+
+class ScoreDriver(BaseModel):
+    """Single score driver (reason why winner won)"""
+    rule: str  # e.g., "Organic (EWG Dirty Dozen)", "Lower plastic packaging"
+    delta: int  # Score delta vs runner-up or median
+
+
+class CandidatePoolSummary(BaseModel):
+    """Summary of retrieved vs considered candidates by store"""
+    store_id: str
+    store_name: str
+    retrieved_count: int  # Retrieved from ProductIndex
+    considered_count: int  # After hard filters
+
+
+class DecisionTrace(BaseModel):
+    """Complete decision trace for scoring drawer"""
+    # Query info
+    query_key: str  # Normalized ingredient key used for retrieval
+
+    # Candidate pools
+    retrieved_summary: List[CandidatePoolSummary] = Field(default_factory=list)
+    considered_summary: List[CandidatePoolSummary] = Field(default_factory=list)
+
+    # Scores
+    winner_score: int
+    runner_up_score: Optional[int] = None
+    score_margin: int = 0
+
+    # Candidates
+    candidates: List[CandidateTrace] = Field(default_factory=list)
+
+    # Explanations
+    drivers: List[ScoreDriver] = Field(default_factory=list)  # Why winner won
+    tradeoffs_accepted: List[str] = Field(default_factory=list)  # Negative components on winner
+
+    # Filtered out summary
+    filtered_out_summary: Dict[str, int] = Field(default_factory=dict)
 
 
 # ============================================================================
@@ -91,8 +159,8 @@ class CartItem(BaseModel):
     ewg_category: Optional[str] = None  # "dirty_dozen", "clean_fifteen"
     recall_status: str = "safe"  # "safe", "advisory", "recalled"
 
-    # Decision trace (for scoring drawer) - Optional, only included if debug=True
-    decision_trace: Optional[Dict] = None  # Contains: winner_score, runner_up_score, all_candidates, filtered_out_summary, score_drivers
+    # Decision trace (for scoring drawer) - Optional, only included if include_trace=True
+    decision_trace: Optional[DecisionTrace] = None
 
 
 # ============================================================================
@@ -106,6 +174,7 @@ class StoreInfo(BaseModel):
     store_type: str  # "primary", "specialty"
     delivery_estimate: str = "1-2 days"
     checkout_url_template: Optional[str] = None
+    selection_reason: Optional[str] = None  # NEW: Why this store was chosen (e.g., "Best coverage (10 items) + fresh protein quality")
 
 
 class StoreAssignment(BaseModel):
@@ -114,6 +183,7 @@ class StoreAssignment(BaseModel):
     ingredient_names: List[str]
     item_count: int
     estimated_total: float
+    assignment_reason: Optional[str] = None  # NEW: Why these ingredients were assigned to this store
 
 
 class StorePlan(BaseModel):
