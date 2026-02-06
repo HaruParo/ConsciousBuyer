@@ -16,12 +16,6 @@ outputs/
 # Archive and test files
 archive/
 tests/
-test-outputs*/
-
-# Documentation
-docs/
-*.md
-!README.md
 
 # IDE
 .vscode/
@@ -36,9 +30,6 @@ frontend/node_modules/
 
 # Large/unnecessary files
 screenshots/
-*.png
-*.jpg
-*.gif
 
 # Full requirements (use minimal for Vercel)
 requirements-full.txt
