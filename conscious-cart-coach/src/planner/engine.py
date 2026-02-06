@@ -21,6 +21,49 @@ from ..contracts.cart_plan import (
 from .product_index import ProductIndex, ProductCandidate
 from ..facts import get_facts, FactsGateway
 from ..agents.ingredient_forms import canonicalize_ingredient, get_ingredient_key, format_ingredient_label
+from ..data.ingredient_categories import get_ingredient_category, detect_product_form
+from ..data.ewg_categories import get_ewg_category
+from ..data.form_constraints import passes_form_constraints
+from ..scoring.component_scoring import compute_total_score, compute_score_drivers
+
+
+def normalize_ingredient_key(ingredient_name: str, ingredient_form: Optional[str]) -> str:
+    """
+    Normalize ingredient key for ProductIndex retrieval
+
+    This removes form suffixes to ensure consistent retrieval regardless of form.
+
+    Examples:
+    - ("chicken thighs cut", "cut") → "chicken thighs"
+    - ("fresh ginger root", "fresh") → "ginger"
+    - ("garam masala powder", "powder") → "garam masala"
+
+    Args:
+        ingredient_name: Canonical ingredient name (may include form)
+        ingredient_form: Optional form (cut, powder, seeds, etc.)
+
+    Returns:
+        Normalized key for retrieval (ingredient name without form qualifiers)
+    """
+    name = ingredient_name.strip()
+
+    # Strip form qualifiers from the beginning and end
+    # Common prefixes: fresh, whole, plain, organic
+    # Common suffixes: cut, powder, seeds, pods, leaves, root, cloves
+    form_prefixes = ["fresh ", "whole ", "plain ", "green ", "black "]
+    form_suffixes = [" cut", " powder", " seeds", " pods", " leaves", " root", " cloves"]
+
+    for prefix in form_prefixes:
+        if name.lower().startswith(prefix):
+            name = name[len(prefix):]
+            break
+
+    for suffix in form_suffixes:
+        if name.lower().endswith(suffix):
+            name = name[:-len(suffix)]
+            break
+
+    return name.strip()
 
 
 class PlannerEngine:
@@ -50,7 +93,8 @@ class PlannerEngine:
         self,
         prompt: str,
         ingredients: List[str],
-        servings: int = 2
+        servings: int = 2,
+        include_trace: bool = False  # NEW: Include decision traces for scoring drawer
     ) -> CartPlan:
         """
         Create complete shopping cart plan
@@ -65,6 +109,7 @@ class PlannerEngine:
             prompt: Original user prompt
             ingredients: Extracted ingredient names
             servings: Number of servings
+            include_trace: If True, include decision traces for scoring drawer
 
         Returns:
             CartPlan with all decisions made
@@ -75,8 +120,8 @@ class PlannerEngine:
         recipe_type = self._detect_recipe_type(prompt)
         ingredient_forms = self._canonicalize_ingredients(ingredients, recipe_type)
 
-        # Step 1: Retrieve candidates (all stores)
-        candidates_by_ingredient = self._retrieve_candidates_with_forms(ingredient_forms)
+        # Step 1: Retrieve candidates (all stores) + track by store
+        candidates_by_ingredient, retrieved_by_store = self._retrieve_candidates_with_forms(ingredient_forms)
 
         # Step 2: Enrich with signals
         enriched = self._enrich_signals(candidates_by_ingredient, ingredients)
@@ -84,11 +129,16 @@ class PlannerEngine:
         # Step 3: Choose store plan FIRST (based on candidate availability)
         store_plan = self._choose_store_plan(enriched, ingredients)
 
-        # Step 4: Select products (filtered by assigned store)
-        selections = self._select_products(enriched, store_plan, servings)
+        # Step 4: Select products (filtered by assigned store) + track considered
+        selections, considered_by_store = self._select_products(
+            enriched, store_plan, servings, include_trace, ingredient_forms, prompt, retrieved_by_store
+        )
 
         # Step 5: Build cart items with chips (NEVER drop ingredients)
-        cart_items = self._build_cart_items(selections, store_plan, ingredients, ingredient_forms)
+        cart_items = self._build_cart_items(
+            selections, store_plan, ingredients, ingredient_forms, include_trace, prompt,
+            retrieved_by_store, considered_by_store
+        )
 
         # Step 6: Calculate totals
         totals = self._calculate_totals(cart_items)
@@ -155,7 +205,7 @@ class PlannerEngine:
     def _retrieve_candidates_with_forms(
         self,
         ingredient_forms: Dict[str, Tuple[str, Optional[str]]]
-    ) -> Dict[str, List[ProductCandidate]]:
+    ) -> Tuple[Dict[str, List[ProductCandidate]], Dict[str, Dict[str, int]]]:
         """
         Retrieve product candidates for each ingredient using canonical names
 
@@ -163,22 +213,38 @@ class PlannerEngine:
             ingredient_forms: Dict mapping original -> (canonical, form)
 
         Returns:
-            Dict mapping original ingredient -> candidates
+            Tuple of:
+            - candidates dict: original ingredient -> candidates
+            - retrieved_by_store: original ingredient -> {store_id: count}
         """
         candidates = {}
+        retrieved_by_store = {}
 
         for original_ing, (canonical_name, form) in ingredient_forms.items():
-            # Use canonical name for matching
-            candidate_list = self.product_index.retrieve(canonical_name, max_candidates=6)
+            # Normalize key for retrieval (removes form suffix)
+            query_key = normalize_ingredient_key(canonical_name, form)
+
+            # Use normalized key for matching
+            candidate_list = self.product_index.retrieve(query_key, max_candidates=6)
 
             candidates[original_ing] = candidate_list
 
-            if not candidate_list:
-                print(f"⚠️  No candidates found for: {canonical_name} ({form or 'any form'})")
-            else:
-                print(f"✓ Found {len(candidate_list)} candidates for {canonical_name}")
+            # Track retrieved candidates by store
+            store_counts = {}
+            for candidate in candidate_list:
+                store_id = candidate.source_store_id
+                store_counts[store_id] = store_counts.get(store_id, 0) + 1
+            retrieved_by_store[original_ing] = store_counts
 
-        return candidates
+            # Debugging output
+            if not candidate_list:
+                print(f"⚠️  WARNING: Zero candidates retrieved for '{canonical_name}' (query_key: '{query_key}')")
+            elif len(candidate_list) < 3:
+                print(f"⚠️  WARNING: Only {len(candidate_list)} candidates retrieved for '{canonical_name}'")
+            else:
+                print(f"✓ Retrieved {canonical_name}: {dict(store_counts)}")
+
+        return candidates, retrieved_by_store
 
     def _retrieve_candidates(
         self,
@@ -277,8 +343,12 @@ class PlannerEngine:
         self,
         enriched: Dict[str, List[Dict]],
         store_plan: StorePlan,
-        servings: int
-    ) -> Dict[str, Dict]:
+        servings: int,
+        include_trace: bool,  # Whether to build decision traces
+        ingredient_forms: Dict[str, Tuple[str, Optional[str]]],  # NEW: Ingredient forms for scoring
+        prompt: str,  # NEW: User prompt for context
+        retrieved_by_store: Dict[str, Dict[str, int]]  # NEW: Retrieved counts by store
+    ) -> Tuple[Dict[str, Dict], Dict[str, Dict[str, int]]]:
         """
         Select products for each ingredient, FILTERED by assigned store
 
@@ -289,8 +359,11 @@ class PlannerEngine:
         Selection logic:
         - ethical_default: Best organic/safety choice from assigned store
         - cheaper_swap: Cheapest viable alternative from assigned store (if exists)
+
+        NEW: If include_trace=True, track ALL candidates + eliminations for scoring drawer
         """
         selections = {}
+        considered_by_store = {}  # NEW: Track considered candidates by store
 
         # Build store assignment lookup
         store_by_ingredient = {}
@@ -307,13 +380,19 @@ class PlannerEngine:
                 selections[ingredient] = None
                 continue
 
-            # FILTER candidates by assigned store
-            store_filtered = [
-                e for e in enriched_list
-                if e["candidate"].source_store_id == assigned_store_id
-            ]
+            # Track eliminations if building trace
+            eliminated = [] if include_trace else None
 
-            # Apply brand backstop rules
+            # FILTER 1: By assigned store
+            store_filtered = []
+            for e in enriched_list:
+                if e["candidate"].source_store_id == assigned_store_id:
+                    store_filtered.append(e)
+                elif include_trace:
+                    e["elimination_reason"] = "WRONG_STORE_SOURCE"
+                    eliminated.append(e)
+
+            # FILTER 2: Brand backstop rules
             backstop_filtered = []
             for e in store_filtered:
                 candidate = e["candidate"]
@@ -321,8 +400,11 @@ class PlannerEngine:
                     backstop_filtered.append(e)
                 else:
                     print(f"  ⚠️  Brand backstop violation: {candidate.brand} cannot be in {assigned_store_id}")
+                    if include_trace:
+                        e["elimination_reason"] = "WRONG_STORE_PRIVATE_LABEL"
+                        eliminated.append(e)
 
-            # Apply price sanity filters (CRITICAL: prevent absurd prices)
+            # FILTER 3: Price sanity (prevent absurd prices)
             price_valid_candidates = []
             for e in backstop_filtered:
                 candidate = e["candidate"]
@@ -330,14 +412,50 @@ class PlannerEngine:
                     price_valid_candidates.append(e)
                 else:
                     print(f"  ⚠️  Price sanity violation: {candidate.title} @ ${candidate.price:.2f} for {candidate.size}")
+                    if include_trace:
+                        e["elimination_reason"] = "PRICE_OUTLIER_SANITY"
+                        eliminated.append(e)
 
-            # Apply unit-price consistency validation
-            valid_candidates = []
+            # FILTER 4: Unit-price consistency
+            unit_price_filtered = []
             for e in price_valid_candidates:
                 candidate = e["candidate"]
                 if self._validate_unit_price_consistency(candidate):
-                    valid_candidates.append(e)
-                # Warning already printed in validation method
+                    unit_price_filtered.append(e)
+                else:
+                    if include_trace:
+                        e["elimination_reason"] = "UNIT_PRICE_INCONSISTENT"
+                        eliminated.append(e)
+
+            # FILTER 5: Form constraints (hard filtering for ingredient forms)
+            # Get canonical name and form for this ingredient
+            canonical_name, form = ingredient_forms.get(ingredient, (ingredient, None))
+
+            form_filtered = []
+            for e in unit_price_filtered:
+                candidate = e["candidate"]
+                passes, reason = passes_form_constraints(candidate.title, canonical_name, form)
+
+                if passes:
+                    form_filtered.append(e)
+                else:
+                    if include_trace:
+                        e["elimination_reason"] = reason or "FORM_MISMATCH"
+                        eliminated.append(e)
+                    print(f"  ⚠️  Form constraint violation: {candidate.title} - {reason}")
+
+            valid_candidates = form_filtered
+
+            # Track considered candidates by store (after all filters)
+            store_counts = {}
+            for e in valid_candidates:
+                store_id = e["candidate"].source_store_id
+                store_counts[store_id] = store_counts.get(store_id, 0) + 1
+            considered_by_store[ingredient] = store_counts
+
+            # Debugging warning for zero consideration
+            if not valid_candidates and enriched_list:
+                print(f"⚠️  WARNING: Zero candidates survived filters for '{ingredient}' (started with {len(enriched_list)})")
 
             if not valid_candidates:
                 # No valid candidates from assigned store
@@ -394,12 +512,13 @@ class PlannerEngine:
 
             selections[ingredient] = {
                 "ethical_default": ethical_default,
-                "runner_up": runner_up,  # NEW: Track 2nd best for reason generation
+                "runner_up": runner_up,  # Track 2nd best for reason generation
                 "cheaper_swap": cheaper_swap,
-                "all_candidates": sorted_candidates
+                "all_candidates": sorted_candidates,
+                "eliminated": eliminated if include_trace else []  # Track filtered out candidates
             }
 
-        return selections
+        return selections, considered_by_store
 
     def _validate_brand_backstop(self, brand: str, store_id: str) -> bool:
         """
@@ -629,23 +748,42 @@ class PlannerEngine:
             primary_store_id = "wholefoods"
             primary_store_name = "Whole Foods Market"
 
+        # Build primary store selection reason
+        primary_reason_parts = []
+        primary_coverage = len(store_coverage[primary_store_id])
+        primary_reason_parts.append(f"Best coverage ({primary_coverage} items)")
+
+        if primary_store_id == "freshdirect":
+            fd_score_delta = freshdirect_score - wholefoods_score
+            if fd_score_delta >= 2.0:
+                primary_reason_parts.append("superior fresh protein selection")
+        elif primary_store_id == "wholefoods":
+            wf_score_delta = wholefoods_score - freshdirect_score
+            if wf_score_delta >= 2.0:
+                primary_reason_parts.append("premium brand variety")
+
+        primary_selection_reason = " + ".join(primary_reason_parts)
+
         # Add primary store
         stores.append(StoreInfo(
             store_id=primary_store_id,
             store_name=primary_store_name,
             store_type="primary",
-            delivery_estimate="1-2 days"
+            delivery_estimate="1-2 days",
+            selection_reason=primary_selection_reason
         ))
 
         # Add specialty store if >=3 specialty items
         use_specialty = specialty_count >= 3
 
         if use_specialty:
+            specialty_selection_reason = f"Specialty items ({specialty_count} authentic ingredients)"
             stores.append(StoreInfo(
                 store_id="pure_indian_foods",
                 store_name="Pure Indian Foods",
                 store_type="specialty",
-                delivery_estimate="3-5 days"
+                delivery_estimate="3-5 days",
+                selection_reason=specialty_selection_reason
             ))
 
         # Assign ingredients to stores
@@ -663,20 +801,24 @@ class PlannerEngine:
                 # Assign to primary store
                 primary_ingredients.append(ingredient)
 
-        # Create assignments
+        # Create assignments with reasons
+        primary_assignment_reason = f"Primary store for {len(primary_ingredients)} items (best availability + quality)"
         assignments.append(StoreAssignment(
             store_id=primary_store_id,
             ingredient_names=primary_ingredients,
             item_count=len(primary_ingredients),
-            estimated_total=0.0  # Calculate later
+            estimated_total=0.0,  # Calculate later
+            assignment_reason=primary_assignment_reason
         ))
 
         if use_specialty:
+            specialty_assignment_reason = f"Specialty store for {len(specialty_ingredients)} authentic items (ghee, spices)"
             assignments.append(StoreAssignment(
                 store_id="pure_indian_foods",
                 ingredient_names=specialty_ingredients,
                 item_count=len(specialty_ingredients),
-                estimated_total=0.0  # Calculate later
+                estimated_total=0.0,  # Calculate later
+                assignment_reason=specialty_assignment_reason
             ))
 
         return StorePlan(
@@ -774,7 +916,11 @@ class PlannerEngine:
         selections: Dict[str, Dict],
         store_plan: StorePlan,
         all_ingredients: List[str],
-        ingredient_forms: Dict[str, Tuple[str, Optional[str]]]
+        ingredient_forms: Dict[str, Tuple[str, Optional[str]]],
+        include_trace: bool,
+        prompt: str,  # NEW: For decision trace context
+        retrieved_by_store: Dict[str, Dict[str, int]],  # NEW: Retrieved counts
+        considered_by_store: Dict[str, Dict[str, int]]  # NEW: Considered counts
     ) -> List[CartItem]:
         """
         Build cart items with chips
@@ -830,19 +976,48 @@ class PlannerEngine:
                 # Generate ingredient label
                 ingredient_label = format_ingredient_label(canonical_name, form)
 
-                # Generate reason and tradeoffs (NEW: pass runner_up for comparison)
+                # Compute score breakdowns for winner and runner-up (for deterministic reason selection)
+                all_candidates = selection.get("all_candidates", [])
+                all_unit_prices = [c["candidate"].unit_price for c in all_candidates] if all_candidates else []
+
+                winner_score, winner_breakdown = self._compute_real_score(
+                    ethical, canonical_name, form, all_unit_prices, prompt
+                )
+                runner_up_breakdown = {}
+                if runner_up:
+                    _, runner_up_breakdown = self._compute_real_score(
+                        runner_up, canonical_name, form, all_unit_prices, prompt
+                    )
+
+                # Generate reason and tradeoffs using score breakdowns
                 reason_line, reason_details, chips = self._generate_reason_and_tradeoffs(
-                    ethical, runner_up, cheaper, canonical_name, form
+                    ethical, runner_up, cheaper, canonical_name, form, winner_breakdown, runner_up_breakdown
                 )
 
-                # Build decision trace for scoring drawer
-                all_candidates = selection.get("all_candidates", [])
-                decision_trace = self._build_decision_trace(
-                    winner=ethical,
-                    runner_up=runner_up,
-                    all_candidates=all_candidates,
-                    reason_line=reason_line
-                )
+                # Build decision trace for scoring drawer (only if requested)
+                decision_trace = None
+                if include_trace:
+                    all_candidates = selection.get("all_candidates", [])
+                    eliminated = selection.get("eliminated", [])
+
+                    # Get query key and store summaries for this ingredient
+                    query_key = normalize_ingredient_key(canonical_name, form)
+                    retrieved_data = retrieved_by_store.get(ingredient, {})
+                    considered_data = considered_by_store.get(ingredient, {})
+
+                    decision_trace = self._build_decision_trace(
+                        winner=ethical,
+                        runner_up=runner_up,
+                        all_candidates=all_candidates,
+                        eliminated=eliminated,
+                        reason_line=reason_line,
+                        ingredient_name=canonical_name,  # NEW: For scoring
+                        ingredient_form=form,  # NEW: For scoring
+                        prompt=prompt,  # NEW: For scoring
+                        query_key=query_key,  # NEW: Normalized key
+                        retrieved_summary_data=retrieved_data,  # NEW: Retrieved by store
+                        considered_summary_data=considered_data  # NEW: Considered by store
+                    )
 
                 # Create cart item
                 cart_item = CartItem(
@@ -965,7 +1140,9 @@ class PlannerEngine:
         runner_up: Optional[Dict],
         cheaper: Optional[Dict],
         ingredient_name: str,
-        ingredient_form: Optional[str]
+        ingredient_form: Optional[str],
+        winner_breakdown: Dict[str, int],  # NEW: Component score breakdown
+        runner_up_breakdown: Dict[str, int]  # NEW: Runner-up score breakdown
     ) -> Tuple[str, List[str], ProductChips]:
         """
         Generate rule-based explanation (NO competitor mentions)
@@ -999,8 +1176,9 @@ class PlannerEngine:
         why_pick = []
 
         # ========================================================================
-        # RULE-BASED EXPLANATION (NO Competitor Mentions)
+        # COMPONENT-DRIVEN REASON SELECTION
         # ========================================================================
+        # Use score breakdowns to determine which component contributed most
 
         runner_up_candidate = runner_up["candidate"] if runner_up else None
         reason_code = None
@@ -1008,8 +1186,80 @@ class PlannerEngine:
         reason_details = []
         tradeoffs = []
 
-        # Priority 1: EWG Dirty Dozen (organic recommended)
-        if ewg_category == "dirty_dozen" and winner_candidate.organic:
+        # Compute drivers from score breakdowns
+        drivers = compute_score_drivers(winner_breakdown, runner_up_breakdown) if runner_up else []
+
+        # Pick reason based on top driver (or fallback logic if no strong driver)
+        top_driver = drivers[0] if drivers else None
+
+        # Map driver to reason template
+        if top_driver and top_driver["delta"] >= 3:  # Meaningful advantage (lowered from 8 to 3)
+            driver_rule = top_driver["rule"]
+
+            if driver_rule == "EWG guidance":
+                # EWG-based reason (check specific category)
+                ingredient_category = get_ingredient_category(ingredient_name)
+                ewg_cat = get_ewg_category(ingredient_name)
+
+                if ewg_cat == "dirty_dozen" and winner_candidate.organic:
+                    reason_code = "ewg_dirty_dozen"
+                    reason_line = "Organic recommended (EWG Dirty Dozen)"
+                    reason_details = [
+                        "EWG Dirty Dozen: conventionally grown versions tend to have higher pesticide residues",
+                        f"Selected organic option at ${winner_candidate.price:.2f} for {winner_candidate.size}",
+                        "Wash thoroughly before use"
+                    ]
+                elif ewg_cat == "clean_fifteen":
+                    reason_code = "ewg_clean_fifteen"
+                    reason_line = "Conventional is OK (EWG Clean Fifteen)"
+                    reason_details = [
+                        "EWG Clean Fifteen: conventionally grown versions have low pesticide residues",
+                        f"${winner_candidate.price:.2f} for {winner_candidate.size}"
+                    ]
+                elif ewg_cat == "middle":
+                    reason_code = "ewg_wash_peel"
+                    reason_line = "Wash/peel recommended"
+                    reason_details = [
+                        "Not in EWG Dirty Dozen or Clean Fifteen",
+                        "Wash thoroughly and peel if applicable"
+                    ]
+
+            elif driver_rule == "Better form match":
+                reason_code = "form_match"
+                reason_line = "Correct form for recipe"
+                reason_details = [
+                    f"Matches required form: {ingredient_form or 'as specified'}",
+                    f"${winner_candidate.price:.2f} for {winner_candidate.size}"
+                ]
+
+            elif driver_rule == "Lower plastic packaging":
+                winner_pkg = self._detect_packaging(winner_candidate)
+                reason_code = "lower_plastic"
+                reason_line = "Lower plastic packaging"
+                reason_details = [
+                    f"Packaging: {winner_pkg}",
+                    "Reduces plastic waste"
+                ]
+
+            elif driver_rule == "Better value per unit":
+                reason_code = "better_unit_value"
+                unit_price = winner_candidate.unit_price
+                reason_line = "Better value per unit"
+                reason_details = [
+                    f"Unit price: ${unit_price:.3f}/oz",
+                    f"${winner_candidate.price:.2f} for {winner_candidate.size}"
+                ]
+
+            elif driver_rule == "Faster delivery":
+                reason_code = "faster_delivery"
+                reason_line = "Faster delivery"
+                reason_details = [
+                    "Available for quicker delivery",
+                    f"${winner_candidate.price:.2f} for {winner_candidate.size}"
+                ]
+
+        # Fallback to old logic if no strong driver
+        if not reason_code and ewg_category == "dirty_dozen" and winner_candidate.organic:
             reason_code = "ewg_dirty_dozen"
             reason_line = "Organic recommended (EWG Dirty Dozen)"
             reason_details = [
@@ -1119,11 +1369,12 @@ class PlannerEngine:
                 f"${winner_candidate.price:.2f} for {winner_candidate.size}"
             ]
 
-        # Fallback: Generic selection (avoid this if possible)
+        # Fallback: Best available match (only when no strong drivers exist)
         if not reason_code:
-            reason_code = "selected"
-            reason_line = "Selected for this recipe"
+            reason_code = "best_available"
+            reason_line = "Best available match"
             reason_details = [
+                "No strong differentiators in available options",
                 f"${winner_candidate.price:.2f} for {winner_candidate.size}"
             ]
 
@@ -1205,37 +1456,95 @@ class PlannerEngine:
         winner: Dict,
         runner_up: Optional[Dict],
         all_candidates: List[Dict],
-        reason_line: str
+        eliminated: List[Dict],
+        reason_line: str,
+        ingredient_name: str,  # NEW: For component scoring
+        ingredient_form: Optional[str],  # NEW: For component scoring
+        prompt: str,  # NEW: For delivery component
+        query_key: str,  # NEW: Normalized ingredient key
+        retrieved_summary_data: Dict[str, int],  # NEW: Retrieved by store
+        considered_summary_data: Dict[str, int]  # NEW: Considered by store
     ) -> Dict:
         """
-        Build decision trace for scoring drawer
+        Build REAL decision trace from actual scoring/filtering pipeline
 
-        Returns dict with:
-        - winner_score, runner_up_score
-        - candidates list (all considered + filtered)
-        - filtered_out_summary
-        - score_drivers
+        Returns DecisionTrace object with:
+        - query_key (normalized)
+        - retrieved_summary, considered_summary (by store)
+        - winner_score, runner_up_score (REAL scores)
+        - candidates list (all considered + filtered_out)
+        - drivers (top score deltas vs runner-up)
+        - tradeoffs_accepted (negative components on winner)
+        - filtered_out_summary (counts by elimination reason)
+
+        NO PLACEHOLDERS - all data is real or omitted
         """
+        from ..contracts.cart_plan import CandidatePoolSummary, DecisionTrace, ScoreDriver
+
+        # Store name mappings
+        STORE_NAMES = {
+            "freshdirect": "FreshDirect",
+            "wholefoods": "Whole Foods Market",
+            "pure_indian_foods": "Pure Indian Foods",
+            "shoprite": "ShopRite"
+        }
+
+        # Build retrieved_summary
+        retrieved_summary = [
+            CandidatePoolSummary(
+                store_id=store_id,
+                store_name=STORE_NAMES.get(store_id, store_id),
+                retrieved_count=count,
+                considered_count=considered_summary_data.get(store_id, 0)
+            )
+            for store_id, count in retrieved_summary_data.items()
+        ]
+
+        # Build considered_summary (only stores with >0 considered)
+        considered_summary = [
+            CandidatePoolSummary(
+                store_id=store_id,
+                store_name=STORE_NAMES.get(store_id, store_id),
+                retrieved_count=retrieved_summary_data.get(store_id, 0),
+                considered_count=count
+            )
+            for store_id, count in considered_summary_data.items()
+            if count > 0
+        ]
+
         winner_candidate = winner["candidate"]
         runner_up_candidate = runner_up["candidate"] if runner_up else None
 
-        # Simple scoring: organic=40, form_score_bonus=30, unit_price_bonus=30
-        winner_score = self._calculate_simple_score(winner_candidate)
-        runner_up_score = self._calculate_simple_score(runner_up_candidate) if runner_up_candidate else None
+        # Collect all unit prices for relative scoring
+        all_unit_prices = [c["candidate"].unit_price for c in all_candidates]
 
-        # Build candidates list
+        # Compute REAL scores with breakdowns
+        winner_score, winner_breakdown = self._compute_real_score(
+            winner, ingredient_name, ingredient_form, all_unit_prices, prompt
+        )
+        runner_up_score, runner_up_breakdown = None, {}
+        if runner_up:
+            runner_up_score, runner_up_breakdown = self._compute_real_score(
+                runner_up, ingredient_name, ingredient_form, all_unit_prices, prompt
+            )
+
+        # Build candidates list (considered + filtered_out)
         candidates = []
-        for idx, c_dict in enumerate(all_candidates[:10]):  # Top 10
+
+        # Add considered candidates (survived filtering)
+        for c_dict in all_candidates[:10]:  # Top 10 considered
             c = c_dict["candidate"]
-            score = self._calculate_simple_score(c)
+            score, breakdown = self._compute_real_score(
+                c_dict, ingredient_name, ingredient_form, all_unit_prices, prompt
+            )
 
             # Determine status
             if c.product_id == winner_candidate.product_id:
-                status = "Winner"
+                status = "winner"
             elif runner_up_candidate and c.product_id == runner_up_candidate.product_id:
-                status = "Runner-up"
+                status = "runner_up"
             else:
-                status = "Considered"
+                status = "considered"
 
             candidates.append({
                 "product": c.title,
@@ -1247,62 +1556,121 @@ class PlannerEngine:
                 "form_score": c.form_score,
                 "packaging": self._detect_packaging(c),
                 "status": status,
-                "score": score
+                "score_total": score,
+                "score_breakdown": breakdown,  # NEW: Component breakdown
+                "elimination_reasons": []  # No elimination for considered
             })
 
-        # Score drivers (based on reason_line)
-        drivers = []
-        if "EWG Dirty Dozen" in reason_line or "EWG Clean Fifteen" in reason_line:
-            drivers.append({"rule": "EWG guidance applied", "delta": 15})
-        if "Lower plastic" in reason_line:
-            drivers.append({"rule": "Better packaging", "delta": 5})
-        if "Convenient form" in reason_line:
-            drivers.append({"rule": "Time-saving form", "delta": 5})
-        if "Better value" in reason_line:
-            drivers.append({"rule": "Unit price advantage", "delta": 10})
-        if winner_candidate.organic:
-            drivers.append({"rule": "Organic certification", "delta": 10})
-
-        # Top 2 drivers
-        drivers = sorted(drivers, key=lambda d: d["delta"], reverse=True)[:2]
-
-        return {
-            "winner_score": winner_score,
-            "runner_up_score": runner_up_score,
-            "score_margin": winner_score - (runner_up_score or 0),
-            "candidates": candidates,
-            "filtered_out_summary": {},  # TODO: Track elimination reasons
-            "drivers": drivers
+        # Elimination explanations mapping
+        ELIMINATION_EXPLANATIONS = {
+            "WRONG_STORE_SOURCE": "Product from different store than assigned",
+            "WRONG_STORE_PRIVATE_LABEL": "Private label brand doesn't match store",
+            "PRICE_OUTLIER_SANITY": "Price exceeds reasonable range for category",
+            "UNIT_PRICE_INCONSISTENT": "Unit price calculation inconsistent",
+            "FORM_MISMATCH": "Product form doesn't match required form",
+            "FRESH_EXCLUDE_POWDER": "Fresh form required, excluding powder/paste",
+            "POWDER_EXCLUDE_SEEDS": "Powder form required, excluding seeds/whole",
+            "SEEDS_EXCLUDE_LOOKALIKE": "Seeds required, excluding lookalike products"
         }
 
-    def _calculate_simple_score(self, candidate) -> int:
-        """Calculate simple 0-100 score for candidate"""
-        if candidate is None:
-            return 0
+        # Add filtered-out candidates with explanations
+        for e_dict in eliminated[:10]:  # Cap at 10 filtered
+            c = e_dict["candidate"]
+            reason = e_dict.get("elimination_reason", "UNKNOWN")
+            candidates.append({
+                "product": c.title,
+                "brand": c.brand,
+                "store": c.source_store_id,
+                "price": c.price,
+                "unit_price": round(c.unit_price, 3),
+                "organic": c.organic,
+                "form_score": c.form_score,
+                "packaging": self._detect_packaging(c),
+                "status": "filtered_out",
+                "score_total": None,  # No score for filtered
+                "elimination_reasons": [reason],
+                "elimination_explanation": ELIMINATION_EXPLANATIONS.get(reason, f"Filtered: {reason}"),
+                "elimination_stage": reason
+            })
 
-        score = 50  # Base score
+        # Filtered-out summary (count by reason)
+        filtered_out_summary = {}
+        for e in eliminated:
+            reason = e.get("elimination_reason", "UNKNOWN")
+            filtered_out_summary[reason] = filtered_out_summary.get(reason, 0) + 1
 
-        # Organic bonus
-        if candidate.organic:
-            score += 20
+        # Compute drivers using component breakdowns
+        drivers_list = compute_score_drivers(winner_breakdown, runner_up_breakdown)
 
-        # Form score bonus (lower form_score is better)
-        if candidate.form_score == 0:
-            score += 15  # Fresh/whole
-        elif candidate.form_score <= 5:
-            score += 10  # Seeds/pods
-        elif candidate.form_score <= 10:
-            score += 5   # Dried
-        # Powder/granules get no bonus
+        # Compute tradeoffs_accepted (negative components on winner)
+        tradeoffs_accepted = []
+        for component, score in winner_breakdown.items():
+            if score < 0:
+                if component == "delivery":
+                    tradeoffs_accepted.append("Slower delivery")
+                elif component == "packaging":
+                    tradeoffs_accepted.append("More plastic packaging")
+                elif component == "outlier_penalty":
+                    tradeoffs_accepted.append("Premium priced")
 
-        # Unit price bonus (relative, capped)
-        # Lower unit price is better, but cap at +15
-        if candidate.unit_price > 0:
-            # Normalize to a 0-15 scale (assuming $0.10/oz is excellent, $1.00/oz is poor)
-            price_score = max(0, 15 - int(candidate.unit_price * 15))
-            score += min(15, price_score)
+        # Convert drivers dict list to ScoreDriver objects
+        score_drivers = [
+            ScoreDriver(rule=d["rule"], delta=d["delta"])
+            for d in drivers_list
+        ]
 
-        return min(100, score)  # Cap at 100
+        # Return typed DecisionTrace object
+        return DecisionTrace(
+            query_key=query_key,
+            retrieved_summary=retrieved_summary,
+            considered_summary=considered_summary,
+            winner_score=winner_score,
+            runner_up_score=runner_up_score,
+            score_margin=winner_score - (runner_up_score or 0) if runner_up_score else 0,
+            candidates=candidates,
+            drivers=score_drivers,
+            tradeoffs_accepted=tradeoffs_accepted,
+            filtered_out_summary=filtered_out_summary
+        )
+
+    def _compute_real_score(
+        self,
+        candidate_dict: Dict,
+        ingredient_name: str,
+        ingredient_form: Optional[str],
+        all_unit_prices: list[float],
+        prompt: str
+    ) -> Tuple[int, Dict[str, int]]:
+        """
+        Compute component-based score with breakdown.
+
+        Returns:
+            (total_score, component_breakdown)
+        """
+        if candidate_dict is None:
+            return 0, {}
+
+        candidate = candidate_dict["candidate"]
+        ingredient_category = get_ingredient_category(ingredient_name)
+
+        # Get store delivery estimate (from enriched data or default)
+        delivery_estimate = candidate_dict.get("delivery_estimate", "1-2 days")
+
+        # Use new component-based scoring
+        score, breakdown = compute_total_score(
+            ingredient_name=ingredient_name,
+            ingredient_category=ingredient_category,
+            required_form=ingredient_form,
+            product_title=candidate.title,
+            is_organic=candidate.organic,
+            unit_price=candidate.unit_price,
+            all_unit_prices=all_unit_prices,
+            delivery_estimate=delivery_estimate,
+            prompt=prompt,
+            price_outlier_penalty=candidate_dict.get("price_outlier_penalty", 0)
+        )
+
+        return score, breakdown
 
     # ========================================================================
     # Step 6: Calculate Totals

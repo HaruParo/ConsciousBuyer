@@ -545,15 +545,15 @@ def extract_ingredients(request: CreateCartRequest):
         orch.confirm_ingredients(ingredients)
         orch.step_candidates()
 
-        # Get Anthropic client if available
-        anthropic_client = orch.anthropic_client if hasattr(orch, 'anthropic_client') else None
+        # Get LLM client if available
+        llm_client = orch.llm_client if hasattr(orch, 'llm_client') else None
 
         # Decide optimal store split using classification system with urgency inference
         store_split_result = decide_optimal_store_split(
             ingredients=ingredients,
             inventory=orch.state.candidates_by_ingredient,
             user_location=request.user_location,
-            anthropic_client=anthropic_client,
+            anthropic_client=llm_client,  # Note: store_split still uses old parameter name
             meal_plan_text=request.meal_plan
         )
 
@@ -879,6 +879,7 @@ class PlanRequestV2(BaseModel):
     servings: int = 2
     preferences: dict | None = None
     ingredients_override: list[str] | None = None  # Confirmed ingredients from modal
+    include_trace: bool = False  # Include decision traces for scoring drawer (opt-in to avoid bloat)
 
 
 @app.post("/api/plan-v2", response_model=dict)
@@ -939,11 +940,14 @@ def plan_v2(request: PlanRequestV2):
                 print(f"  - {ing}")
 
         # Step 2: Run PlannerEngine (deterministic)
-        engine = PlannerEngine()
+        # Use source_listings.csv (has mushrooms!) instead of inventories_trusted
+        product_index = ProductIndex(use_synthetic=False)
+        engine = PlannerEngine(product_index=product_index)
         plan = engine.create_plan(
             prompt=request.prompt,
             ingredients=ingredients,
-            servings=request.servings
+            servings=request.servings,
+            include_trace=request.include_trace  # Pass through for scoring drawer
         )
 
         execution_time = (time.time() - start_time) * 1000
@@ -996,7 +1000,9 @@ def debug_plan(request: PlanRequestV2):
             )
 
         # Run planner with debug info collection
-        engine = PlannerEngine()
+        # Use source_listings.csv (has mushrooms!) instead of inventories_trusted
+        product_index = ProductIndex(use_synthetic=False)
+        engine = PlannerEngine(product_index=product_index)
         index = engine.product_index
 
         debug_info = []
@@ -1044,11 +1050,12 @@ def debug_plan(request: PlanRequestV2):
                 store_assignment_reason="Primary store (most items)" if candidates else "N/A"
             ))
 
-        # Create plan
+        # Create plan (debug always includes trace)
         plan = engine.create_plan(
             prompt=request.prompt,
             ingredients=ingredients,
-            servings=request.servings
+            servings=request.servings,
+            include_trace=True  # Debug endpoint always includes traces
         )
 
         execution_time = (time.time() - start_time) * 1000
@@ -1103,10 +1110,25 @@ def _canonicalize_ingredients(ingredients: list[str], prompt: str) -> list[str]:
 
 def _simple_ingredient_extraction(prompt: str) -> list[str]:
     """
-    Simple ingredient extraction (temporary)
+    Ingredient extraction using LLM (Ollama/Llama) with template fallback
 
-    TODO: Replace with proper LLM extraction + fallback
+    Uses IngredientAgent with Ollama for proper extraction.
+    Falls back to templates only if LLM fails.
     """
+    from src.agents.ingredient_agent import IngredientAgent
+
+    # Try LLM extraction first
+    agent = IngredientAgent(use_llm=True)
+    result = agent.extract(prompt, servings=None)
+
+    if not result.is_error and result.facts.get("ingredients"):
+        # Extract just the ingredient names from the structured result
+        ingredients = [ing.get("name") for ing in result.facts["ingredients"] if ing.get("name")]
+        print(f"  ✓ LLM extracted {len(ingredients)} ingredients")
+        return _canonicalize_ingredients(ingredients, prompt)
+
+    # Fallback to templates if LLM fails
+    print(f"  ⚠️  LLM extraction failed, using template fallback")
     prompt_lower = prompt.lower()
 
     # Common meal patterns

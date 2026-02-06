@@ -147,7 +147,7 @@ export function CartItemCard({
                 </div>
               </div>
               {/* Scoring system link */}
-              {item.decision_trace && (
+              {item.decisionTrace && (
                 <button
                   className="ml-2 text-[10px] text-blue-600 hover:underline"
                   onClick={() => setShowScoringDrawer(true)}
@@ -251,12 +251,12 @@ export function CartItemCard({
     </div>
 
     {/* Scoring Drawer */}
-    {item.decision_trace && (
+    {item.decisionTrace && (
       <ScoringDrawer
         isOpen={showScoringDrawer}
         onClose={() => setShowScoringDrawer(false)}
         ingredientName={item.ingredient_label || item.ingredientName || item.name}
-        trace={item.decision_trace}
+        trace={item.decisionTrace}
       />
     )}
     </>

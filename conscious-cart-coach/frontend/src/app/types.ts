@@ -20,6 +20,7 @@ export interface CartItem {
   // NEW: V2 fields (from backend reason generation)
   reasonLine?: string;
   reasonDetails?: string[];
+  decisionTrace?: DecisionTrace; // For scoring drawer
 }
 
 export interface MealPlanData {
@@ -111,6 +112,52 @@ export interface ProductChips {
   tradeoffs: string[];
 }
 
+export interface CandidatePoolSummary {
+  store_id: string;
+  store_name: string;
+  retrieved_count: number;
+  considered_count: number;
+}
+
+export interface DecisionTrace {
+  query_key: string; // NEW: Normalized ingredient key used for retrieval
+  retrieved_summary: CandidatePoolSummary[]; // NEW: Retrieved from ProductIndex by store
+  considered_summary: CandidatePoolSummary[]; // NEW: After filters by store
+  winner_score: number;
+  runner_up_score: number | null;
+  score_margin: number;
+  candidates: Array<{
+    product: string;
+    brand: string;
+    store: string;
+    price: number;
+    unit_price: number;
+    organic: boolean;
+    form_score: number;
+    packaging: string;
+    status: string;
+    score_total: number;
+    score_breakdown?: {  // NEW: Component score breakdown
+      base: number;
+      ewg: number;
+      form_fit: number;
+      packaging: number;
+      delivery: number;
+      unit_value: number;
+      outlier_penalty: number;
+    };
+    elimination_reasons: string[];
+    elimination_explanation?: string; // NEW: Human-readable explanation
+    elimination_stage?: string; // NEW: Stage where eliminated
+  }>;
+  filtered_out_summary: Record<string, number>;
+  drivers: Array<{
+    rule: string;
+    delta: number;
+  }>;
+  tradeoffs_accepted: string[]; // NEW: Tradeoffs accepted on winner
+}
+
 export interface CartItemV2 {
   ingredient_name: string;
   ingredient_label: string; // NEW: Combined name + form ("fresh ginger", "cumin seeds", etc.)
@@ -126,6 +173,7 @@ export interface CartItemV2 {
   seasonality: string | null;
   ewg_category: string | null;
   recall_status: string;
+  decision_trace?: DecisionTrace; // Optional decision trace for scoring drawer
 }
 
 export interface StoreInfoV2 {
@@ -134,6 +182,7 @@ export interface StoreInfoV2 {
   store_type: string;
   delivery_estimate: string;
   checkout_url_template: string | null;
+  selection_reason?: string; // NEW: Why this store was chosen
 }
 
 export interface StoreAssignment {
@@ -141,6 +190,7 @@ export interface StoreAssignment {
   ingredient_names: string[];
   item_count: number;
   estimated_total: number;
+  assignment_reason?: string; // NEW: Why these ingredients were assigned to this store
 }
 
 export interface StorePlan {

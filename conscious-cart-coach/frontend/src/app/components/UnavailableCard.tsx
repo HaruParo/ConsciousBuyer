@@ -31,38 +31,23 @@ export const UnavailableCard: React.FC<UnavailableCardProps> = ({
       </div>
 
       <p className="unavailable-card-message">
-        Unavailable in {storeName}
+        Not available in store inventory
       </p>
-
-      <details className="unavailable-card-details">
-        <summary>Why unavailable?</summary>
-        <p className="unavailable-card-reason">{reason}</p>
-      </details>
-
-      {onRemove && (
-        <button
-          className="unavailable-card-remove"
-          onClick={onRemove}
-          aria-label={`Remove ${ingredientName} from cart`}
-        >
-          Remove from cart
-        </button>
-      )}
 
       <style jsx>{`
         .unavailable-card {
           border: 1px solid #e0e0e0;
           border-radius: 8px;
-          padding: 16px;
-          background: #f9f9f9;
-          margin-bottom: 12px;
+          padding: 12px 16px;
+          background: #fafafa;
+          margin-bottom: 8px;
         }
 
         .unavailable-card-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 8px;
+          margin-bottom: 4px;
         }
 
         .unavailable-card-title {
@@ -83,50 +68,9 @@ export const UnavailableCard: React.FC<UnavailableCardProps> = ({
         }
 
         .unavailable-card-message {
-          color: #666;
-          font-size: 14px;
-          margin: 8px 0;
-        }
-
-        .unavailable-card-details {
-          margin: 12px 0;
-        }
-
-        .unavailable-card-details summary {
-          cursor: pointer;
-          color: #1976d2;
+          color: #757575;
           font-size: 13px;
-          user-select: none;
-        }
-
-        .unavailable-card-details summary:hover {
-          text-decoration: underline;
-        }
-
-        .unavailable-card-reason {
-          margin-top: 8px;
-          padding: 8px;
-          background: white;
-          border-radius: 4px;
-          font-size: 13px;
-          color: #666;
-        }
-
-        .unavailable-card-remove {
-          width: 100%;
-          padding: 8px;
-          background: white;
-          border: 1px solid #e0e0e0;
-          border-radius: 4px;
-          color: #666;
-          font-size: 14px;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-
-        .unavailable-card-remove:hover {
-          background: #f5f5f5;
-          border-color: #bdbdbd;
+          margin: 4px 0 0 0;
         }
       `}</style>
     </div>

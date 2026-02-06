@@ -4,14 +4,14 @@ Ingredient Agent - Extracts ingredients from user prompts.
 This is the FIRST agent in the gated flow. It parses user requests
 (recipes, meal plans, shopping lists) into structured ingredients.
 
-Supports both LLM-powered extraction (Claude) and template-based fallback.
+Supports both LLM-powered extraction (Anthropic, Ollama, Gemini, etc.) and template-based fallback.
 
 Returns AgentResult contract for all outputs.
 
 Usage:
     from src.agents.ingredient_agent import IngredientAgent
 
-    # With LLM (if available)
+    # With LLM (supports Anthropic, Ollama, Gemini, etc.)
     agent = IngredientAgent(use_llm=True)
     result = agent.extract("I want to make chicken biryani for 4 people")
 
@@ -23,8 +23,6 @@ Usage:
 import logging
 from datetime import datetime
 from typing import Any, Optional
-
-from anthropic import Anthropic
 
 from ..core.types import AgentResult, Evidence, make_result, make_error
 
@@ -128,30 +126,30 @@ class IngredientAgent:
 
     AGENT_NAME = "ingredient"
 
-    def __init__(self, use_llm: bool = False, anthropic_client: Optional[Anthropic] = None):
+    def __init__(self, use_llm: bool = False, llm_client = None):
         """
         Initialize IngredientAgent.
 
         Args:
-            use_llm: Whether to use LLM for extraction (requires API key)
-            anthropic_client: Optional pre-initialized Anthropic client
+            use_llm: Whether to use LLM for extraction
+            llm_client: Optional pre-initialized LLM client (supports Anthropic, Ollama, Gemini, etc.)
         """
         self.recipe_templates = RECIPE_TEMPLATES
         self.common_produce = COMMON_PRODUCE
         self.use_llm = use_llm
-        self.anthropic_client = anthropic_client
+        self.llm_client = llm_client
 
         # Lazy import LLM module (only if needed)
         self._llm_extractor = None
         if self.use_llm:
             try:
-                from ..llm.client import get_anthropic_client
+                from ..utils.llm_client import get_llm_client
                 from ..llm.ingredient_extractor import extract_ingredients_with_llm
                 self._llm_extractor = extract_ingredients_with_llm
-                if not self.anthropic_client:
-                    self.anthropic_client = get_anthropic_client()
-                logger.info("IngredientAgent initialized with LLM support")
-            except ImportError as e:
+                if not self.llm_client:
+                    self.llm_client = get_llm_client()
+                logger.info(f"IngredientAgent initialized with LLM support (provider: {type(self.llm_client).__name__})")
+            except Exception as e:
                 logger.warning(f"LLM module not available: {e}. Falling back to templates.")
                 self.use_llm = False
 
@@ -170,7 +168,7 @@ class IngredientAgent:
         """
         try:
             # Try LLM extraction first (if enabled)
-            if self.use_llm and self.anthropic_client and self._llm_extractor:
+            if self.use_llm and self.llm_client and self._llm_extractor:
                 logger.info(f"Attempting LLM extraction for: '{user_prompt}'")
                 llm_result = self._extract_with_llm(user_prompt, servings)
                 if llm_result:
@@ -188,15 +186,15 @@ class IngredientAgent:
             return make_error(self.AGENT_NAME, str(e))
 
     def _extract_with_llm(self, user_prompt: str, servings: int | None = None) -> Optional[AgentResult]:
-        """Extract ingredients using LLM (Claude)."""
-        if not self._llm_extractor or not self.anthropic_client:
+        """Extract ingredients using LLM (Anthropic, Ollama, Gemini, etc.)."""
+        if not self._llm_extractor or not self.llm_client:
             return None
 
         try:
             target_servings = servings or self._extract_servings(user_prompt.lower()) or 4
 
             llm_ingredients = self._llm_extractor(
-                client=self.anthropic_client,
+                client=self.llm_client,
                 prompt=user_prompt,
                 servings=target_servings,
             )

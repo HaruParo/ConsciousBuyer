@@ -186,6 +186,7 @@ export async function createCartPlanV2(
     const requestBody: any = {
       prompt: prompt,
       servings: servings,
+      include_trace: true,  // Enable decision traces for scoring drawer
     };
 
     // If ingredients override provided, send it directly to backend

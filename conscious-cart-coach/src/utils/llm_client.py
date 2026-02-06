@@ -153,7 +153,7 @@ class OllamaClient(BaseLLMClient):
         }
 
         try:
-            response = requests.post(self.api_url, json=payload, timeout=60)
+            response = requests.post(self.api_url, json=payload, timeout=180)
             response.raise_for_status()
             result = response.json()
 
@@ -172,7 +172,7 @@ class OllamaClient(BaseLLMClient):
                 f"Make sure Ollama is running with: ollama serve"
             )
         except requests.exceptions.Timeout:
-            raise TimeoutError(f"Ollama request timed out after 60 seconds")
+            raise TimeoutError(f"Ollama request timed out after 180 seconds")
         except Exception as e:
             raise Exception(f"Ollama API error: {str(e)}")
 
@@ -389,7 +389,7 @@ def get_llm_client(provider: Optional[str] = None) -> BaseLLMClient:
     elif provider == "ollama":
         return OllamaClient(
             base_url=os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434"),
-            model=os.environ.get("OLLAMA_MODEL", "mistral"),
+            model=os.environ.get("OLLAMA_MODEL", "gpt-oss:20b"),
         )
 
     elif provider == "gemini":

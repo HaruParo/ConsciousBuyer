@@ -86,7 +86,9 @@ export function MultiStoreCart({
     // Get items for active tab (V2)
     const getFilteredItemsV2 = () => {
       if (activeTab === 'all') return items;
-      return items.filter(item => item.store_id === activeTab);
+      if (activeTab === 'unavailable') return unavailableItems;
+      // For specific store tabs, only show available items from that store
+      return items.filter(item => item.store_id === activeTab && !unavailableItems.includes(item));
     };
 
     const filteredItemsV2 = getFilteredItemsV2();
@@ -223,41 +225,72 @@ export function MultiStoreCart({
 
         {/* Cart Items with Tabs (V2) */}
         <div className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6">
-          {/* Tabs */}
-          {totalStores > 1 && (
-            <div className="flex gap-3 sm:gap-4 mb-4 sm:mb-6 border-b pb-0 overflow-x-auto" style={{ borderColor: designTokens.colors.border.light }}>
+          {/* Tabs - Always show store tabs and unavailable group */}
+          <div className="flex gap-3 sm:gap-4 mb-4 sm:mb-6 border-b pb-0 overflow-x-auto" style={{ borderColor: designTokens.colors.border.light }}>
+            <button
+              onClick={() => setActiveTab('all')}
+              className="px-3 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap transition-colors text-xs sm:text-sm"
+              style={{
+                borderBottom: activeTab === 'all' ? `3px solid ${designTokens.colors.brand.primary}` : '3px solid transparent',
+                color: activeTab === 'all' ? designTokens.colors.brand.primary : designTokens.colors.text.secondary,
+                marginBottom: '-1px'
+              }}
+            >
+              All items ({totalItems})
+            </button>
+            {stores.map(store => {
+              const storeItemCount = items.filter(item => item.store_id === store.store_id && !unavailableItems.includes(item)).length;
+              return (
+                <button
+                  key={store.store_id}
+                  onClick={() => setActiveTab(store.store_id)}
+                  className="px-3 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap transition-colors text-xs sm:text-sm"
+                  style={{
+                    borderBottom: activeTab === store.store_id ? `3px solid ${designTokens.colors.brand.primary}` : '3px solid transparent',
+                    color: activeTab === store.store_id ? designTokens.colors.brand.primary : designTokens.colors.text.secondary,
+                    marginBottom: '-1px'
+                  }}
+                  title={store.selection_reason || undefined}
+                >
+                  {store.store_name}
+                  {store.delivery_estimate && <span className="opacity-60"> · {store.delivery_estimate}</span>}
+                  {' '}({storeItemCount})
+                </button>
+              );
+            })}
+            {unavailableCount > 0 && (
               <button
-                onClick={() => setActiveTab('all')}
+                onClick={() => setActiveTab('unavailable')}
                 className="px-3 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap transition-colors text-xs sm:text-sm"
                 style={{
-                  borderBottom: activeTab === 'all' ? `3px solid ${designTokens.colors.brand.primary}` : '3px solid transparent',
-                  color: activeTab === 'all' ? designTokens.colors.brand.primary : designTokens.colors.text.secondary,
+                  borderBottom: activeTab === 'unavailable' ? `3px solid ${designTokens.colors.brand.primary}` : '3px solid transparent',
+                  color: activeTab === 'unavailable' ? designTokens.colors.brand.primary : designTokens.colors.text.secondary,
                   marginBottom: '-1px'
                 }}
               >
-                All items ({totalItems})
+                Unavailable ({unavailableCount})
               </button>
-              {stores.map(store => {
-                const storeItemCount = items.filter(item => item.store_id === store.store_id).length;
-                return (
-                  <button
-                    key={store.store_id}
-                    onClick={() => setActiveTab(store.store_id)}
-                    className="px-3 sm:px-4 py-2 sm:py-3 font-semibold whitespace-nowrap transition-colors text-xs sm:text-sm"
-                    style={{
-                      borderBottom: activeTab === store.store_id ? `3px solid ${designTokens.colors.brand.primary}` : '3px solid transparent',
-                      color: activeTab === store.store_id ? designTokens.colors.brand.primary : designTokens.colors.text.secondary,
-                      marginBottom: '-1px'
-                    }}
-                  >
-                    {store.store_name}
-                    {store.delivery_estimate && <span className="opacity-60"> · {store.delivery_estimate}</span>}
-                    {' '}({storeItemCount})
-                  </button>
-                );
-              })}
-            </div>
-          )}
+            )}
+          </div>
+
+          {/* Store Selection Explanation (NEW) */}
+          {activeTab !== 'all' && activeTab !== 'unavailable' && (() => {
+            const activeStore = stores.find(s => s.store_id === activeTab);
+            if (activeStore?.selection_reason) {
+              return (
+                <div className="px-4 py-2 bg-amber-50 border-b border-amber-100">
+                  <div className="flex items-start gap-2 text-xs text-gray-700">
+                    <span className="mt-0.5">💡</span>
+                    <div>
+                      <span className="font-semibold">Why this store: </span>
+                      <span>{activeStore.selection_reason}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+            return null;
+          })()}
 
           {/* Items (V2 CartItemV2 rendering) */}
           {filteredItemsV2.length === 0 ? (
@@ -297,7 +330,9 @@ export function MultiStoreCart({
                   available: itemV2.status !== 'unavailable',
                   // NEW: Pass reason from backend
                   reasonLine: itemV2.reason_line,
-                  reasonDetails: itemV2.reason_details
+                  reasonDetails: itemV2.reason_details,
+                  // NEW: Pass decision trace for scoring drawer
+                  decisionTrace: itemV2.decision_trace
                 };
 
                 return (
