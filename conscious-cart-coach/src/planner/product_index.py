@@ -568,6 +568,9 @@ class ProductIndex:
             "cinnamon": "spices",
             "bay leaves": "spices",
             "bay leaf": "spices",
+            "green chili": "spices",
+            "green chilies": "spices",
+            "saffron": "spices",
 
             # Spices - canonical forms with qualifiers
             "garam masala powder": "spices",  # Canonical form
