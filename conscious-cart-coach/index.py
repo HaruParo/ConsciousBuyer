@@ -2,6 +2,7 @@
 Vercel Serverless Function - Main API Handler
 """
 
+import os
 import sys
 from pathlib import Path
 
@@ -13,6 +14,16 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 try:
     # Import the full FastAPI app from api/main.py
     from api.main import app
+
+    # Add debug endpoint to check env vars
+    @app.get("/api/debug-env")
+    def debug_env():
+        return {
+            "VERCEL": os.environ.get("VERCEL", "not set"),
+            "ANTHROPIC_API_KEY": "set" if os.environ.get("ANTHROPIC_API_KEY") else "NOT SET",
+            "LLM_PROVIDER": os.environ.get("LLM_PROVIDER", "not set (will default to anthropic on Vercel)"),
+        }
+
 except Exception as e:
     # If import fails, create a minimal app that shows the error
     from fastapi import FastAPI
