@@ -36,9 +36,9 @@ class HealthResponse(BaseModel):
     service: str
     version: str
 
-# Health check
-@app.get("/", response_model=HealthResponse)
+# Health check - only on /api, not root
 @app.get("/api", response_model=HealthResponse)
+@app.get("/api/", response_model=HealthResponse)
 def health():
     return {
         "status": "ok",
