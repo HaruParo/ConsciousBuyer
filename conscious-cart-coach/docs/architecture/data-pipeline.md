@@ -1,6 +1,9 @@
 # Data Flows: Following the Journey of a Byte
 
-**Updated**: 2026-01-24
+**Updated**: 2026-01-29
+**Current Version**: React + FastAPI Full-Stack (v2.0)
+
+> ⚠️ **Note**: Streamlit references in this document are historical (v1.0). Current version uses React frontend with FastAPI backend.
 
 ---
 
@@ -1262,6 +1265,656 @@ if result.status == "ok":
 ```
 
 Like USB-C: every device uses the same connector.
+
+---
+
+## Flow 3: The API Flow (FastAPI + React)
+
+### The Cross-Border Journey
+
+Think of the API flow like international shipping:
+- **Export** (FastAPI): Package data for transport
+- **Customs** (JSON serialization): Standard format both sides understand
+- **Import** (React): Unpack and display
+
+Let's follow a byte's journey across the network.
+
+---
+
+### Stage 0: The Browser Event (Client Side)
+
+**User action**: Types "chicken biryani for 4" and clicks "Create my cart"
+
+**React state update**:
+```typescript
+// App.tsx
+const [mealPlan, setMealPlan] = useState<string>("");
+const [cartItems, setCartItems] = useState<CartItem[]>([]);
+const [isLoading, setIsLoading] = useState<boolean>(false);
+const [error, setError] = useState<string | null>(null);
+
+const handleCreateCart = async () => {
+  setIsLoading(true);      // Show spinner
+  setError(null);          // Clear previous errors
+  setCartItems([]);        // Clear previous cart
+
+  try {
+    const response = await createCart(mealPlan);
+    setCartItems(response.items);
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setIsLoading(false);
+  }
+};
+```
+
+**What just happened**:
+1. ❌ Local state (mealPlan string)
+2. ✅ Loading state (boolean true)
+3. ⏳ Waiting for API call...
+
+Think of this as writing a letter and dropping it in the mailbox. Now we wait.
+
+---
+
+### Stage 1: The HTTP Request (Wire Format)
+
+**API service call**:
+```typescript
+// services/api.ts
+export async function createCart(mealPlan: string): Promise<CreateCartResponse> {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
+  const response = await fetch(`${API_BASE_URL}/api/create-cart`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      meal_plan: mealPlan
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.detail || 'Failed to create cart');
+  }
+
+  return response.json();
+}
+```
+
+**What's traveling over the wire**:
+
+```http
+POST /api/create-cart HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+Accept: application/json
+Origin: http://localhost:5173
+
+{"meal_plan": "chicken biryani for 4"}
+```
+
+**Data transformation**:
+```
+TypeScript string → JSON string → HTTP body → Network packets
+```
+
+**Size**: ~45 bytes (tiny!)
+
+Like sending a postcard: address (headers) + message (body).
+
+---
+
+### Stage 2: The FastAPI Endpoint (Server Side)
+
+**Request reception**:
+```python
+# api/main.py
+
+@app.post("/api/create-cart", response_model=CreateCartResponse)
+def create_cart(request: CreateCartRequest):
+    """
+    HTTP endpoint → Orchestrator pipeline → HTTP response
+    """
+
+    # Step 1: Validate request (Pydantic does this automatically)
+    # ✅ request.meal_plan exists
+    # ✅ request.meal_plan is a string
+    # ✅ request.meal_plan is not empty
+    # → If validation fails, FastAPI returns 422 automatically
+
+    # Step 2: Initialize orchestrator
+    orch = Orchestrator(
+        use_llm_extraction=False,    # Template mode
+        use_llm_explanations=False
+    )
+
+    # Step 3: Run the pipeline (same as Streamlit!)
+    result = orch.step_ingredients(request.meal_plan)
+
+    if result.status != "ok":
+        raise HTTPException(
+            status_code=400,
+            detail=f"Failed to extract ingredients: {result.message}"
+        )
+
+    ingredients = result.facts.get("ingredients", [])
+
+    if not ingredients:
+        raise HTTPException(
+            status_code=400,
+            detail="No ingredients found in meal plan"
+        )
+
+    # Step 4: Continue pipeline
+    orch.confirm_ingredients(ingredients)
+    orch.step_candidates()
+    orch.step_enrich()
+    bundle: DecisionBundle = orch.step_decide()
+
+    # Step 5: Build product lookup
+    lookup = build_product_lookup(orch.state.candidates_by_ingredient)
+
+    # Step 6: Map to API format
+    cart_items = [
+        map_decision_to_cart_item(decision_item, lookup, idx)
+        for idx, decision_item in enumerate(bundle.items)
+    ]
+
+    # Step 7: Return response
+    return CreateCartResponse(
+        items=cart_items,
+        total=round(sum(item.price for item in cart_items), 2),
+        store="FreshDirect",
+        location="NJ"
+    )
+```
+
+**Data transformations** (server side):
+```
+1. HTTP request body → Pydantic CreateCartRequest
+   {"meal_plan": "..."} → CreateCartRequest(meal_plan="...")
+
+2. Request.meal_plan → Orchestrator
+   "chicken biryani for 4" → [ingredients list]
+
+3. Orchestrator → DecisionBundle
+   [candidates] → DecisionBundle(items=[DecisionItem, ...])
+
+4. DecisionBundle → API response format
+   DecisionBundle → CreateCartResponse(items=[CartItem, ...])
+
+5. CreateCartResponse → JSON
+   Python objects → {"items": [...], "total": 67.80, ...}
+```
+
+**Key insight**: The Orchestrator doesn't know it's serving HTTP. It just processes meal plans.
+
+Like a chef who doesn't care if you're dining in or ordering takeout. Same kitchen, different packaging.
+
+---
+
+### Stage 3: The Data Mapping Layer (Translator)
+
+**The problem**: Internal format ≠ UI format
+
+**Internal format** (DecisionItem):
+```python
+DecisionItem(
+    ingredient_name="spinach",
+    selected_product_id="prod_12345",
+    tier_symbol=TierSymbol.BALANCED,
+    reason_short="Organic recommended (EWG)",
+    attributes=["organic", "in_season"],
+    safety_notes=["Dirty Dozen - high pesticide residue"],
+    cheaper_neighbor_id="prod_12344",
+    conscious_neighbor_id="prod_12346",
+    score=68.5
+)
+```
+
+**UI format** (CartItem):
+```typescript
+interface CartItem {
+  id: string;
+  name: string;               // "Organic Spinach"
+  brand: string;              // "Earthbound Farm"
+  catalogueName: string;      // "Earthbound Farm, Organic Spinach 5oz"
+  price: number;              // 3.99
+  quantity: number;           // 1
+  size: string;               // "5 oz"
+  image: string;              // URL
+  tags: {
+    whyPick: string[];        // ["Organic", "In Season", "No recent recalls"]
+    tradeOffs: string[];      // ["EWG Dirty Dozen", "Plastic packaging"]
+  };
+  store: string;              // "FreshDirect"
+  location: string;           // "NJ"
+  unitPrice?: number;         // 0.80
+  unitPriceUnit?: string;     // "oz"
+}
+```
+
+**The mapping function**:
+```python
+def map_decision_to_cart_item(
+    item: DecisionItem,
+    product_lookup: dict[str, dict],
+    index: int
+) -> CartItem:
+    """Convert internal format to UI format."""
+
+    # Get product details
+    product = product_lookup.get(item.selected_product_id, {})
+
+    # Build "Why pick" tags
+    why_pick_tags = []
+    if product.get("organic"):
+        why_pick_tags.append("Organic")
+    if product.get("local"):
+        why_pick_tags.append("Local")
+    if "in season" in " ".join(item.attributes or []).lower():
+        why_pick_tags.append("In Season")
+
+    # Check safety notes
+    safety_lower = " ".join(item.safety_notes or []).lower()
+    if not any(x in safety_lower for x in ["recall", "dirty", "advisory"]):
+        why_pick_tags.append("No recent recalls")
+
+    # Build "Trade-offs" tags
+    trade_off_tags = []
+    for note in item.safety_notes or []:
+        if "dirty dozen" in note.lower():
+            trade_off_tags.append("EWG Dirty Dozen")
+        elif "recall" in note.lower():
+            trade_off_tags.append("Recall match")
+
+    if "plastic" in product.get("size", "").lower():
+        trade_off_tags.append("Plastic packaging")
+
+    # Get image (placeholder for now)
+    image = "https://images.unsplash.com/photo-1542838132-92c53300491e?w=400"
+
+    return CartItem(
+        id=f"item-{index}",
+        name=product.get("title", item.ingredient_name),
+        brand=product.get("brand", ""),
+        catalogueName=f"{product.get('brand', '')}, {product.get('title', '')[:40]}",
+        price=product.get("price", 0),
+        quantity=1,
+        size=product.get("size", ""),
+        image=image,
+        tags=CartItemTag(
+            whyPick=why_pick_tags[:5],      # Max 5 tags
+            tradeOffs=trade_off_tags[:4]    # Max 4 tags
+        ),
+        store="FreshDirect",
+        location="NJ",
+        unitPrice=product.get("unit_price") if product.get("unit_price", 0) > 0 else None,
+        unitPriceUnit=product.get("unit_price_unit") if product.get("unit_price", 0) > 0 else None
+    )
+```
+
+**Why this matters**:
+1. **Decoupling**: Backend logic ≠ UI presentation
+2. **Evolution**: Can change UI without changing scoring
+3. **Reusability**: Same backend, multiple frontends (web, mobile)
+4. **Clarity**: Each layer has clear responsibility
+
+Like a translator at the UN: same content, different languages for different audiences.
+
+---
+
+### Stage 4: The HTTP Response (Wire Format)
+
+**What travels back**:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Access-Control-Allow-Origin: http://localhost:5173
+
+{
+  "items": [
+    {
+      "id": "item-0",
+      "name": "Organic Spinach",
+      "brand": "Earthbound Farm",
+      "catalogueName": "Earthbound Farm, Organic Spinach 5oz",
+      "price": 3.99,
+      "quantity": 1,
+      "size": "5 oz",
+      "image": "https://images.unsplash.com/photo-...",
+      "tags": {
+        "whyPick": ["Organic", "In Season", "Local", "No recent recalls"],
+        "tradeOffs": ["EWG Dirty Dozen", "Plastic packaging"]
+      },
+      "store": "FreshDirect",
+      "location": "NJ",
+      "unitPrice": 0.80,
+      "unitPriceUnit": "oz"
+    },
+    {
+      "id": "item-1",
+      "name": "Basmati Rice",
+      ...
+    },
+    ... (10 more items)
+  ],
+  "total": 67.80,
+  "store": "FreshDirect",
+  "location": "NJ"
+}
+```
+
+**Data size**: ~15 KB (12 items with full details)
+
+**Compression**: GZIP reduces to ~4 KB (75% reduction)
+
+**Transfer time**: ~50ms on localhost, ~200ms on Railway → Vercel
+
+Like receiving a package: compressed for shipping, expanded when opened.
+
+---
+
+### Stage 5: React State Update (Client Side)
+
+**Receiving the response**:
+```typescript
+// Back in App.tsx
+
+try {
+  const response = await createCart(mealPlan);
+  // response is now typed as CreateCartResponse
+
+  setCartItems(response.items);
+  // ✅ cartItems state updated
+  // ✅ React re-renders Cart component
+  // ✅ UI shows populated cart
+
+} catch (err) {
+  setError(err.message);
+  // ❌ Error state set
+  // ✅ Error banner shows in UI
+}
+```
+
+**React's reconciliation**:
+```
+1. State change detected → setCartItems([...])
+2. Component tree diff → Cart component needs update
+3. Virtual DOM diff → 12 new CartItem components
+4. Real DOM update → Browser paints cart items
+5. Total time → ~10ms
+```
+
+**What the user sees**:
+```
+[Before]
+┌────────────────┐
+│ YOUR CART      │
+│ Loading... 🔄  │
+└────────────────┘
+
+[After - smooth fade-in animation]
+┌────────────────┐
+│ YOUR CART      │
+│ 12 items       │
+│ $67.80         │
+│                │
+│ [Spinach card] │
+│ [Rice card]    │
+│ [Chicken card] │
+│ ...            │
+└────────────────┘
+```
+
+**Data journey complete**: User input → API → Backend → API → Browser → UI
+
+Total time: ~300ms (template mode), ~3-4s (LLM mode)
+
+---
+
+### The Error Flow: When Things Go Wrong
+
+**Scenario 1: Network failure**
+
+```typescript
+try {
+  const response = await fetch(...);
+} catch (err) {
+  // Network error (no response received)
+  throw new Error('Network error. Check your connection.');
+}
+```
+
+**What user sees**:
+```
+┌─────────────────────────────────┐
+│ ⚠️ Network error                │
+│ Check your connection.          │
+│ [Try again]                     │
+└─────────────────────────────────┘
+```
+
+---
+
+**Scenario 2: API returns error (400)**
+
+```python
+# FastAPI
+if not ingredients:
+    raise HTTPException(
+        status_code=400,
+        detail="No ingredients found in meal plan"
+    )
+```
+
+**HTTP response**:
+```http
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+
+{
+  "detail": "No ingredients found in meal plan"
+}
+```
+
+**React handling**:
+```typescript
+if (!response.ok) {
+  const error = await response.json();
+  throw new Error(error.detail || 'Failed to create cart');
+}
+```
+
+**What user sees**:
+```
+┌─────────────────────────────────┐
+│ ⚠️ No ingredients found         │
+│ Try a recognized recipe like:   │
+│ • "chicken biryani for 4"       │
+│ • "stir fry with vegetables"    │
+│ [Try again]                     │
+└─────────────────────────────────┘
+```
+
+---
+
+**Scenario 3: Server crash (500)**
+
+```python
+# FastAPI (uncaught exception)
+def create_cart(request: CreateCartRequest):
+    # ... something crashes
+    raise Exception("Database connection failed")
+```
+
+**FastAPI's automatic handling**:
+```http
+HTTP/1.1 500 Internal Server Error
+Content-Type: application/json
+
+{
+  "detail": "Internal server error: Database connection failed"
+}
+```
+
+**React handling** (same as above):
+```typescript
+throw new Error(error.detail || 'Failed to create cart');
+```
+
+**What user sees**:
+```
+┌─────────────────────────────────┐
+│ ⚠️ Server error                 │
+│ Internal server error: Database │
+│ connection failed               │
+│ [Report bug] [Try again]        │
+└─────────────────────────────────┘
+```
+
+**Why graceful errors matter**:
+- Users understand what happened
+- Actionable next steps
+- No cryptic stack traces
+- Maintains trust
+
+Like a good waiter: "Sorry, the kitchen is out of salmon. Would you like the tuna?"
+
+---
+
+### Data Flow Comparison: Streamlit vs API
+
+**Streamlit Flow** (single process):
+```
+User input → Python function → Orchestrator → Python function → Streamlit UI
+         (in-memory, ~100ms)
+```
+
+**API Flow** (client-server):
+```
+User input → JavaScript → HTTP → Python → Orchestrator → Python → HTTP → JavaScript → React UI
+         (network, ~300ms)
+```
+
+**Trade-offs**:
+
+| Aspect | Streamlit | FastAPI + React |
+|--------|-----------|-----------------|
+| Latency | 100ms | 300ms |
+| Flexibility | Low | High |
+| Deployment | Single server | Frontend + Backend |
+| Customization | CSS hacks | Full control |
+| Mobile support | Poor | Good |
+| State management | Server-side | Client-side |
+| Cost | 1 server | 2 services |
+
+**When to use which**:
+- **Streamlit**: Internal tools, rapid prototyping, data exploration
+- **API + React**: Production apps, mobile support, custom UX
+
+Like choosing between:
+- **Streamlit**: All-in-one food truck (convenient, limited menu)
+- **API + React**: Restaurant kitchen + dining room (flexible, more setup)
+
+---
+
+### The CORS Story: Why Browsers Are Paranoid
+
+**The problem**: React runs on `localhost:5173`, API runs on `localhost:8000`.
+
+Browser sees this as **cross-origin** request and blocks it by default.
+
+**Why?** Security. Imagine if any website could call your bank's API from your browser.
+
+**The solution**: FastAPI tells the browser "It's okay, I trust localhost:5173"
+
+```python
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",    # Vite dev server
+        "http://localhost:3000",    # Alternative React port
+        "https://*.vercel.app",     # Production deployments
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+```
+
+**What this does**:
+1. Browser sends **preflight request** (OPTIONS)
+2. FastAPI responds: "Yes, localhost:5173 is allowed"
+3. Browser sends **actual request** (POST)
+4. FastAPI responds with data
+
+**HTTP exchange**:
+```http
+OPTIONS /api/create-cart HTTP/1.1
+Origin: http://localhost:5173
+
+HTTP/1.1 204 No Content
+Access-Control-Allow-Origin: http://localhost:5173
+Access-Control-Allow-Methods: POST, OPTIONS
+Access-Control-Allow-Headers: Content-Type
+```
+
+Then:
+```http
+POST /api/create-cart HTTP/1.1
+Origin: http://localhost:5173
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:5173
+```
+
+**Why this matters**: Without CORS, the API would work in Postman but fail in the browser.
+
+Like a bouncer at a club: checks your ID before letting you in.
+
+---
+
+### Performance Optimization: The Caching Layer
+
+**Current state**: No caching. Every request hits the Orchestrator.
+
+**Future optimization**:
+
+```python
+# In-memory cache (simple)
+from functools import lru_cache
+
+@lru_cache(maxsize=100)
+def get_cart_cached(meal_plan: str, use_llm: bool) -> CreateCartResponse:
+    orch = Orchestrator(use_llm_extraction=use_llm)
+    # ... rest of the pipeline
+    return response
+
+@app.post("/api/create-cart")
+def create_cart(request: CreateCartRequest):
+    # Check cache first
+    return get_cart_cached(request.meal_plan, use_llm=False)
+```
+
+**Hit rate expectations**:
+- "chicken biryani for 4" → 80% of requests
+- "stir fry" → 10%
+- Other recipes → 10%
+
+**Potential savings**: 90% reduction in API latency for common recipes
+
+**Trade-off**: Cache invalidation complexity
+
+**When to implement**: After 1000+ daily users
+
+Like memorizing common routes vs using GPS every time.
 
 ---
 

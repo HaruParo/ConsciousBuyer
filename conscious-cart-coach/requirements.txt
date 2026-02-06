@@ -10,8 +10,9 @@ anthropic>=0.18.0  # LLM features with Opik tracing
 # Observability & Evaluation
 opik>=0.1.0
 
-# Web UI
-streamlit>=1.30.0
+# Web Framework (FastAPI for backend API)
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
 
 # Configuration
 python-dotenv>=1.0.0

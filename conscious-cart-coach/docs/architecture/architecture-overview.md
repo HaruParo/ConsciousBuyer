@@ -1,8 +1,11 @@
 # CONSCIOUS CART COACH - COMPREHENSIVE GUIDE
 
-> **Updated**: 2026-01-24
+> **Updated**: 2026-01-29
+> **Current Version**: React + FastAPI Full-Stack (v2.0)
 > **Note**: Optional LLM features available. See [2-llm-integration-summary.md](2-llm-integration-summary.md) and [4-ui-expectations.md](4-ui-expectations.md).
-> **Current Architecture**: Deterministic by default, optional LLM enhancement (Claude for natural language and explanations).
+> **Architecture**: Deterministic by default, optional LLM enhancement (Claude for natural language and explanations).
+>
+> ⚠️ **Historical Note**: References to Streamlit in this document are from v1.0. Current version uses React frontend.
 
 ## 🎯 HIGH LEVEL OVERVIEW
 

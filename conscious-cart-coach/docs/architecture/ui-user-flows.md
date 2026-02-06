@@ -1,6 +1,9 @@
 # UI Flows: The User's Journey Through Conscious Cart Coach
 
-**Updated**: 2026-01-24
+**Updated**: 2026-01-29
+**Current Version**: React + FastAPI Full-Stack (v2.0)
+
+> ⚠️ **Note**: This document contains references to both Streamlit (v1.0, deprecated) and React (v2.0, current). Look for "Journey 3: The React/HTML Demo Flow" for the current production version.
 
 ---
 
@@ -959,6 +962,613 @@ Like a shopping cart with a fixed size vs a cart that grows to infinity.
 4. Native mobile app (React Native?)
 
 But for now: **desktop-first is fine.** Most grocery shopping is planned at home.
+
+---
+
+## Journey 3: The React/HTML Demo Flow (Hackathon Edition)
+
+### Meet Alex: The Hackathon Judge
+
+Alex is judging 50 projects today. They have 2 minutes per demo. No time for npm installs or "let me just fix this bug real quick."
+
+They open your demo link (or demo.html file) and...
+
+---
+
+### The Clean Slate: Figma-Perfect Landing
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                                                               │
+│  🛒 Conscious Cart Coach        [About]  [Contact]  [GitHub] │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────┐   ┌───────────────────────────┐
+│                             │   │                            │
+│  PLAN YOUR MEAL             │   │  YOUR CART                 │
+│                             │   │                            │
+│  Tell us what you're        │   │  Empty                     │
+│  making                     │   │                            │
+│                             │   │  [Image: Empty cart]       │
+│  ┌────────────────────────┐ │   │                            │
+│  │ e.g., "chicken biryani │ │   │  Start by creating a       │
+│  │ for 4" or "healthy     │ │   │  meal plan                 │
+│  │ salad"                 │ │   │                            │
+│  │                        │ │   │  0 items · $0.00          │
+│  │                        │ │   │                            │
+│  └────────────────────────┘ │   │                            │
+│                             │   │                            │
+│  [Create my cart] →         │   │  ──────────────────────    │
+│                             │   │                            │
+│  ○ Quick recipes (templates)│   │  [Continue to store]  ✕   │
+│  ○ Natural language (AI)    │   │  [Download list]       ✕   │
+│                             │   │  [Preferences]         ✓   │
+│                             │   │                            │
+└─────────────────────────────┘   └───────────────────────────┘
+
+Color palette:
+- Header: Warm brown (#6b5f3a)
+- Background: Cream (#fef9f5)
+- Borders: Soft beige (#e5d5b8)
+- Accents: Earthy green (#4a7c59)
+```
+
+**Key differences from Streamlit**:
+1. **Two-column layout**: Input left, cart right (always visible)
+2. **Disabled states**: Clear visual feedback (✕ = disabled, ✓ = enabled)
+3. **Preferences always accessible**: Not hidden behind ingredient confirmation
+4. **Template vs AI toggle**: Users choose extraction mode upfront
+
+**Why this layout?**
+- **Spatial consistency**: Cart doesn't jump around
+- **Visual feedback**: See cart populate in real-time
+- **Professional**: Matches Figma prototype exactly
+
+Like a retail store layout: products on shelves (left), shopping cart (right).
+
+---
+
+### User Interaction: Typing and Watching
+
+**Alex types**: "stir fry for 4 with chicken"
+
+**What Alex sees (real-time)**:
+```
+┌─────────────────────────────┐
+│  ┌────────────────────────┐ │
+│  │ stir fry for 4 with    │ │  ← Live typing
+│  │ chicken█               │ │
+│  └────────────────────────┘ │
+│                             │
+│  [Create my cart] →         │  ← Button enabled (text present)
+│                             │
+│  ● Quick recipes (templates)│  ← Selected (default)
+│  ○ Natural language (AI)    │
+└─────────────────────────────┘
+```
+
+**Button states**:
+- Empty text → Button disabled (gray, no cursor)
+- Has text → Button enabled (green gradient, hover effect)
+
+**No surprises**. Clear affordances.
+
+---
+
+### The Loading Experience: Transparency
+
+**Alex clicks "Create my cart"**
+
+**What Alex sees** (300ms total):
+
+```
+┌─────────────────────────────┐
+│  [Creating your cart...] 🔄 │  ← Button shows spinner
+│                             │
+│  ● Quick recipes (templates)│
+│  ○ Natural language (AI)    │
+└─────────────────────────────┘
+
+┌───────────────────────────┐
+│  YOUR CART                 │
+│                            │
+│  Loading...                │  ← Right panel shows status
+│                            │
+│  [Spinner animation]       │
+│                            │
+└───────────────────────────┘
+```
+
+**Behind the scenes**:
+```javascript
+async function createCart() {
+  const mealPlan = document.getElementById('meal-plan-input').value;
+  const useAI = document.getElementById('ai-toggle').checked;
+
+  // Show loading state
+  button.disabled = true;
+  button.innerHTML = 'Creating your cart... 🔄';
+  cartPanel.innerHTML = '<div class="loading">Loading...</div>';
+
+  try {
+    const response = await fetch('http://localhost:8000/api/create-cart', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        meal_plan: mealPlan,
+        use_llm: useAI  // User's choice
+      }),
+    });
+
+    const data = await response.json();
+
+    // Display cart
+    displayCart(data.items, data.total);
+
+  } catch (error) {
+    // Error handling
+    cartPanel.innerHTML = `
+      <div class="error">
+        ⚠️ Couldn't create cart
+        <p>${error.message}</p>
+        <button onclick="retry()">Try again</button>
+      </div>
+    `;
+  } finally {
+    // Reset button
+    button.disabled = false;
+    button.innerHTML = 'Create my cart →';
+  }
+}
+```
+
+**Why this matters**:
+- **Feedback**: User knows something's happening
+- **Error handling**: Clear message if API fails
+- **Retry**: Easy recovery
+
+Like a good elevator: shows floor numbers as it moves, stops gracefully if stuck.
+
+---
+
+### The Populated Cart: Clean and Scannable
+
+**The cart fills in (smooth animation)**:
+
+```
+┌───────────────────────────────────────┐
+│  YOUR CART                             │
+│  8 items · FreshDirect · NJ            │
+│                                        │
+│  Cart total: $42.30                    │
+│  ────────────────────────────────────  │
+│                                        │
+│  ┌──────────────────────────────────┐ │
+│  │ 🌾 Basmati Rice                  │ │
+│  │ India Gate, Basmati Rice 5 lb    │ │
+│  │ $8.99 · 5 lb · $1.80/lb          │ │
+│  │                                  │ │
+│  │ Why pick:                        │ │
+│  │ ✓ Best value  ✓ In season       │ │
+│  │                                  │ │
+│  │ Trade-offs:                      │ │
+│  │ • Plastic packaging              │ │
+│  │                                  │ │
+│  │ Qty: [1 ▼]                       │ │
+│  └──────────────────────────────────┘ │
+│                                        │
+│  ┌──────────────────────────────────┐ │
+│  │ 🍗 Chicken Breast                │ │
+│  │ Bell & Evans, Organic Chicken    │ │
+│  │ $7.99 · 1 lb · $7.99/lb          │ │
+│  │                                  │ │
+│  │ Why pick:                        │ │
+│  │ ✓ Organic  ✓ Humane raised      │ │
+│  │ ✓ No recent recalls              │ │
+│  │                                  │ │
+│  │ Trade-offs:                      │ │
+│  │ • Premium price (+$3.50)         │ │
+│  │                                  │ │
+│  │ Qty: [2 ▼]                       │ │
+│  └──────────────────────────────────┘ │
+│                                        │
+│  ... (6 more items)                    │
+│                                        │
+│  ────────────────────────────────────  │
+│                                        │
+│  [Continue to store checkout →] ✓     │
+│  [Download list] ✓                    │
+│  [Preferences] ✓                      │
+│                                        │
+└───────────────────────────────────────┘
+```
+
+**Card Design Principles**:
+
+1. **Visual hierarchy**:
+   - Product name (large, bold)
+   - Brand + description (medium)
+   - Price info (structured)
+   - Tags (colored, scannable)
+
+2. **Information density**:
+   - Everything on one card
+   - No hidden accordions
+   - Scrollable if list is long
+
+3. **Tag colors**:
+   - **Green** (#4a7c59): Positive attributes (Organic, Local, In season)
+   - **Yellow** (#d4a574): Neutral (Best value, Recyclable)
+   - **Red** (#c17a7a): Trade-offs (Plastic packaging, EWG Dirty Dozen)
+
+**Why this works**:
+- **Scannable**: Eye can quickly parse multiple items
+- **Informative**: All decision factors visible
+- **Honest**: Shows both pros and cons
+- **Actionable**: Quantity selector right there
+
+Like a restaurant menu: grouped by category, prices visible, descriptions clear.
+
+---
+
+### The Preferences Modal: Power User Features
+
+**Alex clicks [Preferences]**
+
+**Modal slides in** (slide-up animation, 300ms):
+
+```
+╔═══════════════════════════════════════════════╗
+║  USER PREFERENCES                        [✕]  ║
+╠═══════════════════════════════════════════════╣
+║                                               ║
+║  Store Selection                              ║
+║  ┌──────────────────────────────────────────┐ ║
+║  │ [FreshDirect ▼]                          │ ║
+║  └──────────────────────────────────────────┘ ║
+║                                               ║
+║  Default Serving Size                         ║
+║  ┌──────────────────────────────────────────┐ ║
+║  │ [2 ▼]     people                         │ ║
+║  └──────────────────────────────────────────┘ ║
+║                                               ║
+║  Recipe Complexity                            ║
+║  ○ Simple (5 ingredients or fewer)            ║
+║  ● Moderate (6-10 ingredients)                ║
+║  ○ Complex (10+ ingredients, long prep)       ║
+║                                               ║
+║  Produce Preference                           ║
+║  ● Fresh whole (avoid microplastics)          ║
+║  ○ Pre-cut for convenience                    ║
+║  ○ Mixed (depends on item)                    ║
+║                                               ║
+║  Dietary Preferences                          ║
+║  ☑ Prioritize organic when on Dirty Dozen    ║
+║  ☑ Prefer local produce when in season        ║
+║  ☑ Show seasonal indicators                   ║
+║  ☐ Strict organic-only                        ║
+║  ☐ Vegetarian                                 ║
+║  ☐ Vegan                                      ║
+║                                               ║
+║  Exclude Items (comma-separated)              ║
+║  ┌──────────────────────────────────────────┐ ║
+║  │ e.g., "peanuts, shellfish, gluten"      │ ║
+║  └──────────────────────────────────────────┘ ║
+║                                               ║
+║  [Cancel]                    [Save & Apply]   ║
+║                                               ║
+╚═══════════════════════════════════════════════╝
+```
+
+**Stored in localStorage**:
+```javascript
+const userPreferences = {
+  store: 'FreshDirect',
+  servings: 2,
+  complexity: 'moderate',
+  produce: 'fresh',        // Avoid microplastics!
+  prioritizeOrganic: true,
+  preferLocal: true,
+  showSeasonal: true,
+  strictOrganic: false,
+  vegetarian: false,
+  vegan: false,
+  exclude: []              // Allergens/restrictions
+};
+
+localStorage.setItem('userPreferences', JSON.stringify(userPreferences));
+```
+
+**Why localStorage?**
+- No account needed
+- Persists across sessions
+- Privacy-friendly (local only)
+- Fast (no API calls)
+
+**When preferences change**:
+```javascript
+function applyPreferences() {
+  const prefs = JSON.parse(localStorage.getItem('userPreferences'));
+
+  // Update UI immediately
+  document.getElementById('store-display').textContent = prefs.store;
+
+  // Next cart creation will use these prefs
+  // (sent to API as query params or request body)
+}
+```
+
+**Key design decision**: Preferences **always accessible**, even when cart is empty.
+
+Why? Because users might want to set preferences before creating their first cart.
+
+Like setting your GPS preferences before starting navigation.
+
+---
+
+### The Download Feature: Practical Export
+
+**Alex clicks [Download list]**
+
+**File downloads immediately** (no dialog):
+```csv
+Ingredient,Brand,Product,Size,Price,Qty,Store,Location
+Basmati Rice,India Gate,Basmati Rice,5 lb,8.99,1,FreshDirect,NJ
+Chicken Breast,Bell & Evans,Organic Chicken Breast,1 lb,7.99,2,FreshDirect,NJ
+Broccoli,Earthbound Farm,Organic Broccoli Florets,12 oz,3.49,1,FreshDirect,NJ
+...
+```
+
+**Why CSV?**
+- **Universal**: Opens in Excel, Google Sheets, Notes
+- **Printable**: Take to store
+- **Shareable**: Email to roommate/partner
+- **Importable**: Could integrate with store APIs
+
+**Implementation**:
+```javascript
+function downloadCSV() {
+  const rows = [
+    ['Ingredient', 'Brand', 'Product', 'Size', 'Price', 'Qty', 'Store', 'Location']
+  ];
+
+  cartItems.forEach(item => {
+    rows.push([
+      item.name,
+      item.brand,
+      item.catalogueName,
+      item.size,
+      item.price.toFixed(2),
+      item.quantity,
+      item.store,
+      item.location
+    ]);
+  });
+
+  const csv = rows.map(row => row.join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `conscious-cart-${Date.now()}.csv`;
+  link.click();
+}
+```
+
+**User experience**: Click → file appears in Downloads folder → done.
+
+No "Save As" dialogs. No confirmation. Just works.
+
+Like screenshotting: press button, get file.
+
+---
+
+### Error States: Honest and Helpful
+
+**Scenario 1: API is down**
+
+```
+┌───────────────────────────────────┐
+│  YOUR CART                         │
+│                                    │
+│  ⚠️ Couldn't create cart           │
+│                                    │
+│  The server isn't responding.      │
+│  Make sure the FastAPI backend     │
+│  is running on port 8000.          │
+│                                    │
+│  [Try again]  [Check server]       │
+│                                    │
+└───────────────────────────────────┘
+```
+
+**"Check server" button**:
+```javascript
+function checkServer() {
+  window.open('http://localhost:8000/docs', '_blank');
+  // Opens FastAPI docs in new tab
+}
+```
+
+**Scenario 2: No ingredients found**
+
+```
+┌───────────────────────────────────┐
+│  YOUR CART                         │
+│                                    │
+│  ℹ️ No ingredients recognized      │
+│                                    │
+│  We couldn't match "xyz" to any    │
+│  known recipes. Try:               │
+│  • "chicken biryani for 4"         │
+│  • "stir fry with vegetables"      │
+│  • "healthy salad"                 │
+│                                    │
+│  Or enable AI mode for natural     │
+│  language understanding.           │
+│                                    │
+│  [Try AI mode]  [See examples]     │
+│                                    │
+└───────────────────────────────────┘
+```
+
+**Why this is good UX**:
+1. **Clear problem**: Not vague "Error 500"
+2. **Actionable solution**: Try these instead
+3. **Upgrade path**: Enable AI for flexibility
+4. **No shame**: "We couldn't match" (not "You did it wrong")
+
+Like a good GPS: "Road closed ahead. Here are 3 alternate routes."
+
+---
+
+### Mobile Considerations: Desktop-First, But Responsive
+
+**What breaks on mobile**:
+1. Two-column layout → Stack vertically
+2. Cart cards → Still readable (single column already)
+3. Preferences modal → Full-screen overlay
+4. Quantity selectors → Larger tap targets
+
+**Current state**: Works okay on tablets, cramped on phones.
+
+**CSS media queries** (already in demo.html):
+```css
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;  /* Stack columns */
+  }
+
+  .cart-item {
+    font-size: 0.95rem;          /* Slightly smaller */
+  }
+
+  button {
+    min-height: 44px;            /* iOS tap target minimum */
+  }
+}
+```
+
+**Future improvements**:
+- Swipe gestures for quantity
+- Pull-to-refresh
+- Native app wrapper (Capacitor/React Native)
+
+But for hackathon demos: **desktop is fine**. Judges use laptops.
+
+---
+
+### Performance: Fast by Default
+
+**Load time** (demo.html):
+```
+HTML file:        12 KB
+Tailwind CSS:     ~50 KB (CDN, cached)
+JavaScript:       8 KB (inline)
+Images:           Lazy-loaded from Unsplash
+Total:            ~70 KB
+
+First paint:      ~200ms
+Interactive:      ~300ms
+```
+
+**API response time**:
+```
+Template mode:    ~150ms  (deterministic)
+AI mode:          ~2-4s   (LLM latency)
+```
+
+**Why so fast?**
+- No build step (HTML/JS/CSS inline or CDN)
+- No framework overhead (vanilla JS)
+- Minimal HTTP requests (1 API call)
+- LocalStorage (no server round-trips for prefs)
+
+**Comparison**:
+```
+Streamlit:       ~3-5s     (Python app cold start)
+React (prod):    ~500ms    (bundled, optimized)
+HTML demo:       ~300ms    (instant)
+```
+
+For hackathon demos: **speed matters**. Judges are impatient.
+
+---
+
+### The Accessibility Story: Room for Improvement
+
+**What we got right**:
+- ✅ Semantic HTML (`<button>`, `<form>`, `<label>`)
+- ✅ Keyboard navigation works
+- ✅ Focus indicators visible
+- ✅ Color contrast passes WCAG AA
+
+**What we need to improve**:
+- ⚠️ No ARIA labels on custom components
+- ⚠️ Screen reader testing incomplete
+- ⚠️ No skip-to-content link
+- ⚠️ Modal doesn't trap focus
+
+**Why this matters**:
+- Accessibility is important (obviously)
+- But also: **judges might test it**
+- And: **hackathon accessibility points**
+
+**Quick wins for next version**:
+```html
+<button
+  aria-label="Create shopping cart from meal plan"
+  aria-describedby="meal-plan-input">
+  Create my cart
+</button>
+
+<div
+  role="dialog"
+  aria-labelledby="preferences-title"
+  aria-modal="true">
+  <h2 id="preferences-title">User Preferences</h2>
+  ...
+</div>
+```
+
+Like building a ramp after building stairs. Should've been there from the start, but fixable.
+
+---
+
+### The React Advantage: Why We Built Both
+
+**HTML demo** (demo.html):
+- ✅ Zero dependencies
+- ✅ Instant load
+- ✅ Easy to demo
+- ❌ Hard to maintain
+- ❌ No state management
+- ❌ Vanilla JS gets messy
+
+**React app** (Figma_files/):
+- ✅ Component reusability
+- ✅ TypeScript safety
+- ✅ Better state management (hooks)
+- ✅ Testing framework
+- ❌ Build step required
+- ❌ Larger bundle size
+
+**When to use which**:
+
+| Scenario | Use HTML Demo | Use React App |
+|----------|--------------|---------------|
+| Hackathon judges | ✅ | ❌ |
+| Local development | ❌ | ✅ |
+| Production deployment | ❌ | ✅ |
+| Quick iteration | ✅ | ❌ |
+| Long-term maintenance | ❌ | ✅ |
+| Team collaboration | ❌ | ✅ |
+
+**The strategy**: Build both. HTML for demos, React for production.
+
+Like having both a sports car (React) and a bicycle (HTML). Different tools for different needs.
 
 ---
 
