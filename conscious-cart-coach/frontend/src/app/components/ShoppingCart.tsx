@@ -1,0 +1,105 @@
+import { ArrowRight } from 'lucide-react';
+import { Button } from '@/app/components/ui/button';
+import { CartItem as CartItemType } from '@/app/types';
+import { CartItemCard } from '@/app/components/CartItemCard';
+import { UserPreferencesLinks } from '@/app/components/UserPreferencesLinks';
+
+interface ShoppingCartProps {
+  items: CartItemType[];
+  onUpdateQuantity: (id: string, quantity: number) => void;
+  onRemoveItem: (id: string) => void;
+  onFindSwap: (id: string) => void;
+  metadata?: { store: string; location: string; servings: number } | null;
+  onChangeLocation?: () => void;
+  onServingsChange?: (servings: number) => void;
+  onPreferencesChange?: (preferences: any) => void;
+}
+
+export function ShoppingCart({
+  items,
+  onUpdateQuantity,
+  onRemoveItem,
+  onFindSwap,
+  metadata,
+  onChangeLocation,
+  onServingsChange,
+  onPreferencesChange
+}: ShoppingCartProps) {
+  const totalPrice = Math.round(items.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 100) / 100;
+  const store = metadata?.store || items[0]?.store || 'Store Name';
+  const location = metadata?.location || items[0]?.location || 'City, State';
+  const servings = metadata?.servings || 2;
+  const isEmpty = items.length === 0;
+
+  return (
+    <div className="h-full flex flex-col">
+      {/* Cart Header */}
+      <div className="bg-[#6b5f3a] text-white px-4 sm:px-6 py-3 sm:py-4">
+        <div className="flex items-baseline justify-between gap-3 mb-1">
+          <div className="min-w-0 flex-1">
+            <h2 className="text-base sm:text-lg md:text-xl font-semibold truncate mb-1">
+              {store} ({items.length})
+            </h2>
+            <UserPreferencesLinks
+              location={location}
+              servings={servings}
+              onChangeLocation={onChangeLocation}
+              onServingsChange={onServingsChange}
+              onPreferencesChange={onPreferencesChange}
+            />
+          </div>
+          <div className="text-right flex-shrink-0">
+            <p className="text-xs opacity-75 mb-0.5">est. total</p>
+            <p className="text-lg sm:text-xl font-semibold">
+              ${totalPrice.toFixed(2)}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Cart Items or Empty State */}
+      <div className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6">
+        {isEmpty ? (
+          <div className="flex flex-col items-center justify-center h-full px-4">
+            <p className="text-[#9b8f7a] text-center text-sm sm:text-base">
+              Ask cart coach to fill up your cart!
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-3 sm:space-y-4 md:space-y-6">
+            {items.map((item) => (
+              <CartItemCard
+                key={item.id}
+                item={item}
+                onUpdateQuantity={(quantity) => onUpdateQuantity(item.id, quantity)}
+                onRemove={() => onRemoveItem(item.id)}
+                onFindSwap={() => onFindSwap(item.id)}
+                showStoreChip={true}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Sticky Footer with Checkout and Download Buttons */}
+      <div className="p-3 sm:p-4 md:p-6 border-t border-[#e5d5b8] bg-white">
+        <div className="flex gap-2 sm:gap-3">
+          <Button
+            variant="outline"
+            disabled={isEmpty}
+            className="flex-1 border-[#8b7a5a] text-[#6b5f4a] hover:bg-[#f5e6d3] text-xs sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed py-3 sm:py-4 md:py-5"
+          >
+            Download<span className="hidden sm:inline"> list</span>
+          </Button>
+          <Button
+            disabled={isEmpty}
+            className="flex-1 bg-[#6b5f3a] hover:bg-[#5b4f2a] text-white py-3 sm:py-4 md:py-5 text-xs sm:text-sm md:text-base disabled:bg-[#c5baa8] disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span className="hidden sm:inline">Continue to </span>Checkout
+            <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 ml-1 sm:ml-2" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}

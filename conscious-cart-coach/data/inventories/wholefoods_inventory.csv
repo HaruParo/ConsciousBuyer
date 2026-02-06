@@ -1,0 +1,54 @@
+product_id,source_store_id,store_name,category,ingredient_key,brand,title,price,size_value,size_unit,unit_price,unit_price_unit,organic,packaging,certifications
+prod0048,wholefoods,Whole Foods Market,protein_poultry,chicken,365 by Whole Foods Market,"Chicken, 365 by Whole Foods Market",4.45,1.0,lb,0.2781,oz,False,bulk,
+prod0049,wholefoods,Whole Foods Market,protein_poultry,chicken,Tyson,"Organic Chicken, Tyson",17.49,1.5,lb,0.7287,oz,True,bulk,USDA Organic
+prod0050,wholefoods,Whole Foods Market,protein_poultry,chicken,Perdue,"Organic Chicken, Perdue",12.04,1.5,lb,0.5017,oz,True,bulk,USDA Organic
+prod0051,wholefoods,Whole Foods Market,protein_poultry,chicken,Mary's Free Range,"Organic Chicken, Mary's Free Range",14.9,1.5,lb,0.6208,oz,True,bulk,"USDA Organic, Free Range"
+prod0052,wholefoods,Whole Foods Market,produce,onions,365 by Whole Foods Market,"Onions, 365 by Whole Foods Market",4.48,3.0,lb,0.0933,oz,False,bulk,
+prod0053,wholefoods,Whole Foods Market,produce,onions,Fresh Farms,"Onions, Fresh Farms",1.79,1.0,lb,0.1119,oz,False,bulk,
+prod0054,wholefoods,Whole Foods Market,produce,onions,Melissa's,"Onions, Melissa's",1.79,1.0,lb,0.1119,oz,False,bulk,
+prod0055,wholefoods,Whole Foods Market,produce,onions,Organic Valley,"Organic Onions, Organic Valley",3.62,1.0,lb,0.2263,oz,True,bulk,USDA Organic
+prod0056,wholefoods,Whole Foods Market,produce,tomatoes,365 by Whole Foods Market,"Tomatoes, 365 by Whole Foods Market",4.49,2.0,lb,0.1403,oz,False,bulk,
+prod0057,wholefoods,Whole Foods Market,produce,tomatoes,Campari,"Tomatoes, Campari",2.69,1.0,lb,0.1681,oz,False,bulk,
+prod0058,wholefoods,Whole Foods Market,produce,tomatoes,NatureSweet,"Organic Tomatoes, NatureSweet",3.5,1.0,lb,0.2188,oz,True,bulk,USDA Organic
+prod0059,wholefoods,Whole Foods Market,produce,tomatoes,Heirloom Organic,"Organic Tomatoes, Heirloom Organic",10.88,2.0,lb,0.34,oz,True,bulk,USDA Organic
+prod0060,wholefoods,Whole Foods Market,dairy,yogurt,365 by Whole Foods Market,"Yogurt, 365 by Whole Foods Market",8.98,32.0,oz,0.2806,oz,False,plastic,
+prod0061,wholefoods,Whole Foods Market,dairy,yogurt,Chobani,"Organic Yogurt, Chobani",14.02,32.0,oz,0.4381,oz,True,plastic,USDA Organic
+prod0062,wholefoods,Whole Foods Market,dairy,yogurt,Fage,"Organic Yogurt, Fage",2.32,5.3,oz,0.4377,oz,True,plastic,USDA Organic
+prod0063,wholefoods,Whole Foods Market,dairy,yogurt,Maple Hill,"Organic Yogurt, Maple Hill",21.8,32.0,oz,0.6813,oz,True,plastic,USDA Organic
+prod0064,wholefoods,Whole Foods Market,produce,ginger,365 by Whole Foods Market,"Ginger, 365 by Whole Foods Market",1.5,8.0,oz,0.1875,oz,False,bulk,
+prod0065,wholefoods,Whole Foods Market,produce,ginger,Melissa's,"Ginger, Melissa's",1.8,8.0,oz,0.225,oz,False,bulk,
+prod0066,wholefoods,Whole Foods Market,produce,ginger,Organic Ginger Root,"Organic Ginger, Organic Ginger Root",3.63,8.0,oz,0.4537,oz,True,bulk,USDA Organic
+prod0067,wholefoods,Whole Foods Market,produce,garlic,365 by Whole Foods Market,"Garlic, 365 by Whole Foods Market",3.74,1.0,lb,0.2338,oz,False,bulk,
+prod0068,wholefoods,Whole Foods Market,produce,garlic,Christopher Ranch,"Garlic, Christopher Ranch",4.49,3.0,ct,1.4967,ea,False,bulk,
+prod0069,wholefoods,Whole Foods Market,produce,garlic,Organic Hardneck Garlic,"Organic Garlic, Organic Hardneck Garlic",9.08,1.0,lb,0.5675,oz,True,bulk,USDA Organic
+prod0070,wholefoods,Whole Foods Market,herbs,mint,365 by Whole Foods Market,"Mint, 365 by Whole Foods Market",2.37,1.0,bunch,2.37,ea,False,bulk,
+prod0071,wholefoods,Whole Foods Market,herbs,mint,Fresh Herb Co,"Organic Mint, Fresh Herb Co",3.49,1.0,bunch,3.49,ea,True,bulk,USDA Organic
+prod0072,wholefoods,Whole Foods Market,herbs,mint,Organic Mint,"Organic Mint, Organic Mint",4.55,1.0,bunch,4.55,ea,True,bulk,USDA Organic
+prod0073,wholefoods,Whole Foods Market,herbs,cilantro,365 by Whole Foods Market,"Cilantro, 365 by Whole Foods Market",1.99,1.0,bunch,1.99,ea,False,bulk,
+prod0074,wholefoods,Whole Foods Market,herbs,cilantro,Fresh Herb Co,"Cilantro, Fresh Herb Co",2.49,1.0,bunch,2.49,ea,False,bulk,
+prod0075,wholefoods,Whole Foods Market,herbs,cilantro,Organic Cilantro,"Organic Cilantro, Organic Cilantro",3.98,1.0,bunch,3.98,ea,True,bulk,USDA Organic
+prod0076,wholefoods,Whole Foods Market,rice,basmati rice,365 by Whole Foods Market,"Basmati Rice, 365 by Whole Foods Market",6.65,2.0,lb,0.2078,oz,False,bulk,
+prod0077,wholefoods,Whole Foods Market,rice,basmati rice,Royal,"Organic Basmati Rice, Royal",17.95,5.0,lb,0.2244,oz,True,bulk,USDA Organic
+prod0078,wholefoods,Whole Foods Market,rice,basmati rice,Lundberg,"Organic Basmati Rice, Lundberg",22.68,10.0,lb,0.1417,oz,True,bulk,USDA Organic
+prod0079,wholefoods,Whole Foods Market,rice,basmati rice,Pride of India,"Organic Basmati Rice, Pride of India",25.33,5.0,lb,0.3166,oz,True,bulk,USDA Organic
+prod0080,wholefoods,Whole Foods Market,oil,ghee,Fourth & Heart,"Ghee, Fourth & Heart",10.71,8.0,oz,1.3388,oz,False,glass,
+prod0081,wholefoods,Whole Foods Market,oil,ghee,Organic Valley,"Organic Ghee, Organic Valley",12.64,8.0,oz,1.58,oz,True,glass,USDA Organic
+prod0082,wholefoods,Whole Foods Market,oil,ghee,Ancient Organics,"Organic Ghee, Ancient Organics",25.08,16.0,oz,1.5675,oz,True,glass,USDA Organic
+prod0083,wholefoods,Whole Foods Market,spices,garam masala,McCormick,"Garam Masala, McCormick",11.39,8.0,oz,1.4238,oz,False,glass,
+prod0084,wholefoods,Whole Foods Market,spices,garam masala,Simply Organic,"Organic Garam Masala, Simply Organic",7.12,2.0,oz,3.56,oz,True,glass,USDA Organic
+prod0085,wholefoods,Whole Foods Market,spices,garam masala,Diaspora Co,"Organic Garam Masala, Diaspora Co",15.0,8.0,oz,1.875,oz,True,glass,USDA Organic
+prod0086,wholefoods,Whole Foods Market,spices,turmeric,Simply Organic,"Turmeric, Simply Organic",13.88,8.0,oz,1.735,oz,False,plastic,
+prod0087,wholefoods,Whole Foods Market,spices,turmeric,McCormick,"Organic Turmeric, McCormick",15.0,8.0,oz,1.875,oz,True,plastic,USDA Organic
+prod0088,wholefoods,Whole Foods Market,spices,turmeric,Diaspora Co,"Organic Turmeric, Diaspora Co",5.19,3.0,oz,1.73,oz,True,plastic,USDA Organic
+prod0089,wholefoods,Whole Foods Market,spices,coriander,McCormick,"Coriander, McCormick",3.66,3.0,oz,1.22,oz,False,glass,
+prod0090,wholefoods,Whole Foods Market,spices,coriander,Simply Organic,"Coriander, Simply Organic",14.19,8.0,oz,1.7737,oz,False,plastic,
+prod0091,wholefoods,Whole Foods Market,spices,coriander,Diaspora Co,"Organic Coriander, Diaspora Co",8.77,3.0,oz,2.9233,oz,True,glass,USDA Organic
+prod0092,wholefoods,Whole Foods Market,spices,cumin,McCormick,"Cumin, McCormick",6.2,3.0,oz,2.0667,oz,False,glass,
+prod0093,wholefoods,Whole Foods Market,spices,cumin,Simply Organic,"Organic Cumin, Simply Organic",5.76,3.0,oz,1.92,oz,True,glass,USDA Organic
+prod0094,wholefoods,Whole Foods Market,spices,cumin,Diaspora Co,"Organic Cumin, Diaspora Co",15.0,8.0,oz,1.875,oz,True,glass,USDA Organic
+prod0095,wholefoods,Whole Foods Market,spices,cardamom,McCormick,"Cardamom, McCormick",15.0,8.0,oz,1.875,oz,False,plastic,
+prod0096,wholefoods,Whole Foods Market,spices,cardamom,Simply Organic,"Cardamom, Simply Organic",15.0,2.0,oz,7.5,oz,False,glass,
+prod0097,wholefoods,Whole Foods Market,spices,cardamom,Diaspora Co,"Organic Cardamom, Diaspora Co",15.0,8.0,oz,1.875,oz,True,glass,USDA Organic
+prod0098,wholefoods,Whole Foods Market,spices,bay leaves,McCormick,"Bay Leaves, McCormick",3.09,1.0,oz,3.09,oz,False,plastic,
+prod0099,wholefoods,Whole Foods Market,spices,bay leaves,Simply Organic,"Bay Leaves, Simply Organic",5.59,1.0,oz,5.59,oz,False,glass,
+prod0100,wholefoods,Whole Foods Market,spices,bay leaves,Diaspora Co,"Organic Bay Leaves, Diaspora Co",9.04,0.5,oz,18.08,oz,True,plastic,USDA Organic

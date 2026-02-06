@@ -3,7 +3,11 @@
 import logging
 from typing import Optional
 
-from anthropic import Anthropic
+# Type hints only - actual client is passed in
+try:
+    from anthropic import Anthropic
+except ImportError:
+    Anthropic = None
 
 from .client import call_claude_with_retry
 

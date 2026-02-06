@@ -1,0 +1,61 @@
+product_id,source_store_id,store_name,category,ingredient_key,brand,title,price,size_value,size_unit,unit_price,unit_price_unit,organic,packaging,certifications
+prod0154,pure_indian_foods,Pure Indian Foods,rice,basmati rice,Pure Indian Foods,"Basmati Rice, Pure Indian Foods",12.45,5.0,lb,0.1556,oz,False,bulk,
+prod0155,pure_indian_foods,Pure Indian Foods,rice,basmati rice,Lundberg,"Organic Basmati Rice, Lundberg",23.42,5.0,lb,0.2928,oz,True,bulk,USDA Organic
+prod0156,pure_indian_foods,Pure Indian Foods,rice,basmati rice,Royal,"Basmati Rice, Royal",26.55,10.0,lb,0.1659,oz,False,bulk,
+prod0157,pure_indian_foods,Pure Indian Foods,rice,basmati rice,Tilda,"Organic Basmati Rice, Tilda",40.23,5.0,lb,0.5029,oz,True,bulk,USDA Organic
+prod0158,pure_indian_foods,Pure Indian Foods,rice,basmati rice,Laxmi,"Basmati Rice, Laxmi",10.25,4.0,lb,0.1602,oz,False,bulk,
+prod0159,pure_indian_foods,Pure Indian Foods,rice,basmati rice,India Gate,"Organic Basmati Rice, India Gate",14.6,2.0,lb,0.4562,oz,True,bulk,USDA Organic
+prod0160,pure_indian_foods,Pure Indian Foods,oil,ghee,Organic Valley,"Ghee, Organic Valley",10.01,8.0,oz,1.2512,oz,False,glass,
+prod0161,pure_indian_foods,Pure Indian Foods,oil,ghee,Fourth & Heart,"Organic Ghee, Fourth & Heart",13.41,8.0,oz,1.6763,oz,True,glass,USDA Organic
+prod0162,pure_indian_foods,Pure Indian Foods,oil,ghee,Ancient Organics,"Organic Ghee, Ancient Organics",19.93,8.0,oz,2.4912,oz,True,glass,USDA Organic
+prod0163,pure_indian_foods,Pure Indian Foods,oil,ghee,Deep,"Ghee, Deep",15.7,16.0,oz,0.9812,oz,False,glass,
+prod0164,pure_indian_foods,Pure Indian Foods,oil,ghee,Laxmi,"Ghee, Laxmi",18.81,16.0,oz,1.1756,oz,False,glass,
+prod0165,pure_indian_foods,Pure Indian Foods,oil,ghee,Swad,"Ghee, Swad",19.78,32.0,oz,0.6181,oz,False,glass,
+prod0166,pure_indian_foods,Pure Indian Foods,oil,ghee,Pure Indian Foods,"Ghee, Pure Indian Foods",10.73,16.0,oz,0.6706,oz,False,glass,
+prod0167,pure_indian_foods,Pure Indian Foods,spices,garam masala,McCormick,"Garam Masala, McCormick",13.25,8.0,oz,1.6562,oz,False,glass,
+prod0168,pure_indian_foods,Pure Indian Foods,spices,garam masala,Simply Organic,"Garam Masala, Simply Organic",6.67,2.0,oz,3.335,oz,False,plastic,
+prod0169,pure_indian_foods,Pure Indian Foods,spices,garam masala,Diaspora Co,"Organic Garam Masala, Diaspora Co",15.0,8.0,oz,1.875,oz,True,glass,USDA Organic
+prod0170,pure_indian_foods,Pure Indian Foods,spices,garam masala,Laxmi,"Garam Masala, Laxmi",14.05,8.0,oz,1.7563,oz,False,glass,
+prod0171,pure_indian_foods,Pure Indian Foods,spices,garam masala,MDH,"Organic Garam Masala, MDH",13.74,8.0,oz,1.7175,oz,True,plastic,USDA Organic
+prod0172,pure_indian_foods,Pure Indian Foods,spices,garam masala,Deep,"Organic Garam Masala, Deep",5.57,2.0,oz,2.785,oz,True,plastic,USDA Organic
+prod0173,pure_indian_foods,Pure Indian Foods,spices,garam masala,Shan,"Organic Garam Masala, Shan",15.0,8.0,oz,1.875,oz,True,plastic,USDA Organic
+prod0174,pure_indian_foods,Pure Indian Foods,spices,garam masala,Pure Indian Foods,"Garam Masala, Pure Indian Foods",14.68,8.0,oz,1.835,oz,False,plastic,
+prod0175,pure_indian_foods,Pure Indian Foods,spices,turmeric,Simply Organic,"Turmeric, Simply Organic",2.46,3.0,oz,0.82,oz,False,plastic,
+prod0176,pure_indian_foods,Pure Indian Foods,spices,turmeric,McCormick,"Turmeric, McCormick",6.5,3.0,oz,2.1667,oz,False,glass,
+prod0177,pure_indian_foods,Pure Indian Foods,spices,turmeric,Diaspora Co,"Organic Turmeric, Diaspora Co",15.0,8.0,oz,1.875,oz,True,glass,USDA Organic
+prod0178,pure_indian_foods,Pure Indian Foods,spices,turmeric,Pure Indian Foods,"Organic Turmeric, Pure Indian Foods",15.0,8.0,oz,1.875,oz,True,plastic,USDA Organic
+prod0179,pure_indian_foods,Pure Indian Foods,spices,turmeric,MDH,"Turmeric, MDH",7.75,3.0,oz,2.5833,oz,False,plastic,
+prod0180,pure_indian_foods,Pure Indian Foods,spices,turmeric,Laxmi,"Organic Turmeric, Laxmi",7.52,3.0,oz,2.5067,oz,True,plastic,USDA Organic
+prod0181,pure_indian_foods,Pure Indian Foods,spices,turmeric,Deep,"Turmeric, Deep",2.18,3.0,oz,0.7267,oz,False,glass,
+prod0182,pure_indian_foods,Pure Indian Foods,spices,turmeric,Swad,"Turmeric, Swad",2.74,3.0,oz,0.9133,oz,False,plastic,
+prod0183,pure_indian_foods,Pure Indian Foods,spices,coriander,Simply Organic,"Organic Coriander, Simply Organic",6.92,3.0,oz,2.3067,oz,True,glass,USDA Organic
+prod0184,pure_indian_foods,Pure Indian Foods,spices,coriander,McCormick,"Coriander, McCormick",6.66,3.0,oz,2.22,oz,False,plastic,
+prod0185,pure_indian_foods,Pure Indian Foods,spices,coriander,Diaspora Co,"Organic Coriander, Diaspora Co",15.0,8.0,oz,1.875,oz,True,plastic,USDA Organic
+prod0186,pure_indian_foods,Pure Indian Foods,spices,coriander,Laxmi,"Coriander, Laxmi",2.88,3.0,oz,0.96,oz,False,plastic,
+prod0187,pure_indian_foods,Pure Indian Foods,spices,coriander,Deep,"Organic Coriander, Deep",15.0,8.0,oz,1.875,oz,True,plastic,USDA Organic
+prod0188,pure_indian_foods,Pure Indian Foods,spices,coriander,Pure Indian Foods,"Coriander, Pure Indian Foods",15.0,8.0,oz,1.875,oz,False,glass,
+prod0189,pure_indian_foods,Pure Indian Foods,spices,coriander,MDH,"Organic Coriander, MDH",15.0,8.0,oz,1.875,oz,True,plastic,USDA Organic
+prod0190,pure_indian_foods,Pure Indian Foods,spices,coriander,Swad,"Coriander, Swad",15.0,8.0,oz,1.875,oz,False,glass,
+prod0191,pure_indian_foods,Pure Indian Foods,spices,cumin,Simply Organic,"Cumin, Simply Organic",10.57,8.0,oz,1.3213,oz,False,plastic,
+prod0192,pure_indian_foods,Pure Indian Foods,spices,cumin,McCormick,"Organic Cumin, McCormick",8.46,3.0,oz,2.82,oz,True,plastic,USDA Organic
+prod0193,pure_indian_foods,Pure Indian Foods,spices,cumin,Diaspora Co,"Organic Cumin, Diaspora Co",15.0,8.0,oz,1.875,oz,True,glass,USDA Organic
+prod0194,pure_indian_foods,Pure Indian Foods,spices,cumin,Pure Indian Foods,"Cumin, Pure Indian Foods",15.0,8.0,oz,1.875,oz,False,glass,
+prod0195,pure_indian_foods,Pure Indian Foods,spices,cumin,Laxmi,"Organic Cumin, Laxmi",6.4,3.0,oz,2.1333,oz,True,plastic,USDA Organic
+prod0196,pure_indian_foods,Pure Indian Foods,spices,cumin,Deep,"Organic Cumin, Deep",7.64,3.0,oz,2.5467,oz,True,glass,USDA Organic
+prod0197,pure_indian_foods,Pure Indian Foods,spices,cumin,Swad,"Organic Cumin, Swad",14.72,8.0,oz,1.84,oz,True,plastic,USDA Organic
+prod0198,pure_indian_foods,Pure Indian Foods,spices,cumin,MDH,"Organic Cumin, MDH",15.0,8.0,oz,1.875,oz,True,glass,USDA Organic
+prod0199,pure_indian_foods,Pure Indian Foods,spices,cardamom,Simply Organic,"Cardamom, Simply Organic",15.0,8.0,oz,1.875,oz,False,plastic,
+prod0200,pure_indian_foods,Pure Indian Foods,spices,cardamom,McCormick,"Cardamom, McCormick",15.0,8.0,oz,1.875,oz,False,plastic,
+prod0201,pure_indian_foods,Pure Indian Foods,spices,cardamom,Diaspora Co,"Organic Cardamom, Diaspora Co",15.0,2.0,oz,7.5,oz,True,plastic,USDA Organic
+prod0202,pure_indian_foods,Pure Indian Foods,spices,cardamom,MDH,"Organic Cardamom, MDH",15.0,8.0,oz,1.875,oz,True,plastic,USDA Organic
+prod0203,pure_indian_foods,Pure Indian Foods,spices,cardamom,Deep,"Cardamom, Deep",15.0,2.0,oz,7.5,oz,False,plastic,
+prod0204,pure_indian_foods,Pure Indian Foods,spices,cardamom,Pure Indian Foods,"Cardamom, Pure Indian Foods",8.18,2.0,oz,4.09,oz,False,glass,
+prod0205,pure_indian_foods,Pure Indian Foods,spices,cardamom,Laxmi,"Organic Cardamom, Laxmi",15.0,2.0,oz,7.5,oz,True,glass,USDA Organic
+prod0206,pure_indian_foods,Pure Indian Foods,spices,cardamom,Swad,"Organic Cardamom, Swad",8.59,2.0,oz,4.295,oz,True,glass,USDA Organic
+prod0207,pure_indian_foods,Pure Indian Foods,spices,bay leaves,McCormick,"Organic Bay Leaves, McCormick",5.67,1.0,oz,5.67,oz,True,plastic,USDA Organic
+prod0208,pure_indian_foods,Pure Indian Foods,spices,bay leaves,Simply Organic,"Bay Leaves, Simply Organic",3.58,1.0,oz,3.58,oz,False,plastic,
+prod0209,pure_indian_foods,Pure Indian Foods,spices,bay leaves,Diaspora Co,"Organic Bay Leaves, Diaspora Co",12.94,1.0,oz,12.94,oz,True,plastic,USDA Organic
+prod0210,pure_indian_foods,Pure Indian Foods,spices,bay leaves,Swad,"Organic Bay Leaves, Swad",4.65,1.0,oz,4.65,oz,True,plastic,USDA Organic
+prod0211,pure_indian_foods,Pure Indian Foods,spices,bay leaves,MDH,"Organic Bay Leaves, MDH",5.28,0.5,oz,10.56,oz,True,glass,USDA Organic
+prod0212,pure_indian_foods,Pure Indian Foods,spices,bay leaves,Laxmi,"Bay Leaves, Laxmi",4.73,1.0,oz,4.73,oz,False,plastic,
+prod0213,pure_indian_foods,Pure Indian Foods,spices,bay leaves,Pure Indian Foods,"Bay Leaves, Pure Indian Foods",5.11,1.0,oz,5.11,oz,False,plastic,

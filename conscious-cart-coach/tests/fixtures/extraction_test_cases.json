@@ -1,0 +1,85 @@
+[
+  {
+    "id": "test_001",
+    "prompt": "chicken biryani for 4",
+    "expected_servings": 4,
+    "expected_ingredients": [
+      "chicken", "rice", "onions", "tomatoes", "yogurt",
+      "ginger", "garlic", "ghee", "garam masala", "turmeric",
+      "coriander", "cumin", "cardamom", "bay leaves", "mint", "cilantro"
+    ],
+    "critical_ingredients": ["chicken", "rice", "onions"]
+  },
+  {
+    "id": "test_002",
+    "prompt": "pasta with tomato sauce for 2",
+    "expected_servings": 2,
+    "expected_ingredients": [
+      "pasta", "tomatoes", "garlic", "olive oil", "basil", "parmesan"
+    ],
+    "critical_ingredients": ["pasta", "tomatoes"]
+  },
+  {
+    "id": "test_003",
+    "prompt": "seasonal veggies for a week",
+    "expected_servings": 7,
+    "expected_ingredients": [
+      "spinach", "kale", "carrots", "bell peppers",
+      "broccoli", "cauliflower", "zucchini", "sweet potatoes"
+    ],
+    "critical_ingredients": ["spinach", "carrots"]
+  },
+  {
+    "id": "test_004",
+    "prompt": "pantry restock",
+    "expected_servings": 1,
+    "expected_ingredients": [
+      "rice", "pasta", "olive oil", "canned tomatoes",
+      "black beans", "oats", "flour", "sugar", "salt"
+    ],
+    "critical_ingredients": ["rice", "pasta", "olive oil"]
+  },
+  {
+    "id": "test_005",
+    "prompt": "tacos for 6",
+    "expected_servings": 6,
+    "expected_ingredients": [
+      "ground beef", "taco shells", "lettuce", "tomatoes",
+      "cheese", "sour cream", "salsa", "onions"
+    ],
+    "critical_ingredients": ["ground beef", "taco shells"]
+  },
+  {
+    "id": "test_override_001",
+    "prompt": "Chicken biryani for 4\n\nSERVINGS: 4\nIMPORTANT: Use this exact ingredient list. Do not add or remove items.\nINGREDIENT_LIST: chicken | basmati rice | onions | lime",
+    "expected_servings": 4,
+    "expected_ingredients": [
+      "chicken", "basmati rice", "onions", "lime"
+    ],
+    "critical_ingredients": ["chicken", "basmati rice"],
+    "override_mode": true,
+    "override_notes": "User has explicitly limited ingredients. LLM must NOT add typical biryani ingredients like garam masala, turmeric, etc."
+  },
+  {
+    "id": "test_override_002",
+    "prompt": "Weekly meal prep\n\nSERVINGS: 7\nIMPORTANT: Use this exact ingredient list. Do not add or remove items.\nINGREDIENT_LIST: spinach  |  carrots |bell peppers|  broccoli",
+    "expected_servings": 7,
+    "expected_ingredients": [
+      "spinach", "carrots", "bell peppers", "broccoli"
+    ],
+    "critical_ingredients": ["spinach", "carrots"],
+    "override_mode": true,
+    "override_notes": "Test whitespace handling - extra spaces around separators should be trimmed"
+  },
+  {
+    "id": "test_override_003",
+    "prompt": "Quick pantry items\n\nINGREDIENT_LIST: rice | olive oil | canned tomatoes",
+    "expected_servings": 2,
+    "expected_ingredients": [
+      "rice", "olive oil", "canned tomatoes"
+    ],
+    "critical_ingredients": ["rice", "olive oil"],
+    "override_mode": true,
+    "override_notes": "SERVINGS not provided - should default to 2. LLM must not add typical pantry items."
+  }
+]

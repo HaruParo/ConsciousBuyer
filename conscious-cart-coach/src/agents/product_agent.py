@@ -13,15 +13,376 @@ Usage:
     ])
 """
 
+import csv
+import os
 import re
-from typing import Any
+from pathlib import Path
+from typing import Any, Union, Dict, List
 
 from ..contracts.models import IngredientSpec, ProductCandidate
 from ..core.types import AgentResult, Evidence, make_result, make_error
 from ..facts import get_facts, FactsGateway
 
 
-# Simulated inventory for hackathon demo.
+# Store-specific brand mapping
+# Maps brands to their exclusive or primary stores
+STORE_EXCLUSIVE_BRANDS = {
+    # Store brands (exclusive to their store)
+    "365 by Whole Foods Market": ["Whole Foods", "Whole Foods Market"],
+    "365": ["Whole Foods", "Whole Foods Market"],
+    "ShopRite": ["ShopRite"],
+    "Just Direct": ["FreshDirect"],
+    "Trader Joe's": ["Trader Joe's"],
+    "Wegmans": ["Wegmans"],
+    "Kroger": ["Kroger"],
+    "Safeway": ["Safeway"],
+    "Sprouts": ["Sprouts", "Sprouts Farmers Market"],
+
+    # Specialty stores
+    "Pure Indian Foods": ["specialty"],  # Specialty stores only
+
+    # Brands commonly found at specific stores (not exclusive but common)
+    "Peri & Sons Farms": ["Sprouts", "Sprouts Farmers Market", "Whole Foods"],
+}
+
+
+# Category to ingredient name mapping
+# Maps CSV categories to normalized ingredient names for lookup
+CATEGORY_TO_INGREDIENT: dict[str, str] = {
+    "protein_poultry": "chicken",
+    "protein_beef": "beef",
+    "protein_pork": "pork",
+    "protein_fish": "fish",
+    "protein_seafood": "seafood",
+    "protein_seafood_salmon": "salmon",
+    "protein_seafood_shrimp": "shrimp",
+    "protein_seafood_shellfish": "shellfish",
+    "protein_seafood_fish": "fish",
+    "protein_seafood_prepared": "seafood",
+    "protein_seafood_frozen": "seafood",
+    "protein_deli": "deli_meat",
+    "dairy": "milk",
+    "dairy_ghee": "ghee",
+    "dairy_eggs": "eggs",
+    "dairy_milk": "milk",
+    "dairy_yogurt": "yogurt",
+    "dairy_butter": "butter",
+    "dairy_cheese": "cheese",
+    "dairy_sour_cream": "sour_cream",
+    "dairy_dips": "dips",
+    "milk_whole": "milk",
+    "milk_2percent": "milk",
+    "yogurt": "yogurt",
+    "cheese": "cheese",
+    "produce_greens": "spinach",  # Default, will be refined
+    "produce_onions": "onion",
+    "produce_tomatoes": "tomato",
+    "produce_mushrooms": "mushrooms",
+    "fruit_berries": "berries",
+    "fruit_tropical": "tropical_fruit",
+    "spices": "spices",  # Will need more granular mapping
+    "grain": "rice",
+    "grain_rice_dry": "rice",
+    "grain_rice_prepared": "rice",
+    "grain_rice_instant": "rice",
+    "grain_rice_frozen": "rice",
+    "grain_rice_noodles": "rice_noodles",
+    "grain_rice_snacks": "rice_cakes",
+    "grain_rice_pudding": "rice_pudding",
+    "oil": "oil",
+    "condiment": "condiment",
+}
+
+
+# Price sanity ranges by ingredient and size
+# Format: {ingredient: {size_range: (min_price, max_price)}}
+PRICE_SANITY_RANGES = {
+    "basmati rice": {
+        (8, 12): (18, 45),    # 10lb range
+        (4, 6): (9, 25),      # 5lb range
+        (1.5, 2.5): (3, 12),  # 2lb range
+    },
+    "rice": {
+        (8, 12): (15, 40),
+        (4, 6): (8, 22),
+        (1.5, 2.5): (3, 10),
+    },
+    "ghee": {
+        (14, 18): (8, 25),    # 16oz range
+        (28, 36): (15, 40),   # 32oz range
+    },
+    "chicken": {
+        (0.8, 1.2): (2, 12),  # per lb
+    },
+    # Spice jars (1.5-3oz)
+    "_spice_jar": {
+        (1.0, 4.0): (2, 12),
+    },
+    # Fresh herbs per bunch
+    "_herb_bunch": {
+        (0.5, 2.0): (1, 4),
+    },
+}
+
+# Ingredient categories for fallback price checks
+SPICE_INGREDIENTS = {
+    "garam masala", "turmeric", "coriander", "cumin", "cardamom",
+    "bay leaves", "cinnamon", "cloves", "nutmeg", "paprika",
+    "chili powder", "black pepper", "fennel"
+}
+
+HERB_INGREDIENTS = {
+    "mint", "cilantro", "basil", "parsley", "thyme", "rosemary",
+    "oregano", "dill", "sage"
+}
+
+
+def _is_price_plausible(
+    ingredient_name: str,
+    product_title: str,
+    size: str,
+    price: float
+) -> tuple[bool, str]:
+    """
+    Check if product price is within plausible range for the ingredient and size.
+
+    Args:
+        ingredient_name: Normalized ingredient name
+        product_title: Product title (for context)
+        size: Size string (e.g., "10lb", "16oz", "per bunch")
+        price: Product price in USD
+
+    Returns:
+        (is_plausible, reason) - True if price is plausible, False with reason if not
+    """
+    import logging
+    logger = logging.getLogger(__name__)
+
+    # Parse size in pounds
+    size_lb = parse_size_oz(size) / 16.0 if parse_size_oz(size) > 0 else 0
+
+    # Check exact ingredient match
+    if ingredient_name in PRICE_SANITY_RANGES:
+        ranges = PRICE_SANITY_RANGES[ingredient_name]
+        for (min_size, max_size), (min_price, max_price) in ranges.items():
+            if min_size <= size_lb <= max_size:
+                if not (min_price <= price <= max_price):
+                    reason = f"Price ${price} outside range ${min_price}-${max_price} for {size}"
+                    logger.warning(f"Filtered {product_title}: {reason}")
+                    return False, reason
+                return True, "OK"
+
+    # Fallback: Check by category (spices, herbs)
+    if ingredient_name in SPICE_INGREDIENTS:
+        # Most spice jars are 1-4oz, should be $2-$12
+        size_oz = parse_size_oz(size)
+        if 1.0 <= size_oz <= 4.0:
+            if not (2 <= price <= 12):
+                reason = f"Spice price ${price} outside $2-$12 for {size}"
+                logger.warning(f"Filtered {product_title}: {reason}")
+                return False, reason
+
+    if ingredient_name in HERB_INGREDIENTS:
+        # Herbs are typically per bunch, should be $1-$4
+        if "bunch" in size.lower() or size_lb < 0.2:  # < 3oz
+            if not (1 <= price <= 4):
+                reason = f"Herb price ${price} outside $1-$4 for {size}"
+                logger.warning(f"Filtered {product_title}: {reason}")
+                return False, reason
+
+    # Generic sanity check: No product over $200
+    if price > 200:
+        reason = f"Price ${price} exceeds maximum of $200"
+        logger.warning(f"Filtered {product_title}: {reason}")
+        return False, reason
+
+    # Generic sanity check: No negative prices
+    if price < 0:
+        reason = f"Negative price ${price}"
+        logger.warning(f"Filtered {product_title}: {reason}")
+        return False, reason
+
+    return True, "OK"
+
+
+def _load_inventory_from_csv(csv_path: Union[str, Path]) -> Dict[str, List[dict]]:
+    """
+    Load product inventory from CSV file.
+
+    Returns dict[ingredient_name, list[product_dict]]
+    Each product has: id, title, brand, size, price, organic, store_type
+    """
+    inventory: Dict[str, List[dict]] = {}
+    product_counter = 0
+
+    if not os.path.exists(csv_path):
+        print(f"Warning: CSV file not found at {csv_path}, using empty inventory")
+        return inventory
+
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        # Skip comment lines (handle both quoted and unquoted comments)
+        lines = [line for line in f if not line.strip().strip('"').startswith('#')]
+
+    # Parse CSV from filtered lines
+    reader = csv.DictReader(lines)
+    for row in reader:
+        # Skip empty rows or rows with no category
+        if not row.get('category') or not row.get('category').strip():
+            continue
+
+        category = row['category'].strip()
+        product_name = row.get('product_name', '').strip()
+        brand = row.get('brand', '').strip()
+        price_str = row.get('price', '').strip()
+        unit = row.get('unit', 'ea').strip()
+        size = row.get('size', '').strip()
+        certifications = row.get('certifications', '').strip()
+        selected_tier = row.get('selected_tier', '').strip()
+
+        # Parse price (remove $ and commas)
+        try:
+            price_clean = price_str.replace('$', '').replace(',', '').strip()
+            price = float(price_clean)
+        except (ValueError, TypeError):
+            print(f"Warning: Invalid price '{price_str}' for {product_name}, skipping")
+            continue
+
+        # Determine if organic
+        organic = 'USDA Organic' in certifications or 'Organic' in certifications
+
+        # Determine store type and available stores based on brand
+        if selected_tier == "Premium Specialty" or "Pure Indian Foods" in brand:
+            store_type = "specialty"
+        else:
+            store_type = "primary"
+
+        # Determine which stores carry this product
+        available_stores = STORE_EXCLUSIVE_BRANDS.get(brand, ["all"])
+
+        # Generate product ID
+        product_counter += 1
+        product_id = f"prod{product_counter:04d}"
+
+        # Build product dict
+        product = {
+            "id": product_id,
+            "title": product_name,
+            "brand": brand,
+            "size": size,
+            "price": price,
+            "organic": organic,
+            "store_type": store_type,
+            "unit": unit,  # lb, ea, oz, etc.
+            "category": category,
+            "available_stores": available_stores,  # List of stores that carry this product
+        }
+
+        # Map category to ingredient name(s)
+        ingredient_names = _map_category_to_ingredients(category, product_name)
+
+        for ing_name in ingredient_names:
+            if ing_name not in inventory:
+                inventory[ing_name] = []
+            inventory[ing_name].append(product)
+
+    print(f"Loaded {product_counter} products into {len(inventory)} ingredient categories")
+    return inventory
+
+
+def _map_category_to_ingredients(category: str, product_name: str) -> list[str]:
+    """
+    Map CSV category and product name to ingredient name(s).
+
+    For spices and specific products, extracts the actual ingredient name.
+    For general categories, uses category mapping.
+    """
+    category_lower = category.lower()
+    product_lower = product_name.lower()
+
+    # Handle chicken/poultry
+    if "protein_poultry" in category_lower or "chicken" in product_lower:
+        ingredients = ["chicken"]
+        if "breast" in product_lower:
+            ingredients.append("chicken_breast")
+        if "thigh" in product_lower:
+            ingredients.append("chicken_thigh")
+        return ingredients
+
+    # Handle spices - extract spice name from product
+    if category_lower == "spices":
+        ingredients = ["spices"]  # Generic spices category
+
+        # Common spice mappings
+        spice_keywords = {
+            "turmeric": "turmeric",
+            "cumin": "cumin",
+            "coriander": "coriander",
+            "cardamom": "cardamom",
+            "cinnamon": "cinnamon",
+            "clove": "cloves",
+            "garam masala": "garam_masala",
+            "curry": "curry_powder",
+            "chili": "chili",
+            "pepper": "pepper",
+            "ginger": "ginger",
+            "garlic": "garlic",
+            "fennel": "fennel",
+            "fenugreek": "fenugreek",
+            "mustard": "mustard",
+            "bay": "bay_leaf",
+            "saffron": "saffron",
+            "biryani": "biryani_masala",
+            "ghee": "ghee",
+            "hing": "asafoetida",
+            "asafoetida": "asafoetida",
+        }
+
+        for keyword, spice_name in spice_keywords.items():
+            if keyword in product_lower:
+                ingredients.append(spice_name)
+                break
+
+        return ingredients
+
+    # Handle produce greens
+    if "produce_greens" in category_lower:
+        if "spinach" in product_lower:
+            return ["spinach"]
+        if "kale" in product_lower:
+            return ["kale"]
+        if "lettuce" in product_lower:
+            return ["lettuce"]
+        return ["greens"]
+
+    # Handle onions
+    if "onion" in category_lower or "onion" in product_lower:
+        return ["onion"]
+
+    # Handle rice/grains
+    if "grain" in category_lower or "rice" in product_lower:
+        ingredients = ["rice"]
+        if "basmati" in product_lower:
+            ingredients.append("basmati_rice")
+        return ingredients
+
+    # Handle yogurt
+    if "yogurt" in category_lower or "yogurt" in product_lower:
+        return ["yogurt"]
+
+    # Default: use category mapping or product name
+    if category_lower in CATEGORY_TO_INGREDIENT:
+        return [CATEGORY_TO_INGREDIENT[category_lower]]
+
+    # Fallback: use category as-is
+    return [category_lower]
+
+
+# Load inventory from CSV
+CSV_PATH = Path(__file__).parent.parent.parent / "data" / "alternatives" / "source_listings.csv"
+LOADED_INVENTORY = _load_inventory_from_csv(CSV_PATH)
+
+
+# Simulated inventory for hackathon demo (LEGACY - replaced by CSV loader).
 # Each ingredient has 5-6 products spanning a realistic price/quality range:
 #   1. Store brand value (cheapest, large pack, non-organic)
 #   2. Store brand standard (mid-cheap, normal size, non-organic)
@@ -150,25 +511,28 @@ SIMULATED_INVENTORY: dict[str, list[dict]] = {
         {"id": "gh004", "title": "Grass-Fed Ghee", "brand": "4th & Heart", "size": "9oz", "price": 10.99, "organic": True},
         {"id": "gh005", "title": "Organic Grass-Fed Ghee", "brand": "Ancient Organics", "size": "8oz", "price": 14.99, "organic": True},
     ],
+    "biryani_spice_kit": [
+        {"id": "bsk001", "title": "Biryani Bundle (Rice, Ghee, Biryani Masala, Garam Masala)", "brand": "Pure Indian Foods", "size": "Bundle Kit", "price": 35.40, "organic": True},
+    ],
     "cumin": [
         {"id": "cu001", "title": "Ground Cumin", "brand": "ShopRite", "size": "2oz", "price": 1.99, "organic": False},
         {"id": "cu002", "title": "Ground Cumin", "brand": "McCormick", "size": "1.5oz", "price": 3.99, "organic": False},
         {"id": "cu003", "title": "Ground Cumin", "brand": "Badia", "size": "2oz", "price": 2.49, "organic": False},
-        {"id": "cu004", "title": "Organic Ground Cumin", "brand": "Simply Organic", "size": "2.31oz", "price": 5.49, "organic": True},
+        {"id": "cu004", "title": "Cumin Seeds (Jeera), Certified Organic", "brand": "Pure Indian Foods", "size": "3oz", "price": 6.69, "organic": True},
         {"id": "cu005", "title": "Organic Ground Cumin", "brand": "Frontier Co-op", "size": "1.87oz", "price": 5.99, "organic": True},
     ],
     "turmeric": [
         {"id": "tu001", "title": "Ground Turmeric", "brand": "ShopRite", "size": "2oz", "price": 1.99, "organic": False},
         {"id": "tu002", "title": "Ground Turmeric", "brand": "McCormick", "size": "1.37oz", "price": 4.49, "organic": False},
         {"id": "tu003", "title": "Ground Turmeric", "brand": "Badia", "size": "2oz", "price": 2.29, "organic": False},
-        {"id": "tu004", "title": "Organic Ground Turmeric", "brand": "Simply Organic", "size": "2.38oz", "price": 5.99, "organic": True},
-        {"id": "tu005", "title": "Organic Ground Turmeric", "brand": "Frontier Co-op", "size": "1.92oz", "price": 6.49, "organic": True},
+        {"id": "tu004", "title": "Turmeric Root (High Curcumin 4-5%), Ground, Certified Organic", "brand": "Pure Indian Foods", "size": "3oz", "price": 6.99, "organic": True},
+        {"id": "tu005", "title": "Lakadong Turmeric (High Curcumin >7%), Certified Organic", "brand": "Pure Indian Foods", "size": "3oz", "price": 6.99, "organic": True},
     ],
     "coriander": [
         {"id": "co001", "title": "Ground Coriander", "brand": "ShopRite", "size": "1.75oz", "price": 1.79, "organic": False},
         {"id": "co002", "title": "Ground Coriander", "brand": "McCormick", "size": "1.5oz", "price": 3.99, "organic": False},
         {"id": "co003", "title": "Ground Coriander", "brand": "Badia", "size": "2oz", "price": 2.29, "organic": False},
-        {"id": "co004", "title": "Organic Ground Coriander", "brand": "Simply Organic", "size": "2.29oz", "price": 5.49, "organic": True},
+        {"id": "co004", "title": "Coriander Seed, Certified Organic", "brand": "Pure Indian Foods", "size": "2.5oz", "price": 5.31, "organic": True},
         {"id": "co005", "title": "Organic Ground Coriander", "brand": "Frontier Co-op", "size": "1.6oz", "price": 5.99, "organic": True},
     ],
     "rice": [
@@ -332,6 +696,48 @@ SIMULATED_INVENTORY: dict[str, list[dict]] = {
         {"id": "ss004", "title": "Organic Tamari", "brand": "San-J", "size": "10oz", "price": 4.99, "organic": True},
         {"id": "ss005", "title": "Organic Shoyu", "brand": "Eden", "size": "10oz", "price": 5.49, "organic": True},
     ],
+    "garam_masala": [
+        {"id": "gm001", "title": "Garam Masala", "brand": "ShopRite", "size": "2oz", "price": 2.49, "organic": False},
+        {"id": "gm002", "title": "Garam Masala", "brand": "McCormick", "size": "1.75oz", "price": 4.99, "organic": False},
+        {"id": "gm003", "title": "Garam Masala", "brand": "Deep", "size": "3.5oz", "price": 3.99, "organic": False},
+        {"id": "gm004", "title": "Garam Masala, Certified Organic", "brand": "Pure Indian Foods", "size": "2.5oz", "price": 6.49, "organic": True},
+        {"id": "gm005", "title": "Organic Garam Masala", "brand": "Frontier Co-op", "size": "1.9oz", "price": 6.49, "organic": True},
+    ],
+    "cardamom": [
+        {"id": "cd001", "title": "Ground Cardamom", "brand": "ShopRite", "size": "1oz", "price": 4.99, "organic": False},
+        {"id": "cd002", "title": "Ground Cardamom", "brand": "McCormick", "size": "0.95oz", "price": 7.99, "organic": False},
+        {"id": "cd003", "title": "Cardamom Pods", "brand": "Deep", "size": "1.76oz", "price": 5.99, "organic": False},
+        {"id": "cd004", "title": "Cardamom Green, Certified Organic", "brand": "Pure Indian Foods", "size": "1.4oz", "price": 12.99, "organic": True},
+        {"id": "cd005", "title": "Organic Cardamom Pods", "brand": "Frontier Co-op", "size": "0.95oz", "price": 9.49, "organic": True},
+    ],
+    "cinnamon": [
+        {"id": "cn001", "title": "Ground Cinnamon", "brand": "ShopRite", "size": "2.37oz", "price": 1.99, "organic": False},
+        {"id": "cn002", "title": "Ground Cinnamon", "brand": "McCormick", "size": "2.37oz", "price": 4.49, "organic": False},
+        {"id": "cn003", "title": "Cinnamon Sticks", "brand": "McCormick", "size": "1.25oz", "price": 5.99, "organic": False},
+        {"id": "cn004", "title": "Cinnamon (Ceylon True), Certified Organic", "brand": "Pure Indian Foods", "size": "2.5oz", "price": 5.99, "organic": True},
+        {"id": "cn005", "title": "Organic Cinnamon Sticks", "brand": "Frontier Co-op", "size": "1.28oz", "price": 6.99, "organic": True},
+    ],
+    "cloves": [
+        {"id": "cl001", "title": "Ground Cloves", "brand": "ShopRite", "size": "1.62oz", "price": 2.99, "organic": False},
+        {"id": "cl002", "title": "Ground Cloves", "brand": "McCormick", "size": "0.9oz", "price": 4.99, "organic": False},
+        {"id": "cl003", "title": "Whole Cloves", "brand": "McCormick", "size": "0.62oz", "price": 5.49, "organic": False},
+        {"id": "cl004", "title": "Cloves Whole, Certified Organic", "brand": "Pure Indian Foods", "size": "1.4oz", "price": 6.99, "organic": True},
+        {"id": "cl005", "title": "Organic Whole Cloves", "brand": "Frontier Co-op", "size": "1.36oz", "price": 6.99, "organic": True},
+    ],
+    "bay_leaves": [
+        {"id": "bl101", "title": "Bay Leaves", "brand": "ShopRite", "size": "0.12oz", "price": 1.99, "organic": False},
+        {"id": "bl102", "title": "Bay Leaves", "brand": "McCormick", "size": "0.12oz", "price": 3.49, "organic": False},
+        {"id": "bl103", "title": "Turkish Bay Leaves", "brand": "Badia", "size": "0.25oz", "price": 2.99, "organic": False},
+        {"id": "bl104", "title": "Indian Bay Leaf (Cassia/Tejapatta), Certified Organic", "brand": "Pure Indian Foods", "size": "0.5oz", "price": 3.99, "organic": True},
+        {"id": "bl105", "title": "Organic Bay Leaves", "brand": "Frontier Co-op", "size": "0.14oz", "price": 4.99, "organic": True},
+    ],
+    "saffron": [
+        {"id": "sf001", "title": "Saffron Threads", "brand": "Badia", "size": "0.4g", "price": 12.99, "organic": False},
+        {"id": "sf002", "title": "Saffron", "brand": "McCormick", "size": "0.06oz", "price": 16.99, "organic": False},
+        {"id": "sf003", "title": "Spanish Saffron", "brand": "La Mancha", "size": "1g", "price": 14.99, "organic": False},
+        {"id": "sf004", "title": "Kashmiri Saffron, Certified Organic", "brand": "Pure Indian Foods", "size": "1g", "price": 20.99, "organic": True},
+        {"id": "sf005", "title": "Persian Saffron", "brand": "Zaran", "size": "1g", "price": 19.99, "organic": False},
+    ],
 }
 
 # Aliases for ingredient normalization
@@ -370,8 +776,193 @@ INGREDIENT_ALIASES: dict[str, str] = {
     "san marzano": "canned_tomatoes", "tomato sauce": "canned_tomatoes",
     "coconut milk": "coconut_milk", "coconut cream": "coconut_milk",
     "firm tofu": "tofu", "extra firm tofu": "tofu", "silken tofu": "tofu",
+    "biryani spice kit": "biryani_spice_kit", "biryani masala kit": "biryani_spice_kit",
+    "biryani spice mix": "biryani_spice_kit", "biryani kit": "biryani_spice_kit",
+    "biryani masala": "garam_masala", "garam masala": "garam_masala",
+    "cardamom pods": "cardamom", "green cardamom": "cardamom",
+    "cinnamon stick": "cinnamon", "cinnamon sticks": "cinnamon", "ground cinnamon": "cinnamon",
+    "whole cloves": "cloves", "ground cloves": "cloves", "clove": "cloves",
+    "bay leaf": "bay_leaves", "bay leaves": "bay_leaves",
     "soy sauce": "soy_sauce", "tamari": "soy_sauce", "shoyu": "soy_sauce",
 }
+
+
+# ============================================================================
+# Synonym/Anti-synonym Dictionary for Hard Form Constraints
+# ============================================================================
+
+# Define specific inclusion/exclusion rules for ingredients to prevent wrong matches
+# Used BEFORE scoring to filter out incorrect product forms
+INGREDIENT_CONSTRAINTS = {
+    # Cumin Seeds - Must be seeds, NOT kalonji (nigella/black seed/onion seed)
+    "cumin seeds": {
+        "include": ["cumin", "jeera", "whole cumin"],
+        "exclude": ["kalonji", "nigella", "black seed", "onion seed", "black cumin"]
+    },
+    "cumin": {
+        "include": ["cumin", "jeera"],
+        "exclude": ["kalonji", "nigella", "black seed", "onion seed"]
+    },
+
+    # Bay Leaves - Must be leaves, NOT blends or mixes
+    "bay leaves": {
+        "include": ["bay leaf", "bay", "tej patta", "tejpatta", "indian bay"],
+        "exclude": ["blend", "mix", "chaat", "diy", "garam masala", "biryani masala", "curry"]
+    },
+
+    # Fresh Ginger - Must be fresh root, NOT powder/paste/dried
+    "fresh ginger": {
+        "include": ["ginger root", "fresh ginger", "organic ginger", "ginger (fresh)"],
+        "exclude": ["powder", "paste", "dried", "minced ginger", "granules", "ground"]
+    },
+    "ginger": {
+        "include": ["ginger root", "fresh ginger", "organic ginger"],
+        "exclude": ["powder", "paste", "dried", "minced", "granules", "ground"]
+    },
+
+    # Fresh Garlic - Must be fresh cloves, NOT powder/minced/granules
+    "fresh garlic": {
+        "include": ["garlic cloves", "fresh garlic", "garlic bulb", "organic garlic"],
+        "exclude": ["powder", "minced", "granules", "dried", "paste"]
+    },
+    "garlic": {
+        "include": ["garlic cloves", "fresh garlic", "garlic bulb", "organic garlic"],
+        "exclude": ["powder", "minced", "granules", "dried", "paste"]
+    },
+
+    # Coriander Powder - Must be powder/ground, NOT seeds or leaves (cilantro)
+    "coriander powder": {
+        "include": ["ground coriander", "coriander powder"],
+        "exclude": ["seeds", "whole coriander", "leaves", "cilantro", "fresh"]
+    },
+    "coriander": {
+        "include": ["coriander"],
+        "exclude": []  # Allow both powder and seeds, but product_index will use form to filter
+    },
+
+    # Cumin Powder - Must be powder/ground, NOT whole seeds
+    "cumin powder": {
+        "include": ["ground cumin", "cumin powder"],
+        "exclude": ["seeds", "whole cumin", "jeera seeds", "kalonji"]
+    },
+
+    # Cardamom Pods - Prefer pods, allow powder
+    "cardamom": {
+        "include": ["cardamom", "green cardamom", "black cardamom"],
+        "exclude": []
+    },
+
+    # Mint Leaves - Must be fresh leaves, NOT dried
+    "mint": {
+        "include": ["fresh mint", "mint leaves", "mint bunch", "organic mint"],
+        "exclude": ["dried", "powder"]
+    },
+
+    # Cilantro Leaves - Must be fresh leaves, NOT coriander seeds
+    "cilantro": {
+        "include": ["cilantro", "fresh cilantro", "cilantro bunch", "coriander leaves"],
+        "exclude": ["seeds", "powder", "dried", "coriander seed"]
+    },
+
+    # Turmeric Powder - Must be powder/ground, NOT root
+    "turmeric": {
+        "include": ["turmeric", "ground turmeric", "turmeric powder"],
+        "exclude": []  # Allow both powder and root
+    },
+
+    # Chicken - Specific cuts (enforce correct matches)
+    "chicken thighs": {
+        "include": ["thighs", "thigh"],
+        "exclude": ["breast", "drumstick", "leg (not thigh)", "wing", "ground"]
+    },
+    "chicken legs": {
+        "include": ["leg", "drumstick", "drumsticks"],
+        "exclude": ["thigh", "breast", "wing", "ground"]
+    },
+    "chicken drumsticks": {
+        "include": ["drumstick", "drumsticks", "leg"],
+        "exclude": ["thigh", "breast", "wing", "ground"]
+    },
+    "chicken breasts": {
+        "include": ["breast", "breasts"],
+        "exclude": ["thigh", "drumstick", "leg (not breast)", "wing", "ground"]
+    },
+    "chicken wings": {
+        "include": ["wing", "wings"],
+        "exclude": ["thigh", "drumstick", "leg", "breast", "ground"]
+    },
+    "chicken": {
+        "include": ["chicken"],
+        "exclude": ["ground", "sausage", "patty", "nugget", "tender", "strip"]
+    },
+
+    # Basmati Rice - Must be basmati, NOT other rice types
+    "basmati rice": {
+        "include": ["basmati"],
+        "exclude": ["jasmine", "sushi", "arborio", "wild rice"]
+    },
+}
+
+
+def apply_form_constraints(candidates: list[dict], ingredient_label: str) -> list[dict]:
+    """
+    Apply hard form constraints to filter out incorrect product matches.
+
+    This filters BEFORE scoring to prevent wrong forms from being selected.
+    Example: "cumin seeds" should NEVER match "kalonji" (black seed)
+
+    Args:
+        candidates: List of product candidates
+        ingredient_label: Full ingredient label ("fresh ginger root", "cumin seeds", etc.)
+
+    Returns:
+        Filtered list of candidates that pass constraints
+    """
+    ingredient_lower = ingredient_label.lower().strip()
+
+    # Check if we have specific constraints for this ingredient
+    constraints = None
+    for key, rules in INGREDIENT_CONSTRAINTS.items():
+        if key in ingredient_lower:
+            constraints = rules
+            break
+
+    # If no constraints, return all candidates
+    if not constraints:
+        return candidates
+
+    filtered = []
+    for candidate in candidates:
+        title_lower = candidate["title"].lower()
+        brand_lower = candidate.get("brand", "").lower()
+        combined_text = f"{title_lower} {brand_lower}"
+
+        # Check exclude rules (hard constraint - must pass)
+        excluded = False
+        for exclude_term in constraints.get("exclude", []):
+            if exclude_term.lower() in combined_text:
+                excluded = True
+                break
+
+        if excluded:
+            continue  # Skip this candidate
+
+        # Check include rules (must match at least one)
+        include_terms = constraints.get("include", [])
+        if include_terms:
+            matched = False
+            for include_term in include_terms:
+                if include_term.lower() in combined_text:
+                    matched = True
+                    break
+
+            if not matched:
+                continue  # Skip if doesn't match any include term
+
+        # Passed all constraints
+        filtered.append(candidate)
+
+    return filtered
 
 
 def parse_size_oz(size_str: str) -> float:
@@ -409,18 +1000,49 @@ class ProductAgent:
 
     def __init__(self, facts: FactsGateway | None = None):
         self.facts = facts or get_facts()
-        self.inventory = SIMULATED_INVENTORY
+        # Use loaded CSV inventory if available, fallback to simulated
+        self.inventory = LOADED_INVENTORY if LOADED_INVENTORY else SIMULATED_INVENTORY
         self.aliases = INGREDIENT_ALIASES
+
+    def filter_by_store(self, product: dict, target_store: str | None = None) -> bool:
+        """
+        Check if a product is available at the target store.
+
+        Args:
+            product: Product dictionary with available_stores field
+            target_store: Target store name (e.g., "Whole Foods", "ShopRite")
+
+        Returns:
+            True if product is available at target store, False otherwise
+        """
+        if not target_store:
+            return True  # No store filter, show all products
+
+        available_stores = product.get("available_stores", ["all"])
+
+        # If product is available at all stores
+        if "all" in available_stores:
+            return True
+
+        # Check if target store matches any available store (case-insensitive)
+        target_lower = target_store.lower()
+        for store in available_stores:
+            if store.lower() in target_lower or target_lower in store.lower():
+                return True
+
+        return False
 
     def get_candidates(
         self,
         ingredients: list[IngredientSpec] | list[dict],
+        target_store: str | None = None,
     ) -> AgentResult:
         """
         Return candidate products for each ingredient.
 
         Args:
             ingredients: List of IngredientSpec or dicts with {name, quantity}
+            target_store: Optional store name to filter products by
 
         Returns:
             AgentResult with candidates_by_ingredient: dict[str, list[candidate_dict]]
@@ -446,8 +1068,40 @@ class ProductAgent:
                     candidates = []
 
                     for p in raw_products:
+                        # Filter by store if target_store is specified
+                        if not self.filter_by_store(p, target_store):
+                            continue
+
+                        # Price sanity filter: Reject products with unrealistic prices
+                        is_plausible, reason = _is_price_plausible(
+                            normalized,
+                            p["title"],
+                            p["size"],
+                            p["price"]
+                        )
+                        if not is_plausible:
+                            # Log and skip this candidate
+                            continue
+
                         size_oz = parse_size_oz(p["size"])
-                        unit_price = round(p["price"] / size_oz, 4) if size_oz > 0 else p["price"]
+
+                        # CRITICAL: Skip products with missing/invalid size info
+                        # Without valid size, we can't compute unit pricing for comparison
+                        if size_oz <= 0:
+                            import logging
+                            logger = logging.getLogger(__name__)
+                            logger.warning(f"Skipping {p['title']}: missing size information (size={p.get('size', 'N/A')})")
+                            continue
+
+                        unit_price = round(p["price"] / size_oz, 4)
+
+                        # Unit price consistency validation
+                        if unit_price <= 0 or unit_price > 1000:
+                            # Invalid unit price calculation, skip this candidate
+                            import logging
+                            logger = logging.getLogger(__name__)
+                            logger.warning(f"Invalid unit price for {p['title']}: unit_price={unit_price}")
+                            continue
 
                         candidates.append({
                             "product_id": p["id"],
@@ -460,10 +1114,60 @@ class ProductAgent:
                             "unit_price_unit": "oz",
                             "organic": p.get("organic", False),
                             "in_stock": True,
+                            "available_stores": p.get("available_stores", ["all"]),
+                            "store_type": p.get("store_type", "primary"),
                         })
 
-                    # Sort by unit_price ascending (cheapest first)
-                    candidates.sort(key=lambda c: c["unit_price"])
+                    # Smart sort: form match > freshness > organic > price
+                    def sort_key(c):
+                        title_lower = c["title"].lower()
+
+                        # 1. Form preference (0 = best, higher = worse)
+                        form_score = 10  # default
+
+                        # For spices: powder > granules > whole
+                        if "powder" in name_lower or "ground" in name_lower:
+                            if "ground" in title_lower or "powder" in title_lower:
+                                form_score = 0  # Perfect match
+                            elif "granules" in title_lower or "coarse" in title_lower:
+                                form_score = 5  # Acceptable but not ideal
+                            elif "whole" in title_lower or "root" in title_lower:
+                                form_score = 10  # Avoid whole for ground spices
+
+                        # For produce: fresh > dried (CHECK GRANULES FIRST!)
+                        if name_lower in ["ginger", "garlic", "mint", "cilantro", "basil"]:
+                            # CRITICAL: Check for dried/granules FIRST (even if organic)
+                            if "granules" in title_lower or "minced" in title_lower or "dried" in title_lower or "powder" in title_lower:
+                                form_score = 20  # Avoid dried/granules for fresh ingredients
+                            elif "fresh" in title_lower or "bunch" in title_lower or "root" in title_lower:
+                                form_score = 0  # Fresh is best
+                            elif "organic" in title_lower and "granules" not in title_lower:
+                                # Organic whole produce (not granules)
+                                form_score = 0
+                            else:
+                                # Generic match (not explicitly fresh or dried)
+                                form_score = 5
+
+                        # For chicken: any cut (thighs/breasts/drumsticks) is valid
+                        if "chicken" in name_lower:
+                            # Accept any common chicken cut without penalty
+                            chicken_cuts = ["thigh", "breast", "drumstick", "wing", "leg", "whole"]
+                            if any(cut in title_lower for cut in chicken_cuts):
+                                form_score = 0  # All cuts are equally valid
+                            # Avoid ground/processed forms for whole cuts
+                            elif "ground" in title_lower or "sausage" in title_lower or "meatball" in title_lower:
+                                form_score = 15  # Penalize processed forms
+
+                        # 2. Organic preference (0 = organic, 1 = not)
+                        organic_score = 0 if c.get("organic") else 1
+
+                        # 3. Price (normalize to 0-10 range)
+                        price_score = min(c["unit_price"], 10)
+
+                        # Combined score (form is most important)
+                        return (form_score, organic_score, price_score)
+
+                    candidates.sort(key=sort_key)
                     candidates_by_ingredient[name_lower] = candidates
 
                     evidence.append(Evidence(

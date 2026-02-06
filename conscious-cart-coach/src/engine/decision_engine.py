@@ -72,8 +72,9 @@ WEIGHTS = {
     "recall_category_recent": -5,
     "recall_data_gap": -3,
 
-    # Quality signals (reduced organic dominance)
-    "organic": 4,
+    # Quality signals
+    "organic": 4,  # Regular organic bonus
+    "organic_specialty": 15,  # Stronger bonus for organic spices/ethnic items (better quality at specialty stores)
     "local_brand": 5,
 
     # Value efficiency: best $/oz ratio gets a meaningful bonus
@@ -87,7 +88,19 @@ WEIGHTS = {
     "matches_preferred_brand": 10,
     "avoids_brand": -25,
     "matches_tier_preference": 5,
+
+    # Size filtering: penalize unrealistic package sizes
+    "unrealistic_small_size": -30,
 }
+
+# Fresh herbs that should come in bunches or reasonable clamshells (not tiny boxes)
+FRESH_HERBS = {
+    "cilantro", "coriander", "coriander_leaves", "parsley", "basil",
+    "mint", "mint_leaves", "dill", "chives", "thyme", "rosemary"
+}
+
+# Minimum reasonable sizes for fresh herbs (in oz)
+MIN_FRESH_HERB_SIZE_OZ = 0.5
 
 # Priority order for reason_short (first match wins)
 REASON_PRIORITY = [
@@ -98,6 +111,7 @@ REASON_PRIORITY = [
     ("peak_season", "Peak season local"),
     ("available_local", "Locally available"),
     ("matches_preferred_brand", "Preferred brand"),
+    ("organic_specialty", "Organic specialty"),
     ("value_efficiency_best", "Best value per oz"),
     ("balanced_position", "Best match"),
     ("value_efficiency_good", "Good value"),
@@ -422,13 +436,26 @@ class DecisionEngine:
             # Recall category advisories (soft)
             self._apply_recall_advisory(sc, safety)
 
-            # Organic bonus (reduced from old +8)
+            # Organic bonus - stronger for spices/ethnic ingredients at specialty stores
             if c.organic:
-                sc.adjustments.append(("organic", self.weights["organic"]))
+                # Check if this is a spice or ethnic ingredient
+                ingredient_normalized = c.ingredient_name.lower().strip().replace(" ", "_")
+                is_spice = self._is_spice_or_ethnic(ingredient_normalized)
+
+                if is_spice:
+                    # Spices at specialty stores benefit greatly from organic (transparency, quality)
+                    # Boost organic bonus significantly to ensure organic selection
+                    sc.adjustments.append(("organic_specialty", self.weights.get("organic_specialty", 15)))
+                else:
+                    # Regular organic bonus for non-spice items
+                    sc.adjustments.append(("organic", self.weights["organic"]))
 
             # Brand preference
             if c.brand.lower() in [b.lower() for b in user_prefs.preferred_brands]:
                 sc.adjustments.append(("matches_preferred_brand", self.weights["matches_preferred_brand"]))
+
+            # Size filtering: penalize unrealistically small packages for fresh herbs
+            self._apply_size_penalty(sc)
 
             # Value efficiency: reward best price/oz ratio
             if price_range > 0:
@@ -501,6 +528,88 @@ class DecisionEngine:
 
         if safety.recall.data_gap:
             sc.adjustments.append(("recall_data_gap", self.weights["recall_data_gap"]))
+
+    def _apply_size_penalty(self, sc: _ScoredCandidate):
+        """Penalize unrealistically small package sizes for fresh herbs."""
+        c = sc.candidate
+        ingredient_normalized = c.ingredient_name.lower().strip().replace(" ", "_")
+
+        # Check if this is a fresh herb
+        is_fresh_herb = any(herb in ingredient_normalized for herb in FRESH_HERBS)
+
+        if is_fresh_herb:
+            # Parse size to get numeric value in oz
+            size_oz = self._parse_size_to_oz(c.size)
+
+            # Penalize if size is unrealistically small
+            if size_oz is not None and size_oz < MIN_FRESH_HERB_SIZE_OZ:
+                sc.adjustments.append(("unrealistic_small_size", self.weights["unrealistic_small_size"]))
+                if not sc.top_driver:
+                    sc.top_driver = "unrealistic_small_size"
+
+    def _parse_size_to_oz(self, size_str: str) -> float | None:
+        """
+        Parse size string to oz value.
+
+        Examples:
+            "1 oz" -> 1.0
+            "0.5 oz" -> 0.5
+            "1 bunch" -> None (not measurable in oz)
+            "5 oz" -> 5.0
+        """
+        import re
+
+        # Match patterns like "1 oz", "0.5oz", "1.5 oz"
+        match = re.search(r'(\d+\.?\d*)\s*oz', size_str.lower())
+        if match:
+            try:
+                return float(match.group(1))
+            except ValueError:
+                return None
+
+        return None
+
+    def _is_spice_or_ethnic(self, ingredient: str) -> bool:
+        """
+        Check if ingredient is a spice or ethnic specialty item.
+
+        These items benefit greatly from organic at specialty stores due to:
+        - Better quality and transparency
+        - Direct sourcing from trusted suppliers
+        - No pesticide residues in concentrated spices
+
+        Includes: all spices, ethnic staples (rice, lentils, ghee, etc.)
+        """
+        # Spice patterns
+        spice_patterns = [
+            "turmeric", "cumin", "coriander", "cardamom", "cinnamon",
+            "clove", "cloves", "bay_leaf", "bay_leaves", "curry",
+            "garam_masala", "masala", "chaat", "tandoori",
+            "mustard_seed", "fenugreek", "kasuri_methi",
+            "asafoetida", "hing", "fennel",
+            "black_pepper", "white_pepper", "pepper", "chili", "cayenne", "paprika",
+            "saffron", "sumac", "za'atar"
+        ]
+
+        # Ethnic specialty staples
+        ethnic_staples = [
+            "ghee", "paneer", "dal", "lentils",
+            "basmati", "jasmine_rice", "rice",
+            "tamarind", "jaggery",
+            "tahini", "miso", "kimchi", "gochugaru", "gochujang",
+            "sesame_oil", "fish_sauce", "oyster_sauce"
+        ]
+
+        # Check direct match
+        for pattern in spice_patterns + ethnic_staples:
+            if pattern in ingredient:
+                return True
+
+        # Check suffix patterns (e.g., "curry_powder", "chili_powder")
+        if any(ingredient.endswith(suffix) for suffix in ["_powder", "_seed", "_seeds", "_masala", "_paste"]):
+            return True
+
+        return False
 
     # =========================================================================
     # Neighbor Selection

@@ -38,8 +38,6 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any, Literal, Optional
 
-from anthropic import Anthropic
-
 logger = logging.getLogger(__name__)
 
 from ..contracts.models import (
@@ -103,44 +101,47 @@ class Orchestrator:
         user_id: str = "default",
         use_llm_extraction: bool = False,
         use_llm_explanations: bool = False,
-        anthropic_client: Optional[Anthropic] = None,
+        llm_client = None,
+        target_store: str | None = None,
     ):
         """
         Initialize Orchestrator.
 
         Args:
             user_id: User identifier for history tracking
-            use_llm_extraction: Enable Claude for ingredient parsing
-            use_llm_explanations: Enable Claude for decision explanations
-            anthropic_client: Optional shared Anthropic client (created if needed)
+            use_llm_extraction: Enable LLM for ingredient parsing (supports Anthropic, Ollama, Gemini, etc.)
+            use_llm_explanations: Enable LLM for decision explanations
+            llm_client: Optional shared LLM client (supports Anthropic, Ollama, Gemini, etc.)
+            target_store: Optional target store name for filtering products (e.g., "FreshDirect", "Whole Foods")
         """
         self.user_id = user_id
         self.use_llm_extraction = use_llm_extraction
         self.use_llm_explanations = use_llm_explanations
+        self.target_store = target_store
         self.state = FlowState()
         self.tracker = OpikTracker()
 
-        # Initialize shared Anthropic client if LLM features enabled
-        self.anthropic_client = anthropic_client
-        if (use_llm_extraction or use_llm_explanations) and not self.anthropic_client:
+        # Initialize shared LLM client if LLM features enabled
+        self.llm_client = llm_client
+        if (use_llm_extraction or use_llm_explanations) and not self.llm_client:
             try:
-                from ..llm.client import get_anthropic_client
-                self.anthropic_client = get_anthropic_client()
-                if self.anthropic_client:
-                    logger.info("Orchestrator initialized with LLM features enabled")
+                from ..utils.llm_client import get_llm_client
+                self.llm_client = get_llm_client()
+                if self.llm_client:
+                    logger.info(f"Orchestrator initialized with LLM features enabled (provider: {type(self.llm_client).__name__})")
                 else:
-                    logger.warning("LLM features requested but no API key available")
+                    logger.warning("LLM features requested but no client available")
                     self.use_llm_extraction = False
                     self.use_llm_explanations = False
-            except ImportError:
-                logger.warning("LLM module not available")
+            except Exception as e:
+                logger.warning(f"LLM module not available: {e}")
                 self.use_llm_extraction = False
                 self.use_llm_explanations = False
 
         # Initialize agents
         self.ingredient_agent = IngredientAgent(
             use_llm=use_llm_extraction,
-            anthropic_client=self.anthropic_client,
+            llm_client=self.llm_client,
         )
         self.product_agent = ProductAgent()
         self.safety_agent = SafetyAgent()
@@ -148,7 +149,7 @@ class Orchestrator:
         self.user_history_agent = UserHistoryAgent(user_id)
         self.decision_engine = DecisionEngine(
             use_llm_explanations=use_llm_explanations,
-            anthropic_client=self.anthropic_client,
+            anthropic_client=self.llm_client,  # DecisionEngine might also need updating
         )
 
     def process_prompt(
@@ -299,7 +300,7 @@ class Orchestrator:
             if self.state.stage not in ("ingredients_confirmed", "candidates_fetched"):
                 return make_error("orchestrator", "Must confirm ingredients first")
 
-            result = self.product_agent.get_candidates(self.state.ingredients)
+            result = self.product_agent.get_candidates(self.state.ingredients, target_store=self.target_store)
 
             if result.status == "error":
                 self.state.stage = "error"

@@ -1,0 +1,36 @@
+# Ignore unnecessary files for Vercel deployment
+
+# Development files
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+
+# Local data and outputs
+outputs/
+*.db
+*.sqlite
+
+# Archive and test files
+archive/
+tests/
+
+# IDE
+.vscode/
+.idea/
+
+# Local config
+.env.local
+*.log
+
+# Node (frontend handles its own)
+frontend/node_modules/
+
+# Large/unnecessary files
+screenshots/
+
+# Full requirements (use minimal for Vercel)
+requirements-full.txt
+environments.yml

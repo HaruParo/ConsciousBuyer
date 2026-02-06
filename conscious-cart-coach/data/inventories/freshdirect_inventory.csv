@@ -1,0 +1,48 @@
+product_id,source_store_id,store_name,category,ingredient_key,brand,title,price,size_value,size_unit,unit_price,unit_price_unit,organic,packaging,certifications
+prod0001,freshdirect,FreshDirect,protein_poultry,chicken,FreshDirect,"Chicken, FreshDirect",24.45,3.0,lb,0.5094,oz,False,bulk,
+prod0002,freshdirect,FreshDirect,protein_poultry,chicken,Tyson,"Organic Chicken, Tyson",20.4,1.5,lb,0.85,oz,True,bulk,USDA Organic
+prod0003,freshdirect,FreshDirect,protein_poultry,chicken,Bell & Evans,"Organic Chicken, Bell & Evans",11.04,1.0,lb,0.69,oz,True,bulk,USDA Organic
+prod0004,freshdirect,FreshDirect,protein_poultry,chicken,Farmer Focus,"Organic Chicken, Farmer Focus",15.95,1.5,lb,0.6646,oz,True,bulk,"USDA Organic, Free Range"
+prod0005,freshdirect,FreshDirect,produce,onions,FreshDirect,"Onions, FreshDirect",2.98,2.0,lb,0.0931,oz,False,bulk,
+prod0006,freshdirect,FreshDirect,produce,onions,Melissa's,"Organic Onions, Melissa's",2.33,1.0,lb,0.1456,oz,True,bulk,USDA Organic
+prod0007,freshdirect,FreshDirect,produce,onions,Fresh Farms,"Onions, Fresh Farms",1.79,1.0,lb,0.1119,oz,False,bulk,
+prod0008,freshdirect,FreshDirect,produce,onions,Organic Valley,"Organic Onions, Organic Valley",7.24,2.0,lb,0.2263,oz,True,bulk,USDA Organic
+prod0009,freshdirect,FreshDirect,produce,tomatoes,FreshDirect,"Tomatoes, FreshDirect",2.24,1.0,lb,0.14,oz,False,bulk,
+prod0010,freshdirect,FreshDirect,produce,tomatoes,NatureSweet,"Organic Tomatoes, NatureSweet",7.0,2.0,lb,0.2188,oz,True,bulk,USDA Organic
+prod0011,freshdirect,FreshDirect,produce,tomatoes,Campari,"Organic Tomatoes, Campari",3.5,16.0,oz,0.2188,oz,True,bulk,USDA Organic
+prod0012,freshdirect,FreshDirect,produce,tomatoes,Heirloom Organic,"Organic Tomatoes, Heirloom Organic",5.44,16.0,oz,0.34,oz,True,bulk,USDA Organic
+prod0013,freshdirect,FreshDirect,dairy,yogurt,FreshDirect,"Yogurt, FreshDirect",8.98,32.0,oz,0.2806,oz,False,plastic,
+prod0014,freshdirect,FreshDirect,dairy,yogurt,Chobani,"Yogurt, Chobani",2.02,6.0,oz,0.3367,oz,False,plastic,
+prod0015,freshdirect,FreshDirect,dairy,yogurt,Fage,"Yogurt, Fage",10.78,32.0,oz,0.3369,oz,False,plastic,
+prod0016,freshdirect,FreshDirect,dairy,yogurt,Maple Hill,"Organic Yogurt, Maple Hill",3.61,5.3,oz,0.6811,oz,True,plastic,USDA Organic
+prod0017,freshdirect,FreshDirect,produce,ginger,FreshDirect,"Ginger, FreshDirect",1.5,8.0,oz,0.1875,oz,False,bulk,
+prod0018,freshdirect,FreshDirect,produce,ginger,Melissa's,"Organic Ginger, Melissa's",4.67,1.0,lb,0.2919,oz,True,bulk,USDA Organic
+prod0019,freshdirect,FreshDirect,produce,ginger,Organic Ginger Root,"Organic Ginger, Organic Ginger Root",3.63,8.0,oz,0.4537,oz,True,bulk,USDA Organic
+prod0020,freshdirect,FreshDirect,produce,garlic,FreshDirect,"Garlic, FreshDirect",3.74,5.0,ct,0.748,ea,False,bulk,
+prod0021,freshdirect,FreshDirect,produce,garlic,Christopher Ranch,"Garlic, Christopher Ranch",4.49,5.0,ct,0.898,ea,False,bulk,
+prod0022,freshdirect,FreshDirect,produce,garlic,Organic Hardneck Garlic,"Organic Garlic, Organic Hardneck Garlic",9.08,3.0,ct,3.0267,ea,True,bulk,USDA Organic
+prod0023,freshdirect,FreshDirect,herbs,mint,FreshDirect,"Mint, FreshDirect",1.59,1.0,bunch,1.59,ea,False,bulk,
+prod0024,freshdirect,FreshDirect,herbs,mint,Fresh Herb Co,"Organic Mint, Fresh Herb Co",1.23,1.0,bunch,1.23,ea,True,bulk,USDA Organic
+prod0025,freshdirect,FreshDirect,herbs,mint,Organic Mint,"Organic Mint, Organic Mint",5.0,0.75,oz,6.6667,oz,True,bulk,USDA Organic
+prod0026,freshdirect,FreshDirect,herbs,cilantro,FreshDirect,"Cilantro, FreshDirect",2.12,1.0,bunch,2.12,ea,False,bulk,
+prod0027,freshdirect,FreshDirect,herbs,cilantro,Fresh Herb Co,"Organic Cilantro, Fresh Herb Co",2.18,1.0,bunch,2.18,ea,True,bulk,USDA Organic
+prod0028,freshdirect,FreshDirect,herbs,cilantro,Organic Cilantro,"Organic Cilantro, Organic Cilantro",5.0,0.75,oz,6.6667,oz,True,bulk,USDA Organic
+prod0029,freshdirect,FreshDirect,rice,basmati rice,FreshDirect,"Basmati Rice, FreshDirect",6.01,4.0,lb,0.0939,oz,False,bulk,
+prod0030,freshdirect,FreshDirect,rice,basmati rice,Lundberg,"Basmati Rice, Lundberg",21.67,5.0,lb,0.2709,oz,False,bulk,
+prod0031,freshdirect,FreshDirect,rice,basmati rice,Royal,"Organic Basmati Rice, Royal",6.41,4.0,lb,0.1002,oz,True,bulk,USDA Organic
+prod0032,freshdirect,FreshDirect,rice,basmati rice,Tilda,"Organic Basmati Rice, Tilda",42.43,5.0,lb,0.5304,oz,True,bulk,USDA Organic
+prod0033,freshdirect,FreshDirect,oil,ghee,Fourth & Heart,"Organic Ghee, Fourth & Heart",12.65,8.0,oz,1.5813,oz,True,glass,USDA Organic
+prod0034,freshdirect,FreshDirect,oil,ghee,Organic Valley,"Organic Ghee, Organic Valley",8.95,8.0,oz,1.1187,oz,True,glass,USDA Organic
+prod0035,freshdirect,FreshDirect,oil,ghee,Ancient Organics,"Organic Ghee, Ancient Organics",23.4,16.0,oz,1.4625,oz,True,glass,USDA Organic
+prod0036,freshdirect,FreshDirect,spices,turmeric,McCormick,"Turmeric, McCormick",2.42,3.0,oz,0.8067,oz,False,glass,
+prod0037,freshdirect,FreshDirect,spices,turmeric,Simply Organic,"Organic Turmeric, Simply Organic",5.64,3.0,oz,1.88,oz,True,glass,USDA Organic
+prod0038,freshdirect,FreshDirect,spices,turmeric,Diaspora Co,"Organic Turmeric, Diaspora Co",15.0,8.0,oz,1.875,oz,True,plastic,USDA Organic
+prod0039,freshdirect,FreshDirect,spices,coriander,Simply Organic,"Coriander, Simply Organic",13.06,8.0,oz,1.6325,oz,False,glass,
+prod0040,freshdirect,FreshDirect,spices,coriander,McCormick,"Coriander, McCormick",9.64,8.0,oz,1.205,oz,False,glass,
+prod0041,freshdirect,FreshDirect,spices,coriander,Diaspora Co,"Organic Coriander, Diaspora Co",15.0,8.0,oz,1.875,oz,True,glass,USDA Organic
+prod0042,freshdirect,FreshDirect,spices,cumin,McCormick,"Cumin, McCormick",3.8,3.0,oz,1.2667,oz,False,glass,
+prod0043,freshdirect,FreshDirect,spices,cumin,Simply Organic,"Cumin, Simply Organic",3.95,3.0,oz,1.3167,oz,False,plastic,
+prod0044,freshdirect,FreshDirect,spices,cumin,Diaspora Co,"Organic Cumin, Diaspora Co",15.0,8.0,oz,1.875,oz,True,glass,USDA Organic
+prod0045,freshdirect,FreshDirect,spices,bay leaves,McCormick,"Organic Bay Leaves, McCormick",7.32,1.0,oz,7.32,oz,True,glass,USDA Organic
+prod0046,freshdirect,FreshDirect,spices,bay leaves,Simply Organic,"Organic Bay Leaves, Simply Organic",5.08,0.5,oz,10.16,oz,True,glass,USDA Organic
+prod0047,freshdirect,FreshDirect,spices,bay leaves,Diaspora Co,"Organic Bay Leaves, Diaspora Co",8.78,1.0,oz,8.78,oz,True,plastic,USDA Organic
