@@ -65,7 +65,7 @@ class BaseLLMClient:
 class AnthropicClient(BaseLLMClient):
     """Anthropic (Claude) API client"""
 
-    def __init__(self, api_key: Optional[str] = None, model: str = "claude-3-5-sonnet-20241022"):
+    def __init__(self, api_key: Optional[str] = None, model: str = "claude-3-haiku-20240307"):
         if not ANTHROPIC_AVAILABLE:
             raise ImportError("anthropic package not installed. Install with: pip install anthropic")
 
@@ -386,7 +386,7 @@ def get_llm_client(provider: Optional[str] = None) -> BaseLLMClient:
 
     if provider == "anthropic":
         return AnthropicClient(
-            model=os.environ.get("ANTHROPIC_MODEL", "claude-3-5-sonnet-20241022")
+            model=os.environ.get("ANTHROPIC_MODEL", "claude-3-haiku-20240307")
         )
 
     elif provider == "ollama":
