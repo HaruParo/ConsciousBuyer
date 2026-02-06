@@ -5,7 +5,9 @@
 
 import { CartItem } from '@/app/types';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+// In production (Vercel), use relative URLs. In development, use localhost.
+const API_BASE_URL = import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD ? '' : 'http://localhost:8000');
 
 export interface CreateCartRequest {
   meal_plan: string;

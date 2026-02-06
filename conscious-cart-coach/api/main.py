@@ -171,8 +171,8 @@ app.add_middleware(
         "http://localhost:5173",  # Vite dev server
         "http://localhost:5174",  # Figma_files dev server
         "http://localhost:3000",  # Alternative React port
-        "https://*.vercel.app",   # Vercel deployments
     ],
+    allow_origin_regex=r"https://.*\.vercel\.app",  # All Vercel deployments
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
