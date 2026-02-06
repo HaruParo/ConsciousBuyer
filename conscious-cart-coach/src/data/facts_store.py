@@ -27,6 +27,7 @@ Usage:
 """
 
 import csv
+import os
 import sqlite3
 from datetime import datetime
 from pathlib import Path
@@ -34,7 +35,19 @@ from typing import Any
 
 # Paths
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
-DB_PATH = DATA_DIR / "facts_store.db"
+
+# Use /tmp for database on Vercel/serverless (read-only filesystem)
+# Vercel sets VERCEL=1, AWS Lambda sets AWS_LAMBDA_FUNCTION_NAME
+IS_SERVERLESS = (
+    os.environ.get("VERCEL") or
+    os.environ.get("AWS_LAMBDA_FUNCTION_NAME") or
+    os.environ.get("VERCEL_ENV")
+)
+
+if IS_SERVERLESS:
+    DB_PATH = Path("/tmp/facts_store.db")
+else:
+    DB_PATH = DATA_DIR / "facts_store.db"
 
 # CSV source files
 CSV_SOURCES = {
@@ -148,9 +161,22 @@ class FactsStore:
     Refresh methods update data from CSV sources.
     """
 
-    def __init__(self, db_path: Path = DB_PATH):
-        self.db_path = db_path
-        self.db_path.parent.mkdir(parents=True, exist_ok=True)
+    def __init__(self, db_path: Path = None):
+        # Determine database path - prefer /tmp for serverless
+        if db_path:
+            self.db_path = db_path
+        elif IS_SERVERLESS or not DB_PATH.parent.exists():
+            self.db_path = Path("/tmp/facts_store.db")
+        else:
+            self.db_path = DB_PATH
+
+        # Create parent directory if needed
+        try:
+            self.db_path.parent.mkdir(parents=True, exist_ok=True)
+        except (OSError, PermissionError):
+            # Fallback to /tmp if we can't create directory
+            self.db_path = Path("/tmp/facts_store.db")
+
         self._init_db()
 
     def _init_db(self):
