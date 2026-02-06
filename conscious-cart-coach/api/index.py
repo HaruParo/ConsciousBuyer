@@ -1,11 +1,11 @@
 """
 Vercel Serverless Function - Main API Handler
+Vercel's Python runtime natively supports FastAPI/ASGI apps
 """
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from mangum import Mangum
 import sys
 from pathlib import Path
 
@@ -111,6 +111,3 @@ except ImportError as e:
     @app.get("/api/status")
     def import_error():
         return {"status": "limited", "error": str(e)}
-
-# Vercel handler
-handler = Mangum(app, lifespan="off")

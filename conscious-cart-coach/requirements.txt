@@ -3,7 +3,6 @@
 
 # Web Framework
 fastapi>=0.104.0
-mangum>=0.17.0
 
 # LLM Integration
 anthropic>=0.18.0
