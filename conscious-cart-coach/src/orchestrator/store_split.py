@@ -46,7 +46,7 @@ class StoreGroup:
     ingredients: List[str]
     count: int
     is_primary: bool  # Primary = store with MOST items
-    delivery_estimate: str = "1-2 days"  # Delivery time estimate
+    delivery_estimate: str = "next day"  # Delivery time estimate (FreshDirect default)
 
 
 @dataclass
@@ -135,8 +135,8 @@ def split_ingredients_by_store(
         Input: ["chicken", "spinach", "turmeric", "cumin", "ghee", "onions"]
 
         Output:
-            StoreGroup(store="FreshDirect", ingredients=["chicken", "spinach", "onions"], count=3, delivery="1-2 days")
-            StoreGroup(store="Pure Indian Foods", ingredients=["turmeric", "cumin", "ghee"], count=3, delivery="1-2 weeks")
+            StoreGroup(store="FreshDirect", ingredients=["chicken", "spinach", "onions"], count=3, delivery="next day")
+            StoreGroup(store="Pure Indian Foods", ingredients=["turmeric", "cumin", "ghee"], count=3, delivery="1 week")
     """
     if user_prefs is None:
         user_prefs = UserPreferences()
@@ -188,7 +188,7 @@ def split_ingredients_by_store(
                 ingredients=primary_items + both_items,
                 count=len(primary_items + both_items),
                 is_primary=True,
-                delivery_estimate="1-2 days"
+                delivery_estimate="next day"
             )
         ]
 
@@ -208,7 +208,7 @@ def split_ingredients_by_store(
                 ingredients=primary_items + both_items + specialty_items,
                 count=len(primary_items + both_items + specialty_items),
                 is_primary=True,
-                delivery_estimate="1-2 days"
+                delivery_estimate="next day"
             )
         ]
 
@@ -244,7 +244,7 @@ def split_ingredients_by_store(
                     ingredients=primary_items + both_items + specialty_items,
                     count=len(primary_items + both_items + specialty_items),
                     is_primary=True,
-                    delivery_estimate="1-2 days"
+                    delivery_estimate="next day"
                 )
             ]
         else:
@@ -266,7 +266,7 @@ def split_ingredients_by_store(
             primary_store_name = _select_primary_store(user_prefs)
 
             reasoning.append(f"\n🏪 Store assignment:")
-            reasoning.append(f"  - {primary_store_name} (1-2 days): {len(primary_group)} items - fresh produce/proteins")
+            reasoning.append(f"  - {primary_store_name} (next day): {len(primary_group)} items - fresh produce/proteins")
             reasoning.append(f"  - {specialty_store_name} ({specialty_delivery}): {len(specialty_group)} items - ethnic ingredients")
 
             # Determine which is primary (most items)
@@ -279,7 +279,7 @@ def split_ingredients_by_store(
                     ingredients=primary_group,
                     count=len(primary_group),
                     is_primary=primary_is_larger,
-                    delivery_estimate="1-2 days"
+                    delivery_estimate="next day"
                 ),
                 StoreGroup(
                     store=specialty_store_name,
@@ -343,7 +343,7 @@ def _select_specialty_store(user_prefs: UserPreferences) -> tuple[str, str]:
     Select specialty store based on urgency and preferences.
 
     Urgency modes:
-    - Planning (1-2 weeks): Pure Indian Foods (high transparency, slow shipping)
+    - Planning (1 week): Pure Indian Foods (high transparency)
     - Urgent (1-2 days): Kesar Grocery (fast delivery)
 
     Returns: (store_name, delivery_estimate)
@@ -351,7 +351,7 @@ def _select_specialty_store(user_prefs: UserPreferences) -> tuple[str, str]:
     if user_prefs.urgency == "urgent":
         return ("Kesar Grocery", "1-2 days")  # Fast local delivery
     else:
-        return ("Pure Indian Foods", "1-2 weeks")  # High transparency, worth the wait
+        return ("Pure Indian Foods", "1 week")  # High transparency
 
 
 def format_store_split_for_ui(store_split: StoreSplit) -> dict:

@@ -75,9 +75,9 @@ def compute_form_fit_component(
     return 2
 
 
-def compute_packaging_component(product_title: str) -> int:
+def compute_packaging_component(product_title: str, packaging_data: str = "") -> int:
     """
-    Packaging detection and scoring.
+    Packaging scoring using structured data (preferred) or title fallback.
 
     Returns:
         Loose/paper: +6
@@ -87,9 +87,36 @@ def compute_packaging_component(product_title: str) -> int:
         Plastic clamshell: -4
         Unknown: 0
     """
+    # Prefer structured packaging data if available
+    if packaging_data:
+        packaging_lower = packaging_data.lower()
+
+        # Best: Loose, bulk, or paper
+        if any(kw in packaging_lower for kw in ["loose", "bulk", "paper bag", "paper"]):
+            return 6
+
+        # Good: Glass (sustainable, recyclable)
+        if any(kw in packaging_lower for kw in ["glass jar", "glass"]):
+            return 4
+
+        # Acceptable: Plastic bags, cartons
+        if any(kw in packaging_lower for kw in ["bag", "pouch", "carton", "gable-top"]):
+            return 2
+
+        # Neutral: Metal cans
+        if any(kw in packaging_lower for kw in ["can", "aluminum", "metal"]):
+            return 1
+
+        # Bad: Plastic clamshells, foam trays
+        if any(kw in packaging_lower for kw in ["clamshell", "plastic container", "tray", "foam"]):
+            return -4
+
+        # If we have packaging data but no match, neutral
+        return 0
+
+    # Fallback: Parse from title (legacy)
     title_lower = product_title.lower()
 
-    # Detect packaging from title keywords
     if any(kw in title_lower for kw in ["loose", "bulk", "paper bag", "paper"]):
         return 6
 
@@ -103,7 +130,6 @@ def compute_packaging_component(product_title: str) -> int:
         return -4
 
     if any(kw in title_lower for kw in ["bag", "pouch"]):
-        # Assume plastic bag (not ideal but better than clamshell)
         return 2
 
     # Unknown packaging
@@ -189,7 +215,8 @@ def compute_total_score(
     all_unit_prices: list[float],
     delivery_estimate: str,
     prompt: str,
-    price_outlier_penalty: int = 0
+    price_outlier_penalty: int = 0,
+    packaging_data: str = ""
 ) -> Tuple[int, Dict[str, int]]:
     """
     Compute total score with component breakdown.
@@ -212,7 +239,7 @@ def compute_total_score(
 
     ewg = compute_ewg_component(ingredient_name, ingredient_category, is_organic)
     form_fit = compute_form_fit_component(required_form, product_title, ingredient_category)
-    packaging = compute_packaging_component(product_title)
+    packaging = compute_packaging_component(product_title, packaging_data)
     delivery = compute_delivery_component(delivery_estimate, prompt)
     unit_value = compute_unit_value_component(unit_price, all_unit_prices)
 

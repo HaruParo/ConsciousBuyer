@@ -221,6 +221,11 @@ class ProductIndex:
                     available_stores = [row['store_name']]
                     ingredient_key = row.get('ingredient_key', '').strip().lower()
 
+                    # Read enhanced metadata
+                    packaging = row.get('packaging', '').strip()
+                    nutrition = row.get('nutrition', '').strip()
+                    labels = row.get('labels', '').strip()
+
                     candidate = ProductCandidate(
                         product_id=product_id,
                         title=title,
@@ -234,7 +239,10 @@ class ProductIndex:
                         category=category,
                         store_type=store_type,
                         available_stores=available_stores,
-                        source_store_id=source_store_id
+                        source_store_id=source_store_id,
+                        packaging=packaging,
+                        nutrition=nutrition,
+                        labels=labels
                     )
 
                     self.all_products.append(candidate)

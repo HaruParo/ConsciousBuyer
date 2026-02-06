@@ -1,0 +1,3020 @@
+{
+  "satur farms_baby spinach pack 5oz": {
+    "found": false
+  },
+  "earthbound farm_organic baby spinach": {
+    "nutrition": {
+      "calories": 31.7,
+      "protein": 2.82,
+      "carbs": 3.52,
+      "fat": 0.352,
+      "fiber": 2.11,
+      "sugar": 1.41,
+      "sodium": 7.04e-05
+    },
+    "labels": [
+      "Organic"
+    ],
+    "found": true
+  },
+  "generic_organic lacinato kale": {
+    "found": false
+  },
+  "generic_organic green kale": {
+    "found": false
+  },
+  "satur farms_baby spinach pack": {
+    "found": false
+  },
+  "organicgirl_powerhouse spinach blend": {
+    "found": false
+  },
+  "generic_organic rainbow swiss chard": {
+    "found": false
+  },
+  "organicgirl_supergreens": {
+    "found": false
+  },
+  "ocean mist farms_spinach": {
+    "found": false
+  },
+  "generic_chopped green curly kale": {
+    "found": false
+  },
+  "generic_organic collard greens": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic young arugula": {
+    "found": false
+  },
+  "generic_organic red kale": {
+    "found": false
+  },
+  "earthbound farm_organic power greens": {
+    "nutrition": {
+      "calories": 4.1176470588235,
+      "protein": 2.3529411764706,
+      "carbs": 4.7058823529412,
+      "fat": 0,
+      "fiber": 2.3529411764706,
+      "sugar": 1.1764705882353,
+      "sodium": 0.13529411764706
+    },
+    "labels": [],
+    "found": true
+  },
+  "generic_watercress": {
+    "found": false
+  },
+  "organicgirl_romaine": {
+    "nutrition": {
+      "calories": 17.6,
+      "protein": 1.18,
+      "carbs": 3.53,
+      "fat": 0,
+      "fiber": 3.53,
+      "sugar": 3.53,
+      "sodium": 0.00588
+    },
+    "labels": [
+      "No Preservatives"
+    ],
+    "found": true
+  },
+  "organicgirl_protein greens": {
+    "nutrition": {
+      "calories": 29.4,
+      "protein": 4.2,
+      "carbs": 4.2,
+      "fat": 0,
+      "fiber": 2.52,
+      "sugar": 0.84,
+      "sodium": 0.0336
+    },
+    "labels": [
+      "Organic",
+      "No Preservatives",
+      "Usda Organic",
+      "Canada Organic"
+    ],
+    "found": true
+  },
+  "generic_organic dandelion greens": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic young spinach": {
+    "found": false
+  },
+  "generic_organic green swiss chard": {
+    "found": false
+  },
+  "generic_arugula": {
+    "found": false
+  },
+  "organicgirl_butter baby!": {
+    "found": false
+  },
+  "generic_organic spinach": {
+    "found": false
+  },
+  "generic_shredded kale and brussel sprouts blend": {
+    "found": false
+  },
+  "generic_organic mustard greens": {
+    "found": false
+  },
+  "organicgirl_baby spring mix": {
+    "nutrition": {
+      "calories": 17.6,
+      "protein": 2.35,
+      "carbs": 3.53,
+      "fat": 0,
+      "fiber": 2.35,
+      "sugar": 1.18,
+      "sodium": 0.0824
+    },
+    "labels": [
+      "Organic",
+      "No Preservatives",
+      "Usda Organic"
+    ],
+    "found": true
+  },
+  "organicgirl_baby spinach": {
+    "nutrition": {
+      "calories": 23.5294117647059,
+      "protein": 2.35294117647059,
+      "carbs": 3.52941176470588,
+      "fat": 0,
+      "fiber": 2.35294117647059,
+      "sugar": 0,
+      "sodium": 0.076470588235294
+    },
+    "labels": [
+      "Organic",
+      "No Preservatives",
+      "Usda Organic"
+    ],
+    "found": true
+  },
+  "lancaster farm fresh cooperative_local organic young rainbow chard": {
+    "found": false
+  },
+  "organicgirl_sweet crunchy mix": {
+    "nutrition": {
+      "calories": 17.6,
+      "protein": 1.18,
+      "carbs": 2.35,
+      "fat": 0,
+      "fiber": 2.35,
+      "sugar": 1.18,
+      "sodium": 0.0176
+    },
+    "labels": [
+      "Organic",
+      "No Preservatives",
+      "Usda Organic"
+    ],
+    "found": true
+  },
+  "lancaster farm fresh cooperative_local organic young kale": {
+    "found": false
+  },
+  "generic_chopped collard greens": {
+    "found": false
+  },
+  "generic_snow pea tips": {
+    "found": false
+  },
+  "organicgirl_baby spinach & arugula": {
+    "nutrition": {
+      "calories": null,
+      "protein": null,
+      "carbs": null,
+      "fat": null,
+      "fiber": null,
+      "sugar": null,
+      "sodium": null
+    },
+    "labels": [
+      "No Preservatives"
+    ],
+    "found": true
+  },
+  "satur farms_wild arugula pack 5oz": {
+    "found": false
+  },
+  "organicgirl_baby arugula": {
+    "nutrition": {
+      "calories": 27.7,
+      "protein": 2.77,
+      "carbs": 4.15,
+      "fat": 0.692,
+      "fiber": 1.38,
+      "sugar": 0,
+      "sodium": 0.0346
+    },
+    "labels": [
+      "Organic",
+      "No Preservatives",
+      "Usda Organic"
+    ],
+    "found": true
+  },
+  "generic_scallions": {
+    "found": false
+  },
+  "generic_garlic": {
+    "found": false
+  },
+  "generic_jumbo yellow onion": {
+    "found": false
+  },
+  "generic_yellow onions (bag)": {
+    "found": false
+  },
+  "generic_red onion large": {
+    "found": false
+  },
+  "generic_shallots": {
+    "found": false
+  },
+  "generic_organic garlic": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic sweet onion": {
+    "found": false
+  },
+  "generic_peeled garlic": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic yellow onion medium": {
+    "found": false
+  },
+  "generic_red onions (bag)": {
+    "found": false
+  },
+  "generic_organic diced onion": {
+    "found": false
+  },
+  "generic_sweet onion": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic yellow onions (bag)": {
+    "found": false
+  },
+  "generic_organic leeks bunch": {
+    "found": false
+  },
+  "generic_white onion large": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic sweet onions (bag)": {
+    "found": false
+  },
+  "generic_organic diced red onion": {
+    "found": false
+  },
+  "generic_leeks bunch": {
+    "found": false
+  },
+  "christopher ranch_organic shallots": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic red onions (bag)": {
+    "found": false
+  },
+  "generic_fresh peeled white pearl onions": {
+    "found": false
+  },
+  "christopher ranch_organic peeled garlic": {
+    "nutrition": {
+      "calories": 5,
+      "protein": 0,
+      "carbs": 1,
+      "fat": 0,
+      "fiber": null,
+      "sugar": null,
+      "sodium": null
+    },
+    "labels": [],
+    "found": true
+  },
+  "christopher ranch_peeled garlic": {
+    "nutrition": {
+      "calories": 5,
+      "protein": 0,
+      "carbs": 1,
+      "fat": 0,
+      "fiber": null,
+      "sugar": null,
+      "sodium": null
+    },
+    "labels": [],
+    "found": true
+  },
+  "black dirt region_cipollini onions": {
+    "found": false
+  },
+  "pete's greens_organic black garlic": {
+    "found": false
+  },
+  "christopher ranch_garlic braid": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic red onions medium": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic shallots": {
+    "found": false
+  },
+  "generic_organic ginger root": {
+    "found": false
+  },
+  "generic_parsnips": {
+    "found": false
+  },
+  "jersey fresh_radishes": {
+    "found": false
+  },
+  "love beets_organic cooked beets": {
+    "nutrition": {
+      "calories": 47.4,
+      "protein": 1.05,
+      "carbs": 10.5,
+      "fat": 0,
+      "fiber": 2.11,
+      "sugar": 7.37,
+      "sodium": 0.0421
+    },
+    "labels": [
+      "Organic",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "generic_loose organic beets": {
+    "found": false
+  },
+  "generic_organic red radish": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_organic watermelon radishes": {
+    "found": false
+  },
+  "generic_turmeric root": {
+    "found": false
+  },
+  "generic_turnip": {
+    "found": false
+  },
+  "love beets_cooked beets": {
+    "nutrition": {
+      "calories": 41.2,
+      "protein": 1.5,
+      "carbs": 7.12,
+      "fat": 0.125,
+      "fiber": 2.87,
+      "sugar": 7.12,
+      "sodium": 0
+    },
+    "labels": [],
+    "found": true
+  },
+  "generic_organic beets bunch": {
+    "found": false
+  },
+  "generic_diced red beets": {
+    "found": false
+  },
+  "generic_organic daikon bunch": {
+    "found": false
+  },
+  "love beets_perfectly pickled beets slightly sweet": {
+    "found": false
+  },
+  "love beets_organic marinated baby beets classic vinegar": {
+    "found": false
+  },
+  "generic_celery root": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic jerusalem artichokes": {
+    "found": false
+  },
+  "love beets_marinated baby beets white wine balsamic": {
+    "nutrition": {
+      "calories": 71,
+      "protein": 1.18,
+      "carbs": 20,
+      "fat": 0,
+      "fiber": 2.4,
+      "sugar": 9.4117647058824,
+      "sodium": 0.119
+    },
+    "labels": [
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "generic_organic gold beets": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_organic badger flame beets": {
+    "found": false
+  },
+  "love beets_perfectly pickled beets honey ginger": {
+    "nutrition": {
+      "calories": 82.4,
+      "protein": 1.18,
+      "carbs": 20,
+      "fat": 0,
+      "fiber": 2.35,
+      "sugar": 16.5,
+      "sodium": 0.0529
+    },
+    "labels": [],
+    "found": true
+  },
+  "lancaster farm fresh cooperative_local organic chioggia beets": {
+    "found": false
+  },
+  "generic_organic turnip": {
+    "found": false
+  },
+  "generic_rutabaga": {
+    "found": false
+  },
+  "love beets_perfectly pickled beets sweet chili": {
+    "found": false
+  },
+  "generic_yuca": {
+    "found": false
+  },
+  "generic_organic gold beets bunch": {
+    "found": false
+  },
+  "generic_fresh pineapple chunks": {
+    "found": false
+  },
+  "generic_tommy atkins mango": {
+    "found": false
+  },
+  "generic_pomegranate arils": {
+    "found": false
+  },
+  "generic_fresh cubed mango": {
+    "found": false
+  },
+  "generic_golden pineapple": {
+    "found": false
+  },
+  "generic_fresh mango spears": {
+    "found": false
+  },
+  "generic_kiwifruit": {
+    "found": false
+  },
+  "generic_organic kiwifruit": {
+    "found": false
+  },
+  "generic_fresh cored pineapple": {
+    "found": false
+  },
+  "generic_organic tommy atkins mango": {
+    "found": false
+  },
+  "generic_fresh black mission figs": {
+    "found": false
+  },
+  "generic_mini honeyglow pineapple": {
+    "found": false
+  },
+  "generic_yellow plantains": {
+    "found": false
+  },
+  "generic_maradol papaya": {
+    "found": false
+  },
+  "generic_organic golden pineapple": {
+    "found": false
+  },
+  "generic_fresh pineapple chunks 2lb": {
+    "found": false
+  },
+  "generic_fresh pineapple & jumbo blueberry medley": {
+    "found": false
+  },
+  "generic_golden dragon fruit": {
+    "found": false
+  },
+  "generic_green plantains": {
+    "found": false
+  },
+  "generic_white dragon fruit": {
+    "found": false
+  },
+  "generic_kaki persimmons": {
+    "found": false
+  },
+  "genuine coconut_organic coconut chunks original": {
+    "found": false
+  },
+  "generic_tommy atkins mangoes case": {
+    "found": false
+  },
+  "generic_sharon fruit": {
+    "found": false
+  },
+  "generic_aloe vera leaf": {
+    "found": false
+  },
+  "generic_mexican guava": {
+    "found": false
+  },
+  "generic_sweet tamarind": {
+    "found": false
+  },
+  "generic_soursop fruit pulp": {
+    "found": false
+  },
+  "generic_breadfruit": {
+    "found": false
+  },
+  "generic_cacao fruit": {
+    "found": false
+  },
+  "flavors by bhumi_buddha's hand citron": {
+    "found": false
+  },
+  "generic_passion fruit": {
+    "found": false
+  },
+  "generic_kent mango": {
+    "found": false
+  },
+  "generic_plantain yellow case": {
+    "found": false
+  },
+  "generic_plantain green case": {
+    "found": false
+  },
+  "generic_sweet tamarind case": {
+    "found": false
+  },
+  "generic_pomegranates": {
+    "found": false
+  },
+  "zespri_sungold kiwifruit": {
+    "nutrition": {
+      "calories": 79,
+      "protein": 1,
+      "carbs": 15.8,
+      "fat": 0.3,
+      "fiber": 1.4,
+      "sugar": 12.3,
+      "sodium": 0
+    },
+    "labels": [],
+    "found": true
+  },
+  "generic_green guavas": {
+    "found": false
+  },
+  "generic_rambutan": {
+    "found": false
+  },
+  "family tree farms_jumbo ultra-premium blueberries": {
+    "found": false
+  },
+  "driscoll's_organic strawberries": {
+    "nutrition": {
+      "calories": 0,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 0,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "Organic",
+      "Usda Organic"
+    ],
+    "found": true
+  },
+  "driscoll's_strawberries": {
+    "nutrition": {
+      "calories": 45,
+      "protein": 1,
+      "carbs": 11,
+      "fat": 0,
+      "fiber": 3,
+      "sugar": 7,
+      "sodium": 0
+    },
+    "labels": [
+      "Vegetarian",
+      "Vegan"
+    ],
+    "found": true
+  },
+  "driscoll's_organic raspberries": {
+    "nutrition": {
+      "calories": 48.8,
+      "protein": 0.813,
+      "carbs": 12.2,
+      "fat": 0.813,
+      "fiber": 6.5,
+      "sugar": 4.07,
+      "sodium": null
+    },
+    "labels": [
+      "Organic",
+      "Usda Organic"
+    ],
+    "found": true
+  },
+  "generic_organic blueberries": {
+    "found": false
+  },
+  "generic_raspberries": {
+    "found": false
+  },
+  "driscoll's_raspberries": {
+    "nutrition": {
+      "calories": null,
+      "protein": null,
+      "carbs": null,
+      "fat": null,
+      "fiber": null,
+      "sugar": null,
+      "sodium": null
+    },
+    "labels": [
+      "Fsc",
+      "Fsc Mix",
+      "Green Dot",
+      "Fr:Fsc C139458"
+    ],
+    "found": true
+  },
+  "driscoll's_blackberries": {
+    "nutrition": {
+      "calories": null,
+      "protein": null,
+      "carbs": null,
+      "fat": null,
+      "fiber": null,
+      "sugar": null,
+      "sodium": null
+    },
+    "labels": [
+      "Green Dot"
+    ],
+    "found": true
+  },
+  "generic_strawberries": {
+    "found": false
+  },
+  "the strawberry farm_local strawberries": {
+    "found": false
+  },
+  "generic_fresh berry medley": {
+    "found": false
+  },
+  "generic_organic strawberries": {
+    "found": false
+  },
+  "generic_fresh halved strawberries": {
+    "found": false
+  },
+  "generic_blueberries": {
+    "found": false
+  },
+  "naturipe_sweet selections blackberries": {
+    "found": false
+  },
+  "oishii_mini koyo berries": {
+    "found": false
+  },
+  "oishii_the koyo berry": {
+    "nutrition": {},
+    "labels": [
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "generic_cape gooseberries": {
+    "found": false
+  },
+  "oishii_the omakase berry": {
+    "nutrition": {},
+    "labels": [
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "family tree farms_jumbo ultra-premium blueberries case": {
+    "found": false
+  },
+  "generic_strawberries case": {
+    "found": false
+  },
+  "generic_blackberries case": {
+    "found": false
+  },
+  "driscoll's_limited edition sweetest batch blueberries": {
+    "found": false
+  },
+  "driscoll's_organic blackberries": {
+    "nutrition": {
+      "calories": 43.1,
+      "protein": 1.39,
+      "carbs": 9.72,
+      "fat": 0.486,
+      "fiber": 5.56,
+      "sugar": 4.17,
+      "sodium": null
+    },
+    "labels": [
+      "Organic",
+      "Usda Organic"
+    ],
+    "found": true
+  },
+  "oishii_the nikko berry": {
+    "found": false
+  },
+  "generic_raspberries case": {
+    "found": false
+  },
+  "generic_berry bundle with blackberries": {
+    "found": false
+  },
+  "generic_blueberries case": {
+    "found": false
+  },
+  "generic_tomatoes on the vine": {
+    "found": false
+  },
+  "generic_organic tomatoes on the vine": {
+    "found": false
+  },
+  "generic_organic grape tomatoes": {
+    "found": false
+  },
+  "generic_beefsteak tomatoes large": {
+    "found": false
+  },
+  "long wind farms_organic mixed cherry tomatoes": {
+    "found": false
+  },
+  "generic_grape tomatoes": {
+    "found": false
+  },
+  "generic_plum tomatoes": {
+    "found": false
+  },
+  "sunset grown_honey bombs golden sweet tomatoes": {
+    "found": false
+  },
+  "sunset grown_angel sweet grape tomatoes 32oz": {
+    "found": false
+  },
+  "long wind farms_organic beefsteak tomatoes": {
+    "found": false
+  },
+  "sunset grown_campari tomatoes": {
+    "found": false
+  },
+  "sunset grown_lolli bombs tomatoes": {
+    "found": false
+  },
+  "sunset grown_kumato tomatoes": {
+    "found": false
+  },
+  "generic_organic roma tomatoes": {
+    "found": false
+  },
+  "sunset grown_angel sweet grape tomatoes 12oz": {
+    "found": false
+  },
+  "generic_organic red beefsteak tomato": {
+    "found": false
+  },
+  "generic_plum tomato large": {
+    "found": false
+  },
+  "generic_tomatillos pack": {
+    "found": false
+  },
+  "sunset grown_bahama bombs": {
+    "found": false
+  },
+  "generic_fair trade organic mixed heirloom tomatoes": {
+    "found": false
+  },
+  "sunset grown_bombs squad": {
+    "found": false
+  },
+  "lady moon farms_organic mixed cherry tomatoes": {
+    "found": false
+  },
+  "sunset grown_wild wonders tomatoes": {
+    "found": false
+  },
+  "generic_red greenhouse bell pepper": {
+    "found": false
+  },
+  "generic_rainbow pepper pack": {
+    "found": false
+  },
+  "generic_green bell pepper": {
+    "found": false
+  },
+  "generic_organic red greenhouse bell pepper": {
+    "found": false
+  },
+  "generic_organic rainbow pepper pack": {
+    "found": false
+  },
+  "generic_jalape\u00f1o pepper": {
+    "found": false
+  },
+  "generic_mini sweet mixed peppers": {
+    "found": false
+  },
+  "generic_organic sweet mini bell peppers": {
+    "found": false
+  },
+  "generic_organic orange greenhouse bell pepper": {
+    "found": false
+  },
+  "generic_orange greenhouse bell pepper": {
+    "found": false
+  },
+  "generic_organic yellow greenhouse bell pepper": {
+    "found": false
+  },
+  "generic_yellow greenhouse bell pepper": {
+    "found": false
+  },
+  "generic_serrano peppers": {
+    "found": false
+  },
+  "ark foods_green shishito peppers": {
+    "found": false
+  },
+  "generic_poblano pepper": {
+    "found": false
+  },
+  "generic_organic green bell pepper": {
+    "found": false
+  },
+  "generic_thai peppers packaged": {
+    "found": false
+  },
+  "generic_habanero peppers": {
+    "found": false
+  },
+  "generic_organic green bell peppers": {
+    "found": false
+  },
+  "generic_organic green zucchini": {
+    "found": false
+  },
+  "generic_green zucchini": {
+    "found": false
+  },
+  "generic_organic butternut squash chunks": {
+    "found": false
+  },
+  "generic_peeled butternut squash": {
+    "found": false
+  },
+  "generic_yellow zucchini": {
+    "found": false
+  },
+  "generic_organic delicata squash": {
+    "found": false
+  },
+  "generic_butternut squash": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic butternut squash": {
+    "found": false
+  },
+  "generic_organic kabocha squash": {
+    "found": false
+  },
+  "generic_organic green zucchini noodles": {
+    "found": false
+  },
+  "generic_spaghetti squash": {
+    "found": false
+  },
+  "generic_long island delicata squash": {
+    "found": false
+  },
+  "generic_primavera zucchini noodles": {
+    "found": false
+  },
+  "urban roots_baby zucchini": {
+    "nutrition": {},
+    "labels": [
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "generic_organic butternut squash": {
+    "found": false
+  },
+  "generic_fresh green and yellow zoodles": {
+    "found": false
+  },
+  "generic_butternut squash noodles": {
+    "found": false
+  },
+  "generic_acorn squash": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_organic stripetti squash": {
+    "found": false
+  },
+  "generic_organic carnival squash": {
+    "found": false
+  },
+  "generic_butternut squash halves": {
+    "found": false
+  },
+  "generic_organic spaghetti squash": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic acorn squash": {
+    "found": false
+  },
+  "generic_organic yellow squash": {
+    "found": false
+  },
+  "just freshdirect_whole milk plastic bottle 1/2gal": {
+    "found": false
+  },
+  "just freshdirect_local organic whole milk carton": {
+    "found": false
+  },
+  "just freshdirect_whole milk plastic bottle 1gal": {
+    "found": false
+  },
+  "organic valley_ultra-pasteurized whole milk carton": {
+    "found": false
+  },
+  "organic valley_grassmilk whole milk ultra-pasteurized carton": {
+    "found": false
+  },
+  "horizon organic_growing years whole milk carton": {
+    "found": false
+  },
+  "horizon organic_grassfed whole milk carton": {
+    "found": false
+  },
+  "alexandre_a2/a2 organic 4% whole milk carton": {
+    "found": false
+  },
+  "a2 milk_whole milk carton": {
+    "found": false
+  },
+  "family farmstead_100% grass-fed a2 organic whole milk plastic bottle": {
+    "found": false
+  },
+  "ronnybrook_all natural creamline milk plastic bottle": {
+    "found": false
+  },
+  "organic valley_family first whole milk with dha omega-3 carton": {
+    "found": false
+  },
+  "farmland_organic whole milk carton": {
+    "found": false
+  },
+  "lactaid_100% lactose-free whole milk carton": {
+    "found": false
+  },
+  "organic valley_lactose free whole milk carton": {
+    "found": false
+  },
+  "meyenberg_grade a whole goat milk ultra-pasteurized carton": {
+    "found": false
+  },
+  "oak knoll dairy_100% goat milk plastic bottle": {
+    "found": false
+  },
+  "lactaid_whole milk plastic bottle 96oz": {
+    "found": false
+  },
+  "just freshdirect_organic whole milk cartons case": {
+    "found": false
+  },
+  "organic valley_grassmilk whole milk cartons case": {
+    "found": false
+  },
+  "just freshdirect_whole milk plastic bottles case": {
+    "found": false
+  },
+  "ronnybrook_all natural creamline milk plastic bottles case": {
+    "found": false
+  },
+  "just freshdirect_whole milk cartons case": {
+    "found": false
+  },
+  "horizon organic_grassfed whole milk cartons case": {
+    "found": false
+  },
+  "organic valley_family first whole milk with dha cartons case": {
+    "found": false
+  },
+  "tuscan dairy farms_whole milk plastic bottle": {
+    "found": false
+  },
+  "horizon organic_whole milk carton": {
+    "found": false
+  },
+  "family farmstead_100% grass-fed a2 organic whole milk plastic bottle 1/2gal": {
+    "found": false
+  },
+  "fairlife_lactose free ultra-filtered whole milk plastic bottle": {
+    "found": false
+  },
+  "horizon organic_whole milk with dha omega-3 and vitamin d carton": {
+    "found": false
+  },
+  "horizon organic_whole milk cartons case": {
+    "found": false
+  },
+  "organic valley_ultra-pasteurized whole milk cartons case": {
+    "found": false
+  },
+  "pure indian foods_dried edible rose petals": {
+    "found": false
+  },
+  "pure indian foods_royal garnish blend": {
+    "found": false
+  },
+  "pure indian foods_organic red chili pepper flakes": {
+    "found": false
+  },
+  "pure indian foods_ayurvedic six tastes churna": {
+    "found": false
+  },
+  "pure indian foods_green chili powder (serrano)": {
+    "found": false
+  },
+  "pure indian foods_ghost pepper (smoked bhut jolokia) whole peppers": {
+    "found": false
+  },
+  "pure indian foods_biryani masala seasoning": {
+    "found": false
+  },
+  "pure indian foods_vata churna": {
+    "found": false
+  },
+  "pure indian foods_pitta churna": {
+    "found": false
+  },
+  "pure indian foods_kapha churna": {
+    "found": false
+  },
+  "pure indian foods_lemongrass cut & dried": {
+    "found": false
+  },
+  "pure indian foods_aftermeal roasted coriander seeds (dhana dal)": {
+    "found": false
+  },
+  "pure indian foods_kokum black dried": {
+    "found": false
+  },
+  "pure indian foods_fill up your spice box indian spice set": {
+    "found": false
+  },
+  "pure indian foods_galangal dried slices": {
+    "found": false
+  },
+  "pure indian foods_poppy seeds": {
+    "found": false
+  },
+  "pure indian foods_bombay chaat masala ground": {
+    "found": false
+  },
+  "pure indian foods_black turmeric": {
+    "found": false
+  },
+  "pure indian foods_lakadong turmeric (high curcumin >7%)": {
+    "found": false
+  },
+  "pure indian foods_chipotle morita chili pepper": {
+    "found": false
+  },
+  "pure indian foods_kick salt - himalayan pink salt & smoked ghost pepper": {
+    "found": false
+  },
+  "pure indian foods_ghost pepper (smoked bhut jolokia) ground": {
+    "found": false
+  },
+  "pure indian foods_kashmiri saffron": {
+    "found": false
+  },
+  "pure indian foods_combo pack of 6 spices": {
+    "found": false
+  },
+  "pure indian foods_fennel seed": {
+    "found": false
+  },
+  "pure indian foods_curry leaves dried": {
+    "found": false
+  },
+  "pure indian foods_tellicherry special extra bold peppercorns": {
+    "found": false
+  },
+  "pure indian foods_sesame seeds black": {
+    "found": false
+  },
+  "pure indian foods_vindaloo curry seasoning": {
+    "found": false
+  },
+  "pure indian foods_vanilla pure extract": {
+    "found": false
+  },
+  "pure indian foods_turmeric root ground (high curcumin 4-5%)": {
+    "found": false
+  },
+  "pure indian foods_tandoori masala seasoning": {
+    "found": false
+  },
+  "pure indian foods_turmeric root coarse granules": {
+    "found": false
+  },
+  "pure indian foods_star anise whole": {
+    "found": false
+  },
+  "pure indian foods_indian spice passport": {
+    "found": false
+  },
+  "24 mantra_sambar powder": {
+    "found": false
+  },
+  "pure indian foods_la mancha d.o.p. spanish saffron 1g glass bottle": {
+    "found": false
+  },
+  "24 mantra_rasam powder": {
+    "found": false
+  },
+  "pure indian foods_nutmeg": {
+    "found": false
+  },
+  "pure indian foods_mustard seed brown": {
+    "found": false
+  },
+  "pure indian foods_mustard seed yellow": {
+    "found": false
+  },
+  "pure indian foods_mace": {
+    "found": false
+  },
+  "pure indian foods_kitchari spice mix": {
+    "found": false
+  },
+  "pure indian foods_kashmiri chili powder (mild)": {
+    "found": false
+  },
+  "pure indian foods_ginger root powder": {
+    "found": false
+  },
+  "pure indian foods_fenugreek leaves (kasoori methi)": {
+    "found": false
+  },
+  "pure indian foods_fenugreek seed": {
+    "found": false
+  },
+  "pure indian foods_kitchari spice mix diy - whole spices": {
+    "found": false
+  },
+  "pure indian foods_spice up your life: 3 whole spice blends": {
+    "found": false
+  },
+  "pure indian foods_garam masala diy - exotic whole spices": {
+    "found": false
+  },
+  "pure indian foods_balti curry diy - whole spices": {
+    "found": false
+  },
+  "pure indian foods_cumin seeds (jeera)": {
+    "found": false
+  },
+  "pure indian foods_curry powder seasoning blend": {
+    "found": false
+  },
+  "pure indian foods_coriander seed": {
+    "found": false
+  },
+  "pure indian foods_cloves whole": {
+    "found": false
+  },
+  "pure indian foods_cinnamon (ceylon true)": {
+    "found": false
+  },
+  "pure indian foods_cayenne red chili pepper ground (lal mirch)": {
+    "found": false
+  },
+  "pure indian foods_cardamom green": {
+    "found": false
+  },
+  "pure indian foods_malabar black pepper fine ground": {
+    "found": false
+  },
+  "pure indian foods_black salt (indian kala namak)": {
+    "found": false
+  },
+  "pure indian foods_cardamom black whole": {
+    "found": false
+  },
+  "pure indian foods_allspice whole": {
+    "found": false
+  },
+  "pure indian foods_amchoor powder": {
+    "found": false
+  },
+  "pure indian foods_ajwain seed": {
+    "found": false
+  },
+  "pure indian foods_aip everyday seasoning diy - whole spices": {
+    "found": false
+  },
+  "pure indian foods_best hing ever (asafoetida)": {
+    "found": false
+  },
+  "pure indian foods_garam masala": {
+    "found": false
+  },
+  "pure indian foods_ginger root coarse granules": {
+    "found": false
+  },
+  "pure indian foods_garlic minced": {
+    "found": false
+  },
+  "pure indian foods_bombay chaat masala diy - whole spices": {
+    "found": false
+  },
+  "pure indian foods_indian bay leaf (cassia/tejapatta)": {
+    "found": false
+  },
+  "pure indian foods_black seed (kalonji black cumin seed)": {
+    "found": false
+  },
+  "pure indian foods_indian five spice blend (panch phoron)": {
+    "found": false
+  },
+  "pure indian foods_sesame seeds white": {
+    "found": false
+  },
+  "pure indian foods_pure himalayan pink salt": {
+    "found": false
+  },
+  "pure indian foods_biryani bundle": {
+    "found": false
+  },
+  "freshdirect_organic baby bella mushrooms, packaged": {
+    "found": false
+  },
+  "mushroom king_organic heirloom sliced shiitake mushrooms": {
+    "found": false
+  },
+  "freshdirect_sliced baby bella mushrooms, packaged": {
+    "found": false
+  },
+  "freshdirect_organic gourmet mushroom blend, packaged": {
+    "found": false
+  },
+  "mushroom king_organic heirloom mushroom medley": {
+    "found": false
+  },
+  "freshdirect_organic white mushrooms, packaged": {
+    "found": false
+  },
+  "freshdirect_sliced organic baby bella mushrooms, packaged": {
+    "found": false
+  },
+  "freshdirect_white button mushrooms, packaged": {
+    "found": false
+  },
+  "freshdirect_baby bella mushrooms, packaged": {
+    "found": false
+  },
+  "mushroom king_organic shiitake mushroom caps": {
+    "found": false
+  },
+  "mushroom king_organic maitake mushrooms": {
+    "found": false
+  },
+  "freshdirect_organic shiitake mushrooms, packaged": {
+    "found": false
+  },
+  "freshdirect_oyster mushrooms, packaged": {
+    "found": false
+  },
+  "freshdirect_organic portabella mushroom caps, packaged": {
+    "found": false
+  },
+  "mushroom king_organic heirloom asian blend": {
+    "found": false
+  },
+  "freshdirect_sliced white mushroom": {
+    "found": false
+  },
+  "mushroom king_organic heirloom baby shiitake mushrooms": {
+    "found": false
+  },
+  "freshdirect_royal trumpet mushrooms, packaged": {
+    "found": false
+  },
+  "mushroom king_organic sliced king trumpet mushrooms": {
+    "found": false
+  },
+  "meadows and more_jumbo maitake mushroom": {
+    "found": false
+  },
+  "freshdirect_yellowfoot chanterelle mushrooms": {
+    "found": false
+  },
+  "freshdirect_baby petite white mushrooms, packaged": {
+    "found": false
+  },
+  "goodness gardens_dried porcini mushrooms": {
+    "found": false
+  },
+  "freshdirect_steak cut mushrooms, packaged": {
+    "found": false
+  },
+  "mushroom king_organic lion's mane mushrooms": {
+    "found": false
+  },
+  "freshdirect_hedgehog mushrooms": {
+    "found": false
+  },
+  "goodness gardens_dried morel mushrooms": {
+    "found": false
+  },
+  "365 by whole foods market_boneless skinless chicken breast": {
+    "nutrition": {
+      "calories": 116,
+      "protein": 22.3,
+      "carbs": 0,
+      "fat": 2.68,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0.0446
+    },
+    "labels": [],
+    "found": true
+  },
+  "365 by whole foods market_boneless skinless chicken thighs": {
+    "found": false
+  },
+  "bell & evans_chicken breast step 2": {
+    "found": false
+  },
+  "bell & evans_boneless skinless chicken breast": {
+    "nutrition": {
+      "calories": 174,
+      "protein": 17.4,
+      "carbs": 12.8,
+      "fat": 6.04,
+      "fiber": 0,
+      "sugar": 4.03,
+      "sodium": 0.349
+    },
+    "labels": [],
+    "found": true
+  },
+  "bell & evans_boneless skinless chicken thighs": {
+    "nutrition": {
+      "calories": 143,
+      "protein": 18.8,
+      "carbs": 0.893,
+      "fat": 7.14,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0.058
+    },
+    "labels": [],
+    "found": true
+  },
+  "365 by whole foods market_organic boneless skinless chicken thighs": {
+    "found": false
+  },
+  "365 by whole foods market_organic boneless skinless chicken breast": {
+    "nutrition": {
+      "calories": 115,
+      "protein": 22,
+      "carbs": 0,
+      "fat": 2.65,
+      "fiber": null,
+      "sugar": null,
+      "sodium": null
+    },
+    "labels": [],
+    "found": true
+  },
+  "bell & evans_organic boneless skinless chicken breast": {
+    "nutrition": {
+      "calories": 107,
+      "protein": 22.3,
+      "carbs": 0,
+      "fat": 1.34,
+      "fiber": null,
+      "sugar": null,
+      "sodium": 0.0446
+    },
+    "labels": [],
+    "found": true
+  },
+  "bell & evans_organic boneless skinless chicken breast cutlets": {
+    "found": false
+  },
+  "peri & sons farms_yellow onions medium": {
+    "found": false
+  },
+  "peri & sons farms_organic yellow onions": {
+    "found": false
+  },
+  "peri & sons farms_red onions medium": {
+    "found": false
+  },
+  "peri & sons farms_organic red onions": {
+    "found": false
+  },
+  "peri & sons farms_sweetie sweet onions": {
+    "found": false
+  },
+  "peri & sons farms_sweetie tearless sweet onions": {
+    "found": false
+  },
+  "peri & sons farms_shallots": {
+    "found": false
+  },
+  "peri & sons farms_organic shallots": {
+    "found": false
+  },
+  "freshdirect_fresh organic ginger root": {
+    "found": false
+  },
+  "freshdirect_organic garlic": {
+    "found": false
+  },
+  "freshdirect_fresh mint bunch": {
+    "found": false
+  },
+  "freshdirect_fresh cilantro bunch": {
+    "found": false
+  },
+  "freshdirect_organic cilantro bunch": {
+    "found": false
+  },
+  "pure indian foods_original ghee grassfed & certified organic": {
+    "found": false
+  },
+  "pure indian foods_cultured ghee grassfed & certified organic": {
+    "found": false
+  },
+  "pure indian foods_turmeric superghee grassfed & certified organic": {
+    "found": false
+  },
+  "pure indian foods_chai spice ghee grassfed & certified organic": {
+    "found": false
+  },
+  "pure indian foods_coffee++ butter coffee creamer certified organic": {
+    "found": false
+  },
+  "pure indian foods_garlic ghee grassfed & certified organic": {
+    "found": false
+  },
+  "pure indian foods_digestive ghee grassfed & certified organic": {
+    "found": false
+  },
+  "pure indian foods_ashwagandha ghee certified organic": {
+    "found": false
+  },
+  "pure indian foods_brahmi ghee certified organic": {
+    "found": false
+  },
+  "pure indian foods_shatavari ghee certified organic": {
+    "found": false
+  },
+  "pure indian foods_triphala ghee certified organic": {
+    "found": false
+  },
+  "pure indian foods_niter kibbeh ghee (ethiopian spiced) grassfed & certified organic": {
+    "found": false
+  },
+  "pure indian foods_primalfat coconut ghee virgin & certified organic": {
+    "found": false
+  },
+  "pure indian foods_indian dessert ghee grassfed & certified organic": {
+    "found": false
+  },
+  "pure indian foods_italian ghee grassfed & certified organic": {
+    "found": false
+  },
+  "pure indian foods_arjuna ghee certified organic": {
+    "found": false
+  },
+  "pure indian foods_herbes de provence ghee grassfed & certified organic": {
+    "found": false
+  },
+  "pure indian foods_hing ghee": {
+    "found": false
+  },
+  "freshdirect_branzino fillet": {
+    "found": false
+  },
+  "freshdirect_icelandic salmon fillet": {
+    "found": false
+  },
+  "freshdirect_icelandic salmon, center cut": {
+    "found": false
+  },
+  "freshdirect_icelandic salmon, whole side": {
+    "found": false
+  },
+  "freshdirect_local littleneck clams": {
+    "found": false
+  },
+  "freshdirect_mediterranean stuffed branzino": {
+    "found": false
+  },
+  "freshdirect_nantucket bay dry scallops": {
+    "found": false
+  },
+  "freshdirect_nordic halibut fillet": {
+    "found": false
+  },
+  "freshdirect_wild cockles": {
+    "found": false
+  },
+  "freshdirect_wild patagonian king salmon fillet": {
+    "found": false
+  },
+  "freshdirect_all-natural wild domestic gulf shrimp, cleaned, 16-20/lb, previously frozen": {
+    "found": false
+  },
+  "sixty south_farm-raised atlantic salmon fillet": {
+    "found": false
+  },
+  "valhalla_eu organic salmon fillet, farm-raised": {
+    "found": false
+  },
+  "freshdirect_wild icelandic cod loins": {
+    "found": false
+  },
+  "blue foot_fresh white shrimp, cleaned, 26-30/lb": {
+    "found": false
+  },
+  "sixty south_farm-raised atlantic salmon fillet, center cut": {
+    "found": false
+  },
+  "freshdirect_wild icelandic haddock fillet": {
+    "found": false
+  },
+  "freshdirect_wild patagonian red shrimp, cleaned, 16-20/lb": {
+    "found": false
+  },
+  "freshdirect_wild alaska sockeye salmon fillet, previously frozen": {
+    "found": false
+  },
+  "freshdirect_farm-raised arctic char fillet": {
+    "found": false
+  },
+  "sixty south_farm-raised atlantic salmon fillet, family pack": {
+    "found": false
+  },
+  "city pier_wild sockeye salmon individually wrapped fillets, family pack, frozen": {
+    "found": false
+  },
+  "ora king_farm-raised king salmon fillet": {
+    "found": false
+  },
+  "sixty south_farm-raised atlantic salmon whole side fillet": {
+    "found": false
+  },
+  "freshdirect_all-natural wild domestic gulf shrimp, cleaned, 26-30/lb, previously frozen": {
+    "found": false
+  },
+  "freshdirect_farm-raised shrimp, cleaned, tail on, 26-30/lb, frozen": {
+    "found": false
+  },
+  "freshdirect_wild patagonian red shrimp, ez peel, 16-20/lb, previously frozen": {
+    "found": false
+  },
+  "freshdirect_poached colossal shrimp": {
+    "found": false
+  },
+  "freshdirect_cooked shrimp ring, frozen": {
+    "found": false
+  },
+  "freshdirect_wild gulf shrimp, cleaned, tail on, 36-40/lb, frozen": {
+    "found": false
+  },
+  "freshdirect_all-natural wild domestic gulf shrimp, cleaned, 21-25/lb, previously frozen": {
+    "found": false
+  },
+  "freshdirect_wild gulf shrimp, cleaned, tail on, 16-20/lb, frozen": {
+    "found": false
+  },
+  "freshdirect_wild gulf shrimp, cleaned, tail on, 26-30/lb, frozen": {
+    "found": false
+  },
+  "seremoni_black cod fillet, frozen": {
+    "found": false
+  },
+  "seremoni_wild red snapper fillet": {
+    "found": false
+  },
+  "seremoni_wild vermillion rockfish fillet": {
+    "found": false
+  },
+  "freshdirect_wild flounder fillet": {
+    "found": false
+  },
+  "freshdirect_organic iceberg mussels": {
+    "found": false
+  },
+  "freshdirect_local cherrystone clams": {
+    "found": false
+  },
+  "freshdirect_steamer clams": {
+    "found": false
+  },
+  "tony's seafood_authentic rhode island stuffed quahogs": {
+    "found": false
+  },
+  "tony's seafood_just the clams stuffed quahogs with no meat": {
+    "found": false
+  },
+  "freshdirect_moondancer oysters": {
+    "found": false
+  },
+  "freshdirect_shucked oysters": {
+    "found": false
+  },
+  "freshdirect_moondancer oysters, box": {
+    "found": false
+  },
+  "freshdirect_east coast oyster sampler moondancer": {
+    "found": false
+  },
+  "freshdirect_crab cakes, uncooked": {
+    "found": false
+  },
+  "freshdirect_salmon with lemon and capers, char-marked and uncooked": {
+    "found": false
+  },
+  "freshdirect_fish cubes": {
+    "found": false
+  },
+  "freshdirect_salmon burgers, previously frozen": {
+    "found": false
+  },
+  "freshdirect_salmon cakes w/ tartar sauce": {
+    "found": false
+  },
+  "freshdirect_shrimp scampi": {
+    "found": false
+  },
+  "freshdirect_crab stuffed salmon": {
+    "found": false
+  },
+  "freshdirect_miso marinated black cod": {
+    "found": false
+  },
+  "freshdirect_salmon cakes, uncooked": {
+    "found": false
+  },
+  "freshdirect_farm-raised cajun catfish fillet": {
+    "found": false
+  },
+  "freshdirect_banana-leaf wrapped coconut-cilantro salmon": {
+    "found": false
+  },
+  "city pier_wild atlantic cod individually wrapped fillets, family pack, frozen": {
+    "found": false
+  },
+  "mrs. paul's_breaded fish sticks": {
+    "nutrition": {
+      "calories": 203,
+      "protein": 12.7,
+      "carbs": 17.7,
+      "fat": 8.86,
+      "fiber": 1.27,
+      "sugar": 1.27,
+      "sodium": 0.582
+    },
+    "labels": [],
+    "found": true
+  },
+  "freshdirect_cooked farm-raised shrimp, cleaned, 91-110/lb, frozen": {
+    "found": false
+  },
+  "royal asia_shrimp wonton soup with bok choy, frozen": {
+    "found": false
+  },
+  "mrs. paul's_beer battered fish fillets": {
+    "found": false
+  },
+  "freshdirect_local dry sea scallops, 10-20/lb": {
+    "found": false
+  },
+  "freshdirect_japanese hokkaido dry sea scallops 20-30/lb": {
+    "found": false
+  },
+  "freshdirect_japanese hokkaido dry sea scallops 10-20/lb": {
+    "found": false
+  },
+  "my fish dish_blackened & smoked bay scallops, frozen": {
+    "found": false
+  },
+  "bristol seafood_sea scallop, frozen": {
+    "found": false
+  },
+  "bristol seafood_40/80 bay peruvian scallops, frozen": {
+    "found": false
+  },
+  "alderfer eggs_cage-free grade a large white eggs, dozen": {
+    "found": false
+  },
+  "alderfer eggs_cage-free grade a large brown eggs, dozen": {
+    "found": false
+  },
+  "just freshdirect_local organic large brown eggs, dozen": {
+    "found": false
+  },
+  "just freshdirect_local organic extra large brown eggs, dozen": {
+    "found": false
+  },
+  "just freshdirect_organic cage-free pasture-raised grade a large eggs, dozen": {
+    "found": false
+  },
+  "vital farms_pasture-raised organic large eggs, dozen": {
+    "found": false
+  },
+  "just freshdirect_local organic whole milk, carton": {
+    "found": false
+  },
+  "just freshdirect_local organic 2% reduced fat milk, carton": {
+    "found": false
+  },
+  "just freshdirect_whole milk, plastic bottle": {
+    "found": false
+  },
+  "organic valley_ultra-pasteurized whole milk, carton": {
+    "found": false
+  },
+  "fage_total 0% greek yogurt, plain": {
+    "nutrition": {
+      "calories": 93,
+      "protein": 9,
+      "carbs": 3,
+      "fat": 5,
+      "fiber": null,
+      "sugar": 3,
+      "sodium": 0.04
+    },
+    "labels": [],
+    "found": true
+  },
+  "fage_total 2% greek yogurt, plain": {
+    "nutrition": {
+      "calories": 93,
+      "protein": 9,
+      "carbs": 3,
+      "fat": 5,
+      "fiber": null,
+      "sugar": 3,
+      "sodium": 0.04
+    },
+    "labels": [],
+    "found": true
+  },
+  "chobani_non-fat greek yogurt, plain (single)": {
+    "found": false
+  },
+  "chobani_non-fat greek yogurt, plain": {
+    "nutrition": {
+      "calories": 90,
+      "protein": 16,
+      "carbs": 6,
+      "fat": 0,
+      "fiber": 0,
+      "sugar": 6,
+      "sodium": 0.065
+    },
+    "labels": [
+      "Fair Trade"
+    ],
+    "found": true
+  },
+  "kerrygold_salted pure irish butter": {
+    "nutrition": {
+      "calories": 714,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 78.6,
+      "fiber": null,
+      "sugar": null,
+      "sodium": 0.714
+    },
+    "labels": [
+      "No Gmos",
+      "Green Dot",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "kerrygold_unsalted pure irish butter": {
+    "nutrition": {
+      "calories": 714,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 85.71,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "cabot_sweet cream butter, salted": {
+    "found": false
+  },
+  "land o'lakes_unsalted butter": {
+    "nutrition": {
+      "calories": 714,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 78.6,
+      "fiber": null,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gluten"
+    ],
+    "found": true
+  },
+  "organic valley_organic unsalted butter": {
+    "nutrition": {
+      "calories": 745,
+      "protein": 0.6,
+      "carbs": 0.6,
+      "fat": 82,
+      "fiber": null,
+      "sugar": 0.6,
+      "sodium": 0.039
+    },
+    "labels": [
+      "Organic",
+      "Eu Organic",
+      "Gb Org 05"
+    ],
+    "found": true
+  },
+  "philadelphia_cream cheese spread, original": {
+    "nutrition": {
+      "calories": 227,
+      "protein": 4.55,
+      "carbs": 9.09,
+      "fat": 20.5,
+      "fiber": 0,
+      "sugar": 4.55,
+      "sodium": 0.432
+    },
+    "labels": [],
+    "found": true
+  },
+  "organic valley_mozzarella stringles": {
+    "found": false
+  },
+  "breakstone's_sour cream (16oz)": {
+    "found": false
+  },
+  "organic valley_sour cream": {
+    "nutrition": {
+      "calories": 159,
+      "protein": 3.6,
+      "carbs": 4,
+      "fat": 14.3,
+      "fiber": null,
+      "sugar": 4,
+      "sodium": 0.039
+    },
+    "labels": [
+      "Organic",
+      "Eu Organic",
+      "Contains Milk",
+      "Gb Org 05",
+      "No Added Sugar",
+      "Soil Association Organic"
+    ],
+    "found": true
+  },
+  "organic valley_organic valley ghee clarified butter": {
+    "nutrition": {
+      "calories": 900,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 100,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "Organic",
+      "Kosher",
+      "Usda Organic",
+      "Pure Butter"
+    ],
+    "found": true
+  },
+  "4th & heart_4th & heart ghee butter original recipe": {
+    "nutrition": {
+      "calories": 923,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 100,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gluten",
+      "No Gmos",
+      "No Lactose",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "freshdirect_steamed jasmine rice": {
+    "found": false
+  },
+  "freshdirect_crispy spinach coconut rice with garlic butter": {
+    "found": false
+  },
+  "freshdirect_steamed brown rice": {
+    "found": false
+  },
+  "freshdirect_black beans and rice with salsa verde": {
+    "found": false
+  },
+  "lundberg_organic white long grain rice": {
+    "nutrition": {
+      "calories": 356,
+      "protein": 6.67,
+      "carbs": 80,
+      "fat": 1.11,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gluten",
+      "Organic",
+      "No Gmos",
+      "Usda Organic",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lundberg_california white basmati rice": {
+    "nutrition": {
+      "calories": 355.555555555556,
+      "protein": 6.66666666666667,
+      "carbs": 80,
+      "fat": 1.11111111111111,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gluten",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lundberg_organic california white basmati rice": {
+    "nutrition": {
+      "calories": null,
+      "protein": null,
+      "carbs": null,
+      "fat": null,
+      "fiber": null,
+      "sugar": null,
+      "sodium": null
+    },
+    "labels": [
+      "No Gluten",
+      "Organic",
+      "No Gmos",
+      "Usda Organic",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lundberg_organic california sushi rice": {
+    "nutrition": {
+      "calories": 333,
+      "protein": 8.89,
+      "carbs": 77.78,
+      "fat": 0,
+      "fiber": 2.2,
+      "sugar": 0,
+      "sodium": 0.011
+    },
+    "labels": [
+      "Organic",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lundberg_organic california brown basmati rice": {
+    "nutrition": {
+      "calories": 356,
+      "protein": 8.89,
+      "carbs": 73.3,
+      "fat": 3.33,
+      "fiber": 4.44,
+      "sugar": 2.22,
+      "sodium": null
+    },
+    "labels": [
+      "No Gluten",
+      "Organic",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lundberg_organic short grain brown rice": {
+    "nutrition": {
+      "calories": 356,
+      "protein": 6.67,
+      "carbs": 73.33,
+      "fat": 3.33,
+      "fiber": 6.7,
+      "sugar": 2.22,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gluten",
+      "Organic",
+      "Kosher",
+      "No Gmos",
+      "Usda Organic",
+      "Certified Gluten Free",
+      "Non Gmo Project",
+      "Orthodox Union Kosher"
+    ],
+    "found": true
+  },
+  "lundberg_organic long grain brown rice": {
+    "nutrition": {
+      "calories": 356,
+      "protein": 8.89,
+      "carbs": 73.3,
+      "fat": 3.33,
+      "fiber": 4.44,
+      "sugar": 2.22,
+      "sodium": null
+    },
+    "labels": [
+      "No Gluten",
+      "Organic",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lundberg_wild rice blend": {
+    "nutrition": {
+      "calories": 356,
+      "protein": 8.89,
+      "carbs": 77.8,
+      "fat": 2.22,
+      "fiber": 6.67,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gluten",
+      "No Gmos",
+      "No Bisphenol A",
+      "Non Gmo Project",
+      "100 Whole Grain"
+    ],
+    "found": true
+  },
+  "lundberg_organic white jasmine rice": {
+    "nutrition": {
+      "calories": 356,
+      "protein": 6.67,
+      "carbs": 80,
+      "fat": 0,
+      "fiber": 2.22,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gluten",
+      "Organic",
+      "No Gmos",
+      "Usda Organic",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lundberg_organic brown jasmine rice": {
+    "nutrition": {
+      "calories": 356,
+      "protein": 8.89,
+      "carbs": 73.3,
+      "fat": 3.33,
+      "fiber": 4.44,
+      "sugar": 2.22,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gluten",
+      "Organic",
+      "Crossed Grain Trademark",
+      "No Gmos",
+      "Dzg Gluten Free",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lundberg_organic cilantro lime rice": {
+    "nutrition": {
+      "calories": 401,
+      "protein": 6.41,
+      "carbs": 72.2,
+      "fat": 8.02,
+      "fiber": 1.6,
+      "sugar": 1.6,
+      "sodium": 0.705
+    },
+    "labels": [
+      "Organic",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lundberg_organic coconut rice": {
+    "nutrition": {
+      "calories": 211,
+      "protein": 2.64,
+      "carbs": 37,
+      "fat": 5.29,
+      "fiber": 3.08,
+      "sugar": 1.32,
+      "sodium": 0.463
+    },
+    "labels": [
+      "Fair Trade",
+      "Organic",
+      "No Gmos",
+      "Usda Organic",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lundberg_white arborio rice": {
+    "nutrition": {
+      "calories": 790,
+      "protein": 24.7,
+      "carbs": 178,
+      "fat": 0,
+      "fiber": 4.94,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gluten",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lundberg_california white jasmine rice": {
+    "nutrition": {
+      "calories": 356,
+      "protein": 6.67,
+      "carbs": 80,
+      "fat": 0,
+      "fiber": 2.22,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gluten",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lundberg_organic wild rice": {
+    "nutrition": {
+      "calories": 378,
+      "protein": 5.41,
+      "carbs": 86.5,
+      "fat": 2.7,
+      "fiber": 5.41,
+      "sugar": null,
+      "sodium": 0.135
+    },
+    "labels": [
+      "No Gluten",
+      "Organic",
+      "Vegetarian",
+      "No Gmos",
+      "Usda Organic",
+      "Vegan",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "nishiki_premium medium-grain sushi rice": {
+    "found": false
+  },
+  "dynasty_jasmine rice": {
+    "nutrition": {
+      "calories": 356,
+      "protein": 6.67,
+      "carbs": 80,
+      "fat": 0,
+      "fiber": 2.22,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "dynasty_jasmine brown rice": {
+    "nutrition": {
+      "calories": 377.77777777778,
+      "protein": 6.6666666666667,
+      "carbs": 75.555555555556,
+      "fat": 0,
+      "fiber": null,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "carolina_extra long grain white rice (2lb)": {
+    "found": false
+  },
+  "carolina_extra long grain white rice (5lb)": {
+    "found": false
+  },
+  "carolina_extra long grain white rice (10lb)": {
+    "found": false
+  },
+  "carolina_extra long grain white rice (20lb)": {
+    "found": false
+  },
+  "carolina_natural whole grain brown rice": {
+    "found": false
+  },
+  "rice select_jasmati long grain american jasmine rice": {
+    "found": false
+  },
+  "rice select_texmati long grain american basmati rice": {
+    "found": false
+  },
+  "rice select_organic jasmati, white rice": {
+    "found": false
+  },
+  "rice select_arborio rice": {
+    "nutrition": {
+      "calories": 356,
+      "protein": 6.67,
+      "carbs": 80,
+      "fat": 0,
+      "fiber": null,
+      "sugar": null,
+      "sodium": null
+    },
+    "labels": [
+      "No Gluten",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "botan_calrose musenmai rice": {
+    "nutrition": {
+      "calories": 356,
+      "protein": 6.67,
+      "carbs": 80,
+      "fat": 1.11,
+      "fiber": 2.22,
+      "sugar": null,
+      "sodium": null
+    },
+    "labels": [
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "khazana_basmati rice": {
+    "nutrition": {
+      "calories": 364,
+      "protein": 6.67,
+      "carbs": 84.4,
+      "fat": 0,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0.0111
+    },
+    "labels": [
+      "No Gluten"
+    ],
+    "found": true
+  },
+  "goya_thai jasmine rice (5lb)": {
+    "found": false
+  },
+  "goya_thai jasmine rice (2lb)": {
+    "found": false
+  },
+  "ben's original_ready rice, jasmine": {
+    "nutrition": {
+      "calories": 175,
+      "protein": 2.92,
+      "carbs": 35.8,
+      "fat": 2.08,
+      "fiber": null,
+      "sugar": null,
+      "sodium": null
+    },
+    "labels": [],
+    "found": true
+  },
+  "ben's original_ready rice, basmati": {
+    "nutrition": {
+      "calories": 167,
+      "protein": 3.75,
+      "carbs": 32.9,
+      "fat": 2.5,
+      "fiber": 0.417,
+      "sugar": 0.417,
+      "sodium": 0
+    },
+    "labels": [],
+    "found": true
+  },
+  "ben's original_ready rice, original long grain white": {
+    "nutrition": {
+      "calories": 56,
+      "protein": 1.12,
+      "carbs": 11,
+      "fat": 0.96,
+      "fiber": 0.32,
+      "sugar": 0,
+      "sodium": 0
+    },
+    "labels": [],
+    "found": true
+  },
+  "ben's original_ready rice, whole grain brown": {
+    "nutrition": {
+      "calories": 360,
+      "protein": 7,
+      "carbs": 71,
+      "fat": 6,
+      "fiber": 1,
+      "sugar": 0,
+      "sodium": 0.005
+    },
+    "labels": [],
+    "found": true
+  },
+  "farmer focus_organic boneless skinless chicken breast": {
+    "nutrition": {
+      "calories": 98.2,
+      "protein": 20.5,
+      "carbs": 0,
+      "fat": 1.79,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0.0536
+    },
+    "labels": [],
+    "found": true
+  },
+  "springer mountain farms_boneless skinless chicken breasts, raised w/o antibiotics": {
+    "found": false
+  },
+  "farmer focus_organic boneless chicken tenders": {
+    "found": false
+  },
+  "farmer focus_organic boneless skinless thin-sliced chicken breast": {
+    "found": false
+  },
+  "katie's best_boneless skinless chicken breast, value pack, air-chilled, raised w/o antibiotics": {
+    "found": false
+  },
+  "smart chicken_organic thin sliced chicken breasts, air-chilled": {
+    "found": false
+  },
+  "springer mountain farms_chicken tenders, raised w/o antibiotics": {
+    "found": false
+  },
+  "labelle patrimoine_boneless skinless chicken breast, pasture-raised, heritage, slow-grown, air-chilled": {
+    "found": false
+  },
+  "smart chicken_organic boneless skinless breasts, air-chilled": {
+    "nutrition": {
+      "calories": 98.2,
+      "protein": 22.3,
+      "carbs": 0,
+      "fat": 1.34,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0.0491
+    },
+    "labels": [],
+    "found": true
+  },
+  "springer mountain farms_boneless skinless chicken breasts value pack, raised w/o antibiotics": {
+    "found": false
+  },
+  "springer mountain farms_boneless skinless thin-sliced chicken breasts, raised w/o antibiotics": {
+    "found": false
+  },
+  "katie's best_boneless skinless chicken breasts, air-chilled, raised w/o antibiotics": {
+    "found": false
+  },
+  "katie's best_chicken breast with ribs, air-chilled, raised w/o antibiotics": {
+    "found": false
+  },
+  "empire kosher_chicken breasts, boneless and skinless, raised w/o antibiotics": {
+    "found": false
+  },
+  "freshdirect_breaded parmesan chicken cutlet, uncooked": {
+    "found": false
+  },
+  "springer mountain farms_chicken breasts with ribs, raised w/o antibiotics": {
+    "found": false
+  },
+  "farmer focus_organic boneless skinless chicken breasts value pack": {
+    "found": false
+  },
+  "smart chicken_boneless skinless breasts, air-chilled, raised without antibiotics": {
+    "found": false
+  },
+  "freshdirect_breaded chicken cutlet, uncooked": {
+    "found": false
+  },
+  "just freshdirect_lemon herb boneless skinless chicken breasts, raised w/o antibiotics, uncooked": {
+    "found": false
+  },
+  "just freshdirect_peruvian boneless skinless chicken breasts, raised w/o antibiotics, uncooked": {
+    "found": false
+  },
+  "freshdirect_bacon & cheddar chicken rollups": {
+    "found": false
+  },
+  "smart chicken_boneless skinless thin-sliced chicken breasts, air-chilled, raised without antibiotics": {
+    "found": false
+  },
+  "freshdirect_chicken cordon bleu": {
+    "found": false
+  },
+  "freshdirect_broccoli & cheddar stuffed chicken breasts": {
+    "found": false
+  },
+  "just freshdirect_maple dijon boneless skinless chicken breasts, raised w/o antibiotics, uncooked": {
+    "found": false
+  },
+  "freshdirect_roasted red pepper, pepperoni & mozzarella chicken rollups": {
+    "found": false
+  },
+  "smart chicken_organic chicken tenders, air-chilled, raised without antibiotics": {
+    "found": false
+  },
+  "smart chicken_tenders, air-chilled, raised without antibiotics": {
+    "found": false
+  },
+  "farmer focus_organic boneless skinless chicken thighs": {
+    "nutrition": {
+      "calories": 134,
+      "protein": 16.1,
+      "carbs": 0,
+      "fat": 8.04,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0.0536
+    },
+    "labels": [],
+    "found": true
+  },
+  "springer mountain farms_boneless skinless chicken thighs, raised w/o antibiotics": {
+    "found": false
+  },
+  "katie's best_bone-in chicken thighs, air-chilled, raised w/o antibiotics": {
+    "found": false
+  },
+  "springer mountain farms_bone-in chicken thighs, raised w/o antibiotics": {
+    "found": false
+  },
+  "katie's best_boneless skinless chicken thighs, air-chilled, raised w/o antibiotics": {
+    "found": false
+  },
+  "farmer focus_organic chicken wings": {
+    "nutrition": {
+      "calories": 97,
+      "protein": 17.6,
+      "carbs": 0,
+      "fat": 3.09,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 0.0926
+    },
+    "labels": [
+      "No Gluten"
+    ],
+    "found": true
+  },
+  "smart chicken_organic boneless skinless thighs, air-chilled": {
+    "nutrition": {
+      "calories": 143,
+      "protein": 19.6,
+      "carbs": 0,
+      "fat": 7.14,
+      "fiber": null,
+      "sugar": null,
+      "sodium": 0.0625
+    },
+    "labels": [],
+    "found": true
+  },
+  "springer mountain farms_chicken drumsticks, raised w/o antibiotics": {
+    "found": false
+  },
+  "labelle patrimoine_bone-in chicken thigh, pasture-raised, heritage, slow-grown, air-chilled": {
+    "found": false
+  },
+  "smart chicken_organic chicken wings, air chilled": {
+    "found": false
+  },
+  "smart chicken_organic whole legs, air-chilled": {
+    "found": false
+  },
+  "katie's best_chicken drumsticks & thighs, air-chilled, raised w/o antibiotics": {
+    "found": false
+  },
+  "katie's best_whole chicken legs, air-chilled, raised w/o antibiotics": {
+    "found": false
+  },
+  "farmer focus_organic chicken wings, party pack, frozen": {
+    "found": false
+  },
+  "katie's best_chicken drumsticks, air-chilled, raised w/o antibiotics": {
+    "found": false
+  },
+  "empire kosher_chicken leg quarters, raised w/o antibiotics": {
+    "found": false
+  },
+  "empire kosher_bone-in chicken thighs with back portions, raised w/o antibiotics": {
+    "found": false
+  },
+  "freshdirect_tikka-marinated chicken thighs, uncooked": {
+    "found": false
+  },
+  "empire kosher_chicken drumsticks, raised w/o antibiotics": {
+    "found": false
+  },
+  "labelle patrimoine_whole chicken wings, pasture-raised, heritage, slow-grown, air-chilled": {
+    "found": false
+  },
+  "freshdirect_sweet chili boneless chicken thighs, raised w/o antibiotics, uncooked": {
+    "found": false
+  },
+  "smart chicken_boneless skinless drumsticks, air-chilled, raised without antibiotics": {
+    "found": false
+  },
+  "smart chicken_boneless skinless chicken thighs, air-chilled, raised without antibiotics": {
+    "found": false
+  },
+  "smart chicken_organic boneless skinless drumsticks, air-chilled": {
+    "found": false
+  },
+  "farmer focus_organic whole chicken": {
+    "found": false
+  },
+  "katie's best_whole chicken, air-chilled, raised w/o antibiotics": {
+    "found": false
+  },
+  "labelle patrimoine_whole chicken, pasture-raised, heritage, slow-grown, air-chilled": {
+    "found": false
+  },
+  "katie's best_cut-up whole chicken, air-chilled, raised w/o antibiotics": {
+    "found": false
+  },
+  "springer mountain farms_whole chicken, raised w/o antibiotics": {
+    "found": false
+  },
+  "empire kosher_cut-up whole chicken, raised w/o antibiotics": {
+    "found": false
+  },
+  "snowdance farm_local heritage slow-growth chicken, air-chilled, raised w/o antibiotics": {
+    "found": false
+  },
+  "empire kosher_broiler chicken, raised w/o antibiotics": {
+    "found": false
+  },
+  "smart chicken_organic whole chicken, air-chilled": {
+    "found": false
+  },
+  "just freshdirect_lemon herb spatchcock chicken, raised w/o antibiotics, uncooked": {
+    "found": false
+  },
+  "springer mountain farms_whole large roasting chicken, raised w/o antibiotics": {
+    "found": false
+  },
+  "just freshdirect_peruvian spatchcock chicken, raised w/o antibiotics, uncooked": {
+    "found": false
+  },
+  "just freshdirect_maple dijon spatchcock chicken, raised w/o antibiotics, uncooked": {
+    "found": false
+  },
+  "smart chicken_party wings, air-chilled, raised without antibiotics": {
+    "found": false
+  },
+  "smart chicken_whole chicken, air-chilled, raised without antibiotics": {
+    "found": false
+  },
+  "cal-organic_organic baby carrots": {
+    "nutrition": {
+      "calories": 30,
+      "protein": 0,
+      "carbs": 7,
+      "fat": 0,
+      "fiber": 3,
+      "sugar": 4,
+      "sodium": 0.065
+    },
+    "labels": [
+      "Organic",
+      "No Gmos",
+      "Usda Organic",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "cal-organic_organic carrots": {
+    "nutrition": {
+      "calories": 30,
+      "protein": 0,
+      "carbs": 7,
+      "fat": 0,
+      "fiber": 3,
+      "sugar": 4,
+      "sodium": 0.065
+    },
+    "labels": [
+      "Organic",
+      "No Gmos",
+      "Usda Organic",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "cal-organic_organic jumbo carrots": {
+    "nutrition": {},
+    "labels": [
+      "Organic",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "cal-organic_organic rainbow carrots": {
+    "nutrition": {
+      "calories": 35.294117647059,
+      "protein": 1.1764705882353,
+      "carbs": 8.2352941176471,
+      "fat": 0,
+      "fiber": 3.5294117647059,
+      "sugar": 4.7058823529412,
+      "sodium": 0.076470588235296
+    },
+    "labels": [
+      "Organic",
+      "No Gmos",
+      "Usda Organic",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "cal-organic_organic baby carrots (2lb)": {
+    "found": false
+  },
+  "cal-organic_organic shredded carrots": {
+    "found": false
+  },
+  "cal-organic_organic rainbow baby carrots": {
+    "nutrition": {
+      "calories": 35.294117647059,
+      "protein": 1.1764705882353,
+      "carbs": 8.2352941176471,
+      "fat": 0,
+      "fiber": 3.5294117647059,
+      "sugar": 4.7058823529412,
+      "sodium": 0.076470588235296
+    },
+    "labels": [
+      "Organic",
+      "No Gmos",
+      "Usda Organic",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "cal-organic_organic carrot chips": {
+    "found": false
+  },
+  "cal-organic_organic peeled rainbow baby carrots, case": {
+    "found": false
+  },
+  "cal-organic_organic baby carrots, case": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic carrots (bag)": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic carrots (loose)": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic rainbow carrots": {
+    "found": false
+  },
+  "lancaster farm fresh cooperative_local organic purple carrots": {
+    "found": false
+  },
+  "pete's greens_clean organic rainbow carrots": {
+    "found": false
+  },
+  "pete's greens_clean organic real baby carrots": {
+    "found": false
+  },
+  "pete's greens_clean organic real baby carrots, case": {
+    "found": false
+  },
+  "urban roots_multi-color baby carrots": {
+    "found": false
+  },
+  "freshdirect_organic carrot sticks": {
+    "found": false
+  },
+  "freshdirect_jumbo carrots": {
+    "found": false
+  },
+  "freshdirect_organic carrots": {
+    "found": false
+  },
+  "freshdirect_organic shredded carrots": {
+    "found": false
+  },
+  "freshdirect_organic diced carrots": {
+    "found": false
+  },
+  "bachan's_the original japanese barbecue sauce": {
+    "nutrition": {
+      "calories": 267,
+      "protein": 6.67,
+      "carbs": 60,
+      "fat": 0.667,
+      "fiber": null,
+      "sugar": 56.7,
+      "sodium": 3.5
+    },
+    "labels": [
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "soy vay_less sodium marinade & sauce, veri veri teriyaki": {
+    "found": false
+  },
+  "soy vay_marinade & sauce, veri veri teriyaki": {
+    "nutrition": {
+      "calories": 237,
+      "protein": 5.26,
+      "carbs": 42.11,
+      "fat": 5.26,
+      "fiber": 0,
+      "sugar": 36.84,
+      "sodium": 3.105
+    },
+    "labels": [],
+    "found": true
+  },
+  "mother in law's_gochujang fermented chili paste": {
+    "found": false
+  },
+  "we love you_gochujang korean chili sauce, sweet & spicy": {
+    "nutrition": {
+      "calories": 194,
+      "protein": 5.56,
+      "carbs": 44.44,
+      "fat": 0,
+      "fiber": null,
+      "sugar": 27.78,
+      "sodium": 2.111
+    },
+    "labels": [
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "lee kum kee_premium oyster flavored sauce": {
+    "found": false
+  },
+  "eden foods_organic tamari soy sauce": {
+    "nutrition": {
+      "calories": 711,
+      "protein": 88.9,
+      "carbs": 88.9,
+      "fat": 0,
+      "fiber": null,
+      "sugar": 0,
+      "sodium": 0.0382
+    },
+    "labels": [
+      "Organic",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "momofuku_soy sauce": {
+    "nutrition": {
+      "calories": 15,
+      "protein": 2,
+      "carbs": 1,
+      "fat": 0,
+      "fiber": 0,
+      "sugar": 0,
+      "sodium": 1
+    },
+    "labels": [],
+    "found": true
+  },
+  "watcharee's_thai peanut sauce": {
+    "nutrition": {
+      "calories": 317,
+      "protein": 5,
+      "carbs": 28.3,
+      "fat": 20,
+      "fiber": 1.67,
+      "sugar": 21.7,
+      "sodium": 0.75
+    },
+    "labels": [
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "primal kitchen_organic no-soy teriyaki sauce & marinade": {
+    "found": false
+  },
+  "blank slate kitchen_szechuan chili oil": {
+    "found": false
+  },
+  "annie's_organic dressing, asian sesame": {
+    "nutrition": {
+      "calories": 419.35,
+      "protein": 0,
+      "carbs": 12.9,
+      "fat": 38.71,
+      "fiber": 0,
+      "sugar": 9.68,
+      "sodium": 0.91768
+    },
+    "labels": [
+      "Organic",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "makoto_ginger dressing": {
+    "nutrition": {
+      "calories": 80,
+      "protein": 1,
+      "carbs": 2,
+      "fat": 7,
+      "fiber": null,
+      "sugar": 1,
+      "sodium": 0.39
+    },
+    "labels": [],
+    "found": true
+  },
+  "miso master_organic mellow white miso": {
+    "nutrition": {
+      "calories": 200,
+      "protein": 10,
+      "carbs": 30,
+      "fat": 0,
+      "fiber": 10,
+      "sugar": 20,
+      "sodium": 3.1
+    },
+    "labels": [
+      "Organic",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "miso master_organic traditional red miso": {
+    "nutrition": {
+      "calories": 200,
+      "protein": 10,
+      "carbs": 30,
+      "fat": 0,
+      "fiber": 10,
+      "sugar": 20,
+      "sodium": 4.1
+    },
+    "labels": [
+      "Organic",
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "thai kitchen_red curry paste": {
+    "nutrition": {
+      "calories": 62.5,
+      "protein": 2.5,
+      "carbs": 18.8,
+      "fat": 0,
+      "fiber": 6.25,
+      "sugar": 6.25,
+      "sodium": 2.06
+    },
+    "labels": [
+      "No Gmos",
+      "Non Gmo Project"
+    ],
+    "found": true
+  },
+  "thai kitchen_green curry paste": {
+    "nutrition": {
+      "calories": 111,
+      "protein": 1.9,
+      "carbs": 10.5,
+      "fat": 6,
+      "fiber": 3.9,
+      "sugar": 6.8,
+      "sodium": 3.92
+    },
+    "labels": [],
+    "found": true
+  },
+  "kim chee pride_korean-style pickled vegetables": {
+    "found": false
+  }
+}

@@ -364,7 +364,10 @@ if __name__ == "__main__":
                         unit="lb",
                         organic=True,
                         unit_price=0.56,
-                        source_store_id="freshdirect"
+                        source_store_id="freshdirect",
+                        packaging="Vacuum-sealed recyclable packaging",
+                        nutrition="",
+                        labels=""
                     ),
                     quantity=1.0,
                     reasoning="Organic, no recalls"
@@ -387,6 +390,9 @@ if __name__ == "__main__":
                         size="2 lb",
                         unit="lb",
                         organic=True,
+                        packaging="Plastic bag",
+                        nutrition="",
+                        labels="",
                         unit_price=0.22,
                         source_store_id="freshdirect"
                     ),

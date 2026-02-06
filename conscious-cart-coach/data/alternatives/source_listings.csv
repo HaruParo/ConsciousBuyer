@@ -2,7 +2,7 @@
 "# SOLD OUT items documented with ""IF AVAILABLE"" notes indicate potential tier changes when restocked."
 category,product_name,brand,price,unit,size,certifications,packaging,nutrition,labels,notes,item_type,seasonality,selected_tier,selection_reason
 produce_greens,Baby Spinach Pack 5oz,Satur Farms,$3.99,ea,5oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",User history showed spinach preference,staple,,Conventional not suitable for Dirty Dozen ,
-produce_greens,Organic Baby Spinach,Earthbound Farm,$6.99,ea,10oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_greens,Organic Baby Spinach,Earthbound Farm,$6.99,ea,10oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),"Calories: 31.7/100g, Protein: 2.82g, Carbs: 3.52g, Fat: 0.352g, Fiber: 2.11g",Organic,,staple,,,
 produce_greens,Organic Lacinato Kale,Generic,$2.99,ea,0.5lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,"Naturally Gluten-Free, Vegan",,staple,,,
 produce_greens,Organic Green Kale,Generic,$2.99,ea,1lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,"Naturally Gluten-Free, Vegan",,staple,,,
 produce_greens,Baby Spinach Pack,Satur Farms,$5.99,ea,10oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",,staple,,Conventional not suitable for Dirty Dozen ,
@@ -14,10 +14,10 @@ produce_greens,Chopped Green Curly Kale,Generic,$4.99,ea,8oz,,Plastic bag,,"Natu
 produce_greens,Organic Collard Greens,Generic,$2.99,ea,0.75lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,Collards ,,,,
 produce_greens,Local Organic Young Arugula,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Clear plastic clamshell (recyclable #1 PET),,,Save 27% - Any 2 for $8.00,staple,,,
 produce_greens,Organic Red Kale,Generic,$1.99,ea,1lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,"Naturally Gluten-Free, Vegan",CHEAPEST ORGANIC - $0.12/oz,staple,cheaper,Lowest cost organic that satisfies Dirty Dozen ,
-produce_greens,Organic Power Greens,Earthbound Farm,$6.99,ea,10oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,Blend,convenience,,Pre-mixed blend,
+produce_greens,Organic Power Greens,Earthbound Farm,$6.99,ea,10oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,"Calories: 4.1176470588235/100g, Protein: 2.3529411764706g, Carbs: 4.7058823529412g, Fiber: 2.3529411764706g",,Blend,convenience,,Pre-mixed blend,
 produce_greens,Watercress,Generic,$4.99,ea,4oz,,Loose bunch in produce bag + plastic twist-tie,,,Earliest delivery Saturday Jan 24,specialty,,Only if recipe/user specifies,
-produce_greens,Romaine,organicgirl,$4.99,ea,6oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,,staple,,Lettuce category - different from cooking greens,
-produce_greens,Protein Greens,organicgirl,$4.99,ea,4.2oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,Blend,convenience,,Pre-mixed blend,
+produce_greens,Romaine,organicgirl,$4.99,ea,6oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,"Calories: 17.6/100g, Protein: 1.18g, Carbs: 3.53g, Fiber: 3.53g",No Preservatives,,staple,,Lettuce category - different from cooking greens,
+produce_greens,Protein Greens,organicgirl,$4.99,ea,4.2oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,"Calories: 29.4/100g, Protein: 4.2g, Carbs: 4.2g, Fiber: 2.52g","Organic, No Preservatives, Usda Organic, Canada Organic",Blend,convenience,,Pre-mixed blend,
 produce_greens,Organic Dandelion Greens,Generic,$2.99,ea,8oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,,specialty,,Only if recipe/user specifies - bitter green,
 produce_greens,Local Organic Young Spinach,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Save 27% - Any 2 for $8.00,staple,,,
 produce_greens,Organic Green Swiss Chard,Generic,$3.49,ea,1lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,,staple,balanced,Moderate cost organic variety - different flavor than kale,
@@ -26,16 +26,16 @@ produce_greens,Butter Baby!,organicgirl,$4.99,ea,4oz,USDA Organic,Clear plastic 
 produce_greens,Organic Spinach,Generic,$2.99,ea,6oz,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,"Naturally Gluten-Free, Vegan",~$8/lb - more expensive than kale per lb,staple,,,
 produce_greens,Shredded Kale and Brussel Sprouts Blend,Generic,$5.99,ea,5oz,,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Save 16% - Any 2 for $10.00,convenience,,Pre-mixed blend,
 produce_greens,Organic Mustard Greens,Generic,$2.99,ea,0.5lb,USDA Organic,Loose bunch in produce bag + plastic twist-tie,,,Mustard greens ,,,,
-produce_greens,Baby Spring Mix,organicgirl,$4.99,ea,5oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,,Earliest delivery Sunday Jan 25,convenience,,Pre-mixed blend,
-produce_greens,Baby Spinach,organicgirl,$4.99,ea,5oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_greens,Baby Spring Mix,organicgirl,$4.99,ea,5oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),"Calories: 17.6/100g, Protein: 2.35g, Carbs: 3.53g, Fiber: 2.35g","Organic, No Preservatives, Usda Organic",Earliest delivery Sunday Jan 25,convenience,,Pre-mixed blend,
+produce_greens,Baby Spinach,organicgirl,$4.99,ea,5oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),"Calories: 23.5294117647059/100g, Protein: 2.35294117647059g, Carbs: 3.52941176470588g, Fiber: 2.35294117647059g","Organic, No Preservatives, Usda Organic",,staple,,,
 produce_greens,Local Organic Young Rainbow Chard,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Clear plastic clamshell (recyclable #1 PET),,,Save 27% - Any 2 for $8.00,staple,,,
-produce_greens,Sweet Crunchy Mix,organicgirl,$4.99,ea,4oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,,Blend,convenience,,Pre-mixed blend,
+produce_greens,Sweet Crunchy Mix,organicgirl,$4.99,ea,4oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),"Calories: 17.6/100g, Protein: 1.18g, Carbs: 2.35g, Fiber: 2.35g","Organic, No Preservatives, Usda Organic",Blend,convenience,,Pre-mixed blend,
 produce_greens,Local Organic Young Kale,Lancaster Farm Fresh Cooperative,$5.49,ea,5oz,USDA Organic + Local,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Save 27% - Any 2 for $8.00 - EXCELLENT noted,staple,conscious,Local cooperative + organic + premium young kale,
 produce_greens,Chopped Collard Greens,Generic,$5.49,ea,5oz,,Clear plastic clamshell (recyclable #1 PET),,,Save 27% - Any 2 for $8.00,convenience,,Pre-chopped,
 produce_greens,Snow Pea Tips,Generic,$13.49,lb,,,Loose bunch in produce bag + plastic twist-tie,,,Premium specialty green,specialty,,Only if recipe/user specifies - Asian cuisine,
-produce_greens,Baby Spinach & Arugula,organicgirl,$4.99,ea,5oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Blend,convenience,,Pre-mixed blend,
+produce_greens,Baby Spinach & Arugula,organicgirl,$4.99,ea,5oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,No Preservatives,Blend,convenience,,Pre-mixed blend,
 produce_greens,Wild Arugula Pack 5oz,Satur Farms,Sold out,ea,5oz,,Clear plastic clamshell (recyclable #1 PET),,,SOLD OUT,staple,,IF AVAILABLE - peppery arugula variety option,
-produce_greens,Baby Arugula,organicgirl,Sold out,ea,,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,,SOLD OUT,staple,,IF AVAILABLE - organic arugula option for variety,
+produce_greens,Baby Arugula,organicgirl,Sold out,ea,,USDA Organic,Clear plastic clamshell (recyclable #1 PET),"Calories: 27.7/100g, Protein: 2.77g, Carbs: 4.15g, Fat: 0.692g, Fiber: 1.38g","Organic, No Preservatives, Usda Organic",SOLD OUT,staple,,IF AVAILABLE - organic arugula option for variety,
 produce_onions,Scallions,Generic,$1.99,ea,6oz,None (conventional),Bunched with twist-tie,,,,staple,,Green onions - common cooking ingredient,
 produce_onions,Garlic,Generic,$3.49,ea,3ct 3.2oz,None (conventional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,Essential aromatic,
 produce_onions,Jumbo Yellow Onion,Generic,$0.99,lb,,None (conventional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Earliest delivery Sat Jan 24 - Clean Fifteen ,,,,
@@ -58,8 +58,8 @@ produce_onions,Leeks Bunch,Generic,$5.99,ea,2-3ct 1lb,None (conventional),Loose 
 produce_onions,Organic Shallots,Christopher Ranch,$3.99,ea,3ct 6oz,USDA Organic,Loose bulk in produce bag,,,,specialty,,Only if recipe specifies,
 produce_onions,Local Organic Red Onions (bag),Lancaster Farm Fresh Cooperative,$4.99,ea,4ct 2lb bag,USDA Organic + Local,Mesh bag,,"Naturally Gluten-Free, Vegan",,staple,,Bulk option,
 produce_onions,Fresh Peeled White Pearl Onions,Generic,$7.49,ea,8oz,,Plastic bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $12.00 - Earliest delivery Sun Jan 25,specialty,,Only if recipe specifies - garnish/stew,
-produce_onions,Organic Peeled Garlic,Christopher Ranch,$4.99,ea,6oz,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,convenience,,Pre-peeled,
-produce_onions,Peeled Garlic,Christopher Ranch,$6.99,ea,1lb,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Branded conventional,convenience,,Pre-peeled bulk,
+produce_onions,Organic Peeled Garlic,Christopher Ranch,$4.99,ea,6oz,USDA Organic,Loose bulk in produce bag,"Calories: 5/100g, Carbs: 1g","Naturally Gluten-Free, Vegan",,convenience,,Pre-peeled,
+produce_onions,Peeled Garlic,Christopher Ranch,$6.99,ea,1lb,,Loose bulk in produce bag,"Calories: 5/100g, Carbs: 1g","Naturally Gluten-Free, Vegan",Branded conventional,convenience,,Pre-peeled bulk,
 produce_onions,Cipollini Onions,Black Dirt Region,$2.99,ea,1lb bag,,Mesh bag,,"Naturally Gluten-Free, Vegan",Regional specialty - gourmet,specialty,,Only if recipe specifies - Italian,
 produce_onions,Organic Black Garlic,Pete's Greens,$9.99,ea,3oz,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",EXCELLENT noted - fermented probiotic,specialty_promotable,,Promote if: user history OR recipe OR health-conscious user (fermented + organic),
 produce_onions,Garlic Braid,Christopher Ranch,$15.99,ea,20oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Decorative/bulk,specialty,,Decorative or bulk storage,
@@ -68,13 +68,13 @@ produce_onions,Local Organic Shallots,Lancaster Farm Fresh Cooperative,Sold out,
 produce_roots,Organic Ginger Root,Generic,$2.99,ea,6oz,USDA Organic,Loose bulk in produce bag,,,Aromatic root - not main veggie,specialty,year-round (imported),,Only if recipe/user specifies
 produce_roots,Parsnips,Generic,$2.99,lb (min 2),,None (conventional),Loose bulk in produce bag,,,Earliest delivery Sat Jan 24,specialty,fall-winter (Oct-Mar) - PEAK NOW,,Promote in season - sweeter after frost
 produce_roots,Radishes,Jersey Fresh,$1.99,ea,bunch,Jersey Fresh (regional),Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Regional NJ program,staple,spring-fall (Mar-Nov),balanced,Brand traceability + regional - recall safe vs generic
-produce_roots,Organic Cooked Beets,Love Beets,$4.99,ea,8.8oz,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Precooked convenience product
+produce_roots,Organic Cooked Beets,Love Beets,$4.99,ea,8.8oz,USDA Organic,Loose bulk in produce bag,"Calories: 47.4/100g, Protein: 1.05g, Carbs: 10.5g, Fiber: 2.11g","Organic, No Gmos, Non Gmo Project",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Precooked convenience product
 produce_roots,Loose Organic Beets,Generic,$2.99,lb,,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
 produce_roots,Organic Red Radish,Generic,$2.99,ea,1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Save 16% - buy 2 for $5 - EXCELLENT noted,staple,spring-fall (Mar-Nov),,
 produce_roots,Organic Watermelon Radishes,Lancaster Farm Fresh Cooperative,$2.49,ea,0.5lb,USDA Organic + Local,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",EXCELLENT noted - high criteria score,specialty_promotable,fall-winter (Oct-Feb) - PEAK NOW,,Promote NOW: in season + user history OR recipe OR variety (organic + local + heirloom)
 produce_roots,Turmeric Root,Generic,$2.99,ea,2oz,,Loose bulk in produce bag,,,Aromatic/medicinal root,specialty,year-round (imported),,Only if recipe/user specifies
 produce_roots,Turnip,Generic,$1.49,lb,,None (conventional),Loose bulk in produce bag,,,Cheapest root - middle category,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
-produce_roots,Cooked Beets,Love Beets,$3.49,ea,8.8oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Precooked,convenience,year-round (processed),,Precooked convenience product
+produce_roots,Cooked Beets,Love Beets,$3.49,ea,8.8oz,,Loose bulk in produce bag,"Calories: 41.2/100g, Protein: 1.5g, Carbs: 7.12g, Fat: 0.125g, Fiber: 2.87g","Naturally Gluten-Free, Vegan",Precooked,convenience,year-round (processed),,Precooked convenience product
 produce_roots,Organic Beets Bunch,Generic,$3.99,ea,4ct 1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
 produce_roots,Diced Red Beets,Generic,$5.49,ea,12oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Save 27% - Any 2 for $8.00,convenience,year-round (processed),,Pre-diced convenience product
 produce_roots,Organic Daikon Bunch,Generic,$2.99,lb,,USDA Organic,Loose bulk in produce bag,,,Asian radish variety - high criteria score,specialty_promotable,fall-winter (Oct-Mar) - PEAK NOW,,Promote NOW: in season + user history 3x+ OR recipe OR variety (organic + good price)
@@ -82,10 +82,10 @@ produce_roots,Perfectly Pickled Beets Slightly Sweet,Love Beets,$4.99,ea,6.5oz,,
 produce_roots,Organic Marinated Baby Beets Classic Vinegar,Love Beets,$4.99,ea,8oz,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/marinated product
 produce_roots,Celery Root,Generic,$3.99,lb,,None (conventional),Loose bulk in produce bag,,,Celeriac,specialty,fall-winter (Oct-Mar) - PEAK NOW,,Promote in season if recipe/user specifies
 produce_roots,Local Organic Jerusalem Artichokes,Lancaster Farm Fresh Cooperative,$5.99,lb,,USDA Organic + Local,Loose bulk in produce bag,,,Sunchokes,specialty,fall-winter (Nov-Mar) - PEAK NOW,,Promote in season if recipe/user specifies - specialty tuber
-produce_roots,Marinated Baby Beets White Wine Balsamic,Love Beets,$4.99,ea,6.5oz,,Plastic bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/marinated product
+produce_roots,Marinated Baby Beets White Wine Balsamic,Love Beets,$4.99,ea,6.5oz,,Plastic bag,"Calories: 71/100g, Protein: 1.18g, Carbs: 20g, Fiber: 2.4g","No Gmos, Non Gmo Project",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/marinated product
 produce_roots,Organic Gold Beets,Generic,$2.99,lb,,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Yellow/golden variety,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,Color variety of staple beet
 produce_roots,Organic Badger Flame Beets,Lancaster Farm Fresh Cooperative,$3.49,lb,,USDA Organic + Local,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Heirloom variety - cooperative,staple,fall-winter (Oct-Mar) - PEAK NOW,conscious,Local cooperative + organic + heirloom variety - IN SEASON
-produce_roots,Perfectly Pickled Beets Honey Ginger,Love Beets,$4.99,ea,6.5oz,,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/pickled product
+produce_roots,Perfectly Pickled Beets Honey Ginger,Love Beets,$4.99,ea,6.5oz,,Loose bulk in produce bag,"Calories: 82.4/100g, Protein: 1.18g, Carbs: 20g, Fiber: 2.35g","Naturally Gluten-Free, Vegan",Save 20% - Any 2 for $8.00,convenience,year-round (processed),,Processed/pickled product
 produce_roots,Local Organic Chioggia Beets,Lancaster Farm Fresh Cooperative,$2.49,ea,0.5oz,USDA Organic + Local,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",Candy-stripe heirloom,specialty,fall-winter (Oct-Mar) - PEAK NOW,,Promote in season - heirloom variety
 produce_roots,Organic Turnip,Generic,$2.99,lb (min 2),,USDA Organic,Loose bulk in produce bag,,,,staple,fall-winter storage (Oct-Mar) - PEAK NOW,,
 produce_roots,Rutabaga,Generic,$2.49,lb,,None (conventional),Loose bulk in produce bag,,,GREAT CHOICE noted - versatile root,specialty,fall-winter storage (Oct-Mar) - PEAK NOW,,Promote in season if recipe/user specifies
@@ -130,17 +130,17 @@ fruit_tropical,Plantain Yellow Case,Generic,$79.99,ea,50ct,,Plastic bag,,,Bulk f
 fruit_tropical,Plantain Green Case,Generic,$79.99,ea,50ct,,Plastic bag,,,Bulk foodservice,specialty,year-round,,Foodservice only
 fruit_tropical,Sweet Tamarind Case,Generic,$129.05,cs,16ct ~1lb ea,,Plastic bag,,,Bulk case - SALE 5% off,specialty,year-round,,Foodservice/bulk only
 fruit_tropical,Pomegranates,Generic,Sold out,ea,,,Plastic bag,,,SOLD OUT,staple,fall-winter (Oct-Feb) - PEAK NOW,,IF AVAILABLE - seasonal staple IN PEAK SEASON - high demand causes stockouts
-fruit_tropical,SunGold Kiwifruit,Zespri,Sold out,ea,,,Plastic bag,,,SOLD OUT - premium yellow kiwi,staple,year-round,,IF AVAILABLE - would be balanced/conscious tier (premium brand + sweeter variety)
+fruit_tropical,SunGold Kiwifruit,Zespri,Sold out,ea,,,Plastic bag,"Calories: 79/100g, Protein: 1g, Carbs: 15.8g, Fat: 0.3g, Fiber: 1.4g",,SOLD OUT - premium yellow kiwi,staple,year-round,,IF AVAILABLE - would be balanced/conscious tier (premium brand + sweeter variety)
 fruit_tropical,Green Guavas,Generic,Sold out,ea,,,Plastic bag,,,SOLD OUT,specialty,fall-winter,,
 fruit_tropical,Rambutan,Generic,Sold out,ea,,,Plastic bag,,,SOLD OUT - exotic,specialty,summer,,Exotic - sold out
 fruit_berries,Jumbo Ultra-Premium Blueberries,Family Tree Farms,$9.99,ea,9.8oz,,Plastic bag,,,Earliest delivery Sat Jan 24 - premium,staple,year-round (imported winter) - blueberries ,,
-fruit_berries,Organic Strawberries,Driscoll's,$9.99,ea,16oz,USDA Organic,Plastic bag,,,Strawberries ,,,,
-fruit_berries,Strawberries,Driscoll's,$5.99,ea,16oz,None (conventional),Plastic bag,,,Strawberries ,,,,
-fruit_berries,Organic Raspberries,Driscoll's,$6.99,ea,6oz,USDA Organic,Plastic bag,,,High-risk berry - organic chosen,staple,year-round (imported winter),balanced,Organic + Driscoll's brand safety + delicate berry
+fruit_berries,Organic Strawberries,Driscoll's,$9.99,ea,16oz,USDA Organic,Plastic bag,,"Organic, Usda Organic",Strawberries ,,,,
+fruit_berries,Strawberries,Driscoll's,$5.99,ea,16oz,None (conventional),Plastic bag,"Calories: 45/100g, Protein: 1g, Carbs: 11g, Fiber: 3g","Vegetarian, Vegan",Strawberries ,,,,
+fruit_berries,Organic Raspberries,Driscoll's,$6.99,ea,6oz,USDA Organic,Plastic bag,"Calories: 48.8/100g, Protein: 0.813g, Carbs: 12.2g, Fat: 0.813g, Fiber: 6.5g","Organic, Usda Organic",High-risk berry - organic chosen,staple,year-round (imported winter),balanced,Organic + Driscoll's brand safety + delicate berry
 fruit_berries,Organic Blueberries,Generic,$12.99,ea,18oz,USDA Organic,Plastic bag,,,Earliest delivery Sat Jan 24 - blueberries ,,,,
 fruit_berries,Raspberries,Generic,$3.99,ea,6oz,None (conventional),Plastic bag,,,SALE 37% - buy 2 for $5,staple,year-round (imported winter),,Sale price but conventional
-fruit_berries,Raspberries,Driscoll's,$3.99,ea,6oz,None (conventional),Plastic bag,,,,staple,year-round (imported winter),,Conventional raspberry
-fruit_berries,Blackberries,Driscoll's,$4.99,ea,6oz,None (conventional),Plastic bag,,,,staple,year-round (imported winter),,Conventional blackberry
+fruit_berries,Raspberries,Driscoll's,$3.99,ea,6oz,None (conventional),Plastic bag,,"Fsc, Fsc Mix, Green Dot, Fr:Fsc C139458",,staple,year-round (imported winter),,Conventional raspberry
+fruit_berries,Blackberries,Driscoll's,$4.99,ea,6oz,None (conventional),Plastic bag,,Green Dot,,staple,year-round (imported winter),,Conventional blackberry
 fruit_berries,Strawberries,Generic,$4.99,ea,16oz,None (conventional),Plastic bag,,,SALE 28% off - was $6.99 - ,,,,
 fruit_berries,Local Strawberries,The Strawberry Farm,$9.99,ea,8oz,,Plastic bag,,,LOCAL but not organic - ,,,,
 fruit_berries,Fresh Berry Medley,Generic,$5.99,ea,8oz,,Plastic bag,,,Mixed berries convenience,convenience,year-round,,Pre-mixed
@@ -149,16 +149,16 @@ fruit_berries,Fresh Halved Strawberries,Generic,$6.99,ea,8oz,,Plastic bag,,,Pre-
 fruit_berries,Blueberries,Generic,$9.99,ea,18oz,None (conventional),Plastic bag,,,Blueberries ,,,,
 fruit_berries,Sweet Selections Blackberries,Naturipe,$7.99,ea,10oz,,Plastic bag,,,Larger pack,staple,year-round (imported winter),,Bulk option
 fruit_berries,Mini Koyo Berries,Oishii,$9.99,ea,4.2oz,,Plastic bag,,,Premium indoor-grown Japanese variety,specialty,year-round (vertical farm),,Premium specialty - only if user specifies
-fruit_berries,The Koyo Berry,Oishii,$9.99,ea,4.2oz (8-11ct),,Plastic bag,,,Premium indoor-grown - Earliest delivery Sat Jan 24,specialty,year-round (vertical farm),,Premium specialty - only if user specifies
+fruit_berries,The Koyo Berry,Oishii,$9.99,ea,4.2oz (8-11ct),,Plastic bag,,"No Gmos, Non Gmo Project",Premium indoor-grown - Earliest delivery Sat Jan 24,specialty,year-round (vertical farm),,Premium specialty - only if user specifies
 fruit_berries,Fresh Pineapple & Jumbo Blueberry Medley,Generic,$5.99,ea,8oz,,Plastic bag,,,Mixed fruit - Earliest delivery Sat Jan 24,convenience,year-round,,Pre-mixed
 fruit_berries,Cape Gooseberries,Generic,$5.99,ea,6oz,,Plastic bag,,,Earliest delivery Sat Jan 24 - specialty,specialty,year-round (imported),,Only if recipe/user specifies
-fruit_berries,The Omakase Berry,Oishii,$14.99,ea,4.2oz (6-8ct),,Plastic bag,,,ULTRA-PREMIUM indoor-grown - Earliest delivery Sat Jan 24,specialty,year-round (vertical farm),,Ultra-premium specialty - only if user specifies
+fruit_berries,The Omakase Berry,Oishii,$14.99,ea,4.2oz (6-8ct),,Plastic bag,,"No Gmos, Non Gmo Project",ULTRA-PREMIUM indoor-grown - Earliest delivery Sat Jan 24,specialty,year-round (vertical farm),,Ultra-premium specialty - only if user specifies
 fruit_berries,Jumbo Ultra-Premium Blueberries Case,Family Tree Farms,$113.89,cs,12ct 9.8oz ea,,Plastic bag,,,SALE 5% off - bulk,specialty,year-round,,Foodservice/bulk only
 fruit_berries,Strawberries Case,Generic,$37.92,cs,8ct 16oz ea,,Plastic bag,,,SALE 5% off - bulk conventional - ,,,,
 fruit_berries,Blackberries Case,Generic,$56.89,cs,12ct 6oz ea,,Plastic bag,,,SALE 5% off - bulk,specialty,year-round,,Foodservice/bulk only
 fruit_berries,Limited Edition Sweetest Batch Blueberries,Driscoll's,Sold out,ea,,,Plastic bag,,,SOLD OUT - premium,staple,year-round,,Premium variety - sold out
-fruit_berries,Organic Blackberries,Driscoll's,Sold out,ea,,USDA Organic,Plastic bag,,,SOLD OUT - organic blackberry,staple,year-round,,IF AVAILABLE - would be balanced tier (organic + Driscoll's brand safety) - CRITICAL AVAILABILITY GAP
-fruit_berries,Strawberries,Driscoll's,Sold out,ea,16oz,,Plastic bag,,,SOLD OUT - conventional,staple,year-round,,Sold out
+fruit_berries,Organic Blackberries,Driscoll's,Sold out,ea,,USDA Organic,Plastic bag,"Calories: 43.1/100g, Protein: 1.39g, Carbs: 9.72g, Fat: 0.486g, Fiber: 5.56g","Organic, Usda Organic",SOLD OUT - organic blackberry,staple,year-round,,IF AVAILABLE - would be balanced tier (organic + Driscoll's brand safety) - CRITICAL AVAILABILITY GAP
+fruit_berries,Strawberries,Driscoll's,Sold out,ea,16oz,,Plastic bag,"Calories: 45/100g, Protein: 1g, Carbs: 11g, Fiber: 3g","Vegetarian, Vegan",SOLD OUT - conventional,staple,year-round,,Sold out
 fruit_berries,The Nikko Berry,Oishii,Sold out,ea,,,Plastic bag,,,SOLD OUT - ultra-premium,specialty,year-round,,Ultra-premium - sold out
 fruit_berries,Raspberries Case,Generic,Sold out,cs,,,Plastic bag,,,SOLD OUT - bulk,specialty,year-round,,Bulk - sold out
 fruit_berries,Berry Bundle with Blackberries,Generic,Sold out,ea,,,Plastic bag,,,SOLD OUT - bundle,convenience,year-round,,Bundle - sold out
@@ -218,7 +218,7 @@ produce_squash,Organic Green Zucchini Noodles,Generic,$9.99,ea,16oz,USDA Organic
 produce_squash,Spaghetti Squash,Generic,$1.99,lb,,None (conventional),Plastic bag,,,Natural noodle substitute,staple,fall-winter (Sep-Mar) - PEAK NOW,,Low-carb alternative - in season
 produce_squash,Long Island Delicata Squash,Generic,$2.49,lb,,,Plastic bag,,,Regional Long Island variety,staple,fall-winter (Sep-Dec) - PEAK NOW,,Regional variety - same price as organic
 produce_squash,Primavera Zucchini Noodles,Generic,$7.49,ea,1lb,,Plastic bag,,,Save 20% - Any 2 for $12 - Earliest delivery Sat Jan 24,convenience,year-round,,Pre-spiralized mixed convenience
-produce_squash,Baby Zucchini,Urban Roots,$3.99,ea,8oz,,Plastic bag,,,Earliest delivery Sun Jan 25 - tender baby size,specialty,year-round (greenhouse),,Only if recipe specifies - gourmet presentation
+produce_squash,Baby Zucchini,Urban Roots,$3.99,ea,8oz,,Plastic bag,,"No Gmos, Non Gmo Project",Earliest delivery Sun Jan 25 - tender baby size,specialty,year-round (greenhouse),,Only if recipe specifies - gourmet presentation
 produce_squash,Organic Butternut Squash,Generic,$2.49,lb,,USDA Organic,Plastic bag,,,EXCELLENT noted - whole organic butternut,staple,fall-winter (Sep-Mar) - PEAK NOW,,EXCELLENT rating + organic + in season
 produce_squash,Fresh Green and Yellow Zoodles,Generic,$7.49,ea,16oz,,Plastic bag,,,Save 20% - Any 2 for $12 - Earliest delivery Sat Jan 24,convenience,year-round,,Pre-spiralized mixed convenience
 produce_squash,Butternut Squash Noodles,Generic,$7.49,ea,16oz,,Plastic bag,,,Save 20% - Any 2 for $12,convenience,fall-winter (Sep-Mar),,Pre-spiralized butternut convenience
@@ -365,14 +365,14 @@ produce_mushrooms,"Steak Cut Mushrooms, Packaged",FreshDirect,2.99,ea,8 oz,None 
 produce_mushrooms,Organic Lion's Mane Mushrooms,Mushroom King,6.99,ea,3.5 oz,USDA Organic,Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Lion's mane,specialty,,Conscious,Premium lion's mane
 produce_mushrooms,Hedgehog Mushrooms,FreshDirect,9.99,ea,3.5 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Wild variety,specialty,,Premium Specialty,Hedgehog mushrooms
 produce_mushrooms,Dried Morel Mushrooms,Goodness Gardens,15.99,ea,0.5 oz,None (conventional),Clear plastic clamshell (recyclable #1 PET),,"Naturally Gluten-Free, Vegan",Dried wild,specialty,,Premium Specialty,Dried morel
-protein_poultry,Boneless Skinless Chicken Breast,365 by Whole Foods Market,5.99,lb,1.5 lb,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly chicken breast
+protein_poultry,Boneless Skinless Chicken Breast,365 by Whole Foods Market,5.99,lb,1.5 lb,None (conventional),Plastic bag,"Calories: 116/100g, Protein: 22.3g, Fat: 2.68g",,,staple,,Cheaper,Budget-friendly chicken breast
 protein_poultry,Boneless Skinless Chicken Thighs,365 by Whole Foods Market,5.49,lb,1.5 lb,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly chicken thighs
 protein_poultry,Chicken Breast Step 2,Bell & Evans,5.99,lb,1.5 lb,Air-Chilled,Plastic bag,,,,staple,,Cheaper,Air-chilled conventional chicken
-protein_poultry,Boneless Skinless Chicken Breast,Bell & Evans,6.99,lb,1.5 lb,Air-Chilled,Plastic bag,,,,staple,,Balanced,Premium conventional air-chilled
-protein_poultry,Boneless Skinless Chicken Thighs,Bell & Evans,6.49,lb,1.5 lb,Air-Chilled,Plastic bag,,,,staple,,Balanced,Premium conventional thighs
+protein_poultry,Boneless Skinless Chicken Breast,Bell & Evans,6.99,lb,1.5 lb,Air-Chilled,Plastic bag,"Calories: 174/100g, Protein: 17.4g, Carbs: 12.8g, Fat: 6.04g",,,staple,,Balanced,Premium conventional air-chilled
+protein_poultry,Boneless Skinless Chicken Thighs,Bell & Evans,6.49,lb,1.5 lb,Air-Chilled,Plastic bag,"Calories: 143/100g, Protein: 18.8g, Carbs: 0.893g, Fat: 7.14g",,,staple,,Balanced,Premium conventional thighs
 protein_poultry,Organic Boneless Skinless Chicken Thighs,365 by Whole Foods Market,5.99,lb,1.5 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Cheapest organic chicken thighs
-protein_poultry,Organic Boneless Skinless Chicken Breast,365 by Whole Foods Market,7.99,lb,1.5 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic store brand
-protein_poultry,Organic Boneless Skinless Chicken Breast,Bell & Evans,8.99,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,,staple,,Conscious,Premium organic air-chilled
+protein_poultry,Organic Boneless Skinless Chicken Breast,365 by Whole Foods Market,7.99,lb,1.5 lb,USDA Organic,Plastic bag,"Calories: 115/100g, Protein: 22g, Fat: 2.65g",,,staple,,Conscious,Organic store brand
+protein_poultry,Organic Boneless Skinless Chicken Breast,Bell & Evans,8.99,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,"Calories: 107/100g, Protein: 22.3g, Fat: 1.34g",,,staple,,Conscious,Premium organic air-chilled
 protein_poultry,Organic Boneless Skinless Chicken Breast Cutlets,Bell & Evans,9.99,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,,staple,,Premium Specialty,Premium organic cutlets
 produce_onions,Yellow Onions Medium,Peri & Sons Farms,2.99,ea,3 lb bag,None (conventional),Mesh bag,,"Naturally Gluten-Free, Vegan",Premium Nevada-grown onions,staple,,Balanced,Premium grower brand
 produce_onions,Organic Yellow Onions,Peri & Sons Farms,4.99,ea,3 lb bag,USDA Organic,Mesh bag,,"Naturally Gluten-Free, Vegan",Certified organic from California,staple,,Conscious,Organic premium grower
@@ -463,7 +463,7 @@ protein_seafood_prepared,"Salmon Cakes, Uncooked",FreshDirect,9.49,ea,2 ct,None 
 protein_seafood_prepared,Farm-Raised Cajun Catfish Fillet,FreshDirect,14.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality prepared
 protein_seafood_prepared,Banana-Leaf Wrapped Coconut-Cilantro Salmon,FreshDirect,12.49,ea,8 oz,None (conventional),Plastic bag,,,Quality: Excellent | $1.56/oz,staple,,Balanced,Good quality prepared
 other,"Wild Atlantic Cod Individually Wrapped Fillets, Family Pack, Frozen",City Pier,28.49,ea,1.5 lb,None (conventional),Plastic bag,,,$1.19/oz,convenience,,Balanced,Good quality other
-other,Breaded Fish Sticks,Mrs. Paul's,8.99,ea,44 ct,None (conventional),Plastic bag,,,$0.37/oz,convenience,,Balanced,Good quality other
+other,Breaded Fish Sticks,Mrs. Paul's,8.99,ea,44 ct,None (conventional),Plastic bag,"Calories: 203/100g, Protein: 12.7g, Carbs: 17.7g, Fat: 8.86g, Fiber: 1.27g",,$0.37/oz,convenience,,Balanced,Good quality other
 other,"Cooked Farm-Raised Shrimp, Cleaned, 91-110/lb, Frozen",FreshDirect,10.99,ea,1 lb,None (conventional),Plastic bag,,,$0.69/oz,convenience,,Balanced,Good quality other
 other,"Shrimp Wonton Soup with Bok Choy, Frozen",Royal Asia,8.49,ea,1 lb,None (conventional),Plastic bag,,,$0.53/oz,convenience,,Balanced,Good quality other
 other,Beer Battered Fish Fillets,Mrs. Paul's,8.99,ea,10 ct,None (conventional),Plastic bag,,,$0.47/oz,convenience,,Balanced,Good quality other
@@ -483,21 +483,21 @@ dairy_milk,"Local Organic Whole Milk, Carton",Just FreshDirect,4.89,ea,0.5 g,USD
 dairy_milk,"Local Organic 2% Reduced Fat Milk, Carton",Just FreshDirect,4.89,ea,0.5 g,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic milk
 dairy_milk,"Whole Milk, Plastic Bottle",Just FreshDirect,2.99,ea,0.5 g,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly option
 dairy_milk,"Ultra-Pasteurized Whole Milk, Carton",Organic Valley,5.99,ea,0.5 g,None (conventional),Plastic bag,,,Save 20% - Any 2 for $9.50,staple,,Balanced,Good quality milk
-dairy_yogurt,"TOTAL 0% Greek Yogurt, Plain",Fage,7.59,ea,32 oz,None (conventional),Recyclable plastic tub,,,,staple,,Balanced,Good quality yogurt
-dairy_yogurt,"TOTAL 2% Greek Yogurt, Plain",Fage,7.59,ea,32 oz,None (conventional),Recyclable plastic tub,,,,staple,,Balanced,Good quality yogurt
+dairy_yogurt,"TOTAL 0% Greek Yogurt, Plain",Fage,7.59,ea,32 oz,None (conventional),Recyclable plastic tub,"Calories: 93/100g, Protein: 9g, Carbs: 3g, Fat: 5g",,,staple,,Balanced,Good quality yogurt
+dairy_yogurt,"TOTAL 2% Greek Yogurt, Plain",Fage,7.59,ea,32 oz,None (conventional),Recyclable plastic tub,"Calories: 93/100g, Protein: 9g, Carbs: 3g, Fat: 5g",,,staple,,Balanced,Good quality yogurt
 dairy_yogurt,"Non-Fat Greek Yogurt, Plain (Single)",Chobani,1.49,ea,5.3 oz,None (conventional),Recyclable plastic tub,,,,staple,,Cheaper,Budget-friendly option
-dairy_yogurt,"Non-Fat Greek Yogurt, Plain",Chobani,6.59,ea,32 oz,None (conventional),Recyclable plastic tub,,,,staple,,Balanced,Good quality yogurt
-dairy_butter,Salted Pure Irish Butter,Kerrygold,5.59,ea,8 oz,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
-dairy_butter,Unsalted Pure Irish Butter,Kerrygold,5.59,ea,8 oz,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
+dairy_yogurt,"Non-Fat Greek Yogurt, Plain",Chobani,6.59,ea,32 oz,None (conventional),Recyclable plastic tub,"Calories: 90/100g, Protein: 16g, Carbs: 6g",Fair Trade,,staple,,Balanced,Good quality yogurt
+dairy_butter,Salted Pure Irish Butter,Kerrygold,5.59,ea,8 oz,None (conventional),Paper-wrapped sticks in box,"Calories: 714/100g, Fat: 78.6g","No Gmos, Green Dot, Non Gmo Project",,staple,,Balanced,Good quality butter
+dairy_butter,Unsalted Pure Irish Butter,Kerrygold,5.59,ea,8 oz,None (conventional),Paper-wrapped sticks in box,"Calories: 714/100g, Fat: 85.71g","No Gmos, Non Gmo Project",,staple,,Balanced,Good quality butter
 dairy_butter,"Sweet Cream Butter, Salted",Cabot,7.99,ea,4 ct,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
-dairy_butter,Unsalted Butter,Land O'Lakes,7.49,ea,4 ct,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
-dairy_butter,Organic Unsalted Butter,Organic Valley,10.79,ea,4 ct,USDA Organic,Paper-wrapped sticks in box,,,,staple,,Conscious,Organic butter
-dairy_cheese,"Cream Cheese Spread, Original",Philadelphia,5.59,ea,8 oz,None (conventional),Plastic wrap,,,,staple,,Balanced,Good quality cheese
+dairy_butter,Unsalted Butter,Land O'Lakes,7.49,ea,4 ct,None (conventional),Paper-wrapped sticks in box,"Calories: 714/100g, Fat: 78.6g",No Gluten,,staple,,Balanced,Good quality butter
+dairy_butter,Organic Unsalted Butter,Organic Valley,10.79,ea,4 ct,USDA Organic,Paper-wrapped sticks in box,"Calories: 745/100g, Protein: 0.6g, Carbs: 0.6g, Fat: 82g","Organic, Eu Organic, Gb Org 05",,staple,,Conscious,Organic butter
+dairy_cheese,"Cream Cheese Spread, Original",Philadelphia,5.59,ea,8 oz,None (conventional),Plastic wrap,"Calories: 227/100g, Protein: 4.55g, Carbs: 9.09g, Fat: 20.5g",,,staple,,Balanced,Good quality cheese
 dairy_cheese,Mozzarella Stringles,Organic Valley,6.89,ea,8 ct,None (conventional),Plastic wrap,,,Save 11% (was $7.79),staple,,Balanced,Good quality cheese
 dairy_sour_cream,Sour Cream (16oz),Breakstone's,4.49,ea,16 oz,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly option
-dairy_sour_cream,Sour Cream,Organic Valley,4.09,ea,16 oz,None (conventional),Plastic bag,,,Save 18% (was $4.99),staple,,Cheaper,Budget-friendly option
-dairy_ghee,Organic Valley Ghee Clarified Butter,Organic Valley,10.99,ea,7.5 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic ghee from grass-fed cows
-dairy_ghee,4th & Heart Ghee Butter Original Recipe,4th & Heart,13.49,ea,9 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Quality ghee option
+dairy_sour_cream,Sour Cream,Organic Valley,4.09,ea,16 oz,None (conventional),Plastic bag,"Calories: 159/100g, Protein: 3.6g, Carbs: 4g, Fat: 14.3g","Organic, Eu Organic, Contains Milk, Gb Org 05, No Added Sugar, Soil Association Organic",Save 18% (was $4.99),staple,,Cheaper,Budget-friendly option
+dairy_ghee,Organic Valley Ghee Clarified Butter,Organic Valley,10.99,ea,7.5 oz,USDA Organic,Plastic bag,"Calories: 900/100g, Fat: 100g","Organic, Kosher, Usda Organic, Pure Butter",,staple,,Conscious,Organic ghee from grass-fed cows
+dairy_ghee,4th & Heart Ghee Butter Original Recipe,4th & Heart,13.49,ea,9 oz,None (conventional),Plastic bag,"Calories: 923/100g, Fat: 100g","No Gluten, No Gmos, No Lactose, Non Gmo Project",,staple,,Balanced,Quality ghee option
 protein_seafood_fish,Branzino Fillet,FreshDirect,28.99,ea,7.7 oz,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality fish
 protein_seafood_salmon,Icelandic Salmon Fillet,FreshDirect,18.99,ea,,None (conventional),Plastic bag,,,Quality: Exceptional,staple,,Balanced,Good quality salmon
 protein_seafood_salmon,"Icelandic Salmon, Center Cut",FreshDirect,11.99,ea,8 oz,None (conventional),Plastic bag,,,Quality: Exceptional | $1.60/oz,staple,,Balanced,Good quality salmon
@@ -556,7 +556,7 @@ protein_seafood_prepared,"Salmon Cakes, Uncooked",FreshDirect,9.49,ea,2 ct,None 
 protein_seafood_prepared,Farm-Raised Cajun Catfish Fillet,FreshDirect,14.49,ea,,None (conventional),Plastic bag,,,Quality: Excellent,staple,,Balanced,Good quality prepared
 protein_seafood_prepared,Banana-Leaf Wrapped Coconut-Cilantro Salmon,FreshDirect,12.49,ea,8 oz,None (conventional),Plastic bag,,,Quality: Excellent | $1.56/oz,staple,,Balanced,Good quality prepared
 other,"Wild Atlantic Cod Individually Wrapped Fillets, Family Pack, Frozen",City Pier,28.49,ea,1.5 lb,None (conventional),Plastic bag,,,$1.19/oz,convenience,,Balanced,Good quality other
-other,Breaded Fish Sticks,Mrs. Paul's,8.99,ea,44 ct,None (conventional),Plastic bag,,,$0.37/oz,convenience,,Balanced,Good quality other
+other,Breaded Fish Sticks,Mrs. Paul's,8.99,ea,44 ct,None (conventional),Plastic bag,"Calories: 203/100g, Protein: 12.7g, Carbs: 17.7g, Fat: 8.86g, Fiber: 1.27g",,$0.37/oz,convenience,,Balanced,Good quality other
 other,"Cooked Farm-Raised Shrimp, Cleaned, 91-110/lb, Frozen",FreshDirect,10.99,ea,1 lb,None (conventional),Plastic bag,,,$0.69/oz,convenience,,Balanced,Good quality other
 other,"Shrimp Wonton Soup with Bok Choy, Frozen",Royal Asia,8.49,ea,1 lb,None (conventional),Plastic bag,,,$0.53/oz,convenience,,Balanced,Good quality other
 other,Beer Battered Fish Fillets,Mrs. Paul's,8.99,ea,10 ct,None (conventional),Plastic bag,,,$0.47/oz,convenience,,Balanced,Good quality other
@@ -570,24 +570,24 @@ grain_rice_prepared,Steamed Jasmine Rice,FreshDirect,5.49,ea,12 oz,None (convent
 grain_rice_prepared,Crispy Spinach Coconut Rice with Garlic Butter,FreshDirect,9.19,ea,11.8 oz,None (conventional),Plastic bag,,"Naturally Gluten-Free, Vegan",,convenience,,Balanced,Good quality prepared
 grain_rice_prepared,Steamed Brown Rice,FreshDirect,5.49,ea,12 oz,None (conventional),Plastic bag,,,,convenience,,Balanced,Good quality prepared
 grain_rice_prepared,Black Beans and Rice with Salsa Verde,FreshDirect,7.49,ea,12.2 oz,None (conventional),Plastic bag,,,,convenience,,Balanced,Good quality prepared
-grain_rice_dry,Organic White Long Grain Rice,Lundberg,9.49,ea,2 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
-grain_rice_dry,California White Basmati Rice,Lundberg,9.49,ea,2 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
-grain_rice_dry,Organic California White Basmati Rice,Lundberg,11.49,ea,2 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
-grain_rice_dry,Organic California Sushi Rice,Lundberg,11.99,ea,2 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
-grain_rice_dry,Organic California Brown Basmati Rice,Lundberg,11.99,ea,2 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
-grain_rice_dry,Organic Short Grain Brown Rice,Lundberg,9.49,ea,2 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
-grain_rice_dry,Organic Long Grain Brown Rice,Lundberg,9.49,ea,2 lb,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
-grain_rice_dry,Wild Rice Blend,Lundberg,8.49,ea,1 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
-grain_rice_dry,Organic White Jasmine Rice,Lundberg,4.99,ea,8 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
-grain_rice_dry,Organic Brown Jasmine Rice,Lundberg,4.99,ea,8 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
-grain_rice_dry,Organic Cilantro Lime Rice,Lundberg,4.99,ea,8 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
-grain_rice_dry,Organic Coconut Rice,Lundberg,4.99,ea,8 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
-grain_rice_dry,White Arborio Rice,Lundberg,11.49,ea,2 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
-grain_rice_dry,California White Jasmine Rice,Lundberg,9.49,ea,2 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
-grain_rice_dry,Organic Wild Rice,Lundberg,11.49,ea,8 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
+grain_rice_dry,Organic White Long Grain Rice,Lundberg,9.49,ea,2 lb,USDA Organic,Plastic bag,"Calories: 356/100g, Protein: 6.67g, Carbs: 80g, Fat: 1.11g","No Gluten, Organic, No Gmos, Usda Organic, Non Gmo Project",,staple,,Conscious,Organic dry
+grain_rice_dry,California White Basmati Rice,Lundberg,9.49,ea,2 lb,None (conventional),Plastic bag,"Calories: 355.555555555556/100g, Protein: 6.66666666666667g, Carbs: 80g, Fat: 1.11111111111111g","No Gluten, No Gmos, Non Gmo Project",,staple,,Balanced,Good quality dry
+grain_rice_dry,Organic California White Basmati Rice,Lundberg,11.49,ea,2 lb,USDA Organic,Plastic bag,,"No Gluten, Organic, No Gmos, Usda Organic, Non Gmo Project",,staple,,Conscious,Organic dry
+grain_rice_dry,Organic California Sushi Rice,Lundberg,11.99,ea,2 lb,USDA Organic,Plastic bag,"Calories: 333/100g, Protein: 8.89g, Carbs: 77.78g, Fiber: 2.2g","Organic, No Gmos, Non Gmo Project",,staple,,Conscious,Organic dry
+grain_rice_dry,Organic California Brown Basmati Rice,Lundberg,11.99,ea,2 lb,USDA Organic,Plastic bag,"Calories: 356/100g, Protein: 8.89g, Carbs: 73.3g, Fat: 3.33g, Fiber: 4.44g","No Gluten, Organic, No Gmos, Non Gmo Project",,staple,,Conscious,Organic dry
+grain_rice_dry,Organic Short Grain Brown Rice,Lundberg,9.49,ea,2 lb,USDA Organic,Plastic bag,"Calories: 356/100g, Protein: 6.67g, Carbs: 73.33g, Fat: 3.33g, Fiber: 6.7g","No Gluten, Organic, Kosher, No Gmos, Usda Organic, Certified Gluten Free, Non Gmo Project, Orthodox Union Kosher",,staple,,Conscious,Organic dry
+grain_rice_dry,Organic Long Grain Brown Rice,Lundberg,9.49,ea,2 lb,USDA Organic,Plastic bag,"Calories: 356/100g, Protein: 8.89g, Carbs: 73.3g, Fat: 3.33g, Fiber: 4.44g","No Gluten, Organic, No Gmos, Non Gmo Project",,staple,,Conscious,Organic dry
+grain_rice_dry,Wild Rice Blend,Lundberg,8.49,ea,1 lb,None (conventional),Plastic bag,"Calories: 356/100g, Protein: 8.89g, Carbs: 77.8g, Fat: 2.22g, Fiber: 6.67g","No Gluten, No Gmos, No Bisphenol A, Non Gmo Project, 100 Whole Grain",,staple,,Balanced,Good quality dry
+grain_rice_dry,Organic White Jasmine Rice,Lundberg,4.99,ea,8 oz,USDA Organic,Plastic bag,"Calories: 356/100g, Protein: 6.67g, Carbs: 80g, Fiber: 2.22g","No Gluten, Organic, No Gmos, Usda Organic, Non Gmo Project",,staple,,Conscious,Organic dry
+grain_rice_dry,Organic Brown Jasmine Rice,Lundberg,4.99,ea,8 oz,USDA Organic,Plastic bag,"Calories: 356/100g, Protein: 8.89g, Carbs: 73.3g, Fat: 3.33g, Fiber: 4.44g","No Gluten, Organic, Crossed Grain Trademark, No Gmos, Dzg Gluten Free, Non Gmo Project",,staple,,Conscious,Organic dry
+grain_rice_dry,Organic Cilantro Lime Rice,Lundberg,4.99,ea,8 oz,USDA Organic,Plastic bag,"Calories: 401/100g, Protein: 6.41g, Carbs: 72.2g, Fat: 8.02g, Fiber: 1.6g","Organic, No Gmos, Non Gmo Project",,staple,,Conscious,Organic dry
+grain_rice_dry,Organic Coconut Rice,Lundberg,4.99,ea,8 oz,USDA Organic,Plastic bag,"Calories: 211/100g, Protein: 2.64g, Carbs: 37g, Fat: 5.29g, Fiber: 3.08g","Fair Trade, Organic, No Gmos, Usda Organic, Non Gmo Project",,staple,,Conscious,Organic dry
+grain_rice_dry,White Arborio Rice,Lundberg,11.49,ea,2 lb,None (conventional),Plastic bag,"Calories: 790/100g, Protein: 24.7g, Carbs: 178g, Fiber: 4.94g","No Gluten, No Gmos, Non Gmo Project",,staple,,Balanced,Good quality dry
+grain_rice_dry,California White Jasmine Rice,Lundberg,9.49,ea,2 lb,None (conventional),Plastic bag,"Calories: 356/100g, Protein: 6.67g, Carbs: 80g, Fiber: 2.22g","No Gluten, No Gmos, Non Gmo Project",,staple,,Balanced,Good quality dry
+grain_rice_dry,Organic Wild Rice,Lundberg,11.49,ea,8 oz,USDA Organic,Plastic bag,"Calories: 378/100g, Protein: 5.41g, Carbs: 86.5g, Fat: 2.7g, Fiber: 5.41g","No Gluten, Organic, Vegetarian, No Gmos, Usda Organic, Vegan, Non Gmo Project",,staple,,Conscious,Organic dry
 grain_rice_dry,Premium Medium-Grain Sushi Rice,Nishiki,13.99,ea,5 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
-grain_rice_dry,Jasmine Rice,Dynasty,11.49,ea,5 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
-grain_rice_dry,Jasmine Brown Rice,Dynasty,6.49,ea,32 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Jasmine Rice,Dynasty,11.49,ea,5 lb,None (conventional),Plastic bag,"Calories: 356/100g, Protein: 6.67g, Carbs: 80g, Fiber: 2.22g","No Gmos, Non Gmo Project",,staple,,Balanced,Good quality dry
+grain_rice_dry,Jasmine Brown Rice,Dynasty,6.49,ea,32 oz,None (conventional),Plastic bag,"Calories: 377.77777777778/100g, Protein: 6.6666666666667g, Carbs: 75.555555555556g","No Gmos, Non Gmo Project",,staple,,Balanced,Good quality dry
 grain_rice_dry,Extra Long Grain White Rice (2lb),Carolina,4.49,ea,2 lb,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly option
 grain_rice_dry,Extra Long Grain White Rice (5lb),Carolina,7.49,ea,5 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
 grain_rice_dry,Extra Long Grain White Rice (10lb),Carolina,11.49,ea,10 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
@@ -596,15 +596,15 @@ grain_rice_dry,Natural Whole Grain Brown Rice,Carolina,7.49,ea,5 lb,None (conven
 grain_rice_dry,Jasmati Long Grain American Jasmine Rice,Rice Select,7.99,ea,32 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
 grain_rice_dry,Texmati Long Grain American Basmati Rice,Rice Select,7.49,ea,32 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
 grain_rice_dry,"Organic Jasmati, White Rice",Rice Select,10.99,ea,32 oz,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic dry
-grain_rice_dry,Arborio Rice,Rice Select,8.99,ea,32 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
-grain_rice_dry,Calrose Musenmai Rice,Botan,15.99,ea,5 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
-grain_rice_dry,Basmati Rice,Khazana,5.99,ea,32 oz,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
+grain_rice_dry,Arborio Rice,Rice Select,8.99,ea,32 oz,None (conventional),Plastic bag,"Calories: 356/100g, Protein: 6.67g, Carbs: 80g","No Gluten, No Gmos, Non Gmo Project",,staple,,Balanced,Good quality dry
+grain_rice_dry,Calrose Musenmai Rice,Botan,15.99,ea,5 lb,None (conventional),Plastic bag,"Calories: 356/100g, Protein: 6.67g, Carbs: 80g, Fat: 1.11g, Fiber: 2.22g","No Gmos, Non Gmo Project",,staple,,Balanced,Good quality dry
+grain_rice_dry,Basmati Rice,Khazana,5.99,ea,32 oz,None (conventional),Plastic bag,"Calories: 364/100g, Protein: 6.67g, Carbs: 84.4g",No Gluten,,staple,,Balanced,Good quality dry
 grain_rice_dry,Thai Jasmine Rice (5lb),Goya,13.99,ea,5 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
 grain_rice_dry,Thai Jasmine Rice (2lb),Goya,6.49,ea,2 lb,None (conventional),Plastic bag,,,,staple,,Balanced,Good quality dry
-grain_rice_instant,"Ready Rice, Jasmine",Ben's Original,3.49,ea,8.5 oz,None (conventional),Plastic bag,,,,convenience,,Cheaper,Budget-friendly option
-grain_rice_instant,"Ready Rice, Basmati",Ben's Original,3.49,ea,8.5 oz,None (conventional),Plastic bag,,,,convenience,,Cheaper,Budget-friendly option
-grain_rice_instant,"Ready Rice, Original Long Grain White",Ben's Original,3.49,ea,8.8 oz,None (conventional),Plastic bag,,,,convenience,,Cheaper,Budget-friendly option
-grain_rice_instant,"Ready Rice, Whole Grain Brown",Ben's Original,3.49,ea,8.8 oz,None (conventional),Plastic bag,,,,convenience,,Cheaper,Budget-friendly option
+grain_rice_instant,"Ready Rice, Jasmine",Ben's Original,3.49,ea,8.5 oz,None (conventional),Plastic bag,"Calories: 175/100g, Protein: 2.92g, Carbs: 35.8g, Fat: 2.08g",,,convenience,,Cheaper,Budget-friendly option
+grain_rice_instant,"Ready Rice, Basmati",Ben's Original,3.49,ea,8.5 oz,None (conventional),Plastic bag,"Calories: 167/100g, Protein: 3.75g, Carbs: 32.9g, Fat: 2.5g, Fiber: 0.417g",,,convenience,,Cheaper,Budget-friendly option
+grain_rice_instant,"Ready Rice, Original Long Grain White",Ben's Original,3.49,ea,8.8 oz,None (conventional),Plastic bag,"Calories: 56/100g, Protein: 1.12g, Carbs: 11g, Fat: 0.96g, Fiber: 0.32g",,,convenience,,Cheaper,Budget-friendly option
+grain_rice_instant,"Ready Rice, Whole Grain Brown",Ben's Original,3.49,ea,8.8 oz,None (conventional),Plastic bag,"Calories: 360/100g, Protein: 7g, Carbs: 71g, Fat: 6g, Fiber: 1g",,,convenience,,Cheaper,Budget-friendly option
 dairy_eggs,"Cage-Free Grade A Large White Eggs, Dozen",Alderfer Eggs,3.79,ea,1 dozen,Free-Range,Plastic bag,,"Cage-Free, Free-Range",,staple,,Cheaper,Budget-friendly option
 dairy_eggs,"Cage-Free Grade A Large Brown Eggs, Dozen",Alderfer Eggs,3.79,ea,1 dozen,Free-Range,Plastic bag,,"Cage-Free, Free-Range",,staple,,Cheaper,Budget-friendly option
 dairy_eggs,"Local Organic Large Brown Eggs, Dozen",Just FreshDirect,4.79,ea,1 dozen,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic eggs
@@ -615,20 +615,20 @@ dairy_milk,"Local Organic Whole Milk, Carton",Just FreshDirect,4.89,ea,0.5 g,USD
 dairy_milk,"Local Organic 2% Reduced Fat Milk, Carton",Just FreshDirect,4.89,ea,0.5 g,USDA Organic,Plastic bag,,,,staple,,Conscious,Organic milk
 dairy_milk,"Whole Milk, Plastic Bottle",Just FreshDirect,2.99,ea,0.5 g,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly option
 dairy_milk,"Ultra-Pasteurized Whole Milk, Carton",Organic Valley,5.99,ea,0.5 g,None (conventional),Plastic bag,,,Save 20% - Any 2 for $9.50,staple,,Balanced,Good quality milk
-dairy_yogurt,"TOTAL 0% Greek Yogurt, Plain",Fage,7.59,ea,32 oz,None (conventional),Recyclable plastic tub,,,,staple,,Balanced,Good quality yogurt
-dairy_yogurt,"TOTAL 2% Greek Yogurt, Plain",Fage,7.59,ea,32 oz,None (conventional),Recyclable plastic tub,,,,staple,,Balanced,Good quality yogurt
+dairy_yogurt,"TOTAL 0% Greek Yogurt, Plain",Fage,7.59,ea,32 oz,None (conventional),Recyclable plastic tub,"Calories: 93/100g, Protein: 9g, Carbs: 3g, Fat: 5g",,,staple,,Balanced,Good quality yogurt
+dairy_yogurt,"TOTAL 2% Greek Yogurt, Plain",Fage,7.59,ea,32 oz,None (conventional),Recyclable plastic tub,"Calories: 93/100g, Protein: 9g, Carbs: 3g, Fat: 5g",,,staple,,Balanced,Good quality yogurt
 dairy_yogurt,"Non-Fat Greek Yogurt, Plain (Single)",Chobani,1.49,ea,5.3 oz,None (conventional),Recyclable plastic tub,,,,staple,,Cheaper,Budget-friendly option
-dairy_yogurt,"Non-Fat Greek Yogurt, Plain",Chobani,6.59,ea,32 oz,None (conventional),Recyclable plastic tub,,,,staple,,Balanced,Good quality yogurt
-dairy_butter,Salted Pure Irish Butter,Kerrygold,5.59,ea,8 oz,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
-dairy_butter,Unsalted Pure Irish Butter,Kerrygold,5.59,ea,8 oz,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
+dairy_yogurt,"Non-Fat Greek Yogurt, Plain",Chobani,6.59,ea,32 oz,None (conventional),Recyclable plastic tub,"Calories: 90/100g, Protein: 16g, Carbs: 6g",Fair Trade,,staple,,Balanced,Good quality yogurt
+dairy_butter,Salted Pure Irish Butter,Kerrygold,5.59,ea,8 oz,None (conventional),Paper-wrapped sticks in box,"Calories: 714/100g, Fat: 78.6g","No Gmos, Green Dot, Non Gmo Project",,staple,,Balanced,Good quality butter
+dairy_butter,Unsalted Pure Irish Butter,Kerrygold,5.59,ea,8 oz,None (conventional),Paper-wrapped sticks in box,"Calories: 714/100g, Fat: 85.71g","No Gmos, Non Gmo Project",,staple,,Balanced,Good quality butter
 dairy_butter,"Sweet Cream Butter, Salted",Cabot,7.99,ea,4 ct,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
-dairy_butter,Unsalted Butter,Land O'Lakes,7.49,ea,4 ct,None (conventional),Paper-wrapped sticks in box,,,,staple,,Balanced,Good quality butter
-dairy_butter,Organic Unsalted Butter,Organic Valley,10.79,ea,4 ct,USDA Organic,Paper-wrapped sticks in box,,,,staple,,Conscious,Organic butter
-dairy_cheese,"Cream Cheese Spread, Original",Philadelphia,5.59,ea,8 oz,None (conventional),Plastic wrap,,,,staple,,Balanced,Good quality cheese
+dairy_butter,Unsalted Butter,Land O'Lakes,7.49,ea,4 ct,None (conventional),Paper-wrapped sticks in box,"Calories: 714/100g, Fat: 78.6g",No Gluten,,staple,,Balanced,Good quality butter
+dairy_butter,Organic Unsalted Butter,Organic Valley,10.79,ea,4 ct,USDA Organic,Paper-wrapped sticks in box,"Calories: 745/100g, Protein: 0.6g, Carbs: 0.6g, Fat: 82g","Organic, Eu Organic, Gb Org 05",,staple,,Conscious,Organic butter
+dairy_cheese,"Cream Cheese Spread, Original",Philadelphia,5.59,ea,8 oz,None (conventional),Plastic wrap,"Calories: 227/100g, Protein: 4.55g, Carbs: 9.09g, Fat: 20.5g",,,staple,,Balanced,Good quality cheese
 dairy_cheese,Mozzarella Stringles,Organic Valley,6.89,ea,8 ct,None (conventional),Plastic wrap,,,Save 11% (was $7.79),staple,,Balanced,Good quality cheese
 dairy_sour_cream,Sour Cream (16oz),Breakstone's,4.49,ea,16 oz,None (conventional),Plastic bag,,,,staple,,Cheaper,Budget-friendly option
-dairy_sour_cream,Sour Cream,Organic Valley,4.09,ea,16 oz,None (conventional),Plastic bag,,,Save 18% (was $4.99),staple,,Cheaper,Budget-friendly option
-protein_poultry,Organic Boneless Skinless Chicken Breast,Farmer Focus,13.79,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: 2-3ct,staple,,Conscious,Organic breasts
+dairy_sour_cream,Sour Cream,Organic Valley,4.09,ea,16 oz,None (conventional),Plastic bag,"Calories: 159/100g, Protein: 3.6g, Carbs: 4g, Fat: 14.3g","Organic, Eu Organic, Contains Milk, Gb Org 05, No Added Sugar, Soil Association Organic",Save 18% (was $4.99),staple,,Cheaper,Budget-friendly option
+protein_poultry,Organic Boneless Skinless Chicken Breast,Farmer Focus,13.79,lb,1.5 lb,USDA Organic,Plastic bag,"Calories: 98.2/100g, Protein: 20.5g, Fat: 1.79g",,Count: 2-3ct,staple,,Conscious,Organic breasts
 protein_poultry,"Boneless Skinless Chicken Breasts, Raised w/o Antibiotics",Springer Mountain Farms,9.73,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 2-3ct,staple,,Balanced,Quality breast
 protein_poultry,Organic Boneless Chicken Tenders,Farmer Focus,18.43,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: 10-12ct,staple,,Conscious,Quality tender
 protein_poultry,Organic Boneless Skinless Thin-Sliced Chicken Breast,Farmer Focus,20.98,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: 4ct,staple,,Conscious,Organic breasts
@@ -636,7 +636,7 @@ protein_poultry,"Boneless Skinless Chicken Breast, Value Pack, Air-Chilled, Rais
 protein_poultry,"Organic Thin Sliced Chicken Breasts, Air-Chilled",Smart Chicken,23.23,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,Count: 4ct,staple,,Conscious,Organic breasts
 protein_poultry,"Chicken Tenders, Raised w/o Antibiotics",Springer Mountain Farms,10.48,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 6-8ct,staple,,Balanced,Quality tender
 protein_poultry,"Boneless Skinless Chicken Breast, Pasture-Raised, Heritage, Slow-Grown, Air-Chilled",LaBelle Patrimoine,18.73,lb,1.5 lb,Pasture-Raised,Plastic bag,,Pasture-Raised,,staple,,Balanced,Pasture-raised chicken
-protein_poultry,"Organic Boneless Skinless Breasts, Air-Chilled",Smart Chicken,20.23,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,Count: 2ct,staple,,Conscious,Organic breasts
+protein_poultry,"Organic Boneless Skinless Breasts, Air-Chilled",Smart Chicken,20.23,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,"Calories: 98.2/100g, Protein: 22.3g, Fat: 1.34g",,Count: 2ct,staple,,Conscious,Organic breasts
 protein_poultry,"Boneless Skinless Chicken Breasts Value Pack, Raised w/o Antibiotics",Springer Mountain Farms,8.23,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 5-7ct,staple,,Balanced,Quality breast
 protein_poultry,"Boneless Skinless Thin-Sliced Chicken Breasts, Raised w/o Antibiotics",Springer Mountain Farms,12.73,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 5-6ct,staple,,Balanced,Quality breast
 protein_poultry,"Boneless Skinless Chicken Breasts, Air-Chilled, Raised w/o Antibiotics",Katie's Best,11.98,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: 3ct,staple,,Balanced,Quality breast
@@ -657,13 +657,13 @@ protein_poultry,"Maple Dijon Boneless Skinless Chicken Breasts, Raised w/o Antib
 protein_poultry,"Roasted Red Pepper, Pepperoni & Mozzarella Chicken Rollups",FreshDirect,15.73,lb,1.5 lb,None (conventional),Plastic bag,,,Count: 4-5ct,staple,,Balanced,Quality mixed
 protein_poultry,"Organic Chicken Tenders, Air-Chilled, Raised Without Antibiotics",Smart Chicken,22.48,lb,1.5 lb,USDA Organic; Air-Chilled; No Antibiotics,Plastic bag,,,Count: each,staple,,Conscious,Quality tender
 protein_poultry,"Tenders, Air-Chilled, Raised Without Antibiotics",Smart Chicken,14.23,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: each,staple,,Balanced,Quality tender
-protein_poultry,Organic Boneless Skinless Chicken Thighs,Farmer Focus,12.43,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: 4-5ct,staple,,Conscious,Organic thighs
+protein_poultry,Organic Boneless Skinless Chicken Thighs,Farmer Focus,12.43,lb,1.5 lb,USDA Organic,Plastic bag,"Calories: 134/100g, Protein: 16.1g, Fat: 8.04g",,Count: 4-5ct,staple,,Conscious,Organic thighs
 protein_poultry,"Boneless Skinless Chicken Thighs, Raised w/o Antibiotics",Springer Mountain Farms,8.38,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 5-6ct,staple,,Balanced,Quality thigh
 protein_poultry,"Bone-In Chicken Thighs, Air-Chilled, Raised w/o Antibiotics",Katie's Best,8.23,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: 4ct,staple,,Balanced,Quality thigh
 protein_poultry,"Bone-In Chicken Thighs, Raised w/o Antibiotics",Springer Mountain Farms,5.99,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 4ct,staple,,Cheaper,Budget-friendly thigh
 protein_poultry,"Boneless Skinless Chicken Thighs, Air-Chilled, Raised w/o Antibiotics",Katie's Best,10.48,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: 4-5ct,staple,,Balanced,Quality thigh
-protein_poultry,Organic Chicken Wings,Farmer Focus,9.73,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: 10-12ct | Sale - Save 13%,staple,,Conscious,Quality wing
-protein_poultry,"Organic Boneless Skinless Thighs, Air-Chilled",Smart Chicken,14.98,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,,,Count: 4ct,staple,,Conscious,Organic thighs
+protein_poultry,Organic Chicken Wings,Farmer Focus,9.73,lb,1.5 lb,USDA Organic,Plastic bag,"Calories: 97/100g, Protein: 17.6g, Fat: 3.09g",No Gluten,Count: 10-12ct | Sale - Save 13%,staple,,Conscious,Quality wing
+protein_poultry,"Organic Boneless Skinless Thighs, Air-Chilled",Smart Chicken,14.98,lb,1.5 lb,USDA Organic; Air-Chilled,Plastic bag,"Calories: 143/100g, Protein: 19.6g, Fat: 7.14g",,Count: 4ct,staple,,Conscious,Organic thighs
 protein_poultry,"Chicken Drumsticks, Raised w/o Antibiotics",Springer Mountain Farms,5.24,lb,1.5 lb,No Antibiotics,Plastic bag,,,Count: 4-5ct,staple,,Cheaper,Budget-friendly drumstick
 protein_poultry,"Bone-In Chicken Thigh, Pasture-Raised, Heritage, Slow-Grown, Air-Chilled",LaBelle Patrimoine,10.48,lb,1.5 lb,Pasture-Raised,Plastic bag,,Pasture-Raised,,staple,,Balanced,Pasture-raised chicken
 protein_poultry,"Organic Chicken Wings, Air Chilled",Smart Chicken,11.23,lb,1.5 lb,USDA Organic,Plastic bag,,,Count: approx. 10ct,staple,,Conscious,Quality wing
@@ -696,13 +696,13 @@ protein_poultry,"Peruvian Spatchcock Chicken, Raised w/o Antibiotics, Uncooked",
 protein_poultry,"Maple Dijon Spatchcock Chicken, Raised w/o Antibiotics, Uncooked",Just FreshDirect,9.73,lb,1.5 lb,No Antibiotics,Plastic bag,,,,staple,,Balanced,Quality whole
 protein_poultry,"Party Wings, Air-Chilled, Raised Without Antibiotics",Smart Chicken,10.48,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: each,staple,,Balanced,Quality wing
 protein_poultry,"Whole Chicken, Air-Chilled, Raised Without Antibiotics",Smart Chicken,5.69,lb,1.5 lb,Air-Chilled; No Antibiotics,Plastic bag,,,Count: each,staple,,Cheaper,Budget-friendly whole
-produce_roots,Organic Baby Carrots,Cal-Organic,1.79,ea,1lb,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
-produce_roots,Organic Carrots,Cal-Organic,1.79,ea,1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
-produce_roots,Organic Jumbo Carrots,Cal-Organic,2.49,lb,1 lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
-produce_roots,Organic Rainbow Carrots,Cal-Organic,4.99,ea,1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Baby Carrots,Cal-Organic,1.79,ea,1lb,USDA Organic,Plastic bag,"Calories: 30/100g, Carbs: 7g, Fiber: 3g","Organic, No Gmos, Usda Organic, Non Gmo Project",,staple,,,
+produce_roots,Organic Carrots,Cal-Organic,1.79,ea,1lb,USDA Organic,Loose bulk in produce bag,"Calories: 30/100g, Carbs: 7g, Fiber: 3g","Organic, No Gmos, Usda Organic, Non Gmo Project",,staple,,,
+produce_roots,Organic Jumbo Carrots,Cal-Organic,2.49,lb,1 lb,USDA Organic,Loose bulk in produce bag,,"Organic, No Gmos, Non Gmo Project",,staple,,,
+produce_roots,Organic Rainbow Carrots,Cal-Organic,4.99,ea,1lb,USDA Organic,Loose bulk in produce bag,"Calories: 35.294117647059/100g, Protein: 1.1764705882353g, Carbs: 8.2352941176471g, Fiber: 3.5294117647059g","Organic, No Gmos, Usda Organic, Non Gmo Project",,staple,,,
 produce_roots,Organic Baby Carrots (2lb),Cal-Organic,3.49,ea,2lb,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
 produce_roots,Organic Shredded Carrots,Cal-Organic,2.99,ea,10oz,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
-produce_roots,Organic Rainbow Baby Carrots,Cal-Organic,2.49,ea,12oz,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
+produce_roots,Organic Rainbow Baby Carrots,Cal-Organic,2.49,ea,12oz,USDA Organic,Plastic bag,"Calories: 35.294117647059/100g, Protein: 1.1764705882353g, Carbs: 8.2352941176471g, Fiber: 3.5294117647059g","Organic, No Gmos, Usda Organic, Non Gmo Project",,staple,,,
 produce_roots,Organic Carrot Chips,Cal-Organic,2.99,ea,1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
 produce_roots,"Organic Peeled Rainbow Baby Carrots, Case",Cal-Organic,28.39,cs,"12ct, 12oz ea",USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
 produce_roots,"Organic Baby Carrots, Case",Cal-Organic,51.02,cs,"30ct, 1lb ea",USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
@@ -719,21 +719,21 @@ produce_roots,Jumbo Carrots,FreshDirect,1.49,lb,1 lb,,Loose bulk in produce bag,
 produce_roots,Organic Carrots,FreshDirect,3.49,ea,1lb,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
 produce_roots,Organic Shredded Carrots,FreshDirect,5.99,ea,8oz,USDA Organic,Plastic bag,,"Naturally Gluten-Free, Vegan",,staple,,,
 produce_roots,Organic Diced Carrots,FreshDirect,5.99,ea,10oz,USDA Organic,Loose bulk in produce bag,,"Naturally Gluten-Free, Vegan",,staple,,,
-condiments_asian,The Original Japanese Barbecue Sauce,Bachan's,10.49,ea,17oz,,Glass bottle,,,,staple,,,
+condiments_asian,The Original Japanese Barbecue Sauce,Bachan's,10.49,ea,17oz,,Glass bottle,"Calories: 267/100g, Protein: 6.67g, Carbs: 60g, Fat: 0.667g","No Gmos, Non Gmo Project",,staple,,,
 condiments_asian,"Less Sodium Marinade & Sauce, Veri Veri Teriyaki",Soy Vay,6.49,ea,21oz,,Glass bottle,,,,staple,,,
-condiments_asian,"Marinade & Sauce, Veri Veri Teriyaki",Soy Vay,6.49,ea,21oz,,Glass bottle,,,,staple,,,
+condiments_asian,"Marinade & Sauce, Veri Veri Teriyaki",Soy Vay,6.49,ea,21oz,,Glass bottle,"Calories: 237/100g, Protein: 5.26g, Carbs: 42.11g, Fat: 5.26g",,,staple,,,
 condiments_asian,Gochujang Fermented Chili Paste,Mother In Law's,10.99,ea,10oz,,Glass jar with plastic lid,,,,staple,,,
-condiments_asian,"Gochujang Korean Chili Sauce, Sweet & Spicy",We Love You,8.49,ea,15oz,,Glass bottle,,,,staple,,,
+condiments_asian,"Gochujang Korean Chili Sauce, Sweet & Spicy",We Love You,8.49,ea,15oz,,Glass bottle,"Calories: 194/100g, Protein: 5.56g, Carbs: 44.44g","No Gmos, Non Gmo Project",,staple,,,
 condiments_asian,Premium Oyster Flavored Sauce,Lee Kum Kee,6.49,ea,9oz,,Glass bottle,,,,staple,,,
-condiments_asian,Organic Tamari Soy Sauce,Eden Foods,11.49,ea,10fl oz,USDA Organic,Glass bottle,,,,staple,,,
-condiments_asian,Soy Sauce,Momofuku,14.49,ea,8fl oz,,Glass bottle,,,,staple,,,
-condiments_asian,Thai Peanut Sauce,Watcharee's,10.49,ea,9.8fl oz,,Glass bottle,,,,staple,,,
+condiments_asian,Organic Tamari Soy Sauce,Eden Foods,11.49,ea,10fl oz,USDA Organic,Glass bottle,"Calories: 711/100g, Protein: 88.9g, Carbs: 88.9g","Organic, No Gmos, Non Gmo Project",,staple,,,
+condiments_asian,Soy Sauce,Momofuku,14.49,ea,8fl oz,,Glass bottle,"Calories: 15/100g, Protein: 2g, Carbs: 1g",,,staple,,,
+condiments_asian,Thai Peanut Sauce,Watcharee's,10.49,ea,9.8fl oz,,Glass bottle,"Calories: 317/100g, Protein: 5g, Carbs: 28.3g, Fat: 20g, Fiber: 1.67g","No Gmos, Non Gmo Project",,staple,,,
 condiments_asian,Organic No-Soy Teriyaki Sauce & Marinade,Primal Kitchen,9.49,ea,8.5oz,USDA Organic,Glass bottle,,,,staple,,,
 condiments_asian,Szechuan Chili Oil,Blank Slate Kitchen,13.99,ea,6fl oz,,Glass bottle,,,,staple,,,
-condiments_asian,"Organic Dressing, Asian Sesame",Annie's,8.49,ea,8fl oz,USDA Organic,Glass bottle,,,,staple,,,
-condiments_asian,Ginger Dressing,Makoto,6.49,ea,9fl oz,,Glass bottle,,,,staple,,,
-condiments_asian,Organic Mellow White Miso,Miso Master,7.99,ea,8oz,USDA Organic,Glass bottle,,,,staple,,,
-condiments_asian,Organic Traditional Red Miso,Miso Master,7.99,ea,8oz,USDA Organic,Glass bottle,,,,staple,,,
-condiments_asian,Red Curry Paste,Thai Kitchen,5.49,ea,4oz,,Glass jar with plastic lid,,,,staple,,,
-condiments_asian,Green Curry Paste,Thai Kitchen,5.49,ea,4oz,,Glass jar with plastic lid,,,,staple,,,
+condiments_asian,"Organic Dressing, Asian Sesame",Annie's,8.49,ea,8fl oz,USDA Organic,Glass bottle,"Calories: 419.35/100g, Carbs: 12.9g, Fat: 38.71g","Organic, No Gmos, Non Gmo Project",,staple,,,
+condiments_asian,Ginger Dressing,Makoto,6.49,ea,9fl oz,,Glass bottle,"Calories: 80/100g, Protein: 1g, Carbs: 2g, Fat: 7g",,,staple,,,
+condiments_asian,Organic Mellow White Miso,Miso Master,7.99,ea,8oz,USDA Organic,Glass bottle,"Calories: 200/100g, Protein: 10g, Carbs: 30g, Fiber: 10g","Organic, No Gmos, Non Gmo Project",,staple,,,
+condiments_asian,Organic Traditional Red Miso,Miso Master,7.99,ea,8oz,USDA Organic,Glass bottle,"Calories: 200/100g, Protein: 10g, Carbs: 30g, Fiber: 10g","Organic, No Gmos, Non Gmo Project",,staple,,,
+condiments_asian,Red Curry Paste,Thai Kitchen,5.49,ea,4oz,,Glass jar with plastic lid,"Calories: 62.5/100g, Protein: 2.5g, Carbs: 18.8g, Fiber: 6.25g","No Gmos, Non Gmo Project",,staple,,,
+condiments_asian,Green Curry Paste,Thai Kitchen,5.49,ea,4oz,,Glass jar with plastic lid,"Calories: 111/100g, Protein: 1.9g, Carbs: 10.5g, Fat: 6g, Fiber: 3.9g",,,staple,,,
 condiments_asian,Korean-Style Pickled Vegetables,Kim Chee Pride,5.49,ea,13oz,,Glass bottle,,,,staple,,,

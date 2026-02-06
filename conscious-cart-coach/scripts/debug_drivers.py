@@ -49,22 +49,24 @@ for item in plan.items[:3]:
         trace = item.decision_trace
 
         # Show winner vs runner-up
-        winner = next((c for c in trace.candidates if c['status'] == 'winner'), None)
-        runner = next((c for c in trace.candidates if c['status'] == 'runner_up'), None)
+        winner = next((c for c in trace.candidates if c.status == 'winner'), None)
+        runner = next((c for c in trace.candidates if c.status == 'runner_up'), None)
+
+        print(f"Has runner-up: {runner is not None}")
 
         if winner and runner:
-            print(f"Winner: {winner['brand']} - ${winner['price']} - Organic: {winner['organic']}")
-            print(f"Runner: {runner['brand']} - ${runner['price']} - Organic: {runner['organic']}")
+            print(f"Winner: {winner.brand} - ${winner.price} - Organic: {winner.organic}")
+            print(f"Runner: {runner.brand} - ${runner.price} - Organic: {runner.organic}")
 
             # Show score breakdown
-            if winner.get('score_breakdown'):
-                wb = winner['score_breakdown']
-                rb = runner.get('score_breakdown', {})
+            if winner.score_breakdown:
+                wb = winner.score_breakdown
+                rb = runner.score_breakdown or {}
 
                 print("\nComponent Scores (Winner vs Runner):")
                 for comp in ['base', 'ewg', 'form_fit', 'packaging', 'delivery', 'unit_value', 'outlier_penalty']:
                     w_score = wb.get(comp, 0)
-                    r_score = rb.get(comp, 0)
+                    r_score = rb.get(comp, 0) if rb else 0
                     delta = w_score - r_score
                     print(f"  {comp:15}: {w_score:3} vs {r_score:3} (delta: {delta:+3})")
 

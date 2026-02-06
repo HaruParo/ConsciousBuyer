@@ -1065,7 +1065,10 @@ class PlannerEngine:
             organic=False,
             unit_price=0.0,
             unit_price_unit="oz",
-            source_store_id=store_id
+            source_store_id=store_id,
+            packaging="",
+            nutrition="",
+            labels=""
         )
 
         placeholder_choice = ProductChoice(
@@ -1111,7 +1114,10 @@ class PlannerEngine:
             organic=candidate.organic,
             unit_price=candidate.unit_price,
             unit_price_unit="oz",
-            source_store_id=candidate.source_store_id  # CRITICAL: Include provenance
+            source_store_id=candidate.source_store_id,  # CRITICAL: Include provenance
+            packaging=candidate.packaging,
+            nutrition=candidate.nutrition,
+            labels=candidate.labels
         )
 
         return ProductChoice(
@@ -1667,7 +1673,8 @@ class PlannerEngine:
             all_unit_prices=all_unit_prices,
             delivery_estimate=delivery_estimate,
             prompt=prompt,
-            price_outlier_penalty=candidate_dict.get("price_outlier_penalty", 0)
+            price_outlier_penalty=candidate_dict.get("price_outlier_penalty", 0),
+            packaging_data=candidate.packaging
         )
 
         return score, breakdown
