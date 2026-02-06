@@ -4,6 +4,9 @@
 # Web Framework
 fastapi>=0.104.0
 
+# HTTP client (needed by LLM client)
+requests>=2.31.0
+
 # LLM Integration
 anthropic>=0.18.0
 
