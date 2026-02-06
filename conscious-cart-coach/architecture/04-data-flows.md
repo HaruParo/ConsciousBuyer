@@ -14,9 +14,9 @@ This document traces how that story flows through the system.
 
 ### The Source: source_listings.csv
 ```csv
-category,product_name,brand,price,unit,size,certifications,notes,item_type,seasonality,selected_tier,selection_reason
-spices,Cumin Seeds (Jeera),Pure Indian Foods,6.69,ea,3oz,USDA Organic,Best Seller - 54 Reviews,staple,,Premium Specialty,Whole cumin seeds
-produce_greens,Organic Red Kale,Generic,$1.99,ea,1lb,USDA Organic,CHEAPEST ORGANIC - $0.12/oz,staple,cheaper,Lowest cost organic that satisfies Dirty Dozen #3 rule
+category,product_name,brand,price,unit,size,certifications,packaging,nutrition,labels,notes,item_type,seasonality,selected_tier,selection_reason
+spices,Cumin Seeds (Jeera),Pure Indian Foods,6.69,ea,3oz,USDA Organic,"Glass jar with plastic cap","Cal: 375, Fat: 22g, Carb: 44g, Protein: 18g","No Gluten, Organic",Best Seller - 54 Reviews,staple,,Premium Specialty,Whole cumin seeds
+produce_greens,Organic Red Kale,Generic,$1.99,ea,1lb,USDA Organic,"Clear plastic clamshell","Cal: 33, Fat: 0.6g, Carb: 6g, Protein: 3g","Naturally Gluten-Free, Vegan",CHEAPEST ORGANIC - $0.12/oz,staple,cheaper,Lowest cost organic that satisfies Dirty Dozen #3 rule
 ```
 
 **What Each Field Means**:
@@ -27,11 +27,37 @@ produce_greens,Organic Red Kale,Generic,$1.99,ea,1lb,USDA Organic,CHEAPEST ORGAN
 - `unit`: ea (each), lb (per pound), oz (per ounce)
 - `size`: Package size (3oz, 1lb, etc.)
 - `certifications`: USDA Organic, Local, etc.
+- **`packaging`**: Physical packaging type (NEW - Feb 2026)
+- **`nutrition`**: Nutrition facts from Open Food Facts API (NEW - Feb 2026)
+- **`labels`**: Ethical/dietary labels like Grass-Fed, Vegan, Non-GMO (NEW - Feb 2026)
 - `notes`: Additional context (reviews, sales, warnings)
 - `item_type`: staple, specialty, convenience
 - `seasonality`: When product is in season (if produce)
 - `selected_tier`: cheaper, balanced, conscious (pre-categorized)
 - `selection_reason`: Why this tier was chosen
+
+### Metadata Enrichment (New - February 2026)
+
+Three new metadata fields were added to enhance decision-making transparency:
+
+**1. Packaging (100% coverage)**
+- Inferred from product category and brand-specific rules
+- Examples: "Glass jar with aluminum cap" (Pure Indian Foods), "Clear plastic clamshell" (produce), "Loose bulk in produce bag"
+- **Why it matters**: Influences scoring (+6 for loose/paper, +4 for glass, -4 for plastic clamshells)
+- **Source**: Rules-based inference in `scripts/add_packaging_column.py`
+
+**2. Nutrition (12% coverage)**
+- Fetched from Open Food Facts API (1 req/sec rate limit)
+- Format: "Cal: 45, Fat: 0g, Carb: 11g, Protein: 3g"
+- **Why it matters**: Enables future nutrition-based filtering and recommendations
+- **Source**: API integration in `scripts/add_nutrition_and_labels.py` with caching
+
+**3. Labels (31% coverage)**
+- Animal welfare: Grass-Fed, Cage-Free, Pasture-Raised, Free-Range
+- Dietary: Vegan, Gluten-Free, Kosher, Halal
+- Ethical: Non-GMO, Fair Trade, B Corp, Rainforest Alliance
+- **Why it matters**: Powers transparent decision explanations ("chose grass-fed butter for animal welfare")
+- **Source**: Inferred from certifications + Open Food Facts API
 
 ### Loading Process
 ```python
@@ -257,65 +283,94 @@ def _rank_and_select(self, candidates: List[Product], ingredient: Ingredient) ->
     return scored[0][0]  # Return best product
 ```
 
-### Quality Scoring System
+### Component-Based Scoring System (Updated February 2026)
+
+Scoring moved from simple point accumulation to a **7-component system** (0-100 scale, higher is better):
+
 ```python
-def _calculate_quality_score(self, product: Product, ingredient: Ingredient) -> float:
-    score = 0
+# In src/scoring/component_scoring.py
 
-    # Base score: category match
-    if product.category == ingredient.category:
-        score += 10
+def compute_total_score(
+    ingredient_name: str,
+    ingredient_category: str,
+    required_form: Optional[str],
+    product_title: str,
+    is_organic: bool,
+    unit_price: float,
+    all_unit_prices: list[float],
+    delivery_estimate: str,
+    prompt: str,
+    price_outlier_penalty: int = 0,
+    packaging_data: str = ""  # NEW - uses structured packaging data
+) -> Tuple[int, Dict[str, int]]:
+    base_score = 50
 
-    # Organic certification (for Dirty Dozen items)
-    if "Dirty Dozen" in ingredient.notes and "Organic" in product.certifications:
-        score += 20  # High weight for important organic
+    # 1. EWG Component (-12 to +18 points)
+    ewg = compute_ewg_component(ingredient_name, ingredient_category, is_organic)
+    # Dirty Dozen + organic: +18
+    # Dirty Dozen + conventional: -12
+    # Clean Fifteen + organic: +2
 
-    if "Organic" in product.certifications:
-        score += 5  # General organic bonus
+    # 2. Form Fit Component (0-14 points)
+    form_fit = compute_form_fit_component(required_form, product_title, ingredient_category)
+    # Perfect match (fresh ginger → "ginger root"): +14
+    # Acceptable (cumin seeds → "whole cumin"): +10
 
-    # Local sourcing
-    if "Local" in product.certifications:
-        score += 8
+    # 3. Packaging Component (-4 to +6 points) - NOW USES STRUCTURED DATA
+    packaging = compute_packaging_component(product_title, packaging_data)
+    # Loose/paper: +6
+    # Glass jar: +4
+    # Plastic bag: +2
+    # Clamshell: -4
 
-    # Tier preference (if user has preference)
-    if product.selected_tier == "conscious":
-        score += 7
-    elif product.selected_tier == "balanced":
-        score += 5
-    elif product.selected_tier == "cheaper":
-        score += 3
+    # 4. Delivery Component (-10 to 0 points)
+    delivery = compute_delivery_component(delivery_estimate, prompt)
+    # Slow delivery + "cook tonight" prompt: -10
 
-    # Brand authenticity (for specialty items)
-    if ingredient.category == "spices" and "Pure Indian Foods" in product.brand:
-        score += 15  # Prefer authentic brands for spices
+    # 5. Unit Value Component (0-8 points)
+    unit_value = compute_unit_value_component(unit_price, all_unit_prices)
+    # Best value (lowest $/oz): +8
 
-    # Price penalty (lower score for very expensive items)
-    if product.price_numeric > 20:
-        score -= 2
+    # 6. Outlier Penalty (-20 or 0 points)
+    outlier = -20 if price_outlier_penalty > 0 else 0
+    # Prevents selecting products >2x median price
 
-    # Penalty for "sold out" or "unavailable"
-    if "SOLD OUT" in product.notes.upper():
-        score -= 50  # Strong penalty
-
-    return score
+    total = base_score + ewg + form_fit + packaging + delivery + unit_value + outlier
+    return max(0, min(100, total))
 ```
 
-**Example Scoring**:
+**Example Scoring (with metadata)**:
 ```
-Ingredient: "cumin" (category: "spices", amount: 2 tsp)
+Ingredient: "cumin" (required_form: "seeds")
 
 Candidates:
 1. Pure Indian Foods Cumin Seeds, 3oz, $6.69, USDA Organic
-   Score: 10 (category) + 5 (organic) + 15 (authentic brand) = 30
+   Packaging: "Glass jar with plastic cap"
+   Base: 50
+   EWG: +2 (organic spice, not produce)
+   Form Fit: +14 (perfect match: seeds)
+   Packaging: +4 (glass jar)
+   Delivery: 0 (1 week, but user planning ahead)
+   Unit Value: +6 (mid-range value)
+   Outlier: 0
+   Total: 76/100
 
 2. Generic Cumin Powder, 2oz, $3.99, Non-organic
-   Score: 10 (category) + 3 (cheaper tier) = 13
+   Packaging: "Plastic bag"
+   Base: 50
+   EWG: 0 (non-organic, not produce)
+   Form Fit: +2 (minor mismatch: powder vs seeds)
+   Packaging: +2 (plastic bag)
+   Delivery: 0
+   Unit Value: +8 (cheapest option)
+   Outlier: 0
+   Total: 62/100
 
-3. McCormick Cumin Seeds, 1.5oz, $5.99, Non-organic
-   Score: 10 (category) + 5 (balanced tier) = 15
-
-Selected: Pure Indian Foods (highest score)
+Selected: Pure Indian Foods (76 > 62)
+Reason: Glass packaging (+2 pts), perfect form match (+12 pts) outweigh cheaper price
 ```
+
+**Key Improvement**: Packaging scoring now uses the actual `packaging` field from CSV instead of parsing from product title, making scoring more accurate and transparent.
 
 ## Flow 4: Products → Quantities (Quantity Agent)
 
@@ -720,3 +775,8 @@ Result: Pure Indian Foods pods selected (authenticity matters for biryani)
 
 **Next**: [Mental Models & Design Decisions](./05-mental-models.md) - The philosophy behind the code
 
+
+
+---
+
+**Last Updated**: February 6, 2026 (Added metadata enrichment documentation)
