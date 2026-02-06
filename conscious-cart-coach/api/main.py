@@ -497,7 +497,8 @@ def build_product_lookup(candidates_by_ingredient: dict[str, list[dict]]) -> dic
 # API Endpoints
 # =============================================================================
 
-@app.get("/")
+@app.get("/api")
+@app.get("/api/")
 def read_root():
     """Health check endpoint."""
     return {
