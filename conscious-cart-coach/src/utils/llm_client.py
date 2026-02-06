@@ -379,7 +379,10 @@ def get_llm_client(provider: Optional[str] = None) -> BaseLLMClient:
     Raises:
         ValueError: If provider is invalid or required credentials missing
     """
-    provider = provider or os.environ.get("LLM_PROVIDER", "ollama").lower()
+    # Default to anthropic on Vercel/serverless, ollama for local development
+    is_serverless = os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME")
+    default_provider = "anthropic" if is_serverless else "ollama"
+    provider = provider or os.environ.get("LLM_PROVIDER", default_provider).lower()
 
     if provider == "anthropic":
         return AnthropicClient(
