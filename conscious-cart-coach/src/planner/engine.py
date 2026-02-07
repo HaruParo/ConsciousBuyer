@@ -1,5 +1,5 @@
 """
-PlannerEngine: Deterministic shopping cart planning
+PlannerEngine: Deterministic shopping cart planning with optional LLM explanations
 
 4-step process:
 1. retrieve_candidates() - Get product options for each ingredient
@@ -7,9 +7,13 @@ PlannerEngine: Deterministic shopping cart planning
 3. choose_store_plan() - Multi-store optimization
 4. select_products() - Pick ethical default + cheaper swap per ingredient
 
+Optional: LLM-powered decision explanations (scoring remains 100% deterministic)
+
 Output: Single CartPlan contract (no UI inference needed)
 """
 
+import logging
+import os
 import time
 from typing import List, Dict, Optional, Tuple
 from pathlib import Path
@@ -25,6 +29,8 @@ from ..data.ingredient_categories import get_ingredient_category, detect_product
 from ..data.ewg_categories import get_ewg_category
 from ..data.form_constraints import passes_form_constraints
 from ..scoring.component_scoring import compute_total_score, compute_score_drivers
+
+logger = logging.getLogger(__name__)
 
 
 def normalize_ingredient_key(ingredient_name: str, ingredient_form: Optional[str]) -> str:
@@ -68,16 +74,20 @@ def normalize_ingredient_key(ingredient_name: str, ingredient_form: Optional[str
 
 class PlannerEngine:
     """
-    Deterministic planner engine
+    Deterministic planner engine with optional LLM explanations
 
     Core principle: All decisions made here, output as CartPlan.
     UI just renders. No transformation, no inference, no reassignment.
+
+    Scoring is ALWAYS deterministic (same input = same output).
+    LLM is only used for natural language explanations (optional).
     """
 
     def __init__(
         self,
         product_index: Optional[ProductIndex] = None,
-        facts_gateway: Optional[FactsGateway] = None
+        facts_gateway: Optional[FactsGateway] = None,
+        use_llm_explanations: bool = True  # Enable LLM explanations by default
     ):
         """
         Initialize planner engine
@@ -85,9 +95,35 @@ class PlannerEngine:
         Args:
             product_index: Product retrieval index (or None for default)
             facts_gateway: Facts gateway for enrichment (or None for default)
+            use_llm_explanations: Generate LLM-powered explanations (default: True)
         """
         self.product_index = product_index or ProductIndex()
         self.facts_gateway = facts_gateway or get_facts()
+        self.use_llm_explanations = use_llm_explanations
+
+        # Initialize LLM client for explanations
+        self._llm_client = None
+        self._llm_explainer = None
+
+        if self.use_llm_explanations:
+            try:
+                from ..utils.llm_client import get_llm_client
+                from ..llm.decision_explainer import explain_decision_with_llm
+
+                self._llm_client = get_llm_client()
+                self._llm_explainer = explain_decision_with_llm
+
+                if self._llm_client:
+                    logger.info("PlannerEngine initialized with LLM explanations enabled")
+                else:
+                    logger.warning("LLM client not available - using deterministic explanations only")
+                    self.use_llm_explanations = False
+            except ImportError as e:
+                logger.warning(f"LLM module not available: {e} - using deterministic explanations only")
+                self.use_llm_explanations = False
+            except Exception as e:
+                logger.warning(f"Failed to initialize LLM: {e} - using deterministic explanations only")
+                self.use_llm_explanations = False
 
     def create_plan(
         self,
@@ -993,6 +1029,46 @@ class PlannerEngine:
                 reason_line, reason_details, chips = self._generate_reason_and_tradeoffs(
                     ethical, runner_up, cheaper, canonical_name, form, winner_breakdown, runner_up_breakdown
                 )
+
+                # Enhance reason with LLM if enabled
+                if self.use_llm_explanations and self._llm_explainer and self._llm_client:
+                    try:
+                        # Build scoring factors from breakdown
+                        scoring_factors = [f"{k}: {v:+d}" for k, v in winner_breakdown.items() if v != 0]
+
+                        # Build cheaper/conscious descriptions
+                        cheaper_desc = None
+                        if cheaper:
+                            cheaper_desc = f"{cheaper.get('brand', 'Unknown')} at ${cheaper.get('price', 0):.2f}"
+
+                        # Get product details for explainer
+                        llm_explanation = self._llm_explainer(
+                            client=self._llm_client,
+                            ingredient_name=canonical_name,
+                            recommended_product={
+                                "brand": ethical.get("brand", "Unknown"),
+                                "price": ethical.get("price", 0.0),
+                                "size": ethical.get("size", ""),
+                                "unit_price": ethical.get("unit_price", 0.0),
+                                "organic": ethical.get("organic", False),
+                            },
+                            scoring_factors=scoring_factors,
+                            cheaper_option=cheaper_desc,
+                            conscious_option=None,  # We're already recommending the conscious option
+                            user_prefs={},  # TODO: Pass user preferences when available
+                        )
+
+                        if llm_explanation:
+                            # Use LLM explanation as reason_line, keep deterministic as first detail
+                            original_reason = reason_line
+                            reason_line = llm_explanation
+                            # Prepend the deterministic reason to details for transparency
+                            reason_details = [f"Scoring: {original_reason}"] + reason_details
+                            logger.debug(f"LLM enhanced reason for {canonical_name}: {llm_explanation[:80]}...")
+
+                    except Exception as e:
+                        logger.warning(f"LLM explanation failed for {canonical_name}: {e} - using deterministic reason")
+                        # Keep original deterministic reason_line
 
                 # Build decision trace for scoring drawer (only if requested)
                 decision_trace = None

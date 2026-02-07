@@ -139,7 +139,7 @@ def select_best_product_for_recipe(
         products_text += f"{i}. {p['title']} - ${p['price']}/{p.get('size', 'ea')}\n"
 
     # Build prompt
-    formatted_prompt = FORM_MATCHING_PROMPT.format(
+    formatted_prompt = PRODUCT_MATCHING_PROMPT.format(
         recipe_context=recipe_context,
         ingredient_name=ingredient_name,
         products_list=products_text.strip(),
