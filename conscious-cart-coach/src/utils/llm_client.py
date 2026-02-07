@@ -201,19 +201,28 @@ class OllamaClient(BaseLLMClient):
 
 
 class GeminiClient(BaseLLMClient):
-    """Google Gemini API client"""
+    """
+    Google Gemini API client - FAST inference (~200-500ms)
+
+    Models:
+    - gemini-2.0-flash-lite: Fastest, cost-effective (~200ms)
+    - gemini-2.0-flash: Fast with better quality (~300ms)
+    - gemini-1.5-flash: Previous gen fast model
+
+    Get API key: https://aistudio.google.com/apikey
+    """
 
     def __init__(
         self,
         api_key: Optional[str] = None,
-        model: str = "gemini-1.5-flash",
+        model: str = "gemini-2.0-flash-lite",  # Fastest model
     ):
         self.api_key = api_key or os.environ.get("GOOGLE_API_KEY")
         self.model = model
         self.api_url = "https://generativelanguage.googleapis.com/v1beta/models"
 
         if not self.api_key:
-            raise ValueError("GOOGLE_API_KEY not set")
+            raise ValueError("GOOGLE_API_KEY not set. Get one at https://aistudio.google.com/apikey")
 
     def generate_sync(
         self,
@@ -383,7 +392,7 @@ def get_llm_client(provider: Optional[str] = None) -> BaseLLMClient:
 
     Args:
         provider: Override provider ("anthropic", "ollama", "gemini", "openai")
-                 If None, uses DEPLOYMENT_ENV to determine provider
+                 If None, uses LLM_PROVIDER or DEPLOYMENT_ENV to determine provider
 
     Returns:
         Configured LLM client instance
@@ -391,16 +400,26 @@ def get_llm_client(provider: Optional[str] = None) -> BaseLLMClient:
     Raises:
         ValueError: If provider is invalid or required credentials missing
 
-    Configuration:
-        DEPLOYMENT_ENV=cloud  → Uses Anthropic (ANTHROPIC_API_KEY, ANTHROPIC_MODEL)
-        DEPLOYMENT_ENV=local  → Uses Ollama (OLLAMA_BASE_URL, OLLAMA_MODEL)
+    Configuration (priority order):
+        1. LLM_PROVIDER env var (direct override: "gemini", "anthropic", etc.)
+        2. DEPLOYMENT_ENV=cloud  → Uses Anthropic
+        3. DEPLOYMENT_ENV=local  → Uses Ollama
+
+    Speed comparison:
+        - Gemini 2.0 Flash-Lite: ~200ms  ← FASTEST
+        - Gemini 2.0 Flash: ~300ms
+        - Claude Haiku: ~2-4s
     """
-    # Explicit deployment environment: cloud (Anthropic) vs local (Ollama)
+    # Check for direct LLM_PROVIDER override first
+    llm_provider_env = os.environ.get("LLM_PROVIDER", "").lower()
     deployment_env = os.environ.get("DEPLOYMENT_ENV", "local").lower()
 
-    # Map deployment environment to provider
+    # Priority: function arg > LLM_PROVIDER env > DEPLOYMENT_ENV
     if provider is None:
-        if deployment_env == "cloud":
+        if llm_provider_env:
+            provider = llm_provider_env
+            print(f"[LLM] LLM_PROVIDER={llm_provider_env} → Using {provider.title()}")
+        elif deployment_env == "cloud":
             provider = "anthropic"
             print(f"[LLM] DEPLOYMENT_ENV=cloud → Using Anthropic")
         else:  # local or any other value
@@ -449,7 +468,7 @@ def get_llm_client(provider: Optional[str] = None) -> BaseLLMClient:
 
     elif provider == "gemini":
         return GeminiClient(
-            model=os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
+            model=os.environ.get("GEMINI_MODEL", "gemini-2.0-flash-lite")
         )
 
     elif provider == "openai":
