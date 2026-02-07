@@ -78,6 +78,7 @@ def explain_decision_with_llm(
 
     # Call LLM with system prompt (cached)
     try:
+        print(f"[LLM] Calling decision explainer for {ingredient_name}...")
         response = client.generate_sync(
             prompt=formatted_prompt,
             system=EXPLANATION_SYSTEM_PROMPT,
@@ -85,7 +86,9 @@ def explain_decision_with_llm(
             temperature=0.3,  # Slightly creative but consistent
         )
         explanation = response.text if response else None
+        print(f"[LLM] Decision explainer response: {explanation[:50] if explanation else 'None'}...")
     except Exception as e:
+        print(f"[LLM] Decision explainer API error: {e}")
         logger.error(f"LLM API call failed for decision explanation: {e}")
         return None
 

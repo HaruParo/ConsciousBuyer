@@ -383,18 +383,29 @@ def get_llm_client(provider: Optional[str] = None) -> BaseLLMClient:
 
     Args:
         provider: Override provider ("anthropic", "ollama", "gemini", "openai")
-                 If None, uses LLM_PROVIDER from .env
+                 If None, uses DEPLOYMENT_ENV to determine provider
 
     Returns:
         Configured LLM client instance
 
     Raises:
         ValueError: If provider is invalid or required credentials missing
+
+    Configuration:
+        DEPLOYMENT_ENV=cloud  → Uses Anthropic (ANTHROPIC_API_KEY, ANTHROPIC_MODEL)
+        DEPLOYMENT_ENV=local  → Uses Ollama (OLLAMA_BASE_URL, OLLAMA_MODEL)
     """
-    # Default to anthropic on Vercel/serverless, ollama for local development
-    is_serverless = os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME")
-    default_provider = "anthropic" if is_serverless else "ollama"
-    provider = provider or os.environ.get("LLM_PROVIDER", default_provider).lower()
+    # Explicit deployment environment: cloud (Anthropic) vs local (Ollama)
+    deployment_env = os.environ.get("DEPLOYMENT_ENV", "local").lower()
+
+    # Map deployment environment to provider
+    if provider is None:
+        if deployment_env == "cloud":
+            provider = "anthropic"
+            print(f"[LLM] DEPLOYMENT_ENV=cloud → Using Anthropic")
+        else:  # local or any other value
+            provider = "ollama"
+            print(f"[LLM] DEPLOYMENT_ENV=local → Using Ollama")
 
     if provider == "anthropic":
         client = AnthropicClient(

@@ -38,15 +38,36 @@ User: "chicken biryani for 4"
 
 ### LLM Provider Configuration
 
-```python
-# Environment variables
-LLM_PROVIDER=anthropic          # or "ollama" for local
-ANTHROPIC_API_KEY=sk-ant-...
-ANTHROPIC_MODEL=claude-3-haiku-20240307  # Cost-optimized
+Explicit environment control via `DEPLOYMENT_ENV`:
 
-# Opik observability
+| DEPLOYMENT_ENV | Provider | Use Case |
+|----------------|----------|----------|
+| `cloud` | Anthropic Claude | Vercel deployment |
+| `local` | Ollama | Local development |
+
+```bash
+# .env for local development
+DEPLOYMENT_ENV=local
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=mistral
+
+# .env for Vercel (set in dashboard)
+DEPLOYMENT_ENV=cloud
+ANTHROPIC_API_KEY=sk-ant-...
+ANTHROPIC_MODEL=claude-3-haiku-20240307
+
+# Opik observability (optional, cloud only)
 OPIK_API_KEY=...
 OPIK_PROJECT_NAME=consciousbuyer
+```
+
+**How it works** (in `src/utils/llm_client.py`):
+```python
+deployment_env = os.environ.get("DEPLOYMENT_ENV", "local")
+if deployment_env == "cloud":
+    provider = "anthropic"  # Uses ANTHROPIC_API_KEY
+else:
+    provider = "ollama"     # Uses OLLAMA_BASE_URL
 ```
 
 ### Cost Per Cart (Optimized Prompts)

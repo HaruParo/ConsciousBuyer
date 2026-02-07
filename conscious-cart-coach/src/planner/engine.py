@@ -114,16 +114,22 @@ class PlannerEngine:
                 self._llm_explainer = explain_decision_with_llm
 
                 if self._llm_client:
+                    print(f"[LLM] PlannerEngine: LLM explanations ENABLED (client: {type(self._llm_client).__name__})")
                     logger.info("PlannerEngine initialized with LLM explanations enabled")
                 else:
+                    print("[LLM] PlannerEngine: LLM client not available - using deterministic explanations")
                     logger.warning("LLM client not available - using deterministic explanations only")
                     self.use_llm_explanations = False
             except ImportError as e:
+                print(f"[LLM] PlannerEngine: Import failed - {e}")
                 logger.warning(f"LLM module not available: {e} - using deterministic explanations only")
                 self.use_llm_explanations = False
             except Exception as e:
+                print(f"[LLM] PlannerEngine: Init failed - {e}")
                 logger.warning(f"Failed to initialize LLM: {e} - using deterministic explanations only")
                 self.use_llm_explanations = False
+        else:
+            print("[LLM] PlannerEngine: LLM explanations DISABLED by parameter")
 
     def create_plan(
         self,
@@ -1064,9 +1070,13 @@ class PlannerEngine:
                             reason_line = llm_explanation
                             # Prepend the deterministic reason to details for transparency
                             reason_details = [f"Scoring: {original_reason}"] + reason_details
+                            print(f"[LLM] Enhanced reason for {canonical_name}: {llm_explanation[:60]}...")
                             logger.debug(f"LLM enhanced reason for {canonical_name}: {llm_explanation[:80]}...")
+                        else:
+                            print(f"[LLM] No explanation returned for {canonical_name}")
 
                     except Exception as e:
+                        print(f"[LLM] Explanation failed for {canonical_name}: {e}")
                         logger.warning(f"LLM explanation failed for {canonical_name}: {e} - using deterministic reason")
                         # Keep original deterministic reason_line
 

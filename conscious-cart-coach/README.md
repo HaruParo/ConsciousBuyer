@@ -23,9 +23,13 @@ cd conscious-cart-coach
 conda env create -f environments.yml
 conda activate consciousbuyer
 
+# Start Ollama (required for local LLM)
+ollama serve
+ollama pull mistral
+
 # Configure
 cp .env.example .env
-# Edit .env with your ANTHROPIC_API_KEY
+# DEPLOYMENT_ENV=local is default (uses Ollama)
 
 # Run (starts backend + frontend)
 ./run.sh
@@ -41,6 +45,11 @@ The app is configured for Vercel deployment:
 - Frontend: Static build from `frontend/`
 - Backend: Python serverless function via `index.py`
 
+**Required Vercel Environment Variables:**
+- `DEPLOYMENT_ENV=cloud`
+- `ANTHROPIC_API_KEY=sk-ant-...`
+- `ANTHROPIC_MODEL=claude-3-haiku-20240307`
+
 ```bash
 vercel deploy
 ```
@@ -48,14 +57,18 @@ vercel deploy
 ## Environment Variables
 
 ```bash
-# Required for LLM features
+# Deployment environment (required)
+DEPLOYMENT_ENV=local   # local = Ollama, cloud = Anthropic
+
+# Local development (DEPLOYMENT_ENV=local)
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=mistral
+
+# Vercel/Cloud (DEPLOYMENT_ENV=cloud)
 ANTHROPIC_API_KEY=sk-ant-...
+ANTHROPIC_MODEL=claude-3-haiku-20240307
 
-# Optional
-ANTHROPIC_MODEL=claude-3-haiku-20240307  # Default model
-LLM_PROVIDER=anthropic                    # or "ollama" for local
-
-# Observability (optional)
+# Observability (optional, cloud only)
 OPIK_API_KEY=...
 OPIK_PROJECT_NAME=consciousbuyer
 ```
