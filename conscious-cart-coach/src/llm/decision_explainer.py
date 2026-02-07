@@ -3,48 +3,33 @@
 import logging
 from typing import Optional
 
-# Type hints only - actual client is passed in
-try:
-    from anthropic import Anthropic
-except ImportError:
-    Anthropic = None
-
-from .client import call_claude_with_retry
+from ..utils.llm_client import BaseLLMClient
 
 logger = logging.getLogger(__name__)
 
-EXPLANATION_PROMPT = """Explain this grocery recommendation decision in 1-2 clear sentences.
+# System prompt - concise, reusable (cached by Anthropic API)
+EXPLANATION_SYSTEM_PROMPT = """You explain grocery product recommendations concisely.
+Rules:
+- 1-2 sentences max
+- Reference actual prices and attributes
+- Mention key tradeoff if relevant (e.g., "costs $2 more but organic")
+- Be conversational, not technical
+- NO hallucination - only use provided data"""
 
-INGREDIENT: {ingredient_name}
-RECOMMENDED PRODUCT:
-- Brand: {brand}
-- Price: ${price:.2f} ({size})
-- Unit Price: ${unit_price:.2f}/oz
-- Organic: {organic}
+# User prompt - minimal, variable data only
+EXPLANATION_USER_PROMPT = """Explain why {brand} {ingredient_name} (${price:.2f}, {size}) was recommended.
 
-SCORING FACTORS:
-{scoring_factors}
-
-AVAILABLE ALTERNATIVES:
+Scoring: {scoring_factors}
 Cheaper option: {cheaper_option}
-Conscious option: {conscious_option}
+Organic: {organic}
 
-USER CONTEXT:
-- Preferences: {user_prefs}
-- Strict safety mode: {strict_safety}
+Example: "The Earthbound Farm spinach at $3.99 offers organic certification for just $1 more than conventional, worth it for a Dirty Dozen item."
 
-RULES:
-1. Explain WHY this product was recommended (refer to specific scoring factors)
-2. Mention the key tradeoff (e.g., "costs $2 more but organic")
-3. Be concise and conversational
-4. Reference actual prices and product attributes
-5. NO hallucination - only use provided data
-
-OUTPUT: Just the explanation text (no JSON, no markdown)"""
+Explanation:"""
 
 
 def explain_decision_with_llm(
-    client: Anthropic,
+    client: BaseLLMClient,
     ingredient_name: str,
     recommended_product: dict,
     scoring_factors: list[str],
@@ -56,70 +41,56 @@ def explain_decision_with_llm(
     Generate natural language explanation for a recommendation using LLM.
 
     Args:
-        client: Anthropic client instance
+        client: LLM client instance (BaseLLMClient - Anthropic, Ollama, Gemini, etc.)
         ingredient_name: Name of the ingredient
         recommended_product: Dict with product details
         scoring_factors: List of factors that influenced the score
         cheaper_option: Description of cheaper alternative
         conscious_option: Description of conscious alternative
-        user_prefs: User preferences dict
+        user_prefs: User preferences dict (unused currently, for future)
 
     Returns:
         Natural language explanation string, or None if generation failed.
     """
     if not client:
-        logger.warning("No Anthropic client provided")
+        logger.warning("No LLM client provided")
         return None
 
     if not recommended_product:
         return None
 
-    user_prefs = user_prefs or {}
+    # Format scoring factors (compact)
+    factors_text = ", ".join(scoring_factors[:3]) if scoring_factors else "standard scoring"
 
-    # Format scoring factors
-    factors_text = "\n".join(f"- {factor}" for factor in scoring_factors) if scoring_factors else "- Standard scoring applied"
-
-    # Format alternatives
-    cheaper_text = cheaper_option if cheaper_option else "None (this is cheapest)"
-    conscious_text = conscious_option if conscious_option else "None (this is most conscious)"
-
-    # Format user prefs
-    prefs_list = []
-    if user_prefs.get("preferred_brands"):
-        prefs_list.append(f"Prefers: {', '.join(user_prefs['preferred_brands'][:2])}")
-    if user_prefs.get("avoided_brands"):
-        prefs_list.append(f"Avoids: {', '.join(user_prefs['avoided_brands'][:2])}")
-    prefs_text = ", ".join(prefs_list) if prefs_list else "No specific brand preferences"
+    # Format cheaper option
+    cheaper_text = cheaper_option if cheaper_option else "none (this is cheapest)"
 
     # Build prompt
-    formatted_prompt = EXPLANATION_PROMPT.format(
+    formatted_prompt = EXPLANATION_USER_PROMPT.format(
         ingredient_name=ingredient_name,
         brand=recommended_product.get("brand", "Unknown"),
         price=recommended_product.get("price", 0.0),
-        size=recommended_product.get("size", ""),
-        unit_price=recommended_product.get("unit_price", 0.0),
-        organic="Yes" if recommended_product.get("organic") else "No",
+        size=recommended_product.get("size", "") or "standard",
         scoring_factors=factors_text,
         cheaper_option=cheaper_text,
-        conscious_option=conscious_text,
-        user_prefs=prefs_text,
-        strict_safety=user_prefs.get("strict_safety", False),
+        organic="Yes" if recommended_product.get("organic") else "No",
     )
 
-    # Call Claude with Opik tracing
-    explanation = call_claude_with_retry(
-        client=client,
-        prompt=formatted_prompt,
-        max_tokens=256,
-        temperature=0.3,  # Slightly creative but consistent
-        trace_name="decision_explanation",
-        metadata={
-            "ingredient": ingredient_name,
-            "product_brand": recommended_product.get("brand", "Unknown"),
-            "product_price": recommended_product.get("price", 0.0),
-            "operation": "explain_decision"
-        }
-    )
+    # Call LLM with system prompt (cached)
+    try:
+        print(f"[LLM] Calling decision explainer for {ingredient_name}...")
+        response = client.generate_sync(
+            prompt=formatted_prompt,
+            system=EXPLANATION_SYSTEM_PROMPT,
+            max_tokens=100,  # Short explanations only
+            temperature=0.3,  # Slightly creative but consistent
+        )
+        explanation = response.text if response else None
+        print(f"[LLM] Decision explainer response: {explanation[:50] if explanation else 'None'}...")
+    except Exception as e:
+        print(f"[LLM] Decision explainer API error: {e}")
+        logger.error(f"LLM API call failed for decision explanation: {e}")
+        return None
 
     if not explanation:
         logger.warning(f"Failed to generate explanation for {ingredient_name}")
@@ -129,5 +100,9 @@ def explain_decision_with_llm(
     explanation = explanation.strip()
     explanation = explanation.replace("**", "").replace("*", "")
 
-    logger.debug(f"Generated explanation for {ingredient_name}: {explanation[:100]}...")
+    # Truncate if too long (shouldn't happen with max_tokens=100)
+    if len(explanation) > 200:
+        explanation = explanation[:197] + "..."
+
+    logger.debug(f"Generated explanation for {ingredient_name}: {explanation[:80]}...")
     return explanation

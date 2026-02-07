@@ -1,213 +1,124 @@
 # Conscious Cart Coach
 
-> **Current Version**: React + FastAPI Full-Stack Application
-
-Make more conscious purchasing decisions with AI-powered grocery recommendations. Get personalized suggestions across three tiers (cheaper, balanced, conscious) based on safety data, seasonality, and your preferences.
+AI-powered grocery shopping assistant that helps you make conscious purchasing decisions. Get personalized recommendations across three tiers (cheaper, balanced, conscious) based on safety data, seasonality, and your preferences.
 
 ## Features
 
-- **Recipe-Based Shopping**: Tell us what you want to cook, get a complete shopping list
-- **Three-Tier Recommendations**: Cheaper, balanced, or conscious options for every ingredient
-- **Safety Integration**: EWG Dirty Dozen/Clean Fifteen data, FDA recall alerts
-- **Seasonal Awareness**: NJ crop calendar for local/peak season produce
-- **Preference Learning**: System learns your tier preferences over time
-- **Evidence-Based**: Every recommendation comes with traceable sources
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                         ORCHESTRATOR                            │
-│  Gated Flow: Ingredients → Products → Enrich → Score → Export   │
-└─────────────────────────────────────────────────────────────────┘
-                              │
-        ┌─────────────────────┼─────────────────────┐
-        ▼                     ▼                     ▼
-┌───────────────┐    ┌───────────────┐    ┌───────────────┐
-│ IngredientAgent│   │ ProductAgent  │    │ UserHistory   │
-│ Recipe templates│  │ 3-tier match  │    │ Learn prefs   │
-└───────────────┘    └───────────────┘    └───────────────┘
-                              │
-        ┌─────────────────────┴─────────────────────┐
-        ▼                                           ▼
-┌───────────────┐                          ┌───────────────┐
-│ SafetyAgent   │                          │ SeasonalAgent │
-│ EWG + Recalls │                          │ NJ Crop Data  │
-└───────────────┘                          └───────────────┘
-                              │
-                              ▼
-                    ┌───────────────┐
-                    │DecisionEngine │
-                    │ Pure Scoring  │
-                    └───────────────┘
-```
-
-## Project Structure
-
-```
-conscious-cart-coach/
-├── Figma_files/                # React Frontend (CURRENT VERSION)
-│   ├── src/                    # React components & logic
-│   ├── public/                 # Static assets
-│   ├── index.html              # Entry point
-│   └── package.json            # Node dependencies
-├── api/                        # FastAPI Backend
-│   └── main.py                 # REST API endpoints
-├── data/
-│   ├── raw/                    # Original receipts CSV
-│   ├── processed/              # Normalized data
-│   ├── alternatives/           # Product alternatives seed data
-│   ├── ewg/                    # EWG Dirty Dozen/Clean Fifteen
-│   ├── recalls/                # FDA recall data
-│   ├── seasonal/               # NJ crop calendar
-│   └── stores/                 # Store and regional source data
-├── outputs/                    # CSV exports for debugging
-├── src/
-│   ├── core/                   # AgentResult contract, types
-│   ├── data/                   # FactsStore (SQLite), refresh jobs
-│   ├── facts/                  # FactsGateway (single data access point)
-│   ├── agents/                 # Lightweight agents
-│   │   ├── ingredient_agent.py # Extract ingredients from prompts
-│   │   ├── product_agent.py    # Match to inventory (3 tiers)
-│   │   ├── safety_agent_v2.py  # EWG + recall checks
-│   │   ├── seasonal_agent.py   # NJ seasonality
-│   │   └── user_history_agent.py # Preference learning
-│   ├── engine/                 # DecisionEngine (pure scoring)
-│   ├── orchestrator/           # Gated flow coordinator
-│   ├── exporters/              # CSV export for debugging
-│   └── cli/                    # CLI tools
-└── tests/
-```
+- **Natural Language Input**: "chicken biryani for 4" → complete shopping list
+- **LLM-Powered**: Claude extracts ingredients and explains recommendations
+- **Three-Tier Options**: Cheaper, balanced, or conscious choice for every ingredient
+- **Safety Integration**: EWG Dirty Dozen/Clean Fifteen, FDA recall alerts
+- **Multi-Store Support**: Splits cart across stores for best selection
 
 ## Quick Start
+
+### Local Development
 
 ```bash
 # Clone and setup
 git clone <repo-url>
 cd conscious-cart-coach
 
-# Backend setup
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+# Install dependencies (conda recommended)
+conda env create -f environments.yml
+conda activate consciousbuyer
 
-# Frontend setup
-cd Figma_files
-npm install
-cd ..
+# Start Ollama (required for local LLM)
+ollama serve
+ollama pull mistral
 
 # Configure
 cp .env.example .env
-# Edit .env with your API keys
+# DEPLOYMENT_ENV=local is default (uses Ollama)
 
-# Run (starts both backend and frontend)
+# Run (starts backend + frontend)
 ./run.sh
 ```
 
-**Access the app**:
+**Access**:
 - Frontend: http://localhost:5173
-- Backend API: http://localhost:8000
-- API Docs: http://localhost:8000/docs
+- Backend API: http://localhost:8000/docs
 
-## Usage
+### Vercel Deployment
 
-### Full Flow (from prompt to recommendations)
+The app is configured for Vercel deployment:
+- Frontend: Static build from `frontend/`
+- Backend: Python serverless function via `index.py`
 
-```python
-from src.orchestrator import Orchestrator
-
-orch = Orchestrator()
-result = orch.process_prompt("chicken biryani for 4")
-
-# Results
-print(result.facts["recommendations"])  # Best tier per ingredient
-print(result.facts["tier_totals"])      # {"cheaper": 45.50, "conscious": 78.20}
-print(result.explain)                   # ["Processed 12 ingredients", ...]
-```
-
-### Step-by-Step Flow
-
-```python
-from src.orchestrator import Orchestrator
-
-orch = Orchestrator()
-
-# Step 1: Extract ingredients
-ingredients = orch.step_ingredients("chicken biryani", servings=4)
-print(ingredients.facts["ingredients"])  # Review extracted list
-
-# Step 2: Confirm/modify ingredients
-orch.confirm_ingredients(modified_list)  # Optional
-
-# Step 3: Match to products
-products = orch.step_products(ingredients.facts["ingredients"])
-
-# Step 4: Enrich with safety/seasonal data
-enriched = orch.step_enrich()
-
-# Step 5: Apply user preferences
-prefs = orch.step_preferences()
-
-# Step 6: Get scored recommendations
-recommendations = orch.step_recommend()
-```
-
-### Export to CSV (debugging)
-
-```python
-from src.exporters import CSVExporter
-
-exporter = CSVExporter()
-exporter.export_flow(result)  # Creates outputs/*.csv files
-```
-
-### CLI Tools
+**Required Vercel Environment Variables:**
+- `DEPLOYMENT_ENV=cloud`
+- `ANTHROPIC_API_KEY=sk-ant-...`
+- `ANTHROPIC_MODEL=claude-3-haiku-20240307`
 
 ```bash
-# Inspect facts store
-python -m src.cli.facts_inspector status
-python -m src.cli.facts_inspector ewg spinach
-python -m src.cli.facts_inspector recalls --state NJ
-
-# Refresh data
-python -m src.data.refresh_jobs status
-python -m src.data.refresh_jobs refresh --table recalls
+vercel deploy
 ```
 
-## AgentResult Contract
+## Environment Variables
 
-All agents return a consistent format:
+```bash
+# Deployment environment (required)
+DEPLOYMENT_ENV=local   # local = Ollama, cloud = Anthropic
 
-```python
-@dataclass
-class AgentResult:
-    agent_name: str                    # "safety", "seasonal", etc.
-    status: Literal["ok", "error"]     # Success/failure
-    facts: dict[str, Any]              # Agent-specific data
-    explain: list[str]                 # Max 5 bullets for UI
-    evidence: list[Evidence]           # Traceable sources
-    error_message: str | None          # If status == "error"
-    timestamp: str                     # ISO timestamp
+# Local development (DEPLOYMENT_ENV=local)
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=mistral
+
+# Vercel/Cloud (DEPLOYMENT_ENV=cloud)
+ANTHROPIC_API_KEY=sk-ant-...
+ANTHROPIC_MODEL=claude-3-haiku-20240307
+
+# Observability (optional, cloud only)
+OPIK_API_KEY=...
+OPIK_PROJECT_NAME=consciousbuyer
 ```
 
-## Data Sources
-
-| Source | Refresh | Description |
-|--------|---------|-------------|
-| EWG | Annual | Dirty Dozen / Clean Fifteen lists |
-| FDA Recalls | Daily | Food safety recalls for NJ |
-| NJ Crops | Annual | Seasonal availability calendar |
-| Regional Sources | Quarterly | Local farms, co-ops, trusted vendors |
-| Stores | Monthly | Stores serving Middlesex County |
-
-## Configuration
-
-Copy `.env.example` to `.env`:
+## Project Structure
 
 ```
-ANTHROPIC_API_KEY=your-key      # For Claude LLM features
-OPIK_API_KEY=your-key           # For experiment tracking
-DATABASE_URL=postgresql://...    # Optional PostgreSQL
+conscious-cart-coach/
+├── api/main.py           # FastAPI backend (/api/plan-v2)
+├── frontend/             # React/TypeScript UI
+├── src/
+│   ├── llm/              # LLM modules (ingredient extraction, explanations)
+│   ├── planner/          # Core planning engine
+│   ├── agents/           # Ingredient, product, safety agents
+│   └── utils/            # Unified LLM client
+├── data/                 # Product inventories (CSV)
+├── architecture/         # Documentation (see below)
+├── index.py              # Vercel serverless entry
+└── vercel.json           # Deployment config
+```
+
+## Documentation
+
+All detailed documentation lives in the `architecture/` folder:
+
+| Document | Description |
+|----------|-------------|
+| [01-technical-architecture.md](architecture/01-technical-architecture.md) | Tech stack, component connections, file structure |
+| [02-llm-integration.md](architecture/02-llm-integration.md) | LLM modules, prompts, cost optimization |
+| [03-ui-flows.md](architecture/03-ui-flows.md) | User journey, modals, loading states |
+| [04-data-flows.md](architecture/04-data-flows.md) | CSV → Cart data pipeline, scoring |
+| [05-mental-models.md](architecture/05-mental-models.md) | Design philosophy, decisions |
+| [06-llm-skills.md](architecture/06-llm-skills.md) | LLM module usage guide |
+
+**Start here**: [architecture/README.md](architecture/README.md)
+
+## API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/plan-v2` | POST | Create shopping cart from meal description |
+| `/api/health` | GET | Health check |
+| `/api/debug-env` | GET | Check environment configuration |
+
+### Example Request
+
+```bash
+curl -X POST http://localhost:8000/api/plan-v2 \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "chicken biryani for 4", "servings": 4}'
 ```
 
 ## Development
@@ -216,11 +127,11 @@ DATABASE_URL=postgresql://...    # Optional PostgreSQL
 # Run tests
 pytest
 
-# Run with coverage
-pytest --cov=src
-
 # Type checking
 mypy src/
+
+# Frontend dev
+cd frontend && npm run dev
 ```
 
 ## License
