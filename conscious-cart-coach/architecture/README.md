@@ -18,9 +18,10 @@
 
 ### Deep Dives (When You Need Details)
 4. **[Data Flows](./04-data-flows.md)** - Understand how products get from CSV to cart
-5. **[LLM Integration](./02-llm-integration.md)** - Future AI enhancement strategy
+5. **[LLM Integration](./02-llm-integration.md)** - AI enhancement strategy (now active!)
+6. **[LLM Skills Guide](./06-llm-skills.md)** - Working with LLM modules
 
-## The Five Documents
+## The Six Documents
 
 ### 01. Technical Architecture
 **What it covers**:
@@ -160,29 +161,38 @@ A: See [Data Flows - Store Inference Logic](./04-data-flows.md#store-inference-l
 
 ```
 conscious-cart-coach/
-├── architecture/           ← You are here
+├── architecture/           ← You are here (documentation)
 │   ├── README.md
 │   ├── 01-technical-architecture.md
 │   ├── 02-llm-integration.md
 │   ├── 03-ui-flows.md
 │   ├── 04-data-flows.md
-│   └── 05-mental-models.md
+│   ├── 05-mental-models.md
+│   └── 06-llm-skills.md
 │
 ├── api/
-│   └── main.py            ← FastAPI endpoints
+│   └── main.py            ← FastAPI endpoints (/api/plan-v2)
 │
 ├── src/
-│   ├── agents/            ← Ingredient, Product, Quantity, Explain agents
-│   ├── orchestrator/      ← Coordinates all agents
-│   └── utils/             ← Store splitting, helpers
+│   ├── agents/            ← Ingredient, Product, Safety agents
+│   ├── contracts/         ← Data models (CartPlan, CartItem)
+│   ├── llm/               ← LLM modules (ingredient_extractor, decision_explainer)
+│   ├── planner/           ← PlannerEngine (core planning logic)
+│   ├── scoring/           ← Component scoring system
+│   ├── utils/             ← Unified LLM client, helpers
+│   └── data/              ← EWG categories, form constraints
 │
 ├── data/
-│   ├── alternatives/
-│   │   └── source_listings.csv   ← Main product database
-│   └── samples/           ← Sample data from real stores
+│   ├── inventories/       ← Store product inventories (CSV)
+│   └── source_listings.csv ← Consolidated product database
 │
-└── frontend/
-    └── src/app/           ← React/TypeScript UI
+├── frontend/
+│   └── src/app/           ← React/TypeScript UI
+│       ├── components/    ← CartItemCard, MultiStoreCart, etc.
+│       └── services/      ← API client
+│
+├── index.py               ← Vercel serverless entry point
+└── vercel.json            ← Vercel deployment config
 ```
 
 ## Contributing Guidelines
@@ -237,8 +247,8 @@ conscious-cart-coach/
 ## Last Updated
 
 **Created**: February 1, 2026
-**Last Modified**: February 1, 2026
-**Version**: 1.0
+**Last Modified**: February 7, 2026
+**Version**: 2.0 (Post-cleanup, LLM integration enabled)
 
 ## Questions or Feedback?
 
