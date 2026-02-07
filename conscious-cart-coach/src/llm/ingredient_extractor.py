@@ -72,164 +72,30 @@ Output ONLY valid JSON, no explanation.
 
 JSON OUTPUT:"""
 
-INGREDIENT_EXTRACTION_PROMPT = """You are an ingredient extraction specialist. Extract structured ingredient data from meal prompts.
+# System prompt - concise instructions (reusable context)
+INGREDIENT_SYSTEM_PROMPT = """You extract ingredients from meal requests as JSON. Rules:
+- Output ONLY valid JSON, no markdown/explanation
+- quantity: number or null (never strings like "unspecified")
+- form: fresh|leaves|whole|chopped|paste|powder|seeds|whole_spice|thighs|breast|ground|basmati|unspecified
+- Match cuisine (no cumin in Chinese, no soy sauce in Italian)
+- Be comprehensive for recipe names (include aromatics, oils, seasonings)"""
 
-STRICT BOUNDARIES - YOU MUST NOT:
-❌ Suggest stores, availability, pricing, shipping estimates
-❌ Make safety/recall/health claims
-❌ Make brand recommendations or trust judgments
-❌ Make ethical or sustainability judgments
-✅ ONLY extract: ingredient names, forms, quantities, units
+# Minimal user prompt with 1 example
+INGREDIENT_EXTRACTION_PROMPT = """Extract ingredients from: {prompt}
+Servings: {servings}
 
-USER'S MEAL PLAN:
-{prompt}
+Schema: {{"servings": N, "ingredients": [{{"name": str, "form": str, "quantity": num|null, "unit": str|null}}]}}
 
-SERVINGS: {servings}
+Example - "stir fry for 2":
+{{"servings": 2, "ingredients": [
+  {{"name": "mushrooms", "form": "whole", "quantity": 8, "unit": "oz"}},
+  {{"name": "soy sauce", "form": "unspecified", "quantity": 3, "unit": "tbsp"}},
+  {{"name": "ginger", "form": "fresh", "quantity": 1, "unit": "inch"}},
+  {{"name": "garlic", "form": "fresh", "quantity": 3, "unit": "cloves"}},
+  {{"name": "oil", "form": "unspecified", "quantity": 2, "unit": "tbsp"}}
+]}}
 
-OUTPUT SCHEMA (REQUIRED - MUST BE VALID JSON):
-{{
-  "servings": number,
-  "ingredients": [
-    {{
-      "name": string,
-      "form": string (REQUIRED - from controlled vocabulary below),
-      "quantity": number OR null (NEVER use the word "unspecified" - use null instead),
-      "unit": string OR null,
-      "notes": string (optional)
-    }}
-  ]
-}}
-
-⚠️  CRITICAL JSON RULES:
-- quantity MUST be a number (e.g. 1, 2.5) or null - NEVER use strings like "unspecified"
-- unit MUST be a string (e.g. "oz", "tbsp") or null - NEVER use "unspecified"
-- If quantity/unit unknown, use null (not "unspecified", not "unknown")
-- All strings MUST be in quotes: "fresh" not fresh, "mushrooms" not mushrooms
-- No trailing commas in arrays or objects
-
-CONTROLLED VOCABULARY FOR "form" (MUST use one of these):
-Produce/Herbs: fresh, leaves, whole, chopped, paste, powder
-Spices: powder, seeds, whole_spice
-Meat: thighs, breast, drumsticks, whole_chicken, bone_in, boneless, ground
-Rice/Grains: basmati, jasmine, long_grain, short_grain, whole_grain
-Default: unspecified
-
-EXTRACTION GUIDELINES:
-✅ For recipe names (e.g., "fried rice", "biryani"), extract ALL typical ingredients for that dish
-✅ Include: main ingredients, vegetables, sauces, seasonings, cooking oils, aromatics (garlic, ginger, onions)
-✅ Be COMPREHENSIVE - include all ingredients a typical recipe would use
-✅ Match the cuisine/dish type - extract ingredients authentic to that recipe
-❌ Do NOT mix ingredients from different cuisines (no cumin in Chinese stir fry, no soy sauce in Italian pasta)
-
-FORBIDDEN SUBSTITUTIONS:
-❌ cumin → kalonji/black seed/nigella (these are DIFFERENT spices!)
-❌ bay leaves → spice blends/garam masala/chaat masala
-❌ coriander powder → cilantro leaves/coriander seeds (different forms!)
-❌ fresh ginger → ginger powder (different forms!)
-
-EXAMPLES:
-
-Example 1 (Stir fry - Asian vegetables and sauce):
-Input: "mushroom stir fry for 2"
-Output:
-{{
-  "servings": 2,
-  "ingredients": [
-    {{"name": "mushrooms", "form": "whole", "quantity": 8, "unit": "oz"}},
-    {{"name": "bell peppers", "form": "whole", "quantity": 2, "unit": "medium"}},
-    {{"name": "snap peas", "form": "whole", "quantity": 1, "unit": "cup"}},
-    {{"name": "soy sauce", "form": "unspecified", "quantity": 3, "unit": "tbsp"}},
-    {{"name": "ginger", "form": "fresh", "quantity": 1, "unit": "inch"}},
-    {{"name": "garlic", "form": "fresh", "quantity": 3, "unit": "cloves"}},
-    {{"name": "oil", "form": "unspecified", "quantity": 2, "unit": "tbsp"}},
-    {{"name": "rice", "form": "unspecified", "quantity": 1, "unit": "cup"}}
-  ]
-}}
-
-Example 2 (Pantry restocking - staple ingredients):
-Input: "restock korean pantry"
-Output:
-{{
-  "servings": 4,
-  "ingredients": [
-    {{"name": "gochugaru", "form": "powder", "quantity": 1, "unit": "jar"}},
-    {{"name": "doenjang", "form": "paste", "quantity": 1, "unit": "jar"}},
-    {{"name": "gochujang", "form": "paste", "quantity": 1, "unit": "jar"}},
-    {{"name": "sesame oil", "form": "unspecified", "quantity": 1, "unit": "bottle"}},
-    {{"name": "soy sauce", "form": "unspecified", "quantity": 1, "unit": "bottle"}},
-    {{"name": "rice vinegar", "form": "unspecified", "quantity": 1, "unit": "bottle"}},
-    {{"name": "sesame seeds", "form": "seeds", "quantity": 1, "unit": "jar"}}
-  ]
-}}
-
-Example 3 (Fried rice - comprehensive Asian ingredients):
-Input: "fried rice for 2"
-Output:
-{{
-  "servings": 2,
-  "ingredients": [
-    {{"name": "rice", "form": "long_grain", "quantity": 2, "unit": "cup"}},
-    {{"name": "eggs", "form": "unspecified", "quantity": 2, "unit": "each"}},
-    {{"name": "soy sauce", "form": "unspecified", "quantity": 3, "unit": "tbsp"}},
-    {{"name": "sesame oil", "form": "unspecified", "quantity": 1, "unit": "tsp"}},
-    {{"name": "garlic", "form": "fresh", "quantity": 3, "unit": "cloves"}},
-    {{"name": "ginger", "form": "fresh", "quantity": 1, "unit": "inch"}},
-    {{"name": "green onions", "form": "whole", "quantity": 3, "unit": "stalks"}},
-    {{"name": "carrots", "form": "chopped", "quantity": 1, "unit": "medium"}},
-    {{"name": "peas", "form": "whole", "quantity": 0.5, "unit": "cup"}},
-    {{"name": "oil", "form": "unspecified", "quantity": 2, "unit": "tbsp"}}
-  ]
-}}
-
-Example 4 (Specific ingredient list):
-Input: "fresh ginger, coriander powder, and cumin seeds"
-Output:
-{{
-  "servings": 2,
-  "ingredients": [
-    {{"name": "ginger", "form": "fresh", "quantity": 1, "unit": "unit"}},
-    {{"name": "coriander", "form": "powder", "quantity": 1, "unit": "unit"}},
-    {{"name": "cumin", "form": "seeds", "quantity": 1, "unit": "unit"}}
-  ]
-}}
-
-Example 5 (Indian biryani - spices and aromatics):
-Input: "chicken biryani for 4"
-Output:
-{{
-  "servings": 4,
-  "ingredients": [
-    {{"name": "chicken", "form": "thighs", "quantity": 1.5, "unit": "lb"}},
-    {{"name": "basmati rice", "form": "basmati", "quantity": 2, "unit": "cups"}},
-    {{"name": "onions", "form": "whole", "quantity": 2, "unit": "medium"}},
-    {{"name": "yogurt", "form": "unspecified", "quantity": 1, "unit": "cup"}},
-    {{"name": "ginger", "form": "fresh", "quantity": 2, "unit": "inches"}},
-    {{"name": "garlic", "form": "fresh", "quantity": 8, "unit": "cloves"}},
-    {{"name": "ghee", "form": "unspecified", "quantity": 3, "unit": "tbsp"}},
-    {{"name": "garam masala", "form": "powder", "quantity": 2, "unit": "tsp"}},
-    {{"name": "turmeric", "form": "powder", "quantity": 1, "unit": "tsp"}},
-    {{"name": "coriander", "form": "seeds", "quantity": 1, "unit": "tbsp"}},
-    {{"name": "cumin", "form": "seeds", "quantity": 1, "unit": "tsp"}},
-    {{"name": "cardamom", "form": "whole_spice", "quantity": 4, "unit": "pods"}},
-    {{"name": "mint", "form": "leaves", "quantity": 0.25, "unit": "cup"}},
-    {{"name": "cilantro", "form": "leaves", "quantity": 0.25, "unit": "cup"}}
-  ]
-}}
-
-NOW EXTRACT INGREDIENTS FROM THE USER'S MEAL PLAN ABOVE.
-
-CRITICAL REQUIREMENTS:
-- Every ingredient MUST have a "form" field from controlled vocabulary
-- Extract ONLY ingredients appropriate for the requested recipe/dish type
-- For recipe names (stir fry, biryani, pasta): infer typical ingredients for that dish
-- For pantry restocking: suggest common staples for that cuisine
-- Never substitute cumin→kalonji, bay leaves→blends, fresh→powder
-- Output ONLY valid JSON (no markdown, no explanation text)
-- No duplicate ingredients
-- Use canonical names (e.g., "coriander" not "coriander powder" in name field; form="powder" instead)
-- Match the cuisine/recipe type - don't mix Indian spices into Chinese stir fry, etc.
-
-JSON OUTPUT:"""
+JSON:"""
 
 
 def _parse_json_response(text: str) -> Optional[dict]:
@@ -406,9 +272,9 @@ def extract_ingredients_with_llm(
     try:
         response = client.generate_sync(
             prompt=formatted_prompt,
-            system=None,  # System prompt is embedded in formatted_prompt
-            max_tokens=3000,  # Increased for longer ingredient lists
-            temperature=0.3,  # Moderate temperature for comprehensive extraction while maintaining structure
+            system=INGREDIENT_SYSTEM_PROMPT,  # Concise system prompt
+            max_tokens=2000,
+            temperature=0.2,
         )
         response_text = response.text if response else None
     except Exception as e:

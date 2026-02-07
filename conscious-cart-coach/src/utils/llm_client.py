@@ -82,6 +82,7 @@ class AnthropicClient(BaseLLMClient):
         system: Optional[str] = None,
         temperature: float = 0.7,
         max_tokens: int = 1024,
+        use_cache: bool = True,
     ) -> LLMResponse:
         messages = [{"role": "user", "content": prompt}]
 
@@ -92,8 +93,19 @@ class AnthropicClient(BaseLLMClient):
             "temperature": temperature,
         }
 
+        # Enable prompt caching for system prompt (reduces cost on repeated calls)
+        # See: https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching
         if system:
-            kwargs["system"] = system
+            if use_cache:
+                kwargs["system"] = [
+                    {
+                        "type": "text",
+                        "text": system,
+                        "cache_control": {"type": "ephemeral"}
+                    }
+                ]
+            else:
+                kwargs["system"] = system
 
         response = self.client.messages.create(**kwargs)
 
