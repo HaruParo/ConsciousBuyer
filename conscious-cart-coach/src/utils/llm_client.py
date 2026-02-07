@@ -385,9 +385,38 @@ def get_llm_client(provider: Optional[str] = None) -> BaseLLMClient:
     provider = provider or os.environ.get("LLM_PROVIDER", default_provider).lower()
 
     if provider == "anthropic":
-        return AnthropicClient(
+        client = AnthropicClient(
             model=os.environ.get("ANTHROPIC_MODEL", "claude-3-haiku-20240307")
         )
+
+        # Wrap with Opik tracking if available
+        try:
+            import opik
+            from opik.integrations.anthropic import track_anthropic
+
+            # Configure Opik with API key if available
+            opik_api_key = os.environ.get("OPIK_API_KEY")
+            opik_workspace = os.environ.get("OPIK_WORKSPACE")
+            opik_project = os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer")
+
+            if opik_api_key:
+                opik.configure(
+                    api_key=opik_api_key,
+                    workspace=opik_workspace if opik_workspace else None
+                )
+
+            if client.client:
+                client.client = track_anthropic(
+                    client.client,
+                    project_name=opik_project
+                )
+                print(f"[Opik] Anthropic client wrapped with tracking (project: {opik_project})")
+        except ImportError:
+            pass  # Opik not installed
+        except Exception as e:
+            print(f"[Opik] Failed to enable tracking: {e}")
+
+        return client
 
     elif provider == "ollama":
         return OllamaClient(
