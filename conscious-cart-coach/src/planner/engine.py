@@ -1045,18 +1045,20 @@ class PlannerEngine:
                         # Build cheaper/conscious descriptions
                         cheaper_desc = None
                         if cheaper:
-                            cheaper_desc = f"{cheaper.get('brand', 'Unknown')} at ${cheaper.get('price', 0):.2f}"
+                            cheaper_candidate = cheaper["candidate"]
+                            cheaper_desc = f"{cheaper_candidate.brand or 'Store brand'} at ${cheaper_candidate.price:.2f}"
 
-                        # Get product details for explainer
+                        # Get product details from the ProductCandidate object
+                        ethical_candidate = ethical["candidate"]
                         llm_explanation = self._llm_explainer(
                             client=self._llm_client,
                             ingredient_name=canonical_name,
                             recommended_product={
-                                "brand": ethical.get("brand", "Unknown"),
-                                "price": ethical.get("price", 0.0),
-                                "size": ethical.get("size", ""),
-                                "unit_price": ethical.get("unit_price", 0.0),
-                                "organic": ethical.get("organic", False),
+                                "brand": ethical_candidate.brand or "Store brand",
+                                "price": ethical_candidate.price,
+                                "size": ethical_candidate.size or "",
+                                "unit_price": ethical_candidate.unit_price,
+                                "organic": ethical_candidate.organic,
                             },
                             scoring_factors=scoring_factors,
                             cheaper_option=cheaper_desc,
