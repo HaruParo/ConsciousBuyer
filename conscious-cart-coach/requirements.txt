@@ -4,8 +4,14 @@
 # Web Framework
 fastapi>=0.104.0
 
+# HTTP client (needed by LLM client)
+requests>=2.31.0
+
 # LLM Integration
 anthropic>=0.18.0
+
+# Observability & Tracing
+opik>=0.1.0
 
 # Configuration
 python-dotenv>=1.0.0

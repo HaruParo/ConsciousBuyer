@@ -57,7 +57,10 @@ def get_anthropic_client() -> Optional[BaseLLMClient]:
         This function maintains backward compatibility but now returns a unified
         client instead of a raw Anthropic client. The interface is compatible.
     """
-    provider = os.getenv("LLM_PROVIDER", "ollama").lower()
+    # Default to anthropic on Vercel/serverless, ollama for local development
+    is_serverless = os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME")
+    default_provider = "anthropic" if is_serverless else "ollama"
+    provider = os.getenv("LLM_PROVIDER", default_provider).lower()
 
     logger.info(f"Initializing LLM client with provider: {provider}")
 
