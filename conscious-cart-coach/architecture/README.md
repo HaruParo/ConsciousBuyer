@@ -20,8 +20,9 @@
 4. **[Data Flows](./04-data-flows.md)** - Understand how products get from CSV to cart
 5. **[LLM Integration](./02-llm-integration.md)** - AI enhancement strategy (now active!)
 6. **[LLM Skills Guide](./06-llm-skills.md)** - Working with LLM modules
+7. **[Agents Architecture](./07-agents.md)** - All agents, their responsibilities, and examples
 
-## The Six Documents
+## The Seven Documents
 
 ### 01. Technical Architecture
 **What it covers**:
@@ -46,6 +47,20 @@
 - Adding LLM features
 - Optimizing LLM costs
 - Understanding the AI strategy
+
+### 07. Agents Architecture
+**What it covers**:
+- All agents (Ingredient, Product, Safety, Seasonal, UserHistory)
+- Agent responsibilities and methods
+- Orchestrator flow and gating
+- Code examples for each agent
+- LLM client integration
+
+**Read this when**:
+- Working with agents
+- Adding a new agent
+- Understanding the orchestration flow
+- Debugging agent behavior
 
 ### 03. UI Flows
 **What it covers**:
@@ -168,7 +183,8 @@ conscious-cart-coach/
 │   ├── 03-ui-flows.md
 │   ├── 04-data-flows.md
 │   ├── 05-mental-models.md
-│   └── 06-llm-skills.md
+│   ├── 06-llm-skills.md
+│   └── 07-agents.md
 │
 ├── api/
 │   └── main.py            ← FastAPI endpoints (/api/plan-v2)
