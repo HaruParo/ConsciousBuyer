@@ -185,6 +185,7 @@ def explain_decisions_batch(
 
     # Build items text
     items_lines = []
+    ingredient_names = []
     for item in items:
         factors = ", ".join(item.get("scoring_factors", [])[:2]) or "standard"
         cheaper = item.get("cheaper_option") or "none"
@@ -192,9 +193,25 @@ def explain_decisions_batch(
             f"- {item['ingredient_name']}: {item['brand']} ${item['price']:.2f} "
             f"(scoring: {factors}, cheaper: {cheaper})"
         )
+        ingredient_names.append(item['ingredient_name'])
 
     items_text = "\n".join(items_lines)
     prompt = BATCH_EXPLANATION_PROMPT.format(items_text=items_text)
+
+    # Start Opik trace
+    trace = None
+    if OPIK_AVAILABLE and opik:
+        try:
+            from opik import Opik as OpikClient
+            opik_client = OpikClient()
+            trace = opik_client.trace(
+                name="decision_explanation_batch",
+                input={"ingredients": ingredient_names, "count": len(items)},
+                project_name=os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer"),
+            )
+            print(f"[Opik] Trace started for decision_explanation_batch")
+        except Exception as e:
+            print(f"[Opik] Trace creation failed: {e}")
 
     print(f"[LLM] Calling BATCHED decision explainer for {len(items)} items...")
 
@@ -208,6 +225,8 @@ def explain_decisions_batch(
 
         if not response or not response.text:
             print("[LLM] Batched explainer: empty response")
+            if trace:
+                trace.end(output={"error": "Empty response"})
             return {}
 
         # Parse JSON response
@@ -220,11 +239,17 @@ def explain_decisions_batch(
         if json_match:
             explanations = json.loads(json_match.group())
             print(f"[LLM] Batched explainer: got {len(explanations)} explanations")
+            if trace:
+                trace.end(output={"explanations": explanations, "count": len(explanations)})
             return explanations
         else:
             print(f"[LLM] Batched explainer: couldn't parse JSON from: {text[:100]}")
+            if trace:
+                trace.end(output={"error": "JSON parse failed", "raw": text[:200]})
             return {}
 
     except Exception as e:
         print(f"[LLM] Batched explainer error: {e}")
+        if trace:
+            trace.end(output={"error": str(e)})
         return {}
