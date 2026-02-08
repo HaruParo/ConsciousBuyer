@@ -1111,18 +1111,26 @@ class PlannerEngine:
                     items=items_for_explanation,
                 )
 
-                # Apply explanations to cart items
+                # Apply explanations to cart items (case-insensitive matching)
                 if explanations:
+                    # Create lowercase mapping for case-insensitive lookup
+                    explanations_lower = {k.lower(): v for k, v in explanations.items()}
+                    print(f"[LLM] Explanation keys: {list(explanations.keys())}")
+
                     for item in cart_items:
                         ingredient_name = item.ingredient_name
-                        if ingredient_name in explanations:
-                            llm_reason = explanations[ingredient_name]
+                        # Try exact match first, then case-insensitive
+                        llm_reason = explanations.get(ingredient_name) or explanations_lower.get(ingredient_name.lower())
+
+                        if llm_reason:
                             # Store original reason in details, use LLM as main reason
                             if item.reason:
                                 original = item.reason.line
                                 item.reason.line = llm_reason
                                 item.reason.details = [f"Scoring: {original}"] + (item.reason.details or [])
                             print(f"[LLM] Enhanced reason for {ingredient_name}: {llm_reason[:50]}...")
+                        else:
+                            print(f"[LLM] No explanation match for: {ingredient_name}")
             except Exception as e:
                 print(f"[LLM] Batched explanation failed: {e}")
                 # Keep deterministic reasons
