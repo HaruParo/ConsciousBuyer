@@ -304,6 +304,7 @@ def extract_ingredients_with_llm(
 
     # Call LLM (works with Anthropic, Ollama, Gemini, etc.)
     try:
+        print(f"[LLM] Calling {type(client).__name__} for ingredient extraction...")
         response = client.generate_sync(
             prompt=formatted_prompt,
             system=INGREDIENT_SYSTEM_PROMPT,  # Concise system prompt
@@ -311,7 +312,9 @@ def extract_ingredients_with_llm(
             temperature=0.2,
         )
         response_text = response.text if response else None
+        print(f"[LLM] Got response: {len(response_text) if response_text else 0} chars")
     except Exception as e:
+        print(f"[LLM] ERROR: {type(e).__name__}: {e}")
         logger.error(f"LLM API call failed for ingredient extraction: {e}")
         if trace:
             trace.end(output={"error": str(e)})
