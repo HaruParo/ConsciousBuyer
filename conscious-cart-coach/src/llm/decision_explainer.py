@@ -8,13 +8,10 @@ from ..utils.llm_client import BaseLLMClient
 
 # Opik tracking (optional)
 try:
-    from opik import track
+    import opik
     OPIK_AVAILABLE = True
 except ImportError:
-    def track(*args, **kwargs):
-        def decorator(func):
-            return func
-        return decorator
+    opik = None
     OPIK_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
@@ -40,7 +37,6 @@ Example: "The Earthbound Farm spinach at $3.99 offers organic certification for 
 Explanation:"""
 
 
-@track(name="decision_explanation", project_name=os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer"))
 def explain_decision_with_llm(
     client: BaseLLMClient,
     ingredient_name: str,
@@ -89,7 +85,25 @@ def explain_decision_with_llm(
         organic="Yes" if recommended_product.get("organic") else "No",
     )
 
+    # Start Opik trace for this LLM call
+    trace = None
+    if OPIK_AVAILABLE and opik:
+        try:
+            trace = opik.trace(
+                name="decision_explanation",
+                input={
+                    "ingredient": ingredient_name,
+                    "product": recommended_product.get("brand", "Unknown"),
+                    "price": recommended_product.get("price", 0.0),
+                    "prompt": formatted_prompt,
+                },
+                project_name=os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer"),
+            )
+        except Exception as e:
+            logger.debug(f"Opik trace failed to start: {e}")
+
     # Call LLM with system prompt (cached)
+    explanation = None
     try:
         print(f"[LLM] Calling decision explainer for {ingredient_name}...")
         response = client.generate_sync(
@@ -103,10 +117,14 @@ def explain_decision_with_llm(
     except Exception as e:
         print(f"[LLM] Decision explainer API error: {e}")
         logger.error(f"LLM API call failed for decision explanation: {e}")
+        if trace:
+            trace.end(output={"error": str(e)})
         return None
 
     if not explanation:
         logger.warning(f"Failed to generate explanation for {ingredient_name}")
+        if trace:
+            trace.end(output={"error": "Empty response"})
         return None
 
     # Clean up response (remove any markdown or extra formatting)
@@ -116,6 +134,10 @@ def explain_decision_with_llm(
     # Truncate if too long (shouldn't happen with max_tokens=100)
     if len(explanation) > 200:
         explanation = explanation[:197] + "..."
+
+    # End Opik trace with output
+    if trace:
+        trace.end(output={"explanation": explanation})
 
     logger.debug(f"Generated explanation for {ingredient_name}: {explanation[:80]}...")
     return explanation

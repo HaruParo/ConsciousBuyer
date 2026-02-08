@@ -14,14 +14,10 @@ except ImportError:
 
 # Opik tracking (optional)
 try:
-    from opik import track
+    import opik
     OPIK_AVAILABLE = True
 except ImportError:
-    # Create no-op decorator if opik not installed
-    def track(*args, **kwargs):
-        def decorator(func):
-            return func
-        return decorator
+    opik = None
     OPIK_AVAILABLE = False
 
 from .client import call_claude_with_retry
@@ -242,7 +238,6 @@ def _parse_ingredient_with_form(ingredient_text: str) -> tuple[str, str]:
     return text_lower, "unspecified"
 
 
-@track(name="ingredient_extraction", project_name=os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer"))
 def extract_ingredients_with_llm(
     client,  # BaseLLMClient (Anthropic, Ollama, Gemini, etc.)
     prompt: str,
@@ -263,6 +258,21 @@ def extract_ingredients_with_llm(
     if not client:
         logger.warning("No LLM client provided")
         return None
+
+    # Start Opik trace
+    trace = None
+    if OPIK_AVAILABLE and opik:
+        try:
+            trace = opik.trace(
+                name="ingredient_extraction",
+                input={
+                    "prompt": prompt,
+                    "servings": servings,
+                },
+                project_name=os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer"),
+            )
+        except Exception as e:
+            logger.debug(f"Opik trace failed to start: {e}")
 
     # Check for override mode
     is_override, ingredient_list = _detect_override_mode(prompt)
@@ -293,10 +303,14 @@ def extract_ingredients_with_llm(
         response_text = response.text if response else None
     except Exception as e:
         logger.error(f"LLM API call failed for ingredient extraction: {e}")
+        if trace:
+            trace.end(output={"error": str(e)})
         response_text = None
 
     if not response_text:
         logger.warning("LLM API call failed for ingredient extraction")
+        if trace:
+            trace.end(output={"error": "Empty response"})
         return None
 
     # Parse JSON
@@ -307,8 +321,13 @@ def extract_ingredients_with_llm(
         # If override mode and LLM failed, use deterministic fallback
         if is_override and ingredient_list:
             logger.info("LLM failed in override mode, using deterministic fallback")
-            return _deterministic_override_parse(ingredient_list, servings)
+            ingredients = _deterministic_override_parse(ingredient_list, servings)
+            if trace:
+                trace.end(output={"ingredients": ingredients, "method": "fallback"})
+            return ingredients
 
+        if trace:
+            trace.end(output={"error": "JSON parse failed"})
         return None
 
     # Validate structure
@@ -318,12 +337,24 @@ def extract_ingredients_with_llm(
         # If override mode and validation failed, use deterministic fallback
         if is_override and ingredient_list:
             logger.info("Validation failed in override mode, using deterministic fallback")
-            return _deterministic_override_parse(ingredient_list, servings)
+            ingredients = _deterministic_override_parse(ingredient_list, servings)
+            if trace:
+                trace.end(output={"ingredients": ingredients, "method": "fallback"})
+            return ingredients
 
+        if trace:
+            trace.end(output={"error": "Validation failed"})
         return None
 
     ingredients = parsed["ingredients"]
     logger.info(f"LLM extracted {len(ingredients)} ingredients from: '{prompt}'")
+
+    # End trace with success
+    if trace:
+        trace.end(output={
+            "ingredients": [i.get("name") for i in ingredients],
+            "count": len(ingredients),
+        })
 
     return ingredients
 
