@@ -175,6 +175,8 @@ vercel deploy
 
 We use [Opik](https://www.comet.com/opik) for LLM observability and evaluation.
 
+**[Watch the Demo Video](https://drive.google.com/file/d/1QFpJDj77krXJbROkvQs7Y69OiYw9xNRP/view?usp=sharing)** - 90-second walkthrough of Opik features in action.
+
 ### What We Track
 - Every LLM call with inputs, outputs, latency
 - Token usage and costs
