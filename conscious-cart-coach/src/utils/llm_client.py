@@ -470,7 +470,7 @@ def get_llm_client(provider: Optional[str] = None) -> BaseLLMClient:
 
     elif provider == "gemini":
         return GeminiClient(
-            model=os.environ.get("GEMINI_MODEL", "gemini-2.0-flash-lite")
+            model=os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")  # Different model = different quota
         )
 
     elif provider == "openai":
