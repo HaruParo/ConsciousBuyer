@@ -27,26 +27,46 @@ Our initial LLM prompts were verbose and costly, consuming **2,353 tokens** per 
 
 ### Datasets Created
 
-**Ingredient Extraction Test**
-```
-Input: "chicken biryani for 4"
-Expected: ["chicken", "basmati rice", "onion", "yogurt", "ginger", "garlic"]
+**Dataset 1: `ingredient_extraction_test`**
+```json
+{
+  "input": "chicken biryani for 4",
+  "expected_ingredients": [
+    "chicken",
+    "basmati rice",
+    "onion",
+    "yogurt",
+    "ginger",
+    "garlic"
+  ]
+}
 ```
 
-**Decision Explanation Test**
-```
-Input: Olive oil recommendation
-Product: California Olive Ranch ($12.99)
-Cheaper Option: Store brand ($7.99)
-Should Mention: ["California", "quality"]
+**Dataset 2: `decision_explanation_test`**
+```json
+{
+  "ingredient": "Olive oil",
+  "product": {
+    "brand": "California Olive Ranch",
+    "price": 12.99,
+    "size": "500ml",
+    "organic": false
+  },
+  "scoring_factors": [
+    "California origin: +10",
+    "fresh harvest: +5"
+  ],
+  "cheaper_option": "Store brand at $7.99",
+  "should_mention": ["California", "quality"]
+}
 ```
 
 ### Experiment Results
 
-| Experiment | Latency | Quality Score |
-|------------|---------|---------------|
-| Ingredient Extractor | 4.6s | 0.8 avg coverage |
-| Decision Explainer | 1.3s | 0.6 quality, 0.7 length |
+| Experiment | Latency | Metrics |
+|------------|---------|---------|
+| Ingredient Extractor | 4.6s | ingredient_count: 0.8, ingredient_avg: 0.8 |
+| Decision Explainer | 1.3s | explanation_quality: 0.6, explanation_length: 0.7 |
 
 ---
 
@@ -87,7 +107,7 @@ explanations = explain_decisions_batch(client, all_items)  # Returns JSON
 }
 ```
 
-**Opik traces showed the dramatic reduction in API calls and helped us validate the batched output quality.**
+**Result: Now there are just 2 LLM calls total per request.** Opik traces showed the dramatic reduction and helped validate batched output quality.
 
 ---
 
@@ -97,16 +117,25 @@ explanations = explain_decisions_batch(client, all_items)  # Returns JSON
 Used Opik's online evaluation to score production responses in real-time.
 
 ### Judge Prompt
-> *"You are an impartial AI judge. Evaluate if the assistant's output effectively addresses the user's input. Consider: accuracy, completeness, and relevance."*
+```
+You are an impartial AI judge. Evaluate if the assistant's output
+effectively addresses the user's input. Consider: accuracy,
+completeness, and relevance. Provide a binary score (true/false)
+and explain your reasoning in one clear sentence.
+```
 
 ### Sample Evaluation Response
+**TraceId:** `019c3a33-0683-7393-a8de-43f8c8d56769`
+
 ```json
 {
   "Correctness": {
     "score": true,
     "reason": "The output accurately explains the recommendation
                for Pure Indian Foods salt by highlighting its organic
-               certification, affordability, and clean EWG rating."
+               certification, affordability, and clean EWG rating,
+               while adhering to the user's request for a concise
+               and conversational response."
   }
 }
 ```
@@ -162,6 +191,21 @@ Traces with score < 0.8  →  Annotation Queue  →  Human Review
 | Response Accuracy | Validated with LLM judge |
 | Edge Cases | Caught via human annotation |
 | Development Velocity | Faster iteration with traces |
+
+---
+
+## Summary: Opik Features Used
+
+| Section | Coverage |
+|---------|----------|
+| Opik Assist | ✅ 2,353 → 500-600 tokens, system prompt caching |
+| Dataset 1 | ✅ `ingredient_extraction_test` with full JSON |
+| Dataset 2 | ✅ `decision_explanation_test` with product, scoring_factors, should_mention |
+| Experiment Results | ✅ Exact metrics (4.6s/0.8, 1.3s/0.6/0.7) |
+| LLM Judge Prompt | ✅ Full prompt with "binary score (true/false)" |
+| Sample Response | ✅ TraceId + Correctness JSON with Pure Indian Foods |
+| Batching | ✅ "Now there are just 2 LLM calls total per request" |
+| Annotation Queues | ✅ Workflow and labels |
 
 ---
 
