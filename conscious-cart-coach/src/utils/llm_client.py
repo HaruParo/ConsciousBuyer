@@ -296,7 +296,9 @@ class GeminiClient(BaseLLMClient):
             elif e.response.status_code == 401:
                 raise ValueError("Invalid GOOGLE_API_KEY. Check your API key.")
             elif e.response.status_code == 429:
-                raise Exception("Gemini API rate limit exceeded. Try again later.")
+                # Log full error for debugging
+                print(f"[Gemini] Rate limit response: {e.response.text}")
+                raise Exception(f"Gemini API rate limit exceeded. Details: {e.response.text[:200]}")
             else:
                 raise Exception(f"Gemini API error ({e.response.status_code}): {e.response.text}")
         except Exception as e:

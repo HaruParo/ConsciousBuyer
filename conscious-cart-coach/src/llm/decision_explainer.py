@@ -151,3 +151,80 @@ def explain_decision_with_llm(
 
     logger.debug(f"Generated explanation for {ingredient_name}: {explanation[:80]}...")
     return explanation
+
+
+# Batched explanation prompt for multiple ingredients at once
+BATCH_EXPLANATION_SYSTEM = """You explain grocery product recommendations concisely.
+For each ingredient, provide a 1-sentence explanation.
+Be conversational, reference prices, mention key tradeoffs.
+Output as JSON: {"ingredient_name": "explanation", ...}"""
+
+BATCH_EXPLANATION_PROMPT = """Explain why these products were recommended:
+
+{items_text}
+
+Output JSON with one explanation per ingredient (1 sentence each):"""
+
+
+def explain_decisions_batch(
+    client: BaseLLMClient,
+    items: list[dict],
+) -> dict[str, str]:
+    """
+    Generate explanations for ALL items in ONE LLM call.
+
+    Args:
+        client: LLM client instance
+        items: List of dicts with keys: ingredient_name, brand, price, scoring_factors, cheaper_option
+
+    Returns:
+        Dict mapping ingredient_name -> explanation
+    """
+    if not client or not items:
+        return {}
+
+    # Build items text
+    items_lines = []
+    for item in items:
+        factors = ", ".join(item.get("scoring_factors", [])[:2]) or "standard"
+        cheaper = item.get("cheaper_option") or "none"
+        items_lines.append(
+            f"- {item['ingredient_name']}: {item['brand']} ${item['price']:.2f} "
+            f"(scoring: {factors}, cheaper: {cheaper})"
+        )
+
+    items_text = "\n".join(items_lines)
+    prompt = BATCH_EXPLANATION_PROMPT.format(items_text=items_text)
+
+    print(f"[LLM] Calling BATCHED decision explainer for {len(items)} items...")
+
+    try:
+        response = client.generate_sync(
+            prompt=prompt,
+            system=BATCH_EXPLANATION_SYSTEM,
+            max_tokens=500,
+            temperature=0.3,
+        )
+
+        if not response or not response.text:
+            print("[LLM] Batched explainer: empty response")
+            return {}
+
+        # Parse JSON response
+        import json
+        import re
+
+        text = response.text.strip()
+        # Try to extract JSON from response
+        json_match = re.search(r'\{[^{}]*\}', text, re.DOTALL)
+        if json_match:
+            explanations = json.loads(json_match.group())
+            print(f"[LLM] Batched explainer: got {len(explanations)} explanations")
+            return explanations
+        else:
+            print(f"[LLM] Batched explainer: couldn't parse JSON from: {text[:100]}")
+            return {}
+
+    except Exception as e:
+        print(f"[LLM] Batched explainer error: {e}")
+        return {}
