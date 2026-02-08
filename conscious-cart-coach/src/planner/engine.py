@@ -103,15 +103,15 @@ class PlannerEngine:
 
         # Initialize LLM client for explanations
         self._llm_client = None
-        self._llm_explainer = None
+        self._llm_explainer_batch = None
 
         if self.use_llm_explanations:
             try:
                 from ..utils.llm_client import get_llm_client
-                from ..llm.decision_explainer import explain_decision_with_llm
+                from ..llm.decision_explainer import explain_decisions_batch
 
                 self._llm_client = get_llm_client()
-                self._llm_explainer = explain_decision_with_llm
+                self._llm_explainer_batch = explain_decisions_batch
 
                 if self._llm_client:
                     print(f"[LLM] PlannerEngine: LLM explanations ENABLED (client: {type(self._llm_client).__name__})")
@@ -982,6 +982,9 @@ class PlannerEngine:
             for ingredient_name in assignment.ingredient_names:
                 store_by_ingredient[ingredient_name] = assignment.store_id
 
+        # Collect items for batched LLM explanation
+        items_for_explanation = []
+
         # Process EVERY ingredient (not just those with selections)
         for ingredient in all_ingredients:
             selection = selections.get(ingredient)
@@ -1036,51 +1039,23 @@ class PlannerEngine:
                     ethical, runner_up, cheaper, canonical_name, form, winner_breakdown, runner_up_breakdown
                 )
 
-                # Enhance reason with LLM if enabled
-                if self.use_llm_explanations and self._llm_explainer and self._llm_client:
-                    try:
-                        # Build scoring factors from breakdown
-                        scoring_factors = [f"{k}: {v:+d}" for k, v in winner_breakdown.items() if v != 0]
+                # Collect data for batched LLM explanation (will be called after loop)
+                if self.use_llm_explanations and self._llm_client:
+                    scoring_factors = [f"{k}: {v:+d}" for k, v in winner_breakdown.items() if v != 0]
+                    cheaper_desc = None
+                    if cheaper:
+                        cheaper_candidate = cheaper["candidate"]
+                        cheaper_desc = f"{cheaper_candidate.brand or 'Store brand'} at ${cheaper_candidate.price:.2f}"
 
-                        # Build cheaper/conscious descriptions
-                        cheaper_desc = None
-                        if cheaper:
-                            cheaper_candidate = cheaper["candidate"]
-                            cheaper_desc = f"{cheaper_candidate.brand or 'Store brand'} at ${cheaper_candidate.price:.2f}"
-
-                        # Get product details from the ProductCandidate object
-                        ethical_candidate = ethical["candidate"]
-                        llm_explanation = self._llm_explainer(
-                            client=self._llm_client,
-                            ingredient_name=canonical_name,
-                            recommended_product={
-                                "brand": ethical_candidate.brand or "Store brand",
-                                "price": ethical_candidate.price,
-                                "size": ethical_candidate.size or "",
-                                "unit_price": ethical_candidate.unit_price,
-                                "organic": ethical_candidate.organic,
-                            },
-                            scoring_factors=scoring_factors,
-                            cheaper_option=cheaper_desc,
-                            conscious_option=None,  # We're already recommending the conscious option
-                            user_prefs={},  # TODO: Pass user preferences when available
-                        )
-
-                        if llm_explanation:
-                            # Use LLM explanation as reason_line, keep deterministic as first detail
-                            original_reason = reason_line
-                            reason_line = llm_explanation
-                            # Prepend the deterministic reason to details for transparency
-                            reason_details = [f"Scoring: {original_reason}"] + reason_details
-                            print(f"[LLM] Enhanced reason for {canonical_name}: {llm_explanation[:60]}...")
-                            logger.debug(f"LLM enhanced reason for {canonical_name}: {llm_explanation[:80]}...")
-                        else:
-                            print(f"[LLM] No explanation returned for {canonical_name}")
-
-                    except Exception as e:
-                        print(f"[LLM] Explanation failed for {canonical_name}: {e}")
-                        logger.warning(f"LLM explanation failed for {canonical_name}: {e} - using deterministic reason")
-                        # Keep original deterministic reason_line
+                    ethical_candidate = ethical["candidate"]
+                    items_for_explanation.append({
+                        "ingredient_name": canonical_name,
+                        "brand": ethical_candidate.brand or "Store brand",
+                        "price": ethical_candidate.price,
+                        "scoring_factors": scoring_factors,
+                        "cheaper_option": cheaper_desc,
+                        "original_reason": reason_line,
+                    })
 
                 # Build decision trace for scoring drawer (only if requested)
                 decision_trace = None
@@ -1127,6 +1102,37 @@ class PlannerEngine:
                 )
 
             cart_items.append(cart_item)
+
+        # BATCHED LLM explanations - ONE call for all items (avoids rate limits)
+        if self.use_llm_explanations and self._llm_client and items_for_explanation:
+            try:
+                explanations = self._llm_explainer_batch(
+                    client=self._llm_client,
+                    items=items_for_explanation,
+                )
+
+                # Apply explanations to cart items (case-insensitive matching)
+                if explanations:
+                    # Create lowercase mapping for case-insensitive lookup
+                    explanations_lower = {k.lower(): v for k, v in explanations.items()}
+                    print(f"[LLM] Explanation keys: {list(explanations.keys())}")
+
+                    for item in cart_items:
+                        ingredient_name = item.ingredient_name
+                        # Try exact match first, then case-insensitive
+                        llm_reason = explanations.get(ingredient_name) or explanations_lower.get(ingredient_name.lower())
+
+                        if llm_reason:
+                            # Store original reason in details, use LLM as main reason
+                            original = item.reason_line
+                            item.reason_line = llm_reason
+                            item.reason_details = [f"Scoring: {original}"] + (item.reason_details or [])
+                            print(f"[LLM] Enhanced reason for {ingredient_name}: {llm_reason[:50]}...")
+                        else:
+                            print(f"[LLM] No explanation match for: {ingredient_name}")
+            except Exception as e:
+                print(f"[LLM] Batched explanation failed: {e}")
+                # Keep deterministic reasons
 
         return cart_items
 

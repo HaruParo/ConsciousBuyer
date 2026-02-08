@@ -1,9 +1,28 @@
 """LLM-powered explanation generator for decision recommendations."""
 
 import logging
+import os
 from typing import Optional
 
 from ..utils.llm_client import BaseLLMClient
+
+# Opik tracking (optional)
+try:
+    import opik
+    # Configure Opik on import if API key available
+    opik_api_key = os.environ.get("OPIK_API_KEY")
+    if opik_api_key:
+        opik.configure(
+            api_key=opik_api_key,
+            workspace=os.environ.get("OPIK_WORKSPACE", "default"),
+        )
+    OPIK_AVAILABLE = True
+except ImportError:
+    opik = None
+    OPIK_AVAILABLE = False
+except Exception:
+    opik = None
+    OPIK_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
 
@@ -76,7 +95,25 @@ def explain_decision_with_llm(
         organic="Yes" if recommended_product.get("organic") else "No",
     )
 
+    # Start Opik trace for this LLM call
+    trace = None
+    if OPIK_AVAILABLE and opik:
+        try:
+            trace = opik.trace(
+                name="decision_explanation",
+                input={
+                    "ingredient": ingredient_name,
+                    "product": recommended_product.get("brand", "Unknown"),
+                    "price": recommended_product.get("price", 0.0),
+                    "prompt": formatted_prompt,
+                },
+                project_name=os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer"),
+            )
+        except Exception as e:
+            logger.debug(f"Opik trace failed to start: {e}")
+
     # Call LLM with system prompt (cached)
+    explanation = None
     try:
         print(f"[LLM] Calling decision explainer for {ingredient_name}...")
         response = client.generate_sync(
@@ -90,10 +127,14 @@ def explain_decision_with_llm(
     except Exception as e:
         print(f"[LLM] Decision explainer API error: {e}")
         logger.error(f"LLM API call failed for decision explanation: {e}")
+        if trace:
+            trace.end(output={"error": str(e)})
         return None
 
     if not explanation:
         logger.warning(f"Failed to generate explanation for {ingredient_name}")
+        if trace:
+            trace.end(output={"error": "Empty response"})
         return None
 
     # Clean up response (remove any markdown or extra formatting)
@@ -104,5 +145,111 @@ def explain_decision_with_llm(
     if len(explanation) > 200:
         explanation = explanation[:197] + "..."
 
+    # End Opik trace with output
+    if trace:
+        trace.end(output={"explanation": explanation})
+
     logger.debug(f"Generated explanation for {ingredient_name}: {explanation[:80]}...")
     return explanation
+
+
+# Batched explanation prompt for multiple ingredients at once
+BATCH_EXPLANATION_SYSTEM = """You explain grocery product recommendations concisely.
+For each ingredient, provide a 1-sentence explanation.
+Be conversational, reference prices, mention key tradeoffs.
+Output as JSON: {"ingredient_name": "explanation", ...}"""
+
+BATCH_EXPLANATION_PROMPT = """Explain why these products were recommended:
+
+{items_text}
+
+Output JSON with one explanation per ingredient (1 sentence each):"""
+
+
+def explain_decisions_batch(
+    client: BaseLLMClient,
+    items: list[dict],
+) -> dict[str, str]:
+    """
+    Generate explanations for ALL items in ONE LLM call.
+
+    Args:
+        client: LLM client instance
+        items: List of dicts with keys: ingredient_name, brand, price, scoring_factors, cheaper_option
+
+    Returns:
+        Dict mapping ingredient_name -> explanation
+    """
+    if not client or not items:
+        return {}
+
+    # Build items text
+    items_lines = []
+    ingredient_names = []
+    for item in items:
+        factors = ", ".join(item.get("scoring_factors", [])[:2]) or "standard"
+        cheaper = item.get("cheaper_option") or "none"
+        items_lines.append(
+            f"- {item['ingredient_name']}: {item['brand']} ${item['price']:.2f} "
+            f"(scoring: {factors}, cheaper: {cheaper})"
+        )
+        ingredient_names.append(item['ingredient_name'])
+
+    items_text = "\n".join(items_lines)
+    prompt = BATCH_EXPLANATION_PROMPT.format(items_text=items_text)
+
+    # Start Opik trace
+    trace = None
+    if OPIK_AVAILABLE and opik:
+        try:
+            from opik import Opik as OpikClient
+            opik_client = OpikClient()
+            trace = opik_client.trace(
+                name="decision_explanation_batch",
+                input={"ingredients": ingredient_names, "count": len(items)},
+                project_name=os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer"),
+            )
+            print(f"[Opik] Trace started for decision_explanation_batch")
+        except Exception as e:
+            print(f"[Opik] Trace creation failed: {e}")
+
+    print(f"[LLM] Calling BATCHED decision explainer for {len(items)} items...")
+
+    try:
+        response = client.generate_sync(
+            prompt=prompt,
+            system=BATCH_EXPLANATION_SYSTEM,
+            max_tokens=500,
+            temperature=0.3,
+        )
+
+        if not response or not response.text:
+            print("[LLM] Batched explainer: empty response")
+            if trace:
+                trace.end(output={"error": "Empty response"})
+            return {}
+
+        # Parse JSON response
+        import json
+        import re
+
+        text = response.text.strip()
+        # Try to extract JSON from response
+        json_match = re.search(r'\{[^{}]*\}', text, re.DOTALL)
+        if json_match:
+            explanations = json.loads(json_match.group())
+            print(f"[LLM] Batched explainer: got {len(explanations)} explanations")
+            if trace:
+                trace.end(output={"explanations": explanations, "count": len(explanations)})
+            return explanations
+        else:
+            print(f"[LLM] Batched explainer: couldn't parse JSON from: {text[:100]}")
+            if trace:
+                trace.end(output={"error": "JSON parse failed", "raw": text[:200]})
+            return {}
+
+    except Exception as e:
+        print(f"[LLM] Batched explainer error: {e}")
+        if trace:
+            trace.end(output={"error": str(e)})
+        return {}

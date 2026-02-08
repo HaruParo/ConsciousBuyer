@@ -20,8 +20,11 @@ try:
     def debug_env():
         return {
             "VERCEL": os.environ.get("VERCEL", "not set"),
+            "DEPLOYMENT_ENV": os.environ.get("DEPLOYMENT_ENV", "not set"),
+            "LLM_PROVIDER": os.environ.get("LLM_PROVIDER", "not set"),
             "ANTHROPIC_API_KEY": "set" if os.environ.get("ANTHROPIC_API_KEY") else "NOT SET",
-            "LLM_PROVIDER": os.environ.get("LLM_PROVIDER", "not set (will default to anthropic on Vercel)"),
+            "GOOGLE_API_KEY": "set" if os.environ.get("GOOGLE_API_KEY") else "NOT SET",
+            "OPIK_API_KEY": "set" if os.environ.get("OPIK_API_KEY") else "NOT SET",
         }
 
 except Exception as e:
