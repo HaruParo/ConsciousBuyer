@@ -143,13 +143,16 @@ class IngredientAgent:
         self._llm_extractor = None
         if self.use_llm:
             try:
+                print("[IngredientAgent] Initializing LLM support...")
                 from ..utils.llm_client import get_llm_client
                 from ..llm.ingredient_extractor import extract_ingredients_with_llm
                 self._llm_extractor = extract_ingredients_with_llm
                 if not self.llm_client:
                     self.llm_client = get_llm_client()
+                print(f"[IngredientAgent] LLM client: {type(self.llm_client).__name__}")
                 logger.info(f"IngredientAgent initialized with LLM support (provider: {type(self.llm_client).__name__})")
             except Exception as e:
+                print(f"[IngredientAgent] ERROR initializing LLM: {type(e).__name__}: {e}")
                 logger.warning(f"LLM module not available: {e}. Falling back to templates.")
                 self.use_llm = False
 
@@ -168,16 +171,23 @@ class IngredientAgent:
         """
         try:
             # Try LLM extraction first (if enabled)
+            print(f"[IngredientAgent] extract() called - use_llm={self.use_llm}, has_client={self.llm_client is not None}, has_extractor={self._llm_extractor is not None}")
             if self.use_llm and self.llm_client and self._llm_extractor:
+                print(f"[IngredientAgent] Attempting LLM extraction for: '{user_prompt}'")
                 logger.info(f"Attempting LLM extraction for: '{user_prompt}'")
                 llm_result = self._extract_with_llm(user_prompt, servings)
                 if llm_result:
+                    print("[IngredientAgent] LLM extraction successful")
                     logger.info("LLM extraction successful")
                     return llm_result
                 else:
+                    print("[IngredientAgent] LLM extraction failed, falling back to templates")
                     logger.warning("LLM extraction failed, falling back to templates")
+            else:
+                print(f"[IngredientAgent] Skipping LLM (disabled or not available)")
 
             # Fall back to template-based extraction
+            print(f"[IngredientAgent] Using template-based extraction")
             logger.info(f"Using template-based extraction for: '{user_prompt}'")
             return self._extract_with_templates(user_prompt, servings)
 
@@ -188,16 +198,20 @@ class IngredientAgent:
     def _extract_with_llm(self, user_prompt: str, servings: int | None = None) -> Optional[AgentResult]:
         """Extract ingredients using LLM (Anthropic, Ollama, Gemini, etc.)."""
         if not self._llm_extractor or not self.llm_client:
+            print("[IngredientAgent._extract_with_llm] Missing extractor or client")
             return None
 
         try:
             target_servings = servings or self._extract_servings(user_prompt.lower()) or 4
+            print(f"[IngredientAgent._extract_with_llm] Calling LLM extractor with servings={target_servings}")
 
             llm_ingredients = self._llm_extractor(
                 client=self.llm_client,
                 prompt=user_prompt,
                 servings=target_servings,
             )
+
+            print(f"[IngredientAgent._extract_with_llm] LLM returned: {len(llm_ingredients) if llm_ingredients else 0} ingredients")
 
             if not llm_ingredients:
                 return None
