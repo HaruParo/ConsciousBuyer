@@ -2,6 +2,7 @@
 
 import json
 import logging
+import os
 import re
 from typing import Optional
 
@@ -10,6 +11,18 @@ try:
     from anthropic import Anthropic
 except ImportError:
     Anthropic = None
+
+# Opik tracking (optional)
+try:
+    from opik import track
+    OPIK_AVAILABLE = True
+except ImportError:
+    # Create no-op decorator if opik not installed
+    def track(*args, **kwargs):
+        def decorator(func):
+            return func
+        return decorator
+    OPIK_AVAILABLE = False
 
 from .client import call_claude_with_retry
 
@@ -229,6 +242,7 @@ def _parse_ingredient_with_form(ingredient_text: str) -> tuple[str, str]:
     return text_lower, "unspecified"
 
 
+@track(name="ingredient_extraction", project_name=os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer"))
 def extract_ingredients_with_llm(
     client,  # BaseLLMClient (Anthropic, Ollama, Gemini, etc.)
     prompt: str,

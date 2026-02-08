@@ -72,7 +72,35 @@ Used Opik's online evaluation to score production responses in real-time.
 
 ---
 
-## Slide 4: Key Takeaways
+## Slide 4: Human Review with Annotation Queues
+
+### The Need
+Automated scoring catches most issues, but edge cases require human judgment.
+
+### Annotation Queue Setup
+Created review queues for traces that need human validation:
+
+```
+Traces with score < 0.8  →  Annotation Queue  →  Human Review
+```
+
+### Review Workflow
+
+| Step | Action |
+|------|--------|
+| 1. Queue | Low-confidence traces auto-added to review queue |
+| 2. Review | Human reviewer sees input, output, and LLM scores |
+| 3. Annotate | Add labels: correct, incorrect, hallucination |
+| 4. Export | Build curated dataset from reviewed samples |
+
+### Annotations Added
+- **Correctness labels** - Binary pass/fail on ingredient extraction
+- **Quality scores** - 1-5 rating on explanation clarity
+- **Edge case tags** - Flagged unusual ingredient combinations
+
+---
+
+## Slide 5: Key Takeaways
 
 ### What Opik Enabled
 
@@ -80,6 +108,7 @@ Used Opik's online evaluation to score production responses in real-time.
 2. **Optimization** - Reduced token usage by 75% with Opik Assist
 3. **Quality Assurance** - Automated scoring with custom metrics
 4. **Production Monitoring** - Real-time evaluation with LLM-as-Judge
+5. **Human-in-the-Loop** - Annotation queues for edge case review
 
 ### Impact on Conscious Cart Coach
 
@@ -88,6 +117,7 @@ Used Opik's online evaluation to score production responses in real-time.
 | Token Costs | 75% reduction |
 | Prompt Quality | Measurable via experiments |
 | Response Accuracy | Validated with LLM judge |
+| Edge Cases | Caught via human annotation |
 | Development Velocity | Faster iteration with traces |
 
 ---

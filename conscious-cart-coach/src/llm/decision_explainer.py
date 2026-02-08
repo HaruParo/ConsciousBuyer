@@ -1,9 +1,21 @@
 """LLM-powered explanation generator for decision recommendations."""
 
 import logging
+import os
 from typing import Optional
 
 from ..utils.llm_client import BaseLLMClient
+
+# Opik tracking (optional)
+try:
+    from opik import track
+    OPIK_AVAILABLE = True
+except ImportError:
+    def track(*args, **kwargs):
+        def decorator(func):
+            return func
+        return decorator
+    OPIK_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
 
@@ -28,6 +40,7 @@ Example: "The Earthbound Farm spinach at $3.99 offers organic certification for 
 Explanation:"""
 
 
+@track(name="decision_explanation", project_name=os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer"))
 def explain_decision_with_llm(
     client: BaseLLMClient,
     ingredient_name: str,
