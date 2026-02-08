@@ -215,7 +215,7 @@ class GeminiClient(BaseLLMClient):
     def __init__(
         self,
         api_key: Optional[str] = None,
-        model: str = "gemini-1.5-flash-latest",  # Fast model with separate quota
+        model: str = "gemini-pro",  # Stable model
     ):
         self.api_key = api_key or os.environ.get("GOOGLE_API_KEY")
         self.model = model
@@ -470,7 +470,7 @@ def get_llm_client(provider: Optional[str] = None) -> BaseLLMClient:
 
     elif provider == "gemini":
         return GeminiClient(
-            model=os.environ.get("GEMINI_MODEL", "gemini-1.5-flash-latest")  # Different model = different quota
+            model=os.environ.get("GEMINI_MODEL", "gemini-pro")  # Stable model name
         )
 
     elif provider == "openai":
