@@ -14,25 +14,25 @@ except ImportError:
 
 # Opik tracking (optional)
 try:
-    import opik
+    from opik import track as opik_track
+    from opik import Opik as OpikClient
     # Configure Opik on import if API key available
     opik_api_key = os.environ.get("OPIK_API_KEY")
     if opik_api_key:
+        import opik
         opik.configure(
             api_key=opik_api_key,
             workspace=os.environ.get("OPIK_WORKSPACE", "default"),
         )
-        print(f"[Opik] ingredient_extractor: Configured with workspace={os.environ.get('OPIK_WORKSPACE', 'default')}")
-    else:
-        print("[Opik] ingredient_extractor: OPIK_API_KEY not set")
+        print(f"[Opik] ingredient_extractor: Configured")
     OPIK_AVAILABLE = True
 except ImportError as e:
     print(f"[Opik] ingredient_extractor: Import failed - {e}")
-    opik = None
+    opik_track = None
     OPIK_AVAILABLE = False
 except Exception as e:
     print(f"[Opik] ingredient_extractor: Config failed - {type(e).__name__}: {e}")
-    opik = None
+    opik_track = None
     OPIK_AVAILABLE = False
 
 from .client import call_claude_with_retry
@@ -274,25 +274,19 @@ def extract_ingredients_with_llm(
         logger.warning("No LLM client provided")
         return None
 
-    # Start Opik trace
+    # Start Opik trace using the correct API
     trace = None
-    print(f"[Opik] OPIK_AVAILABLE={OPIK_AVAILABLE}, opik={opik is not None}")
-    if OPIK_AVAILABLE and opik:
+    if OPIK_AVAILABLE:
         try:
-            project = os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer")
-            print(f"[Opik] Creating trace for ingredient_extraction (project={project})")
-            trace = opik.trace(
+            opik_client = OpikClient()
+            trace = opik_client.trace(
                 name="ingredient_extraction",
-                input={
-                    "prompt": prompt,
-                    "servings": servings,
-                },
-                project_name=project,
+                input={"prompt": prompt, "servings": servings},
+                project_name=os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer"),
             )
-            print(f"[Opik] Trace created: {trace}")
+            print(f"[Opik] Trace started for ingredient_extraction")
         except Exception as e:
             print(f"[Opik] Trace creation failed: {type(e).__name__}: {e}")
-            logger.debug(f"Opik trace failed to start: {e}")
 
     # Check for override mode
     is_override, ingredient_list = _detect_override_mode(prompt)
