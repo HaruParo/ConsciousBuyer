@@ -22,11 +22,16 @@ try:
             api_key=opik_api_key,
             workspace=os.environ.get("OPIK_WORKSPACE", "default"),
         )
+        print(f"[Opik] ingredient_extractor: Configured with workspace={os.environ.get('OPIK_WORKSPACE', 'default')}")
+    else:
+        print("[Opik] ingredient_extractor: OPIK_API_KEY not set")
     OPIK_AVAILABLE = True
-except ImportError:
+except ImportError as e:
+    print(f"[Opik] ingredient_extractor: Import failed - {e}")
     opik = None
     OPIK_AVAILABLE = False
-except Exception:
+except Exception as e:
+    print(f"[Opik] ingredient_extractor: Config failed - {type(e).__name__}: {e}")
     opik = None
     OPIK_AVAILABLE = False
 
@@ -271,17 +276,22 @@ def extract_ingredients_with_llm(
 
     # Start Opik trace
     trace = None
+    print(f"[Opik] OPIK_AVAILABLE={OPIK_AVAILABLE}, opik={opik is not None}")
     if OPIK_AVAILABLE and opik:
         try:
+            project = os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer")
+            print(f"[Opik] Creating trace for ingredient_extraction (project={project})")
             trace = opik.trace(
                 name="ingredient_extraction",
                 input={
                     "prompt": prompt,
                     "servings": servings,
                 },
-                project_name=os.environ.get("OPIK_PROJECT_NAME", "consciousbuyer"),
+                project_name=project,
             )
+            print(f"[Opik] Trace created: {trace}")
         except Exception as e:
+            print(f"[Opik] Trace creation failed: {type(e).__name__}: {e}")
             logger.debug(f"Opik trace failed to start: {e}")
 
     # Check for override mode
@@ -364,6 +374,7 @@ def extract_ingredients_with_llm(
 
     # End trace with success
     if trace:
+        print(f"[Opik] Ending trace with {len(ingredients)} ingredients")
         trace.end(output={
             "ingredients": [i.get("name") for i in ingredients],
             "count": len(ingredients),
