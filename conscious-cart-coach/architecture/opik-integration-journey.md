@@ -50,7 +50,48 @@ Should Mention: ["California", "quality"]
 
 ---
 
-## Slide 3: Online Evaluation with LLM-as-Judge
+## Slide 3: Batching Optimization (Traced with Opik)
+
+### The Problem
+Initial implementation made **N+1 LLM calls** per request:
+- 1 call for ingredient extraction
+- N calls for decision explanations (one per ingredient)
+
+With 21 ingredients, that's **22 API calls** → hitting rate limits!
+
+### The Solution
+Batch all explanations into a **single LLM call**:
+
+```python
+# BEFORE: N separate calls
+for item in cart_items:
+    explanation = explain_decision_with_llm(client, item)  # 1 call each
+
+# AFTER: 1 batched call
+explanations = explain_decisions_batch(client, all_items)  # Returns JSON
+```
+
+### Opik Trace Comparison
+
+| Approach | Traces | Latency | Rate Limit Safe |
+|----------|--------|---------|-----------------|
+| Individual calls | N+1 traces | ~N×1.5s | ❌ Hits 15 req/min |
+| Batched call | 2 traces | ~3s total | ✅ Well under limit |
+
+### Batch Response Format
+```json
+{
+  "chicken": "Perdue at $8.99 offers...",
+  "basmati rice": "Lundberg organic at $6.49...",
+  "onion": "Yellow onions at $0.99/lb..."
+}
+```
+
+**Opik traces showed the dramatic reduction in API calls and helped us validate the batched output quality.**
+
+---
+
+## Slide 4: Online Evaluation with LLM-as-Judge
 
 ### Implementation
 Used Opik's online evaluation to score production responses in real-time.
@@ -72,7 +113,7 @@ Used Opik's online evaluation to score production responses in real-time.
 
 ---
 
-## Slide 4: Human Review with Annotation Queues
+## Slide 5: Human Review with Annotation Queues
 
 ### The Need
 Automated scoring catches most issues, but edge cases require human judgment.
@@ -100,21 +141,23 @@ Traces with score < 0.8  →  Annotation Queue  →  Human Review
 
 ---
 
-## Slide 5: Key Takeaways
+## Slide 6: Key Takeaways
 
 ### What Opik Enabled
 
 1. **Visibility** - Traced every LLM call with inputs, outputs, and latency
 2. **Optimization** - Reduced token usage by 75% with Opik Assist
-3. **Quality Assurance** - Automated scoring with custom metrics
-4. **Production Monitoring** - Real-time evaluation with LLM-as-Judge
-5. **Human-in-the-Loop** - Annotation queues for edge case review
+3. **Batching Insights** - Traced N+1 → 2 calls optimization clearly
+4. **Quality Assurance** - Automated scoring with custom metrics
+5. **Production Monitoring** - Real-time evaluation with LLM-as-Judge
+6. **Human-in-the-Loop** - Annotation queues for edge case review
 
 ### Impact on Conscious Cart Coach
 
 | Area | Improvement |
 |------|-------------|
 | Token Costs | 75% reduction |
+| API Calls | 91% reduction (22 → 2 calls) |
 | Prompt Quality | Measurable via experiments |
 | Response Accuracy | Validated with LLM judge |
 | Edge Cases | Caught via human annotation |
