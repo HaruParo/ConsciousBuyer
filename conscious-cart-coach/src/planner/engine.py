@@ -1124,10 +1124,9 @@ class PlannerEngine:
 
                         if llm_reason:
                             # Store original reason in details, use LLM as main reason
-                            if item.reason:
-                                original = item.reason.line
-                                item.reason.line = llm_reason
-                                item.reason.details = [f"Scoring: {original}"] + (item.reason.details or [])
+                            original = item.reason_line
+                            item.reason_line = llm_reason
+                            item.reason_details = [f"Scoring: {original}"] + (item.reason_details or [])
                             print(f"[LLM] Enhanced reason for {ingredient_name}: {llm_reason[:50]}...")
                         else:
                             print(f"[LLM] No explanation match for: {ingredient_name}")
