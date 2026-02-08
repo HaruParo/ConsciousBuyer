@@ -943,7 +943,10 @@ def plan_v2(request: PlanRequestV2):
         # Step 2: Run PlannerEngine (deterministic)
         # Use source_listings.csv (has mushrooms!) instead of inventories_trusted
         product_index = ProductIndex(use_synthetic=False)
-        engine = PlannerEngine(product_index=product_index)
+        engine = PlannerEngine(
+            product_index=product_index,
+            use_llm_explanations=True  # Uses Gemini (15 req/min free tier)
+        )
         plan = engine.create_plan(
             prompt=request.prompt,
             ingredients=ingredients,

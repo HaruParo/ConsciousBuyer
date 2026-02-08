@@ -9,8 +9,18 @@ from ..utils.llm_client import BaseLLMClient
 # Opik tracking (optional)
 try:
     import opik
+    # Configure Opik on import if API key available
+    opik_api_key = os.environ.get("OPIK_API_KEY")
+    if opik_api_key:
+        opik.configure(
+            api_key=opik_api_key,
+            workspace=os.environ.get("OPIK_WORKSPACE", "default"),
+        )
     OPIK_AVAILABLE = True
 except ImportError:
+    opik = None
+    OPIK_AVAILABLE = False
+except Exception:
     opik = None
     OPIK_AVAILABLE = False
 
